@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${inter.className} flex flex-col min-h-screen`}>
+      <body className={`${inter.className} bg-green-50 text-slate-800 dark:bg-slate-900 dark:text-slate-50 flex flex-col min-h-screen`}>
         <Header />
         <main className="flex-grow container mx-auto px-6 py-8">
           {children}

@@ -119,7 +119,7 @@ const HydroponicsCharts = () => {
       </div>
       <div className="bg-white p-6 rounded-xl shadow-lg h-96 col-span-1 lg:col-span-2">
         <h3 className="text-xl font-bold mb-4">pH Level Over Time</h3>
-        <Bar options={commonOptions} data={phData} />
+        <Line options={commonOptions} data={phData} />
       </div>
     </div>
   );
