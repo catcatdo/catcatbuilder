@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <!-- Main Page -->
     <url>
-        <loc>https://catcatdo.github.io/catcatbuilder/</loc>
+        <loc>https://lilhwang.com/</loc>
         <lastmod>2026-01-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
@@ -10,7 +10,7 @@
 
     <!-- Tools Section -->
     <url>
-        <loc>https://catcatdo.github.io/catcatbuilder/#tools</loc>
+        <loc>https://lilhwang.com/#tools</loc>
         <lastmod>2026-01-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
@@ -18,7 +18,7 @@
 
     <!-- Widgets Section -->
     <url>
-        <loc>https://catcatdo.github.io/catcatbuilder/#widgets</loc>
+        <loc>https://lilhwang.com/#widgets</loc>
         <lastmod>2026-01-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
@@ -26,7 +26,7 @@
 
     <!-- Games Section -->
     <url>
-        <loc>https://catcatdo.github.io/catcatbuilder/#games</loc>
+        <loc>https://lilhwang.com/#games</loc>
         <lastmod>2026-01-30</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
