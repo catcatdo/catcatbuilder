@@ -496,6 +496,25 @@ body {
 }
 
 /* ========================================
+   IP Info & Ping Results
+   ======================================== */
+
+.ip-info {
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 2;
+}
+
+.ping-results {
+    line-height: 2;
+}
+
+.ping-results strong {
+    min-width: 120px;
+    display: inline-block;
+}
+
+/* ========================================
    Color Palette
    ======================================== */
 

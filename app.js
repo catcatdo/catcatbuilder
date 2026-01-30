@@ -235,6 +235,159 @@ function initTodoList() {
 }
 
 // ========================================
+// VAT Calculator
+// ========================================
+
+function initVATCalculator() {
+    const calcBtn = document.getElementById('calc-vat');
+    const resultDiv = document.getElementById('vat-result');
+
+    calcBtn.addEventListener('click', () => {
+        const mode = document.getElementById('vat-mode').value;
+        const amount = parseFloat(document.getElementById('vat-amount').value);
+
+        if (!amount || amount <= 0) {
+            showError(resultDiv, '금액을 입력하세요.');
+            return;
+        }
+
+        let supplyPrice, vat, total;
+
+        if (mode === 'add') {
+            // 공급가액에서 부가세 추가
+            supplyPrice = amount;
+            vat = Math.round(amount * 0.1);
+            total = supplyPrice + vat;
+        } else {
+            // 총액에서 공급가액과 부가세 분리
+            total = amount;
+            supplyPrice = Math.round(amount / 1.1);
+            vat = total - supplyPrice;
+        }
+
+        showSuccess(resultDiv, `
+            <div style="text-align: left; width: 100%;">
+                <strong style="font-size: 16px;">계산 결과</strong><br><br>
+                공급가액: <strong>${supplyPrice.toLocaleString()}원</strong><br>
+                부가세 (10%): <strong>${vat.toLocaleString()}원</strong><br>
+                <hr style="margin: 10px 0; border: none; border-top: 1px solid #ddd;">
+                총액: <strong style="font-size: 18px; color: #3498db;">${total.toLocaleString()}원</strong>
+            </div>
+        `);
+    });
+}
+
+// ========================================
+// IP Address Checker
+// ========================================
+
+function initIPChecker() {
+    const checkBtn = document.getElementById('check-ip');
+    const resultDiv = document.getElementById('ip-result');
+
+    checkBtn.addEventListener('click', async () => {
+        showLoading();
+
+        try {
+            // Using ipapi.co for more detailed information
+            const response = await fetch('https://ipapi.co/json/');
+            const data = await response.json();
+
+            hideLoading();
+            showSuccess(resultDiv, `
+                <div style="text-align: left; width: 100%;">
+                    <strong style="font-size: 18px;">🌐 ${data.ip}</strong><br><br>
+                    📍 위치: ${data.city || 'N/A'}, ${data.region || 'N/A'}<br>
+                    🏴 국가: ${data.country_name || 'N/A'} (${data.country_code || 'N/A'})<br>
+                    🏢 ISP: ${data.org || 'N/A'}<br>
+                    ${data.timezone ? `⏰ 시간대: ${data.timezone}` : ''}
+                </div>
+            `);
+        } catch (error) {
+            hideLoading();
+            // Fallback to simpler API
+            try {
+                const response = await fetch('https://api.ipify.org?format=json');
+                const data = await response.json();
+                showSuccess(resultDiv, `
+                    <div>
+                        <strong style="font-size: 20px;">🌐 ${data.ip}</strong><br>
+                        <small>외부 IP 주소</small>
+                    </div>
+                `);
+            } catch (fallbackError) {
+                showError(resultDiv, 'IP 정보를 불러오지 못했습니다.');
+            }
+        }
+    });
+}
+
+// ========================================
+// Ping Test
+// ========================================
+
+function initPingTest() {
+    const startBtn = document.getElementById('start-ping');
+    const resultDiv = document.getElementById('ping-result');
+
+    const defaultUrls = [
+        { name: 'Google', url: 'https://www.google.com' },
+        { name: 'Cloudflare', url: 'https://www.cloudflare.com' },
+        { name: 'GitHub', url: 'https://github.com' },
+        { name: 'Naver', url: 'https://www.naver.com' }
+    ];
+
+    async function pingUrl(name, url) {
+        const start = performance.now();
+        try {
+            await fetch(url, {
+                method: 'HEAD',
+                mode: 'no-cors',
+                cache: 'no-cache'
+            });
+            const end = performance.now();
+            return { name, time: Math.round(end - start), success: true };
+        } catch (error) {
+            return { name, time: 0, success: false };
+        }
+    }
+
+    startBtn.addEventListener('click', async () => {
+        const customUrl = document.getElementById('ping-url').value.trim();
+        let urlsToTest = [...defaultUrls];
+
+        if (customUrl) {
+            urlsToTest.unshift({ name: 'Custom URL', url: customUrl });
+        }
+
+        showLoading();
+        resultDiv.innerHTML = '<p>핑 테스트 진행 중...</p>';
+
+        const results = await Promise.all(
+            urlsToTest.map(({ name, url }) => pingUrl(name, url))
+        );
+
+        hideLoading();
+
+        let html = '<div style="text-align: left; width: 100%;">';
+        html += '<strong style="font-size: 16px;">📡 핑 테스트 결과</strong><br><br>';
+
+        results.forEach(result => {
+            const statusIcon = result.success ? '✅' : '❌';
+            const timeText = result.success ? `${result.time}ms` : '실패';
+            const color = result.time < 100 ? '#27ae60' : result.time < 300 ? '#f39c12' : '#e74c3c';
+
+            html += `${statusIcon} <strong>${result.name}</strong>: `;
+            html += `<span style="color: ${color};">${timeText}</span><br>`;
+        });
+
+        html += '</div>';
+        resultDiv.innerHTML = html;
+        resultDiv.className = 'result-box success ping-results';
+    });
+}
+
+// ========================================
 // Weather Widget
 // ========================================
 
@@ -547,6 +700,9 @@ document.addEventListener('DOMContentLoaded', () => {
     initBMICalculator();
     initCurrencyConverter();
     initTodoList();
+    initVATCalculator();
+    initIPChecker();
+    initPingTest();
     initWeatherWidget();
     initCryptoWidget();
     initQuoteGenerator();
