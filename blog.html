@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>블로그 - lilhwang.com</title>
+    <meta name="description" content="개발, 기술, 일상에 관한 이야기를 공유합니다">
+    <meta name="keywords" content="블로그, 개발 블로그, 기술 블로그, lilhwang">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="blog.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9087208932507444"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1 class="logo"><a href="index.html" style="text-decoration: none; color: inherit;">유틸리티 포털</a></h1>
+            <nav class="nav">
+                <a href="index.html">홈</a>
+                <a href="blog.html" class="active">블로그</a>
+                <a href="admin.html">관리자</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 상단 광고 영역 -->
+    <section class="ad-section ad-top">
+        <div class="container">
+            <div class="ad-placeholder ad-horizontal">
+                <div class="ad-label">광고</div>
+                <div class="ad-content">
+                    <p>상단 가로 광고 영역 (728x90 또는 반응형)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-container">
+        <div class="container">
+            <div class="blog-wrapper">
+                <!-- Blog Main Area -->
+                <div class="blog-main">
+                    <h1 class="blog-header">블로그</h1>
+                    <p class="blog-subtitle">개발, 기술, 그리고 일상 이야기</p>
+
+                    <!-- Post Detail View (Hidden by default) -->
+                    <div id="post-detail" class="post-detail" style="display: none;">
+                        <button class="btn btn-secondary back-btn" id="back-to-list">← 목록으로</button>
+                        <article class="post-full">
+                            <h1 class="post-full-title" id="detail-title"></h1>
+                            <div class="post-full-meta">
+                                <span id="detail-date"></span>
+                                <span id="detail-category"></span>
+                            </div>
+                            <div class="post-full-image" id="detail-image"></div>
+                            <div class="post-full-content" id="detail-content"></div>
+                            <div class="post-full-tags" id="detail-tags"></div>
+                        </article>
+                    </div>
+
+                    <!-- Posts List View -->
+                    <div id="posts-list">
+                        <!-- Category Filter -->
+                        <div class="category-filter">
+                            <button class="category-btn active" data-category="all">전체</button>
+                            <button class="category-btn" data-category="tech">기술</button>
+                            <button class="category-btn" data-category="dev">개발</button>
+                            <button class="category-btn" data-category="life">일상</button>
+                        </div>
+
+                        <!-- Posts Grid -->
+                        <div id="posts-container" class="posts-grid">
+                            <!-- Posts will be loaded here -->
+                            <div class="loading-message">게시글을 불러오는 중...</div>
+                        </div>
+
+                        <!-- Pagination -->
+                        <div id="pagination" class="pagination"></div>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <aside class="blog-sidebar">
+                    <!-- Author Info -->
+                    <div class="widget author-widget">
+                        <h3 class="widget-title">About Me</h3>
+                        <div class="author-info">
+                            <div class="author-avatar">👨‍💻</div>
+                            <h4 class="author-name">lilhwang</h4>
+                            <p class="author-bio">개발자이자 크리에이터입니다. 기술과 일상을 기록합니다.</p>
+                        </div>
+                    </div>
+
+                    <!-- Sidebar Ad -->
+                    <div class="ad-placeholder ad-sidebar">
+                        <div class="ad-label">광고</div>
+                        <div class="ad-content">
+                            <p>사이드바 광고 영역 (300x250)</p>
+                        </div>
+                    </div>
+
+                    <!-- Recent Posts -->
+                    <div class="widget">
+                        <h3 class="widget-title">최근 게시글</h3>
+                        <ul class="widget-list" id="recent-posts">
+                            <li>게시글을 불러오는 중...</li>
+                        </ul>
+                    </div>
+
+                    <!-- Categories -->
+                    <div class="widget">
+                        <h3 class="widget-title">카테고리</h3>
+                        <ul class="widget-list">
+                            <li><a href="#" data-category="tech">기술</a></li>
+                            <li><a href="#" data-category="dev">개발</a></li>
+                            <li><a href="#" data-category="life">일상</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Tags -->
+                    <div class="widget">
+                        <h3 class="widget-title">인기 태그</h3>
+                        <div class="tags-cloud" id="tags-cloud">
+                            <!-- Tags will be loaded here -->
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 유틸리티 포털. All rights reserved.</p>
+            <p class="footer-note">모든 도구는 무료로 제공됩니다.</p>
+        </div>
+    </footer>
+
+    <script src="blog.js"></script>
+</body>
+</html>

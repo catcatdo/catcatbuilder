@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관리자 - lilhwang.com</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="blog.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1 class="logo"><a href="index.html" style="text-decoration: none; color: inherit;">유틸리티 포털</a></h1>
+            <nav class="nav">
+                <a href="index.html">홈</a>
+                <a href="blog.html">블로그</a>
+                <a href="admin.html" class="active">관리자</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-container">
+        <div class="container">
+            <!-- Login Section -->
+            <div id="login-section" class="admin-section">
+                <div class="admin-login">
+                    <h2>관리자 로그인</h2>
+                    <div class="input-group">
+                        <label for="admin-password">비밀번호</label>
+                        <input type="password" id="admin-password" placeholder="비밀번호 입력">
+                    </div>
+                    <button class="btn btn-primary" id="login-btn">로그인</button>
+                    <p class="login-error" id="login-error"></p>
+                </div>
+            </div>
+
+            <!-- Admin Dashboard -->
+            <div id="admin-dashboard" class="admin-section" style="display: none;">
+                <div class="admin-header">
+                    <h2>관리자 대시보드</h2>
+                    <button class="btn btn-secondary" id="logout-btn">로그아웃</button>
+                </div>
+
+                <div class="admin-tabs">
+                    <button class="admin-tab-btn active" data-tab="write">글 작성</button>
+                    <button class="admin-tab-btn" data-tab="manage">글 관리</button>
+                    <button class="admin-tab-btn" data-tab="json">JSON 내보내기</button>
+                </div>
+
+                <!-- Write Post Tab -->
+                <div class="admin-tab-content active" id="write-tab">
+                    <h3>새 게시글 작성</h3>
+                    <form id="post-form" class="post-form">
+                        <div class="input-group">
+                            <label for="post-title">제목 *</label>
+                            <input type="text" id="post-title" required placeholder="게시글 제목">
+                        </div>
+
+                        <div class="input-group">
+                            <label for="post-category">카테고리 *</label>
+                            <select id="post-category" required>
+                                <option value="tech">기술</option>
+                                <option value="dev">개발</option>
+                                <option value="life">일상</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="post-image">이미지 URL (선택)</label>
+                            <input type="url" id="post-image" placeholder="https://example.com/image.jpg">
+                            <small>GitHub 저장소의 images/posts/ 폴더에 이미지를 업로드한 후 URL을 입력하세요.</small>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="post-excerpt">요약 (선택)</label>
+                            <textarea id="post-excerpt" rows="2" placeholder="게시글 요약 (목록에 표시됩니다)"></textarea>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="post-content">본문 * (HTML 사용 가능)</label>
+                            <textarea id="post-content" rows="15" required placeholder="게시글 본문을 작성하세요. HTML 태그를 사용할 수 있습니다."></textarea>
+                            <small>
+                                사용 가능한 HTML 태그: &lt;p&gt;, &lt;h2&gt;, &lt;h3&gt;, &lt;strong&gt;, &lt;em&gt;, &lt;ul&gt;, &lt;ol&gt;, &lt;li&gt;, &lt;a&gt;, &lt;code&gt;, &lt;pre&gt;, &lt;img&gt; 등
+                            </small>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="post-tags">태그 (쉼표로 구분)</label>
+                            <input type="text" id="post-tags" placeholder="예: JavaScript, React, 웹개발">
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">게시글 생성</button>
+                            <button type="button" class="btn btn-secondary" id="clear-form">초기화</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Manage Posts Tab -->
+                <div class="admin-tab-content" id="manage-tab">
+                    <h3>게시글 관리</h3>
+                    <div id="posts-management" class="posts-management">
+                        <!-- Posts list will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- JSON Export Tab -->
+                <div class="admin-tab-content" id="json-tab">
+                    <h3>posts.json 내보내기</h3>
+                    <p>아래의 JSON 코드를 복사하여 GitHub 저장소의 <code>posts.json</code> 파일을 업데이트하세요.</p>
+                    <div class="json-actions">
+                        <button class="btn btn-primary" id="copy-json">JSON 복사</button>
+                        <button class="btn btn-secondary" id="download-json">JSON 다운로드</button>
+                    </div>
+                    <pre id="json-output" class="json-output"></pre>
+                    <div class="json-instructions">
+                        <h4>📝 업데이트 방법:</h4>
+                        <ol>
+                            <li>위의 "JSON 복사" 버튼을 클릭하여 JSON 데이터 복사</li>
+                            <li>GitHub 저장소 (catcatbuilder)로 이동</li>
+                            <li><code>posts.json</code> 파일을 찾아 편집</li>
+                            <li>파일 내용을 복사한 JSON으로 교체</li>
+                            <li>커밋 메시지 작성 후 저장</li>
+                            <li>몇 분 후 블로그에 새 게시글이 표시됩니다</li>
+                        </ol>
+                        <h4>🖼️ 이미지 업로드 방법:</h4>
+                        <ol>
+                            <li>GitHub 저장소에서 <code>images/posts/</code> 폴더 생성 (없는 경우)</li>
+                            <li>이미지 파일 업로드 (예: my-image.jpg)</li>
+                            <li>업로드된 이미지의 URL: <code>https://lilhwang.com/images/posts/my-image.jpg</code></li>
+                            <li>게시글 작성 시 이미지 URL 필드에 위 URL 입력</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 유틸리티 포털. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="admin.js"></script>
+</body>
+</html>
