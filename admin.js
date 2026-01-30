@@ -2,7 +2,7 @@
 // Admin JavaScript
 // ========================================
 
-const ADMIN_PASSWORD = 'admin123'; // 비밀번호를 변경하세요!
+const ADMIN_PASSWORD = 'Dhktmfpahsh05!'; // 비밀번호를 변경하세요!
 let posts = [];
 let isLoggedIn = false;
 
