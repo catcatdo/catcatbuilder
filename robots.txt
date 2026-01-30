@@ -1,0 +1,10 @@
+# robots.txt for catcatbuilder utility portal
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://catcatdo.github.io/catcatbuilder/sitemap.xml
+
+# Disallow crawling of ads (optional)
+Disallow: /pagead/
