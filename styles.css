@@ -1,0 +1,841 @@
+/* ========================================
+   기본 설정 및 리셋
+   ======================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Malgun Gothic', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f5f5f5;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ========================================
+   헤더
+   ======================================== */
+
+.header {
+    background-color: #fff;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.nav {
+    display: flex;
+    gap: 30px;
+}
+
+.nav a {
+    text-decoration: none;
+    color: #555;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav a:hover {
+    color: #3498db;
+}
+
+/* ========================================
+   광고 영역 공통 스타일
+   ======================================== */
+
+.ad-section {
+    background-color: #fff;
+    padding: 20px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.ad-placeholder {
+    background-color: #f8f9fa;
+    border: 2px dashed #dee2e6;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+    text-align: center;
+    position: relative;
+}
+
+.ad-label {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-size: 11px;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.ad-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 90px;
+    color: #6c757d;
+    font-size: 14px;
+}
+
+/* ========================================
+   상단 가로 광고 (헤더 아래)
+   ======================================== */
+
+.ad-top {
+    margin-bottom: 0;
+}
+
+.ad-horizontal .ad-content {
+    min-height: 90px;
+}
+
+/* ========================================
+   메인 콘텐츠 영역
+   ======================================== */
+
+.main-container {
+    padding: 40px 0;
+}
+
+.content-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 40px;
+    background-color: transparent;
+}
+
+/* ========================================
+   Tab Navigation
+   ======================================== */
+
+.tab-navigation {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 12px 20px;
+    border: 2px solid #e0e0e0;
+    background-color: #fff;
+    color: #555;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.tab-btn:hover {
+    background-color: #f8f9fa;
+    border-color: #3498db;
+}
+
+.tab-btn.active {
+    background-color: #3498db;
+    color: #fff;
+    border-color: #3498db;
+}
+
+/* ========================================
+   Tab Content
+   ======================================== */
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* ========================================
+   Tools Grid
+   ======================================== */
+
+.main-content {
+    background-color: transparent;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 25px;
+}
+
+/* ========================================
+   Tool Cards
+   ======================================== */
+
+.tool-card {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 25px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+}
+
+.tool-card:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    transform: translateY(-2px);
+}
+
+.tool-title {
+    font-size: 20px;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #3498db;
+}
+
+.tool-body {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* ========================================
+   Input Groups and Forms
+   ======================================== */
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.input-group label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #555;
+}
+
+.input-group input,
+.input-group select {
+    padding: 10px 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 15px;
+    transition: border-color 0.3s ease;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+    outline: none;
+    border-color: #3498db;
+}
+
+/* ========================================
+   Buttons
+   ======================================== */
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: #3498db;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: #2980b9;
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background-color: #95a5a6;
+    color: #fff;
+}
+
+.btn-secondary:hover {
+    background-color: #7f8c8d;
+}
+
+.btn-game {
+    background-color: #e8f4f8;
+    color: #3498db;
+    font-size: 18px;
+    padding: 15px;
+}
+
+.btn-game:hover {
+    background-color: #3498db;
+    color: #fff;
+}
+
+/* ========================================
+   Result Boxes
+   ======================================== */
+
+.result-box {
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 6px;
+    border-left: 4px solid #3498db;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 15px;
+    color: #555;
+}
+
+.result-box.success {
+    background-color: #d4edda;
+    border-left-color: #28a745;
+    color: #155724;
+}
+
+.result-box.error {
+    background-color: #f8d7da;
+    border-left-color: #dc3545;
+    color: #721c24;
+}
+
+.result-box.warning {
+    background-color: #fff3cd;
+    border-left-color: #ffc107;
+    color: #856404;
+}
+
+/* ========================================
+   Todo List
+   ======================================== */
+
+.todo-list {
+    list-style: none;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.todo-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.todo-item:hover {
+    background-color: #e9ecef;
+}
+
+.todo-item.completed {
+    opacity: 0.6;
+}
+
+.todo-item.completed .todo-text {
+    text-decoration: line-through;
+}
+
+.todo-checkbox {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.todo-text {
+    flex: 1;
+    font-size: 14px;
+    color: #333;
+}
+
+.todo-delete {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.todo-delete:hover {
+    background-color: #c82333;
+}
+
+/* ========================================
+   Crypto Grid
+   ======================================== */
+
+.crypto-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px;
+}
+
+.crypto-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+}
+
+.crypto-name {
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.crypto-price {
+    font-size: 16px;
+    color: #27ae60;
+    font-weight: 500;
+}
+
+/* ========================================
+   Quote Box
+   ======================================== */
+
+.quote-box {
+    flex-direction: column;
+    padding: 20px;
+    font-style: italic;
+    line-height: 1.6;
+}
+
+.quote-text {
+    font-size: 16px;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.quote-author {
+    font-size: 14px;
+    color: #7f8c8d;
+    text-align: right;
+    font-style: normal;
+}
+
+/* ========================================
+   Game Specific Styles
+   ======================================== */
+
+.game-info {
+    font-size: 14px;
+    color: #555;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.game-stats {
+    padding: 12px;
+    background-color: #e8f4f8;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 14px;
+    color: #2c3e50;
+    font-weight: 500;
+}
+
+.rps-buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+/* ========================================
+   Color Palette
+   ======================================== */
+
+.color-palette {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.color-box {
+    aspect-ratio: 1;
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.3s ease;
+    border: 2px solid #e0e0e0;
+}
+
+.color-box:hover {
+    transform: scale(1.05);
+    border-color: #3498db;
+}
+
+.color-code {
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 3px 6px;
+    border-radius: 3px;
+    font-size: 10px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* ========================================
+   사이드바
+   ======================================== */
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.ad-sidebar {
+    background-color: #fafbfc;
+    border-color: #d1d5db;
+    position: sticky;
+    top: 90px;
+}
+
+.ad-sidebar .ad-content {
+    min-height: 250px;
+}
+
+/* 사이드바 두 번째 광고는 더 길게 */
+.ad-sidebar:nth-of-type(2) .ad-content {
+    min-height: 600px;
+}
+
+/* ========================================
+   위젯
+   ======================================== */
+
+.widget {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.widget-title {
+    font-size: 18px;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #3498db;
+}
+
+.widget-list {
+    list-style: none;
+}
+
+.widget-list li {
+    margin-bottom: 12px;
+}
+
+.widget-list a {
+    color: #555;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-size: 14px;
+    display: block;
+    padding: 5px 0;
+}
+
+.widget-list a:hover {
+    color: #3498db;
+    padding-left: 5px;
+}
+
+.widget-text {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* ========================================
+   Loading Spinner
+   ======================================== */
+
+.spinner-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.spinner-overlay.active {
+    display: flex;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* ========================================
+   푸터
+   ======================================== */
+
+.footer {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    padding: 30px 0;
+    margin-top: 60px;
+    text-align: center;
+}
+
+.footer-note {
+    font-size: 14px;
+    margin-top: 10px;
+    opacity: 0.8;
+}
+
+/* ========================================
+   반응형 미디어 쿼리
+   ======================================== */
+
+/* 태블릿 (1024px 이하) */
+@media (max-width: 1024px) {
+    .content-wrapper {
+        grid-template-columns: 1fr 280px;
+        gap: 30px;
+    }
+
+    .tools-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .tab-navigation {
+        flex-wrap: wrap;
+    }
+}
+
+/* 태블릿 세로 / 큰 모바일 (768px 이하) */
+@media (max-width: 768px) {
+    .content-wrapper {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .tools-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .tab-navigation {
+        padding: 10px;
+        gap: 8px;
+    }
+
+    .tab-btn {
+        font-size: 14px;
+        padding: 10px 15px;
+    }
+
+    /* 사이드바가 하단으로 이동 */
+    .sidebar {
+        margin-top: 20px;
+    }
+
+    /* 사이드바 광고 sticky 해제 (모바일에서는 불필요) */
+    .ad-sidebar {
+        position: static;
+    }
+
+    /* 모바일에서 가로 광고 높이 조정 */
+    .ad-horizontal .ad-content {
+        min-height: 60px;
+    }
+
+    /* 헤더 조정 */
+    .header .container {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .nav {
+        gap: 20px;
+    }
+
+    /* Color palette responsive */
+    .color-palette {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    /* RPS buttons responsive */
+    .rps-buttons {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* 모바일 (480px 이하) */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 15px;
+    }
+
+    .main-container {
+        padding: 20px 0;
+    }
+
+    .tool-card {
+        padding: 20px;
+    }
+
+    .tool-title {
+        font-size: 18px;
+    }
+
+    /* 광고 플레이스홀더 패딩 조정 */
+    .ad-placeholder {
+        padding: 15px;
+        margin: 15px 0;
+    }
+
+    /* 상단 광고 영역 */
+    .ad-section {
+        padding: 15px 0;
+    }
+
+    .ad-horizontal .ad-content {
+        min-height: 50px;
+    }
+
+    /* 사이드바 광고 */
+    .ad-sidebar .ad-content {
+        min-height: 200px;
+    }
+
+    .ad-sidebar:nth-of-type(2) .ad-content {
+        min-height: 250px;
+    }
+
+    /* 위젯 패딩 조정 */
+    .widget {
+        padding: 20px;
+    }
+
+    /* 네비게이션 */
+    .nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .nav a {
+        font-size: 14px;
+    }
+
+    /* Tab buttons */
+    .tab-btn {
+        font-size: 13px;
+        padding: 8px 12px;
+    }
+
+    /* Color palette more compact */
+    .color-palette {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Input groups */
+    .input-group input,
+    .input-group select {
+        font-size: 14px;
+    }
+}
+
+/* 매우 작은 모바일 (360px 이하) */
+@media (max-width: 360px) {
+    .tool-card {
+        padding: 15px;
+    }
+
+    .tool-title {
+        font-size: 16px;
+    }
+
+    .ad-placeholder {
+        padding: 12px;
+    }
+
+    .tools-grid {
+        gap: 15px;
+    }
+}
+
+/* ========================================
+   광고 최적화를 위한 추가 스타일
+   ======================================== */
+
+/* 광고와 콘텐츠 사이 명확한 구분을 위한 여백 */
+.ad-placeholder + * {
+    margin-top: 30px;
+}
+
+/* 광고 가시성 개선 */
+.ad-placeholder:hover {
+    border-color: #adb5bd;
+    transition: border-color 0.3s ease;
+}
+
+/* 인쇄 시 광고 숨김 */
+@media print {
+    .ad-placeholder,
+    .ad-section {
+        display: none;
+    }
+}

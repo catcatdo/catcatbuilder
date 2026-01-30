@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>종합 유틸리티 포털 - 실용 도구, 위젯, 게임</title>
+    <meta name="description" content="BMI 계산기, 환율 변환, 날씨, 암호화폐 시세, 미니게임 등 다양한 실용 도구를 한곳에서">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">유틸리티 포털</h1>
+            <nav class="nav">
+                <a href="#tools">실용도구</a>
+                <a href="#widgets">위젯</a>
+                <a href="#games">게임</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 상단 광고 영역 -->
+    <section class="ad-section ad-top">
+        <div class="container">
+            <div class="ad-placeholder ad-horizontal">
+                <div class="ad-label">광고</div>
+                <div class="ad-content">
+                    <p>상단 가로 광고 영역 (728x90 또는 반응형)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Area -->
+    <main class="main-container">
+        <div class="container">
+            <!-- Tab Navigation -->
+            <div class="tab-navigation">
+                <button class="tab-btn active" data-tab="tools">실용 도구</button>
+                <button class="tab-btn" data-tab="widgets">인터랙티브 위젯</button>
+                <button class="tab-btn" data-tab="games">미니 게임</button>
+            </div>
+
+            <div class="content-wrapper">
+                <!-- Main Tools Grid -->
+                <div class="main-content">
+                    <!-- Tools Section -->
+                    <div class="tab-content active" id="tools-content">
+                        <div class="tools-grid">
+                            <!-- BMI Calculator -->
+                            <div class="tool-card">
+                                <h3 class="tool-title">BMI 계산기</h3>
+                                <div class="tool-body">
+                                    <div class="input-group">
+                                        <label for="height">키 (cm)</label>
+                                        <input type="number" id="height" placeholder="170">
+                                    </div>
+                                    <div class="input-group">
+                                        <label for="weight">몸무게 (kg)</label>
+                                        <input type="number" id="weight" placeholder="65">
+                                    </div>
+                                    <button class="btn btn-primary" id="calc-bmi">계산하기</button>
+                                    <div id="bmi-result" class="result-box"></div>
+                                </div>
+                            </div>
+
+                            <!-- Currency Converter -->
+                            <div class="tool-card">
+                                <h3 class="tool-title">환율 변환기</h3>
+                                <div class="tool-body">
+                                    <div class="input-group">
+                                        <label for="amount">금액</label>
+                                        <input type="number" id="amount" placeholder="100">
+                                    </div>
+                                    <div class="input-group">
+                                        <label for="from-currency">보낼 통화</label>
+                                        <select id="from-currency">
+                                            <option value="USD">USD - 미국 달러</option>
+                                            <option value="EUR">EUR - 유로</option>
+                                            <option value="JPY">JPY - 일본 엔</option>
+                                            <option value="GBP">GBP - 영국 파운드</option>
+                                            <option value="KRW" selected>KRW - 한국 원</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-group">
+                                        <label for="to-currency">받을 통화</label>
+                                        <select id="to-currency">
+                                            <option value="USD" selected>USD - 미국 달러</option>
+                                            <option value="EUR">EUR - 유로</option>
+                                            <option value="JPY">JPY - 일본 엔</option>
+                                            <option value="GBP">GBP - 영국 파운드</option>
+                                            <option value="KRW">KRW - 한국 원</option>
+                                        </select>
+                                    </div>
+                                    <button class="btn btn-primary" id="convert-currency">변환하기</button>
+                                    <div id="currency-result" class="result-box"></div>
+                                </div>
+                            </div>
+
+                            <!-- Todo List -->
+                            <div class="tool-card">
+                                <h3 class="tool-title">할일 목록</h3>
+                                <div class="tool-body">
+                                    <div class="input-group">
+                                        <input type="text" id="todo-input" placeholder="새로운 할일 추가...">
+                                        <button class="btn btn-primary" id="add-todo">추가</button>
+                                    </div>
+                                    <ul id="todo-list" class="todo-list"></ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Widgets Section -->
+                    <div class="tab-content" id="widgets-content">
+                        <div class="tools-grid">
+                            <!-- Weather Widget -->
+                            <div class="tool-card">
+                                <h3 class="tool-title">날씨 위젯</h3>
+                                <div class="tool-body">
+                                    <div class="input-group">
+                                        <label for="city">도시명</label>
+                                        <input type="text" id="city" placeholder="Seoul">
+                                    </div>
+                                    <button class="btn btn-primary" id="get-weather">날씨 조회</button>
+                                    <div id="weather-result" class="result-box"></div>
+                                </div>
+                            </div>
+
+                            <!-- Crypto Prices -->
+                            <div class="tool-card">
+                                <h3 class="tool-title">암호화폐 시세</h3>
+                                <div class="tool-body">
+                                    <button class="btn btn-primary" id="get-crypto">시세 조회</button>
+                                    <div id="crypto-result" class="result-box crypto-grid"></div>
+                                </div>
+                            </div>
+
+                            <!-- Random Quote -->
+                            <div class="tool-card">
+                                <h3 class="tool-title">랜덤 명언</h3>
+                                <div class="tool-body">
+                                    <button class="btn btn-primary" id="get-quote">새로운 명언</button>
+                                    <div id="quote-result" class="result-box quote-box"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Games Section -->
+                    <div class="tab-content" id="games-content">
+                        <div class="tools-grid">
+                            <!-- Number Guessing Game -->
+                            <div class="tool-card">
+                                <h3 class="tool-title">숫자 맞추기 게임</h3>
+                                <div class="tool-body">
+                                    <p class="game-info">1부터 100 사이의 숫자를 맞춰보세요!</p>
+                                    <div class="input-group">
+                                        <input type="number" id="guess-input" placeholder="숫자 입력" min="1" max="100">
+                                        <button class="btn btn-primary" id="guess-btn">확인</button>
+                                    </div>
+                                    <button class="btn btn-secondary" id="restart-guess">새 게임</button>
+                                    <div id="guess-result" class="result-box"></div>
+                                    <div id="guess-attempts" class="game-stats"></div>
+                                </div>
+                            </div>
+
+                            <!-- Rock Paper Scissors -->
+                            <div class="tool-card">
+                                <h3 class="tool-title">가위바위보</h3>
+                                <div class="tool-body">
+                                    <div class="rps-buttons">
+                                        <button class="btn btn-game" data-choice="rock">✊ 바위</button>
+                                        <button class="btn btn-game" data-choice="paper">✋ 보</button>
+                                        <button class="btn btn-game" data-choice="scissors">✌️ 가위</button>
+                                    </div>
+                                    <div id="rps-result" class="result-box"></div>
+                                    <div id="rps-score" class="game-stats"></div>
+                                </div>
+                            </div>
+
+                            <!-- Color Palette Generator -->
+                            <div class="tool-card">
+                                <h3 class="tool-title">색상 팔레트 생성기</h3>
+                                <div class="tool-body">
+                                    <button class="btn btn-primary" id="generate-palette">새 팔레트 생성</button>
+                                    <div id="color-palette" class="color-palette"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <aside class="sidebar">
+                    <!-- Sidebar Ad 1 -->
+                    <div class="ad-placeholder ad-sidebar">
+                        <div class="ad-label">광고</div>
+                        <div class="ad-content">
+                            <p>사이드바 광고 영역 1 (300x250)</p>
+                        </div>
+                    </div>
+
+                    <!-- Quick Links Widget -->
+                    <div class="widget">
+                        <h3 class="widget-title">인기 도구</h3>
+                        <ul class="widget-list">
+                            <li><a href="#tools" data-tool="bmi">BMI 계산기</a></li>
+                            <li><a href="#tools" data-tool="currency">환율 변환기</a></li>
+                            <li><a href="#widgets" data-tool="weather">날씨 위젯</a></li>
+                            <li><a href="#games" data-tool="guess">숫자 맞추기</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Sidebar Ad 2 -->
+                    <div class="ad-placeholder ad-sidebar">
+                        <div class="ad-label">광고</div>
+                        <div class="ad-content">
+                            <p>사이드바 광고 영역 2 (300x600)</p>
+                        </div>
+                    </div>
+
+                    <!-- Info Widget -->
+                    <div class="widget">
+                        <h3 class="widget-title">사이트 정보</h3>
+                        <p class="widget-text">다양한 실용 도구와 재미있는 게임을 무료로 이용하세요. 모든 도구는 브라우저에서 바로 실행됩니다.</p>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 유틸리티 포털. All rights reserved.</p>
+            <p class="footer-note">모든 도구는 무료로 제공됩니다.</p>
+        </div>
+    </footer>
+
+    <!-- Loading Spinner (Hidden by default) -->
+    <div id="loading-spinner" class="spinner-overlay">
+        <div class="spinner"></div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
