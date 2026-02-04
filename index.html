@@ -34,6 +34,20 @@
     <meta name="twitter:title" content="릴황 - 종합 유틸리티 포털 | 실용 도구, 위젯, 게임">
     <meta name="twitter:description" content="BMI 계산기, 환율 변환, 날씨, 암호화폐 시세, 미니게임 등 다양한 실용 도구를 한곳에서">
 
+    <script>
+        (function () {
+            try {
+                var key = 'theme-preference';
+                var saved = localStorage.getItem(key);
+                var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                var theme = saved || (systemDark ? 'dark' : 'light');
+                document.documentElement.setAttribute('data-theme', theme);
+            } catch (error) {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        })();
+    </script>
+
     <link rel="stylesheet" href="styles.css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9087208932507444"
      crossorigin="anonymous"></script>
@@ -183,13 +197,18 @@
     <header class="header">
         <div class="container">
             <h1 class="logo">릴황의 유틸리티 포털</h1>
-            <nav class="nav">
-                <a href="index.html">홈</a>
-                <a href="#tools">실용도구</a>
-                <a href="#widgets">위젯</a>
-                <a href="#games">게임</a>
-                <a href="blog.html">블로그</a>
-            </nav>
+            <div class="header-actions">
+                <nav class="nav">
+                    <a href="index.html">홈</a>
+                    <a href="#tools">실용도구</a>
+                    <a href="#widgets">위젯</a>
+                    <a href="#games">게임</a>
+                    <a href="blog.html">블로그</a>
+                </nav>
+                <button class="theme-toggle" id="theme-toggle" type="button" aria-label="다크 모드 전환">
+                    <span class="theme-icon" aria-hidden="true">🌙</span>
+                </button>
+            </div>
         </div>
     </header>
 
@@ -477,6 +496,62 @@
         <div class="spinner"></div>
     </div>
 
+    <script>
+        (function () {
+            var key = 'theme-preference';
+            var root = document.documentElement;
+            var toggleButton = document.getElementById('theme-toggle');
+            var icon = toggleButton ? toggleButton.querySelector('.theme-icon') : null;
+            var mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+            function getStoredTheme() {
+                try {
+                    return localStorage.getItem(key);
+                } catch (error) {
+                    return null;
+                }
+            }
+
+            function setStoredTheme(theme) {
+                try {
+                    localStorage.setItem(key, theme);
+                } catch (error) {
+                    // localStorage 접근 불가 환경 대응
+                }
+            }
+
+            function applyTheme(theme) {
+                root.setAttribute('data-theme', theme);
+                if (icon) {
+                    icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+                }
+                if (toggleButton) {
+                    toggleButton.setAttribute('aria-label', theme === 'dark' ? '라이트 모드로 전환' : '다크 모드로 전환');
+                }
+            }
+
+            function getSystemTheme() {
+                return mediaQuery.matches ? 'dark' : 'light';
+            }
+
+            applyTheme(getStoredTheme() || getSystemTheme());
+
+            if (toggleButton) {
+                toggleButton.addEventListener('click', function () {
+                    var current = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+                    var nextTheme = current === 'dark' ? 'light' : 'dark';
+                    applyTheme(nextTheme);
+                    setStoredTheme(nextTheme);
+                });
+            }
+
+            mediaQuery.addEventListener('change', function () {
+                if (!getStoredTheme()) {
+                    applyTheme(getSystemTheme());
+                }
+            });
+        })();
+    </script>
     <script src="app.js"></script>
 </body>
 </html>
