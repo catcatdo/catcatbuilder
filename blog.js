@@ -7,6 +7,65 @@ let currentCategory = 'all';
 let currentPage = 1;
 const postsPerPage = 6;
 
+const siteName = '릴황';
+const blogListMeta = {
+    title: '릴황 블로그 | 개발, 기술, 일상 이야기',
+    description: '릴황의 개발, 기술, 일상 이야기를 담은 블로그입니다.',
+    image: 'https://lilhwang.com/images/og-default.jpg',
+    url: 'https://lilhwang.com/blog.html',
+    type: 'website'
+};
+
+function setMetaTag(selector, attr, value) {
+    let tag = document.head.querySelector(selector);
+    if (!tag) {
+        tag = document.createElement('meta');
+        if (attr === 'property') {
+            tag.setAttribute('property', selector.match(/property="([^"]+)"/)[1]);
+        } else {
+            tag.setAttribute('name', selector.match(/name="([^"]+)"/)[1]);
+        }
+        document.head.appendChild(tag);
+    }
+    tag.setAttribute('content', value);
+}
+
+function updateBlogMeta(meta) {
+    document.title = meta.title;
+
+    setMetaTag('meta[name="description"]', 'name', meta.description);
+    setMetaTag('meta[property="og:title"]', 'property', meta.title);
+    setMetaTag('meta[property="og:description"]', 'property', meta.description);
+    setMetaTag('meta[property="og:image"]', 'property', meta.image);
+    setMetaTag('meta[property="og:url"]', 'property', meta.url);
+    setMetaTag('meta[property="og:type"]', 'property', meta.type);
+    setMetaTag('meta[property="og:site_name"]', 'property', siteName);
+
+    setMetaTag('meta[name="twitter:title"]', 'name', meta.title);
+    setMetaTag('meta[name="twitter:description"]', 'name', meta.description);
+    setMetaTag('meta[name="twitter:image"]', 'name', meta.image);
+    setMetaTag('meta[name="twitter:card"]', 'name', 'summary_large_image');
+}
+
+function getPostMeta(post, postId) {
+    const description = post.excerpt && post.excerpt.trim()
+        ? post.excerpt.trim()
+        : `${post.title} - 릴황 블로그 글입니다.`;
+
+    const imageUrl = post.image && post.image.trim()
+        ? new URL(post.image, window.location.origin + '/').href
+        : blogListMeta.image;
+
+    return {
+        title: `${post.title} | 릴황 블로그`,
+        description,
+        image: imageUrl,
+        url: `https://lilhwang.com/blog.html#post-${postId}`,
+        type: 'article'
+    };
+}
+
+
 // ========================================
 // Load Posts from JSON
 // ========================================
@@ -122,6 +181,9 @@ function showPostDetail(postId) {
 
     // Update URL hash
     window.location.hash = `post-${postId}`;
+
+    // Update meta tags for sharing
+    updateBlogMeta(getPostMeta(post, postId));
 }
 
 // ========================================
@@ -132,6 +194,7 @@ document.getElementById('back-to-list')?.addEventListener('click', () => {
     document.getElementById('post-detail').style.display = 'none';
     document.getElementById('posts-list').style.display = 'block';
     window.location.hash = '';
+    updateBlogMeta(blogListMeta);
     window.scrollTo(0, 0);
 });
 
@@ -303,6 +366,8 @@ function handleInitialHash() {
 // ========================================
 
 document.addEventListener('DOMContentLoaded', () => {
+    updateBlogMeta(blogListMeta);
+
     loadPosts().then(() => {
         handleInitialHash();
     });
