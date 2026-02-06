@@ -72,7 +72,7 @@ function getPostMeta(post, postId) {
 
 async function loadPosts() {
     try {
-        const response = await fetch('posts.json');
+        const response = await fetch('posts.json?v=' + Date.now());
         const data = await response.json();
         allPosts = data.posts.sort((a, b) => new Date(b.date) - new Date(a.date));
         renderPosts();
