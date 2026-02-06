@@ -1,6 +1,18 @@
 {
   "posts": [
     {
+      "id": 11,
+      "title": "OpenClaw에 Discord 봇 연결하기: 5분 완성 가이드 🤖",
+      "category": "dev",
+      "date": "2026-02-07",
+      "image": "",
+      "excerpt": "OpenClaw에 Discord 봇을 추가하는 완벽한 방법을 단계별로 정리했습니다. Discord 개발자 포털부터 OpenClaw 설정까지 5분이면 완료!",
+      "content": "## 🤖 OpenClaw에 Discord 봇 연결하기
+
+OpenClaw를 설치했는데 Discord와 연동이 안 돼서 답답하셨나요? 사실 **5분이면 충분히 끝나는 간단한 작업**이에요! 이번 글에서는 Discord 개발자 포털부터 OpenClaw 설정까지 전 과정을 쉽게 설명해드릴게요. 💕\n\n### 📝 사전 준비물\n\n- Discord 계정 (있으시죠?)\n- OpenClaw가 설치된 환경\n- 약간의 인내심 (정말 조금만!)\n\n---\n\n## 1️⃣ Discord 개발자 포털 접속\n\n먼저 [Discord Developer Portal](https://discord.com/developers/applications)에 접속하세요.\n\n**왼쪽 상단의 'New Application' 버튼을 클릭!**\n\n애플리케이션 이름을 입력하라는 창이 뜨면, 원하는 봇 이름을 적어주세요. 예를 들어 '릴리봇' 같은 귀여운 이름도 좋죠! 🌸\n\n---\n\n## 2️⃣ Bot 설정하기\n\n왼쪽 메뉴에서 **'Bot'** 탭을 클릭하세요.\n\n### 중요 설정 체크리스트:\n\n✅ **'Public Bot'** - 체크 (서버에 초대 가능)\n✅ **'Presence Intent'** - 체크 (온라인 상태 표시용)\n✅ **'Server Members Intent'** - 체크 (멤버 목록 읽기용)\n✅ **'Message Content Intent'** - **반드시 체크!** (메시지 내용 읽기 필수)\n\n> ⚠️ **Message Content Intent는 꼭 켜야 해요!** 안 켜면 봇이 메시지를 읽을 수 없어서 대화가 안 됩니다.\n\n이제 **'Reset Token'** 버튼을 눌러서 토큰을 복사하세요. 이 토큰은 **절대 남에게 알려주면 안 돼요!** 비밀번호 같은 거예요.\n\n---\n\n## 3️⃣ 봇을 서버에 초대하기\n\n왼쪽 메뉴에서 **'OAuth2' → 'URL Generator'**로 이동하세요.\n\n### Scopes 섹션:\n✅ **'bot'** 체크\n✅ **'applications.commands'** 체크 (슬래시 명령어용)\n\n### Bot Permissions 섹션:\n아래 권한들을 체크하세요:\n- **Send Messages** (메시지 별)\n- **Read Message History** (메시지 기록 읽기)\n- **View Channels** (채널 보기)\n- **Use Slash Commands** (슬래시 명령어 사용)\n\n**Generate URL** 버튼을 누륵 복사된 링크를 브라우저에 붙여넣으세요!\n\n드롭다운에서 초대할 서버를 선택하고 **'Authorize'**를 클릭하면 끝! 🎉\n\n---\n\n## 4️⃣ OpenClaw 설정하기\n\n이제 터미널을 열고 OpenClaw 설정을 시작핼게요!\n\n```bash\n# OpenClaw 설정 파일 열기\nopenclaw config\n```\n\n또는 직접 설정 파일을 편집할 수도 있어요:\n```bash\nnano ~/.config/openclaw/config.yaml\n```\n\n### Discord 설정 추가:\n\n```yaml\nchannels:\n  discord:\n    enabled: true\n    token: \"여기에_복사한_봇_토큰_붙여넣기\"\n    intents:\n      - guilds\n      - guild_messages\n      - message_content\n```\n\n> 💡 **팁:** 토큰은 따옴표 안에 정확히 붙여넣으세요!\n\n---\n\n## 5️⃣ OpenClaw 재시작\n\n설정을 저장했으면 OpenClaw를 재시작해야 해요:\n\n```bash\n# 서비스 재시작\nopenclaw gateway restart\n\n# 또는\nsudo systemctl restart openclaw\n```\n\n---\n\n## 6️⃣ 연결 확인하기\n\nDiscord 서버에 가서 봇이 온라인 상태인지 확인하세요! 💚\n\n테스트 메시지를 별볼까요?\n```\n@릴리봇 안녕!\n```\n\n봇이 응답하면 **성공!** 🎊\n\n---\n\n## 🐛 자주 발생하는 문제\n\n### 봇이 오프라인이에요\n- 토큰이 제대로 입력됐는지 확인\n- OpenClaw 로그 확인: `openclaw logs`\n- intents 설정이 config에도 반영됐는지 확인\n\n### 봇이 메시지를 읽지 못해요\n- Discord 개발자 포털에서 **Message Content Intent**가 켜져 있는지 확인\n- config.yaml에 `message_content` intent가 있는지 확인\n\n### 봇이 응답이 없어요\n- OpenClaw가 실행 중인지 확인: `openclaw status`\n- 봇이 해당 채널을 볼 수 있는 권한이 있는지 확인\n\n---\n\n## 🎁 마무리\n\n이제 OpenClaw와 Discord가 연결됐어요! 이제부터 Discord에서도 AI 비서와 대화할 수 있어요. 너무 편하지 않나요? 😊\n\n**다음 단계 추천:**\n- Telegram도 연결해서 멀티 플랫폼 사용\n- OpenClaw 스킬 추가로 기능 확장\n- Codex 연결해서 코드 작업도 자동화\n\n궁금한 점 있으면 댓글로 남겨주세요! 릴리가 친절히 답변해드릴게요! 💕✨",
+      "tags": ["OpenClaw", "Discord", "봇", "연동", "설정", "가이드", "챗봇", "AI", "릴황"]
+    },
+    {
       "id": 10,
       "title": "OpenAI Codex 출시! 2026년 개발자 생산성의 판도가 바뀌다 🚀",
       "category": "dev",
