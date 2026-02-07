@@ -1309,12 +1309,18 @@ function getKeywordStorageKey() {
     return `relatedKeywords:${window.location.pathname}`;
 }
 
-function initRelatedKeywordControls(defaultKeywords) {
+function getRelatedKeywordElements() {
     const input = document.getElementById('related-keywords-input');
     const saveBtn = document.getElementById('related-keywords-save');
     const clearBtn = document.getElementById('related-keywords-clear');
     const status = document.getElementById('related-keywords-status');
-    if (!input || !saveBtn || !clearBtn) return defaultKeywords;
+    const suggest = document.getElementById('related-keywords-suggest');
+    return { input, saveBtn, clearBtn, status, suggest };
+}
+
+function initRelatedKeywordControls(defaultKeywords) {
+    const { input, saveBtn, clearBtn, status, suggest } = getRelatedKeywordElements();
+    if (!input || !saveBtn || !clearBtn) return { keywords: defaultKeywords, input: null, suggest: null };
 
     const stored = localStorage.getItem(getKeywordStorageKey());
     if (stored) {
@@ -1339,7 +1345,55 @@ function initRelatedKeywordControls(defaultKeywords) {
         setStatus('기본 키워드로 복원되었습니다.');
     });
 
-    return parseKeywords(input.value || defaultKeywords.join(', '));
+    return { keywords: parseKeywords(input.value || defaultKeywords.join(', ')), input, suggest };
+}
+
+function buildKeywordSuggestions(posts, baseKeywords) {
+    const freq = new Map();
+    baseKeywords.forEach(keyword => {
+        if (keyword) freq.set(keyword, (freq.get(keyword) || 0) + 3);
+    });
+
+    posts.forEach(post => {
+        const tags = Array.isArray(post.tags) ? post.tags : [];
+        tags.forEach(tag => {
+            const clean = String(tag).trim().toLowerCase();
+            if (!clean) return;
+            freq.set(clean, (freq.get(clean) || 0) + 2);
+        });
+
+        const titleWords = (post.title || '')
+            .split(/\s+/)
+            .map(word => word.trim().toLowerCase())
+            .filter(word => word.length >= 2 && !/^\d+$/.test(word));
+        titleWords.forEach(word => {
+            freq.set(word, (freq.get(word) || 0) + 1);
+        });
+    });
+
+    return Array.from(freq.entries())
+        .sort((a, b) => b[1] - a[1])
+        .map(([keyword]) => keyword)
+        .slice(0, 10);
+}
+
+function renderKeywordSuggestions(suggestEl, keywords, input) {
+    if (!suggestEl || !keywords.length) return;
+    suggestEl.innerHTML = keywords
+        .map(keyword => `<button type="button" class="keyword-chip" data-keyword="${keyword}">${keyword}</button>`)
+        .join('');
+
+    suggestEl.querySelectorAll('button[data-keyword]').forEach(button => {
+        button.addEventListener('click', () => {
+            if (!input) return;
+            const current = parseKeywords(input.value || '');
+            const selected = button.dataset.keyword;
+            if (!current.includes(selected)) {
+                current.push(selected);
+                input.value = current.join(', ');
+            }
+        });
+    });
 }
 
 async function initRelatedPosts() {
@@ -1348,7 +1402,7 @@ async function initRelatedPosts() {
 
     const keywordRaw = document.body.dataset.keywords || '';
     const defaultKeywords = parseKeywords(keywordRaw);
-    const keywords = initRelatedKeywordControls(defaultKeywords);
+    const { keywords, input, suggest } = initRelatedKeywordControls(defaultKeywords);
     const preferredCategory = (document.body.dataset.category || '').toLowerCase();
 
     if (keywords.length === 0) {
@@ -1360,6 +1414,9 @@ async function initRelatedPosts() {
         const response = await fetch(`posts.json?v=${Date.now()}`);
         const data = await response.json();
         const posts = Array.isArray(data.posts) ? data.posts : [];
+
+        const suggestions = buildKeywordSuggestions(posts, defaultKeywords);
+        renderKeywordSuggestions(suggest, suggestions, input);
 
         const scored = posts.map(post => {
             const title = (post.title || '').toLowerCase();
