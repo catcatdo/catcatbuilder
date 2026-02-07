@@ -5,6 +5,8 @@
 const ADMIN_PASSWORD = 'Dhktmfpahsh05!'; // 비밀번호를 변경하세요!
 let posts = [];
 let isLoggedIn = false;
+const DRAFT_KEY = 'adminPostDraft';
+const GITHUB_SAVE_ENDPOINT = 'https://catcatbuilder-admin.catcatdo-bc9.workers.dev/save-posts';
 
 // ========================================
 // Login
@@ -25,6 +27,7 @@ document.getElementById('login-btn')?.addEventListener('click', () => {
     if (password === ADMIN_PASSWORD) {
         isLoggedIn = true;
         sessionStorage.setItem('adminLoggedIn', 'true');
+        sessionStorage.setItem('adminPassword', password);
         showDashboard();
         errorDiv.textContent = '';
     } else {
@@ -41,6 +44,7 @@ document.getElementById('admin-password')?.addEventListener('keypress', (e) => {
 document.getElementById('logout-btn')?.addEventListener('click', () => {
     isLoggedIn = false;
     sessionStorage.removeItem('adminLoggedIn');
+    sessionStorage.removeItem('adminPassword');
     document.getElementById('login-section').style.display = 'block';
     document.getElementById('admin-dashboard').style.display = 'none';
     document.getElementById('admin-password').value = '';
@@ -122,6 +126,7 @@ document.getElementById('post-form')?.addEventListener('submit', (e) => {
     };
 
     posts.unshift(newPost);
+    clearDraft();
 
     alert('✅ 게시글이 생성되었습니다!\n\n"JSON 내보내기" 탭으로 이동하여 JSON을 복사하고 GitHub에 업로드하세요.');
 
@@ -135,6 +140,7 @@ document.getElementById('post-form')?.addEventListener('submit', (e) => {
 document.getElementById('clear-form')?.addEventListener('click', () => {
     if (confirm('작성 중인 내용을 모두 지우시겠습니까?')) {
         document.getElementById('post-form').reset();
+        clearDraft();
     }
 });
 
@@ -255,6 +261,172 @@ document.getElementById('download-json')?.addEventListener('click', () => {
 });
 
 // ========================================
+// Save to GitHub (Cloudflare Worker)
+// ========================================
+
+function setGithubStatus(message, isError = false) {
+    const status = document.getElementById('github-status');
+    if (!status) return;
+    status.textContent = message;
+    status.style.color = isError ? '#e74c3c' : '#2c3e50';
+}
+
+async function getAdminPassword() {
+    let password = sessionStorage.getItem('adminPassword');
+    if (!password) {
+        password = prompt('관리자 비밀번호를 입력하세요.');
+        if (password) {
+            sessionStorage.setItem('adminPassword', password);
+        }
+    }
+    return password;
+}
+
+document.getElementById('save-to-github')?.addEventListener('click', async () => {
+    if (!GITHUB_SAVE_ENDPOINT.includes('workers.dev')) {
+        setGithubStatus('❌ 먼저 GITHUB_SAVE_ENDPOINT를 실제 Worker URL로 설정하세요.', true);
+        return;
+    }
+
+    const password = await getAdminPassword();
+    if (!password) {
+        setGithubStatus('❌ 비밀번호가 필요합니다.', true);
+        return;
+    }
+
+    setGithubStatus('⏳ GitHub에 저장 중...');
+
+    try {
+        const response = await fetch(GITHUB_SAVE_ENDPOINT, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Admin-Password': password
+            },
+            body: JSON.stringify({ posts })
+        });
+
+        const result = await response.json();
+        if (!response.ok) {
+            throw new Error(result?.message || '저장 실패');
+        }
+
+        setGithubStatus(`✅ 저장 완료: ${result.commit || '커밋 완료'}`);
+    } catch (error) {
+        console.error('GitHub save failed:', error);
+        setGithubStatus(`❌ 저장 실패: ${error.message}`, true);
+    }
+});
+
+// ========================================
+// JSON Import
+// ========================================
+
+document.getElementById('import-json')?.addEventListener('change', async (event) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    try {
+        const text = await file.text();
+        const data = JSON.parse(text);
+        if (!data || !Array.isArray(data.posts)) {
+            throw new Error('Invalid JSON structure');
+        }
+        posts = data.posts;
+        updateJSONOutput();
+        renderPostsManagement();
+        alert('✅ posts.json을 불러왔습니다. 이제 수정 후 JSON을 내보내세요.');
+    } catch (error) {
+        console.error('Failed to import JSON:', error);
+        alert('❌ 올바른 posts.json 파일이 아닙니다.');
+    } finally {
+        event.target.value = '';
+    }
+});
+
+// ========================================
+// Draft Handling
+// ========================================
+
+function getDraftFromForm() {
+    return {
+        title: document.getElementById('post-title').value,
+        category: document.getElementById('post-category').value,
+        image: document.getElementById('post-image').value,
+        excerpt: document.getElementById('post-excerpt').value,
+        content: document.getElementById('post-content').value,
+        tags: document.getElementById('post-tags').value
+    };
+}
+
+function saveDraft() {
+    const draft = getDraftFromForm();
+    const hasContent = Object.values(draft).some(value => value && value.trim());
+    if (!hasContent) {
+        clearDraft();
+        return;
+    }
+    localStorage.setItem(DRAFT_KEY, JSON.stringify(draft));
+    showDraftNotice(true);
+}
+
+function restoreDraft() {
+    const draftRaw = localStorage.getItem(DRAFT_KEY);
+    if (!draftRaw) return;
+    const draft = JSON.parse(draftRaw);
+    document.getElementById('post-title').value = draft.title || '';
+    document.getElementById('post-category').value = draft.category || 'tech';
+    document.getElementById('post-image').value = draft.image || '';
+    document.getElementById('post-excerpt').value = draft.excerpt || '';
+    document.getElementById('post-content').value = draft.content || '';
+    document.getElementById('post-tags').value = draft.tags || '';
+    showDraftNotice(true);
+}
+
+function clearDraft() {
+    localStorage.removeItem(DRAFT_KEY);
+    showDraftNotice(false);
+}
+
+function showDraftNotice(visible) {
+    const notice = document.getElementById('draft-notice');
+    if (!notice) return;
+    notice.style.display = visible ? 'flex' : 'none';
+}
+
+function initDraftHandlers() {
+    const draftRaw = localStorage.getItem(DRAFT_KEY);
+    if (draftRaw) {
+        showDraftNotice(true);
+    }
+
+    document.getElementById('restore-draft')?.addEventListener('click', () => {
+        restoreDraft();
+    });
+
+    document.getElementById('discard-draft')?.addEventListener('click', () => {
+        if (confirm('임시저장 내용을 삭제할까요?')) {
+            clearDraft();
+        }
+    });
+
+    const fields = [
+        'post-title',
+        'post-category',
+        'post-image',
+        'post-excerpt',
+        'post-content',
+        'post-tags'
+    ];
+
+    fields.forEach(id => {
+        document.getElementById(id)?.addEventListener('input', () => {
+            saveDraft();
+        });
+    });
+}
+
+// ========================================
 // Utility Functions
 // ========================================
 
@@ -273,4 +445,5 @@ function getCategoryName(category) {
 
 document.addEventListener('DOMContentLoaded', () => {
     checkLogin();
+    initDraftHandlers();
 });

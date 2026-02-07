@@ -1,0 +1,10 @@
+name = "catcatbuilder-admin"
+main = "src/worker.js"
+compatibility_date = "2026-02-07"
+
+[vars]
+GITHUB_OWNER = "catcatdo"
+GITHUB_REPO = "catcatbuilder"
+GITHUB_BRANCH = "main"
+POSTS_PATH = "posts.json"
+ALLOWED_ORIGINS = "https://lilhwang.com,http://localhost:8787"

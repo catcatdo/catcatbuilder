@@ -53,6 +53,13 @@
                 <!-- Write Post Tab -->
                 <div class="admin-tab-content active" id="write-tab">
                     <h3>새 게시글 작성</h3>
+                    <div id="draft-notice" class="draft-notice" style="display: none;">
+                        <div class="draft-text">이전에 작성 중이던 내용이 있습니다.</div>
+                        <div class="draft-actions">
+                            <button type="button" class="btn btn-secondary" id="restore-draft">임시저장 복원</button>
+                            <button type="button" class="btn btn-secondary" id="discard-draft">임시저장 삭제</button>
+                        </div>
+                    </div>
                     <form id="post-form" class="post-form">
                         <div class="input-group">
                             <label for="post-title">제목 *</label>
@@ -111,10 +118,17 @@
                 <div class="admin-tab-content" id="json-tab">
                     <h3>posts.json 내보내기</h3>
                     <p>아래의 JSON 코드를 복사하여 GitHub 저장소의 <code>posts.json</code> 파일을 업데이트하세요.</p>
+                    <div class="json-import">
+                        <label for="import-json" class="json-import-label">posts.json 불러오기</label>
+                        <input type="file" id="import-json" accept="application/json">
+                        <small>GitHub에서 내려받은 posts.json 파일을 선택하면 여기서 바로 수정할 수 있습니다.</small>
+                    </div>
                     <div class="json-actions">
                         <button class="btn btn-primary" id="copy-json">JSON 복사</button>
                         <button class="btn btn-secondary" id="download-json">JSON 다운로드</button>
+                        <button class="btn btn-primary" id="save-to-github">GitHub에 저장</button>
                     </div>
+                    <p id="github-status" class="github-status"></p>
                     <pre id="json-output" class="json-output"></pre>
                     <div class="json-instructions">
                         <h4>📝 업데이트 방법:</h4>
