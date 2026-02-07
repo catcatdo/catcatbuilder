@@ -15,8 +15,8 @@ export default {
       }
       try {
         const [us, kr] = await Promise.all([
-          fetchTradingViewMostActive('america', 5),
-          fetchTradingViewMostActive('korea', 5)
+          fetchNewsHotStocks(env, 'us', 'ko', getUsCompanies()),
+          fetchNewsHotStocks(env, 'kr', 'ko', getKrCompanies())
         ]);
         return jsonResponse({ us, kr }, 200, corsHeaders);
       } catch (error) {
@@ -79,45 +79,107 @@ function buildCorsHeaders(origin, allowedOrigins) {
   return headers;
 }
 
-async function fetchTradingViewMostActive(market, count) {
-  const url = `https://scanner.tradingview.com/${market}/scan`;
-  const body = {
-    filter: [],
-    options: { lang: 'en' },
-    sort: { sortBy: 'volume', sortOrder: 'desc' },
-    range: [0, count - 1],
-    columns: ['description', 'close', 'change', 'change_abs', 'volume', 'name']
-  };
+async function fetchNewsHotStocks(env, country, language, companies) {
+  const key = env.NEWSDATA_API_KEY;
+  if (!key) throw new Error('Missing NEWSDATA_API_KEY');
 
-  const response = await fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(body)
-  });
+  const url = new URL('https://newsdata.io/api/1/news');
+  url.searchParams.set('apikey', key);
+  url.searchParams.set('country', country);
+  url.searchParams.set('language', language);
+  url.searchParams.set('category', 'business');
+  url.searchParams.set('page', '1');
 
+  const response = await fetch(url.toString());
   if (!response.ok) {
     const text = await response.text();
-    throw new Error(`TradingView scan failed: ${response.status} ${text}`);
+    throw new Error(`NewsData fetch failed: ${response.status} ${text}`);
   }
 
   const data = await response.json();
-  const items = Array.isArray(data.data) ? data.data : [];
+  const items = Array.isArray(data.results) ? data.results : [];
+  const scores = new Map();
 
-  return items.slice(0, count).map(item => {
-    const symbolRaw = item.s || '';
-    const ticker = symbolRaw.includes(':') ? symbolRaw.split(':')[1] : symbolRaw;
-    const [description, close, changePercent, changeAbs] = item.d || [];
-    const name = description || (item.d && item.d[5]) || ticker;
+  items.forEach(article => {
+    const text = `${article.title || ''} ${article.description || ''}`.toLowerCase();
+    companies.forEach(company => {
+      const matched = company.aliases.some(alias => text.includes(alias));
+      if (matched) {
+        scores.set(company.symbol, (scores.get(company.symbol) || 0) + 1);
+      }
+    });
+  });
+
+  const ranked = companies
+    .map(company => ({
+      ...company,
+      score: scores.get(company.symbol) || 0
+    }))
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 5);
+
+  const symbols = ranked.map(item => item.symbol);
+  const quoteMap = await fetchYahooQuotes(symbols);
+
+  return ranked.map(item => {
+    const quote = quoteMap[item.symbol] || {};
     return {
-      symbol: ticker,
-      name,
-      price: typeof close === 'number' ? close : Number(close),
-      change: typeof changeAbs === 'number' ? changeAbs : Number(changeAbs || 0),
-      changePercent: typeof changePercent === 'number' ? changePercent : Number(changePercent || 0)
+      symbol: item.symbol,
+      name: item.name,
+      price: quote.regularMarketPrice ?? null,
+      change: quote.regularMarketChange ?? 0,
+      changePercent: quote.regularMarketChangePercent ?? 0
     };
   });
+}
+
+function getUsCompanies() {
+  return [
+    { symbol: 'AAPL', name: 'Apple', aliases: ['apple', '아이폰', '애플'] },
+    { symbol: 'MSFT', name: 'Microsoft', aliases: ['microsoft', 'windows', '마이크로소프트'] },
+    { symbol: 'NVDA', name: 'NVIDIA', aliases: ['nvidia', '엔비디아'] },
+    { symbol: 'AMZN', name: 'Amazon', aliases: ['amazon', '아마존', 'aws'] },
+    { symbol: 'GOOGL', name: 'Alphabet', aliases: ['google', 'alphabet', '구글'] },
+    { symbol: 'TSLA', name: 'Tesla', aliases: ['tesla', '테슬라'] },
+    { symbol: 'META', name: 'Meta', aliases: ['meta', 'facebook', '메타'] },
+    { symbol: 'NFLX', name: 'Netflix', aliases: ['netflix', '넷플릭스'] },
+    { symbol: 'AMD', name: 'AMD', aliases: ['amd', '라이젠'] },
+    { symbol: 'INTC', name: 'Intel', aliases: ['intel', '인텔'] }
+  ].map(item => ({ ...item, aliases: item.aliases.map(a => a.toLowerCase()) }));
+}
+
+function getKrCompanies() {
+  return [
+    { symbol: '005930.KS', name: '삼성전자', aliases: ['삼성전자', 'samsung electronics'] },
+    { symbol: '000660.KS', name: 'SK하이닉스', aliases: ['sk하이닉스', 'sk hynix'] },
+    { symbol: '035420.KS', name: 'NAVER', aliases: ['naver', '네이버'] },
+    { symbol: '035720.KS', name: '카카오', aliases: ['kakao', '카카오'] },
+    { symbol: '051910.KS', name: 'LG화학', aliases: ['lg화학', 'lg chem'] },
+    { symbol: '068270.KS', name: '셀트리온', aliases: ['셀트리온', 'celltrion'] },
+    { symbol: '005380.KS', name: '현대차', aliases: ['현대차', 'hyundai motor'] },
+    { symbol: '207940.KS', name: '삼성바이오로직스', aliases: ['삼성바이오로직스', 'samsung biolo'] },
+    { symbol: '105560.KS', name: 'KB금융', aliases: ['kb금융', 'kb financial'] },
+    { symbol: '323410.KS', name: '카카오뱅크', aliases: ['카카오뱅크', 'kakaobank'] }
+  ].map(item => ({ ...item, aliases: item.aliases.map(a => a.toLowerCase()) }));
+}
+
+async function fetchYahooQuotes(symbols) {
+  if (!symbols.length) return {};
+  const url = `https://query1.finance.yahoo.com/v7/finance/quote?symbols=${symbols.join(',')}`;
+  const response = await fetch(url);
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(`Yahoo quote failed: ${response.status} ${text}`);
+  }
+  const data = await response.json();
+  const list = data.quoteResponse?.result || [];
+  const map = {};
+  list.forEach(item => {
+    if (item && item.symbol) {
+      map[item.symbol] = item;
+    }
+  });
+  return map;
 }
 
 function jsonResponse(data, status, corsHeaders) {
