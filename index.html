@@ -533,6 +533,21 @@
                                 <h3 class="tool-title">주식 스냅샷</h3>
                                 <div class="tool-body">
                                     <div class="stock-widget">
+                                        <div class="stock-config">
+                                            <div class="input-group">
+                                                <label for="us-stock-input">미국 종목 (쉼표 구분)</label>
+                                                <input type="text" id="us-stock-input" placeholder="예: NVDA, AAPL, MSFT, AMZN, TSLA">
+                                            </div>
+                                            <div class="input-group">
+                                                <label for="kr-stock-input">한국 종목 (쉼표 구분)</label>
+                                                <input type="text" id="kr-stock-input" placeholder="예: 005930.KS, 000660.KS, 035420.KS">
+                                            </div>
+                                            <div class="tool-actions">
+                                                <button class="btn btn-secondary btn-small" id="save-stock-list">목록 저장</button>
+                                                <button class="btn btn-secondary btn-small" id="reset-stock-list">기본값 복원</button>
+                                            </div>
+                                            <div id="stock-config-status" class="small-note"></div>
+                                        </div>
                                         <div class="stock-group">
                                             <div class="stock-header">
                                                 <span>미국 핫 5</span>

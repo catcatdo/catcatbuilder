@@ -560,23 +560,16 @@ function initStockWidget() {
     const updatedEl = document.getElementById('stock-updated');
     const refreshUs = document.getElementById('refresh-us-stocks');
     const refreshKr = document.getElementById('refresh-kr-stocks');
+    const usInput = document.getElementById('us-stock-input');
+    const krInput = document.getElementById('kr-stock-input');
+    const saveBtn = document.getElementById('save-stock-list');
+    const resetBtn = document.getElementById('reset-stock-list');
+    const statusEl = document.getElementById('stock-config-status');
     if (!usList || !krList || !updatedEl) return;
 
-    const usSymbols = [
-        { symbol: 'NVDA', name: 'NVIDIA' },
-        { symbol: 'AMZN', name: 'Amazon' },
-        { symbol: 'TSLA', name: 'Tesla' },
-        { symbol: 'MSFT', name: 'Microsoft' },
-        { symbol: 'MU', name: 'Micron' }
-    ];
-
-    const krSymbols = [
-        { symbol: '104620.KQ', name: 'Yellow Balloon Tour' },
-        { symbol: '004060.KS', name: 'SG Corporation' },
-        { symbol: '452260.KS', name: 'Hanwha Galleria' },
-        { symbol: '011930.KS', name: 'Shinsung E&G' },
-        { symbol: '255220.KQ', name: 'SG Co., Ltd.' }
-    ];
+    const defaultUs = ['NVDA', 'AMZN', 'TSLA', 'MSFT', 'MU'];
+    const defaultKr = ['005930.KS', '000660.KS', '035420.KS', '051910.KS', '035720.KS'];
+    const storageKey = 'stockWidgetSymbols';
 
     function renderLoading(container) {
         container.innerHTML = '<div class="stock-row">불러오는 중...</div>';
@@ -635,14 +628,52 @@ function initStockWidget() {
         return map;
     }
 
+    function parseSymbolInput(value) {
+        return value
+            .split(',')
+            .map(s => s.trim().toUpperCase())
+            .filter(Boolean)
+            .slice(0, 5);
+    }
+
+    function getStoredSymbols() {
+        try {
+            const raw = localStorage.getItem(storageKey);
+            if (!raw) return null;
+            return JSON.parse(raw);
+        } catch (error) {
+            return null;
+        }
+    }
+
+    function setStatus(message) {
+        if (!statusEl) return;
+        statusEl.textContent = message;
+    }
+
+    function getSymbols() {
+        const stored = getStoredSymbols();
+        const us = Array.isArray(stored?.us) && stored.us.length ? stored.us : defaultUs;
+        const kr = Array.isArray(stored?.kr) && stored.kr.length ? stored.kr : defaultKr;
+        return { us, kr };
+    }
+
+    function syncInputs() {
+        if (usInput) usInput.value = getSymbols().us.join(', ');
+        if (krInput) krInput.value = getSymbols().kr.join(', ');
+    }
+
     async function loadStocks() {
+        const symbols = getSymbols();
         renderLoading(usList);
         renderLoading(krList);
         try {
-            const symbols = [...usSymbols.map(s => s.symbol), ...krSymbols.map(s => s.symbol)];
-            const quotes = await fetchQuotes(symbols);
-            renderList(usList, usSymbols, quotes);
-            renderList(krList, krSymbols, quotes);
+            const merged = [...symbols.us, ...symbols.kr];
+            const quotes = await fetchQuotes(merged);
+            const usItems = symbols.us.map(symbol => ({ symbol, name: symbol }));
+            const krItems = symbols.kr.map(symbol => ({ symbol, name: symbol }));
+            renderList(usList, usItems, quotes);
+            renderList(krList, krItems, quotes);
             updatedEl.textContent = `업데이트: ${new Date().toLocaleString('ko-KR')}`;
         } catch (error) {
             renderError(usList);
@@ -651,9 +682,29 @@ function initStockWidget() {
         }
     }
 
+    saveBtn?.addEventListener('click', () => {
+        const us = parseSymbolInput(usInput?.value || '');
+        const kr = parseSymbolInput(krInput?.value || '');
+        if (!us.length || !kr.length) {
+            setStatus('미국/한국 종목을 모두 입력하세요.');
+            return;
+        }
+        localStorage.setItem(storageKey, JSON.stringify({ us, kr }));
+        setStatus('저장되었습니다.');
+        loadStocks();
+    });
+
+    resetBtn?.addEventListener('click', () => {
+        localStorage.removeItem(storageKey);
+        syncInputs();
+        setStatus('기본값으로 복원했습니다.');
+        loadStocks();
+    });
+
     refreshUs?.addEventListener('click', loadStocks);
     refreshKr?.addEventListener('click', loadStocks);
 
+    syncInputs();
     loadStocks();
 }
 

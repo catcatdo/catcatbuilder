@@ -733,6 +733,13 @@ body {
     gap: 16px;
 }
 
+.stock-config {
+    background-color: var(--bg-surface);
+    border-radius: 8px;
+    padding: 12px;
+    box-shadow: var(--shadow-sm);
+}
+
 .stock-group {
     background-color: var(--bg-surface-muted);
     border-radius: 8px;
