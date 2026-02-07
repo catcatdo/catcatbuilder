@@ -394,6 +394,46 @@ body {
     color: var(--text-secondary);
 }
 
+.badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-left: 8px;
+    background-color: var(--primary);
+    color: #fff;
+}
+
+.badge.secondary {
+    background-color: #7f8c8d;
+}
+
+.faq-list {
+    display: grid;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.faq-item {
+    background-color: var(--bg-surface);
+    border-radius: 8px;
+    padding: 14px 16px;
+    box-shadow: var(--shadow-sm);
+}
+
+.faq-q {
+    font-weight: 600;
+    color: var(--text-heading);
+    margin-bottom: 6px;
+}
+
+.faq-a {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    font-size: 14px;
+}
+
 .tool-meta {
     font-size: 13px;
     color: var(--text-muted);

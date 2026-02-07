@@ -44,7 +44,7 @@
     </script>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body data-keywords="타임존,시간,UTC,변환,개발자">
+<body data-keywords="타임존,시간,UTC,변환,개발자" data-category="dev">
     <header class="header">
         <div class="container">
             <h1 class="logo">릴황의 유틸리티 포털</h1>
@@ -93,6 +93,22 @@
             </div>
             <h3 class="subsection-title">관련 블로그 글</h3>
             <ul id="related-posts" class="tool-list"></ul>
+
+            <h3 class="subsection-title">FAQ</h3>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-q">입력 시간은 어떤 기준인가요?</div>
+                    <div class="faq-a">현재 브라우저 로컬 시간 기준으로 입력합니다.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q">서머타임도 반영되나요?</div>
+                    <div class="faq-a">브라우저의 Intl API를 사용하여 자동 반영됩니다.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q">UTC로 바로 확인할 수 있나요?</div>
+                    <div class="faq-a">타임존 선택에서 UTC를 선택하면 됩니다.</div>
+                </div>
+            </div>
         </div>
     </main>
 

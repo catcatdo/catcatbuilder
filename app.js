@@ -1307,6 +1307,7 @@ async function initRelatedPosts() {
         .split(',')
         .map(k => k.trim().toLowerCase())
         .filter(Boolean);
+    const preferredCategory = (document.body.dataset.category || '').toLowerCase();
 
     if (keywords.length === 0) {
         container.innerHTML = '<li>관련 글이 없습니다.</li>';
@@ -1320,12 +1321,17 @@ async function initRelatedPosts() {
 
         const scored = posts.map(post => {
             const title = (post.title || '').toLowerCase();
-            const tags = (post.tags || []).join(' ').toLowerCase();
+            const tagsArray = (post.tags || []).map(tag => String(tag).toLowerCase());
+            const tags = tagsArray.join(' ');
             const excerpt = (post.excerpt || '').toLowerCase();
             const content = stripHtml(post.content || '').toLowerCase();
             let score = 0;
+            if (preferredCategory && (post.category || '').toLowerCase() === preferredCategory) {
+                score += 3;
+            }
             keywords.forEach(keyword => {
-                if (title.includes(keyword)) score += 3;
+                if (title.includes(keyword)) score += 4;
+                if (tagsArray.includes(keyword)) score += 4;
                 if (tags.includes(keyword)) score += 2;
                 if (excerpt.includes(keyword)) score += 1;
                 if (content.includes(keyword)) score += 1;
@@ -1340,7 +1346,12 @@ async function initRelatedPosts() {
             .map(item => item.post);
 
         if (!top.length) {
-            container.innerHTML = '<li>관련 글이 없습니다.</li>';
+            const fallback = posts
+                .sort((a, b) => new Date(b.date) - new Date(a.date))
+                .slice(0, 3);
+            container.innerHTML = fallback.length
+                ? fallback.map(post => `<li><a href="blog.html#post-${post.id}">${post.title}</a></li>`).join('')
+                : '<li>관련 글이 없습니다.</li>';
             return;
         }
 
