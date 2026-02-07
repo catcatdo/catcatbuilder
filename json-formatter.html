@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON 포맷터 | 릴황 유틸리티</title>
+    <meta name="description" content="JSON 포맷터로 보기 좋은 들여쓰기와 미니파이를 빠르게 처리하세요.">
+    <meta name="keywords" content="JSON 포맷터, JSON 미니파이, JSON 정렬, 개발자 도구">
+    <meta name="author" content="lilhwang">
+    <link rel="canonical" href="https://lilhwang.com/json-formatter.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="JSON 포맷터 | 릴황 유틸리티">
+    <meta property="og:description" content="JSON 포맷터로 보기 좋은 들여쓰기와 미니파이를 빠르게 처리하세요.">
+    <meta property="og:url" content="https://lilhwang.com/json-formatter.html">
+    <meta property="og:image" content="https://lilhwang.com/images/og-default.jpg">
+    <meta property="og:site_name" content="릴황">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="JSON 포맷터 | 릴황 유틸리티">
+    <meta name="twitter:description" content="JSON 포맷터로 보기 좋은 들여쓰기와 미니파이를 빠르게 처리하세요.">
+    <meta name="twitter:image" content="https://lilhwang.com/images/og-default.jpg">
+    <script>
+        (function () {
+            try {
+                var key = 'theme-preference';
+                var saved = localStorage.getItem(key);
+                var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                var theme = saved || (systemDark ? 'dark' : 'light');
+                document.documentElement.setAttribute('data-theme', theme);
+            } catch (error) {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        })();
+    </script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">릴황의 유틸리티 포털</h1>
+            <div class="header-actions">
+                <nav class="nav">
+                    <a href="index.html">홈</a>
+                    <a href="blog.html">블로그</a>
+                </nav>
+                <button class="theme-toggle" id="theme-toggle" type="button" aria-label="다크 모드 전환">
+                    <span class="theme-icon" aria-hidden="true">🌙</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-container">
+        <div class="container">
+            <h2 class="section-heading">JSON 포맷터</h2>
+            <p class="section-description">JSON을 보기 좋게 정렬하거나 미니파이하여 복사하세요.</p>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <h3 class="tool-title">JSON 포맷터</h3>
+                    <div class="tool-body">
+                        <textarea id="json-input" class="tool-textarea" rows="10" placeholder="JSON을 붙여넣으세요"></textarea>
+                        <div class="tool-actions">
+                            <button class="btn btn-primary" id="json-format">포맷</button>
+                            <button class="btn btn-secondary" id="json-minify">미니파이</button>
+                            <button class="btn btn-secondary" id="json-copy">복사</button>
+                        </div>
+                        <pre id="json-output" class="tool-output"></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 릴황 유틸리티 포털. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

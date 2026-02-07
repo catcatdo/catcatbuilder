@@ -361,6 +361,7 @@
                                         <button class="btn btn-primary" id="json-format">포맷</button>
                                         <button class="btn btn-secondary" id="json-minify">미니파이</button>
                                         <button class="btn btn-secondary" id="json-copy">복사</button>
+                                        <a class="btn btn-secondary" href="json-formatter.html">전용 페이지</a>
                                     </div>
                                     <pre id="json-output" class="tool-output"></pre>
                                 </div>
@@ -375,6 +376,7 @@
                                         <button class="btn btn-primary" id="base64-encode">인코드</button>
                                         <button class="btn btn-secondary" id="base64-decode">디코드</button>
                                         <button class="btn btn-secondary" id="base64-copy">복사</button>
+                                        <a class="btn btn-secondary" href="base64.html">전용 페이지</a>
                                     </div>
                                     <pre id="base64-output" class="tool-output"></pre>
                                 </div>
@@ -392,7 +394,10 @@
                                         </select>
                                     </div>
                                     <textarea id="hash-input" class="tool-textarea" rows="4" placeholder="해시할 텍스트 입력"></textarea>
-                                    <button class="btn btn-primary" id="hash-generate">해시 생성</button>
+                                    <div class="tool-actions">
+                                        <button class="btn btn-primary" id="hash-generate">해시 생성</button>
+                                        <a class="btn btn-secondary" href="hash.html">전용 페이지</a>
+                                    </div>
                                     <pre id="hash-output" class="tool-output"></pre>
                                 </div>
                             </div>
@@ -416,7 +421,10 @@
                                             <option value="Australia/Sydney">Australia/Sydney</option>
                                         </select>
                                     </div>
-                                    <button class="btn btn-primary" id="tz-convert">변환</button>
+                                    <div class="tool-actions">
+                                        <button class="btn btn-primary" id="tz-convert">변환</button>
+                                        <a class="btn btn-secondary" href="timezone.html">전용 페이지</a>
+                                    </div>
                                     <div id="tz-result" class="result-box"></div>
                                 </div>
                             </div>
@@ -432,7 +440,10 @@
                                         <label for="title-keywords">키워드 (쉼표로 구분)</label>
                                         <input type="text" id="title-keywords" placeholder="예: React, 성능, 최적화">
                                     </div>
-                                    <button class="btn btn-primary" id="generate-titles">제목 아이디어 생성</button>
+                                    <div class="tool-actions">
+                                        <button class="btn btn-primary" id="generate-titles">제목 아이디어 생성</button>
+                                        <a class="btn btn-secondary" href="writing-helper.html">전용 페이지</a>
+                                    </div>
                                     <ul id="title-suggestions" class="tool-list"></ul>
                                     <textarea id="summary-input" class="tool-textarea" rows="5" placeholder="요약할 글을 붙여넣으세요"></textarea>
                                     <button class="btn btn-secondary" id="generate-summary">3문장 요약</button>
@@ -466,7 +477,10 @@
                                             <input type="number" id="image-quality" step="0.05" min="0.5" max="0.95" value="0.85">
                                         </div>
                                     </div>
-                                    <button class="btn btn-primary" id="process-image">변환하기</button>
+                                    <div class="tool-actions">
+                                        <button class="btn btn-primary" id="process-image">변환하기</button>
+                                        <a class="btn btn-secondary" href="image-tool.html">전용 페이지</a>
+                                    </div>
                                     <div id="image-result" class="result-box image-result"></div>
                                 </div>
                             </div>
@@ -481,6 +495,7 @@
                                     </div>
                                     <div id="cheatsheet-count" class="tool-meta"></div>
                                     <ul id="cheatsheet-list" class="tool-list"></ul>
+                                    <a class="btn btn-secondary" href="cheatsheet.html">전용 페이지</a>
                                 </div>
                             </div>
                         </div>
@@ -577,6 +592,7 @@
                                     <button class="btn btn-primary" id="quiz-start">게임 시작</button>
                                     <div id="quiz-result" class="result-box"></div>
                                     <div id="quiz-score" class="game-stats"></div>
+                                    <ul id="quiz-ranking" class="tool-list"></ul>
                                 </div>
                             </div>
 
@@ -591,6 +607,7 @@
                                         <button class="btn btn-secondary" id="typing-reset">리셋</button>
                                     </div>
                                     <div id="typing-stats" class="game-stats"></div>
+                                    <ul id="typing-ranking" class="tool-list"></ul>
                                 </div>
                             </div>
 
@@ -626,6 +643,19 @@
                             <li><a href="#tools" data-tool="currency">환율 변환기</a></li>
                             <li><a href="#widgets" data-tool="weather">날씨 위젯</a></li>
                             <li><a href="#games" data-tool="guess">숫자 맞추기</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="widget">
+                        <h3 class="widget-title">개발자 유틸리티</h3>
+                        <ul class="widget-list">
+                            <li><a href="json-formatter.html">JSON 포맷터</a></li>
+                            <li><a href="base64.html">Base64 도구</a></li>
+                            <li><a href="hash.html">해시 생성기</a></li>
+                            <li><a href="timezone.html">타임존 변환</a></li>
+                            <li><a href="writing-helper.html">글쓰기 도우미</a></li>
+                            <li><a href="image-tool.html">이미지 변환</a></li>
+                            <li><a href="cheatsheet.html">단축키 치트시트</a></li>
                         </ul>
                     </div>
 

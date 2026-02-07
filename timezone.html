@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>타임존 변환 | 릴황 유틸리티</title>
+    <meta name="description" content="로컬 시간 기준으로 다양한 타임존을 빠르게 변환하세요.">
+    <meta name="keywords" content="타임존 변환, 시간 변환, UTC 변환, 개발자 도구">
+    <meta name="author" content="lilhwang">
+    <link rel="canonical" href="https://lilhwang.com/timezone.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="타임존 변환 | 릴황 유틸리티">
+    <meta property="og:description" content="로컬 시간 기준으로 다양한 타임존을 빠르게 변환하세요.">
+    <meta property="og:url" content="https://lilhwang.com/timezone.html">
+    <meta property="og:image" content="https://lilhwang.com/images/og-default.jpg">
+    <meta property="og:site_name" content="릴황">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="타임존 변환 | 릴황 유틸리티">
+    <meta name="twitter:description" content="로컬 시간 기준으로 다양한 타임존을 빠르게 변환하세요.">
+    <meta name="twitter:image" content="https://lilhwang.com/images/og-default.jpg">
+    <script>
+        (function () {
+            try {
+                var key = 'theme-preference';
+                var saved = localStorage.getItem(key);
+                var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                var theme = saved || (systemDark ? 'dark' : 'light');
+                document.documentElement.setAttribute('data-theme', theme);
+            } catch (error) {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        })();
+    </script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">릴황의 유틸리티 포털</h1>
+            <div class="header-actions">
+                <nav class="nav">
+                    <a href="index.html">홈</a>
+                    <a href="blog.html">블로그</a>
+                </nav>
+                <button class="theme-toggle" id="theme-toggle" type="button" aria-label="다크 모드 전환">
+                    <span class="theme-icon" aria-hidden="true">🌙</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-container">
+        <div class="container">
+            <h2 class="section-heading">타임존 변환</h2>
+            <p class="section-description">로컬 시간 기준으로 원하는 타임존 시간을 확인하세요.</p>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <h3 class="tool-title">타임존 변환</h3>
+                    <div class="tool-body">
+                        <div class="input-group">
+                            <label for="tz-input">날짜/시간 (로컬 기준)</label>
+                            <input type="datetime-local" id="tz-input">
+                        </div>
+                        <div class="input-group">
+                            <label for="tz-target">표시 타임존</label>
+                            <select id="tz-target">
+                                <option value="Asia/Seoul">Asia/Seoul</option>
+                                <option value="UTC">UTC</option>
+                                <option value="America/New_York">America/New_York</option>
+                                <option value="Europe/London">Europe/London</option>
+                                <option value="Asia/Tokyo">Asia/Tokyo</option>
+                                <option value="Australia/Sydney">Australia/Sydney</option>
+                            </select>
+                        </div>
+                        <div class="tool-actions">
+                            <button class="btn btn-primary" id="tz-convert">변환</button>
+                        </div>
+                        <div id="tz-result" class="result-box"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 릴황 유틸리티 포털. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

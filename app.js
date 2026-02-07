@@ -107,6 +107,7 @@ function initTabs() {
 function initBMICalculator() {
     const calcBtn = document.getElementById('calc-bmi');
     const resultDiv = document.getElementById('bmi-result');
+    if (!calcBtn || !resultDiv) return;
 
     calcBtn.addEventListener('click', () => {
         const height = parseFloat(document.getElementById('height').value);
@@ -164,6 +165,10 @@ async function loadExchangeRates() {
 function initCurrencyConverter() {
     const convertBtn = document.getElementById('convert-currency');
     const resultDiv = document.getElementById('currency-result');
+    const amountInput = document.getElementById('amount');
+    const fromSelect = document.getElementById('from-currency');
+    const toSelect = document.getElementById('to-currency');
+    if (!convertBtn || !resultDiv || !amountInput || !fromSelect || !toSelect) return;
 
     convertBtn.addEventListener('click', async () => {
         const amount = parseFloat(document.getElementById('amount').value);
@@ -206,6 +211,7 @@ function initTodoList() {
     const todoInput = document.getElementById('todo-input');
     const addBtn = document.getElementById('add-todo');
     const todoList = document.getElementById('todo-list');
+    if (!todoInput || !addBtn || !todoList) return;
 
     // Load todos from localStorage
     let todos = JSON.parse(localStorage.getItem('todos') || '[]');
@@ -273,6 +279,9 @@ function initTodoList() {
 function initVATCalculator() {
     const calcBtn = document.getElementById('calc-vat');
     const resultDiv = document.getElementById('vat-result');
+    const amountInput = document.getElementById('vat-amount');
+    const modeSelect = document.getElementById('vat-mode');
+    if (!calcBtn || !resultDiv || !amountInput || !modeSelect) return;
 
     calcBtn.addEventListener('click', () => {
         const mode = document.getElementById('vat-mode').value;
@@ -316,6 +325,7 @@ function initVATCalculator() {
 function initIPChecker() {
     const checkBtn = document.getElementById('check-ip');
     const resultDiv = document.getElementById('ip-result');
+    if (!checkBtn || !resultDiv) return;
 
     checkBtn.addEventListener('click', async () => {
         showLoading();
@@ -361,6 +371,8 @@ function initIPChecker() {
 function initPingTest() {
     const startBtn = document.getElementById('start-ping');
     const resultDiv = document.getElementById('ping-result');
+    const urlInput = document.getElementById('ping-url');
+    if (!startBtn || !resultDiv || !urlInput) return;
 
     const defaultUrls = [
         { name: 'Google', url: 'https://www.google.com' },
@@ -426,6 +438,8 @@ function initPingTest() {
 function initWeatherWidget() {
     const getWeatherBtn = document.getElementById('get-weather');
     const resultDiv = document.getElementById('weather-result');
+    const cityInput = document.getElementById('city');
+    if (!getWeatherBtn || !resultDiv || !cityInput) return;
 
     getWeatherBtn.addEventListener('click', async () => {
         const city = document.getElementById('city').value.trim();
@@ -470,6 +484,7 @@ function initWeatherWidget() {
 function initCryptoWidget() {
     const getCryptoBtn = document.getElementById('get-crypto');
     const resultDiv = document.getElementById('crypto-result');
+    if (!getCryptoBtn || !resultDiv) return;
 
     getCryptoBtn.addEventListener('click', async () => {
         showLoading();
@@ -513,6 +528,7 @@ function initCryptoWidget() {
 function initQuoteGenerator() {
     const getQuoteBtn = document.getElementById('get-quote');
     const resultDiv = document.getElementById('quote-result');
+    if (!getQuoteBtn || !resultDiv) return;
 
     getQuoteBtn.addEventListener('click', async () => {
         showLoading();
@@ -546,6 +562,7 @@ function initNumberGuessingGame() {
     const restartBtn = document.getElementById('restart-guess');
     const resultDiv = document.getElementById('guess-result');
     const attemptsDiv = document.getElementById('guess-attempts');
+    if (!guessInput || !guessBtn || !restartBtn || !resultDiv || !attemptsDiv) return;
 
     function updateAttempts() {
         attemptsDiv.textContent = `시도 횟수: ${attempts}`;
@@ -605,9 +622,10 @@ function initRockPaperScissors() {
     const choiceEmoji = { rock: '✊', paper: '✋', scissors: '✌️' };
     const choiceName = { rock: '바위', paper: '보', scissors: '가위' };
 
-    const buttons = document.querySelectorAll('.btn-game');
+    const buttons = document.querySelectorAll('.rps-buttons .btn-game');
     const resultDiv = document.getElementById('rps-result');
     const scoreDiv = document.getElementById('rps-score');
+    if (!buttons.length || !resultDiv || !scoreDiv) return;
 
     function updateScore() {
         scoreDiv.textContent = `승: ${score.player} | 무: ${score.draws} | 패: ${score.computer}`;
@@ -664,6 +682,7 @@ function initRockPaperScissors() {
 function initColorPaletteGenerator() {
     const generateBtn = document.getElementById('generate-palette');
     const paletteDiv = document.getElementById('color-palette');
+    if (!generateBtn || !paletteDiv) return;
 
     function generateRandomColor() {
         return '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
@@ -976,7 +995,8 @@ function initCodingQuiz() {
     const choicesEl = document.getElementById('quiz-choices');
     const resultEl = document.getElementById('quiz-result');
     const scoreEl = document.getElementById('quiz-score');
-    if (!startBtn || !timerEl || !questionEl || !choicesEl || !resultEl || !scoreEl) return;
+    const rankingEl = document.getElementById('quiz-ranking');
+    if (!startBtn || !timerEl || !questionEl || !choicesEl || !resultEl || !scoreEl || !rankingEl) return;
 
     const questions = [
         {
@@ -1015,6 +1035,26 @@ function initCodingQuiz() {
     let score = 0;
     let total = 0;
     let timerId = null;
+    const rankingKey = 'quizRanking';
+
+    function loadRanking() {
+        try {
+            const raw = localStorage.getItem(rankingKey);
+            return raw ? JSON.parse(raw) : [];
+        } catch (error) {
+            return [];
+        }
+    }
+
+    function saveRanking(list) {
+        localStorage.setItem(rankingKey, JSON.stringify(list));
+    }
+
+    function renderRanking(list) {
+        rankingEl.innerHTML = list
+            .map((item, index) => `<li>${index + 1}. ${item.score}/${item.total} (${item.date})</li>`)
+            .join('');
+    }
 
     function setQuestion() {
         const item = questions[Math.floor(Math.random() * questions.length)];
@@ -1044,6 +1084,18 @@ function initCodingQuiz() {
         timerId = null;
         choicesEl.innerHTML = '';
         showWarning(resultEl, '시간 종료!');
+        if (total > 0) {
+            const list = loadRanking();
+            list.push({
+                score,
+                total,
+                date: new Date().toLocaleDateString('ko-KR')
+            });
+            list.sort((a, b) => b.score - a.score || b.total - a.total);
+            const trimmed = list.slice(0, 5);
+            saveRanking(trimmed);
+            renderRanking(trimmed);
+        }
     }
 
     startBtn.addEventListener('click', () => {
@@ -1063,6 +1115,8 @@ function initCodingQuiz() {
             }
         }, 1000);
     });
+
+    renderRanking(loadRanking());
 }
 
 // ========================================
@@ -1075,7 +1129,8 @@ function initTypingGame() {
     const targetEl = document.getElementById('typing-target');
     const inputEl = document.getElementById('typing-input');
     const statsEl = document.getElementById('typing-stats');
-    if (!startBtn || !resetBtn || !targetEl || !inputEl || !statsEl) return;
+    const rankingEl = document.getElementById('typing-ranking');
+    if (!startBtn || !resetBtn || !targetEl || !inputEl || !statsEl || !rankingEl) return;
 
     const snippets = [
         'const sum = (a, b) => a + b;',
@@ -1086,6 +1141,26 @@ function initTypingGame() {
 
     let startTime = null;
     let targetText = '';
+    const rankingKey = 'typingRanking';
+
+    function loadRanking() {
+        try {
+            const raw = localStorage.getItem(rankingKey);
+            return raw ? JSON.parse(raw) : [];
+        } catch (error) {
+            return [];
+        }
+    }
+
+    function saveRanking(list) {
+        localStorage.setItem(rankingKey, JSON.stringify(list));
+    }
+
+    function renderRanking(list) {
+        rankingEl.innerHTML = list
+            .map((item, index) => `<li>${index + 1}. ${item.wpm} WPM (${item.date})</li>`)
+            .join('');
+    }
 
     function reset() {
         inputEl.value = '';
@@ -1122,9 +1197,17 @@ function initTypingGame() {
 
         if (typed.length >= targetText.length) {
             statsEl.textContent += ' | 완료!';
+            const list = loadRanking();
+            list.push({ wpm, date: new Date().toLocaleDateString('ko-KR') });
+            list.sort((a, b) => b.wpm - a.wpm);
+            const trimmed = list.slice(0, 5);
+            saveRanking(trimmed);
+            renderRanking(trimmed);
             targetText = '';
         }
     });
+
+    renderRanking(loadRanking());
 }
 
 // ========================================
@@ -1187,6 +1270,7 @@ function initOrderPuzzle() {
 
 function initNavigationLinks() {
     const navLinks = document.querySelectorAll('.nav a, .widget-list a');
+    if (!navLinks.length) return;
 
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {

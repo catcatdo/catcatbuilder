@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>글쓰기 도우미 | 릴황 유틸리티</title>
+    <meta name="description" content="키워드 기반 제목 아이디어와 3문장 요약을 생성하는 글쓰기 도우미입니다.">
+    <meta name="keywords" content="글쓰기 도우미, 제목 생성, 요약, 개발 블로그">
+    <meta name="author" content="lilhwang">
+    <link rel="canonical" href="https://lilhwang.com/writing-helper.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="글쓰기 도우미 | 릴황 유틸리티">
+    <meta property="og:description" content="키워드 기반 제목 아이디어와 3문장 요약을 생성하는 글쓰기 도우미입니다.">
+    <meta property="og:url" content="https://lilhwang.com/writing-helper.html">
+    <meta property="og:image" content="https://lilhwang.com/images/og-default.jpg">
+    <meta property="og:site_name" content="릴황">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="글쓰기 도우미 | 릴황 유틸리티">
+    <meta name="twitter:description" content="키워드 기반 제목 아이디어와 3문장 요약을 생성하는 글쓰기 도우미입니다.">
+    <meta name="twitter:image" content="https://lilhwang.com/images/og-default.jpg">
+    <script>
+        (function () {
+            try {
+                var key = 'theme-preference';
+                var saved = localStorage.getItem(key);
+                var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                var theme = saved || (systemDark ? 'dark' : 'light');
+                document.documentElement.setAttribute('data-theme', theme);
+            } catch (error) {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        })();
+    </script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">릴황의 유틸리티 포털</h1>
+            <div class="header-actions">
+                <nav class="nav">
+                    <a href="index.html">홈</a>
+                    <a href="blog.html">블로그</a>
+                </nav>
+                <button class="theme-toggle" id="theme-toggle" type="button" aria-label="다크 모드 전환">
+                    <span class="theme-icon" aria-hidden="true">🌙</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-container">
+        <div class="container">
+            <h2 class="section-heading">글쓰기 도우미</h2>
+            <p class="section-description">키워드로 제목 아이디어를 만들고, 글을 3문장으로 요약해보세요.</p>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <h3 class="tool-title">글쓰기 도우미</h3>
+                    <div class="tool-body">
+                        <div class="input-group">
+                            <label for="title-keywords">키워드 (쉼표로 구분)</label>
+                            <input type="text" id="title-keywords" placeholder="예: React, 성능, 최적화">
+                        </div>
+                        <div class="tool-actions">
+                            <button class="btn btn-primary" id="generate-titles">제목 아이디어 생성</button>
+                        </div>
+                        <ul id="title-suggestions" class="tool-list"></ul>
+                        <textarea id="summary-input" class="tool-textarea" rows="6" placeholder="요약할 글을 붙여넣으세요"></textarea>
+                        <button class="btn btn-secondary" id="generate-summary">3문장 요약</button>
+                        <pre id="summary-output" class="tool-output"></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 릴황 유틸리티 포털. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
