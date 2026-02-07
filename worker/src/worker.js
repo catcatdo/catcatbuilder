@@ -9,6 +9,21 @@ export default {
     }
 
     const url = new URL(request.url);
+    if (url.pathname === '/most-active-stocks') {
+      if (request.method !== 'GET') {
+        return jsonResponse({ message: 'Method Not Allowed' }, 405, corsHeaders);
+      }
+      try {
+        const [us, kr] = await Promise.all([
+          fetchTradingViewMostActive('america', 5),
+          fetchTradingViewMostActive('korea', 5)
+        ]);
+        return jsonResponse({ us, kr }, 200, corsHeaders);
+      } catch (error) {
+        return jsonResponse({ message: 'Failed to load stocks' }, 500, corsHeaders);
+      }
+    }
+
     if (url.pathname !== '/save-posts') {
       return new Response('Not Found', { status: 404, headers: corsHeaders });
     }
@@ -50,7 +65,7 @@ export default {
 
 function buildCorsHeaders(origin, allowedOrigins) {
   const headers = {
-    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Access-Control-Allow-Methods': 'POST, GET, OPTIONS',
     'Access-Control-Allow-Headers': 'Content-Type, X-Admin-Password'
   };
 
@@ -62,6 +77,47 @@ function buildCorsHeaders(origin, allowedOrigins) {
   }
 
   return headers;
+}
+
+async function fetchTradingViewMostActive(market, count) {
+  const url = `https://scanner.tradingview.com/${market}/scan`;
+  const body = {
+    filter: [],
+    options: { lang: 'en' },
+    sort: { sortBy: 'volume', sortOrder: 'desc' },
+    range: [0, count - 1],
+    columns: ['description', 'close', 'change', 'change_abs', 'volume', 'name']
+  };
+
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(body)
+  });
+
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(`TradingView scan failed: ${response.status} ${text}`);
+  }
+
+  const data = await response.json();
+  const items = Array.isArray(data.data) ? data.data : [];
+
+  return items.slice(0, count).map(item => {
+    const symbolRaw = item.s || '';
+    const ticker = symbolRaw.includes(':') ? symbolRaw.split(':')[1] : symbolRaw;
+    const [description, close, changePercent, changeAbs] = item.d || [];
+    const name = description || (item.d && item.d[5]) || ticker;
+    return {
+      symbol: ticker,
+      name,
+      price: typeof close === 'number' ? close : Number(close),
+      change: typeof changeAbs === 'number' ? changeAbs : Number(changeAbs || 0),
+      changePercent: typeof changePercent === 'number' ? changePercent : Number(changePercent || 0)
+    };
+  });
 }
 
 function jsonResponse(data, status, corsHeaders) {
