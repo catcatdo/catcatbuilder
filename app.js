@@ -1320,7 +1320,16 @@ function getRelatedKeywordElements() {
 
 function initRelatedKeywordControls(defaultKeywords) {
     const { input, saveBtn, clearBtn, status, suggest } = getRelatedKeywordElements();
-    if (!input || !saveBtn || !clearBtn) return { keywords: defaultKeywords, input: null, suggest: null };
+    if (!input || !saveBtn || !clearBtn) {
+        return {
+            keywords: defaultKeywords,
+            input: null,
+            suggest: null,
+            saveBtn: null,
+            clearBtn: null,
+            setStatus: null
+        };
+    }
 
     const stored = localStorage.getItem(getKeywordStorageKey());
     if (stored) {
@@ -1345,7 +1354,14 @@ function initRelatedKeywordControls(defaultKeywords) {
         setStatus('기본 키워드로 복원되었습니다.');
     });
 
-    return { keywords: parseKeywords(input.value || defaultKeywords.join(', ')), input, suggest };
+    return {
+        keywords: parseKeywords(input.value || defaultKeywords.join(', ')),
+        input,
+        suggest,
+        saveBtn,
+        clearBtn,
+        setStatus
+    };
 }
 
 function buildKeywordSuggestions(posts, baseKeywords) {
@@ -1377,7 +1393,7 @@ function buildKeywordSuggestions(posts, baseKeywords) {
         .slice(0, 10);
 }
 
-function renderKeywordSuggestions(suggestEl, keywords, input) {
+function renderKeywordSuggestions(suggestEl, keywords, input, onSelect) {
     if (!suggestEl || !keywords.length) return;
     suggestEl.innerHTML = keywords
         .map(keyword => `<button type="button" class="keyword-chip" data-keyword="${keyword}">${keyword}</button>`)
@@ -1392,6 +1408,7 @@ function renderKeywordSuggestions(suggestEl, keywords, input) {
                 current.push(selected);
                 input.value = current.join(', ');
             }
+            if (onSelect) onSelect();
         });
     });
 }
@@ -1402,7 +1419,14 @@ async function initRelatedPosts() {
 
     const keywordRaw = document.body.dataset.keywords || '';
     const defaultKeywords = parseKeywords(keywordRaw);
-    const { keywords, input, suggest } = initRelatedKeywordControls(defaultKeywords);
+    const {
+        keywords,
+        input,
+        suggest,
+        saveBtn,
+        clearBtn,
+        setStatus
+    } = initRelatedKeywordControls(defaultKeywords);
     const preferredCategory = (document.body.dataset.category || '').toLowerCase();
 
     if (keywords.length === 0) {
@@ -1416,47 +1440,75 @@ async function initRelatedPosts() {
         const posts = Array.isArray(data.posts) ? data.posts : [];
 
         const suggestions = buildKeywordSuggestions(posts, defaultKeywords);
-        renderKeywordSuggestions(suggest, suggestions, input);
 
-        const scored = posts.map(post => {
-            const title = (post.title || '').toLowerCase();
-            const tagsArray = (post.tags || []).map(tag => String(tag).toLowerCase());
-            const tags = tagsArray.join(' ');
-            const excerpt = (post.excerpt || '').toLowerCase();
-            const content = stripHtml(post.content || '').toLowerCase();
-            let score = 0;
-            if (preferredCategory && (post.category || '').toLowerCase() === preferredCategory) {
-                score += 3;
-            }
-            keywords.forEach(keyword => {
-                if (title.includes(keyword)) score += 4;
-                if (tagsArray.includes(keyword)) score += 4;
-                if (tags.includes(keyword)) score += 2;
-                if (excerpt.includes(keyword)) score += 1;
-                if (content.includes(keyword)) score += 1;
+        function renderRelated(currentKeywords) {
+            const scored = posts.map(post => {
+                const title = (post.title || '').toLowerCase();
+                const tagsArray = (post.tags || []).map(tag => String(tag).toLowerCase());
+                const tags = tagsArray.join(' ');
+                const excerpt = (post.excerpt || '').toLowerCase();
+                const content = stripHtml(post.content || '').toLowerCase();
+                let score = 0;
+                if (preferredCategory && (post.category || '').toLowerCase() === preferredCategory) {
+                    score += 3;
+                }
+                currentKeywords.forEach(keyword => {
+                    if (title.includes(keyword)) score += 4;
+                    if (tagsArray.includes(keyword)) score += 4;
+                    if (tags.includes(keyword)) score += 2;
+                    if (excerpt.includes(keyword)) score += 1;
+                    if (content.includes(keyword)) score += 1;
+                });
+                return { post, score };
             });
-            return { post, score };
-        });
 
-        const top = scored
-            .filter(item => item.score > 0)
-            .sort((a, b) => b.score - a.score)
-            .slice(0, 3)
-            .map(item => item.post);
+            const top = scored
+                .filter(item => item.score > 0)
+                .sort((a, b) => b.score - a.score)
+                .slice(0, 3)
+                .map(item => item.post);
 
-        if (!top.length) {
-            const fallback = posts
-                .sort((a, b) => new Date(b.date) - new Date(a.date))
-                .slice(0, 3);
-            container.innerHTML = fallback.length
-                ? fallback.map(post => `<li><a href="blog.html#post-${post.id}">${post.title}</a></li>`).join('')
-                : '<li>관련 글이 없습니다.</li>';
-            return;
+            if (!top.length) {
+                const fallback = posts
+                    .sort((a, b) => new Date(b.date) - new Date(a.date))
+                    .slice(0, 3);
+                container.innerHTML = fallback.length
+                    ? fallback.map(post => `<li><a href="blog.html#post-${post.id}">${post.title}</a></li>`).join('')
+                    : '<li>관련 글이 없습니다.</li>';
+                return;
+            }
+
+            container.innerHTML = top.map(post =>
+                `<li><a href=\"blog.html#post-${post.id}\">${post.title}</a></li>`
+            ).join('');
         }
 
-        container.innerHTML = top.map(post =>
-            `<li><a href=\"blog.html#post-${post.id}\">${post.title}</a></li>`
-        ).join('');
+        function updateFromInput() {
+            const current = input ? parseKeywords(input.value || '') : keywords;
+            renderRelated(current);
+        }
+
+        renderKeywordSuggestions(suggest, suggestions, input, updateFromInput);
+        renderRelated(keywords);
+
+        if (input) {
+            let debounceId = null;
+            input.addEventListener('input', () => {
+                if (debounceId) clearTimeout(debounceId);
+                debounceId = setTimeout(() => {
+                    updateFromInput();
+                    if (setStatus) setStatus('');
+                }, 250);
+            });
+        }
+
+        if (saveBtn) {
+            saveBtn.addEventListener('click', updateFromInput);
+        }
+
+        if (clearBtn) {
+            clearBtn.addEventListener('click', updateFromInput);
+        }
     } catch (error) {
         container.innerHTML = '<li>관련 글을 불러오지 못했습니다.</li>';
     }
