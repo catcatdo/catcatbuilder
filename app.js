@@ -35,6 +35,38 @@ async function fetchAPI(url) {
     }
 }
 
+function copyToClipboard(text) {
+    if (!text) return;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text);
+        return;
+    }
+    const temp = document.createElement('textarea');
+    temp.value = text;
+    document.body.appendChild(temp);
+    temp.select();
+    document.execCommand('copy');
+    document.body.removeChild(temp);
+}
+
+function getTextFromTextarea(id) {
+    const el = document.getElementById(id);
+    return el ? el.value || '' : '';
+}
+
+function setOutputText(id, text) {
+    const el = document.getElementById(id);
+    if (el) el.textContent = text;
+}
+
+function utf8ToBase64(text) {
+    return btoa(unescape(encodeURIComponent(text)));
+}
+
+function base64ToUtf8(text) {
+    return decodeURIComponent(escape(atob(text)));
+}
+
 // ========================================
 // Tab Navigation
 // ========================================
@@ -668,6 +700,488 @@ function initColorPaletteGenerator() {
 }
 
 // ========================================
+// JSON Formatter
+// ========================================
+
+function initJSONFormatter() {
+    const formatBtn = document.getElementById('json-format');
+    const minifyBtn = document.getElementById('json-minify');
+    const copyBtn = document.getElementById('json-copy');
+
+    if (!formatBtn || !minifyBtn || !copyBtn) return;
+
+    const render = (value) => {
+        setOutputText('json-output', value);
+    };
+
+    formatBtn.addEventListener('click', () => {
+        try {
+            const input = getTextFromTextarea('json-input');
+            const parsed = JSON.parse(input);
+            render(JSON.stringify(parsed, null, 2));
+        } catch (error) {
+            render('올바른 JSON이 아닙니다.');
+        }
+    });
+
+    minifyBtn.addEventListener('click', () => {
+        try {
+            const input = getTextFromTextarea('json-input');
+            const parsed = JSON.parse(input);
+            render(JSON.stringify(parsed));
+        } catch (error) {
+            render('올바른 JSON이 아닙니다.');
+        }
+    });
+
+    copyBtn.addEventListener('click', () => {
+        copyToClipboard(document.getElementById('json-output')?.textContent || '');
+    });
+}
+
+// ========================================
+// Base64 Encoder / Decoder
+// ========================================
+
+function initBase64Tool() {
+    const encodeBtn = document.getElementById('base64-encode');
+    const decodeBtn = document.getElementById('base64-decode');
+    const copyBtn = document.getElementById('base64-copy');
+
+    if (!encodeBtn || !decodeBtn || !copyBtn) return;
+
+    encodeBtn.addEventListener('click', () => {
+        try {
+            const input = getTextFromTextarea('base64-input');
+            setOutputText('base64-output', utf8ToBase64(input));
+        } catch (error) {
+            setOutputText('base64-output', '인코딩 실패');
+        }
+    });
+
+    decodeBtn.addEventListener('click', () => {
+        try {
+            const input = getTextFromTextarea('base64-input');
+            setOutputText('base64-output', base64ToUtf8(input));
+        } catch (error) {
+            setOutputText('base64-output', '디코딩 실패');
+        }
+    });
+
+    copyBtn.addEventListener('click', () => {
+        copyToClipboard(document.getElementById('base64-output')?.textContent || '');
+    });
+}
+
+// ========================================
+// Hash Generator
+// ========================================
+
+function initHashGenerator() {
+    const generateBtn = document.getElementById('hash-generate');
+    if (!generateBtn) return;
+
+    generateBtn.addEventListener('click', async () => {
+        const algo = document.getElementById('hash-algo')?.value || 'SHA-256';
+        const input = getTextFromTextarea('hash-input');
+        if (!input) {
+            setOutputText('hash-output', '텍스트를 입력하세요.');
+            return;
+        }
+        try {
+            const data = new TextEncoder().encode(input);
+            const digest = await crypto.subtle.digest(algo, data);
+            const hashArray = Array.from(new Uint8Array(digest));
+            const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+            setOutputText('hash-output', hashHex);
+        } catch (error) {
+            setOutputText('hash-output', '해시 생성 실패');
+        }
+    });
+}
+
+// ========================================
+// Timezone Converter
+// ========================================
+
+function initTimezoneConverter() {
+    const convertBtn = document.getElementById('tz-convert');
+    if (!convertBtn) return;
+
+    convertBtn.addEventListener('click', () => {
+        const input = document.getElementById('tz-input')?.value;
+        const tz = document.getElementById('tz-target')?.value || 'UTC';
+        const result = document.getElementById('tz-result');
+        if (!input) {
+            showWarning(result, '날짜/시간을 입력하세요.');
+            return;
+        }
+        const localDate = new Date(input);
+        if (isNaN(localDate)) {
+            showError(result, '올바른 날짜/시간이 아닙니다.');
+            return;
+        }
+        const formatter = new Intl.DateTimeFormat('ko-KR', {
+            timeZone: tz,
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit'
+        });
+        showSuccess(result, formatter.format(localDate));
+    });
+}
+
+// ========================================
+// Writing Helper
+// ========================================
+
+function initWritingHelper() {
+    const generateBtn = document.getElementById('generate-titles');
+    const summaryBtn = document.getElementById('generate-summary');
+    if (!generateBtn || !summaryBtn) return;
+
+    generateBtn.addEventListener('click', () => {
+        const raw = document.getElementById('title-keywords')?.value || '';
+        const keywords = raw.split(',').map(k => k.trim()).filter(Boolean);
+        const main = keywords[0] || '기술';
+        const secondary = keywords[1] || '실전';
+        const templates = [
+            `${main} 실전 가이드: ${secondary}까지 한 번에`,
+            `현업에서 쓰는 ${main} 베스트 프랙티스`,
+            `${main} 성능 최적화 체크리스트`,
+            `초보를 위한 ${main} 핵심 정리`,
+            `2026 ${main} 업데이트 요약`
+        ];
+        const list = document.getElementById('title-suggestions');
+        if (!list) return;
+        list.innerHTML = templates.map(title => `<li>${title}</li>`).join('');
+    });
+
+    summaryBtn.addEventListener('click', () => {
+        const input = document.getElementById('summary-input')?.value || '';
+        if (!input.trim()) {
+            setOutputText('summary-output', '요약할 내용을 입력하세요.');
+            return;
+        }
+        const sentences = input
+            .split(/[.!?。]\s+|\n+/)
+            .map(s => s.trim())
+            .filter(Boolean);
+        const summary = sentences.slice(0, 3).join(' ');
+        setOutputText('summary-output', summary || input.trim());
+    });
+}
+
+// ========================================
+// Image Tool
+// ========================================
+
+function initImageTool() {
+    const processBtn = document.getElementById('process-image');
+    if (!processBtn) return;
+
+    processBtn.addEventListener('click', () => {
+        const fileInput = document.getElementById('image-input');
+        const widthInput = document.getElementById('image-width');
+        const formatSelect = document.getElementById('image-format');
+        const qualityInput = document.getElementById('image-quality');
+        const result = document.getElementById('image-result');
+
+        const file = fileInput?.files?.[0];
+        if (!file) {
+            showWarning(result, '이미지 파일을 선택하세요.');
+            return;
+        }
+
+        const targetWidth = parseInt(widthInput?.value, 10);
+        const format = formatSelect?.value || 'image/jpeg';
+        const quality = Math.min(0.95, Math.max(0.5, parseFloat(qualityInput?.value || '0.85')));
+
+        const reader = new FileReader();
+        reader.onload = () => {
+            const img = new Image();
+            img.onload = () => {
+                const canvas = document.createElement('canvas');
+                const width = targetWidth && targetWidth > 0 ? targetWidth : img.width;
+                const height = Math.round((img.height * width) / img.width);
+                canvas.width = width;
+                canvas.height = height;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0, width, height);
+                const dataUrl = canvas.toDataURL(format, format === 'image/png' ? 1 : quality);
+                const sizeKB = Math.round((dataUrl.length * 3) / 4 / 1024);
+                result.className = 'result-box image-result success';
+                result.innerHTML = `
+                    <img src="${dataUrl}" alt="변환 이미지">
+                    <div>크기: ${width}x${height}px / 약 ${sizeKB}KB</div>
+                    <a class="btn btn-secondary" href="${dataUrl}" download="image.${format.split('/')[1]}">다운로드</a>
+                `;
+            };
+            img.src = reader.result;
+        };
+        reader.readAsDataURL(file);
+    });
+}
+
+// ========================================
+// Cheat Sheet
+// ========================================
+
+function initCheatSheet() {
+    const listEl = document.getElementById('cheatsheet-list');
+    const searchEl = document.getElementById('cheatsheet-search');
+    const countEl = document.getElementById('cheatsheet-count');
+    if (!listEl || !searchEl || !countEl) return;
+
+    const items = [
+        { label: 'Git: 되돌리기', value: 'git reset --hard <hash>' },
+        { label: 'Git: 마지막 커밋 수정', value: 'git commit --amend' },
+        { label: 'Git: 브랜치 보기', value: 'git branch -a' },
+        { label: 'VSCode: 빠른 파일 열기', value: 'Ctrl/Cmd + P' },
+        { label: 'VSCode: 전체 검색', value: 'Ctrl/Cmd + Shift + F' },
+        { label: 'Chrome: 개발자 도구', value: 'F12 / Ctrl+Shift+I' },
+        { label: 'Terminal: 이전 명령', value: '↑ / Ctrl+R' },
+        { label: 'Linux: 포트 사용 확인', value: 'lsof -i :PORT' },
+        { label: 'Node: 패키지 업데이트', value: 'npm outdated' },
+        { label: 'curl: 헤더 보기', value: 'curl -I URL' }
+    ];
+
+    function render(filter) {
+        const filtered = items.filter(item => {
+            const text = `${item.label} ${item.value}`.toLowerCase();
+            return text.includes(filter);
+        });
+        countEl.textContent = `${filtered.length}개 항목`;
+        listEl.innerHTML = filtered.map(item => `<li><strong>${item.label}</strong><br>${item.value}</li>`).join('');
+    }
+
+    searchEl.addEventListener('input', () => {
+        render(searchEl.value.trim().toLowerCase());
+    });
+
+    render('');
+}
+
+// ========================================
+// Coding Quiz Game
+// ========================================
+
+function initCodingQuiz() {
+    const startBtn = document.getElementById('quiz-start');
+    const timerEl = document.getElementById('quiz-timer');
+    const questionEl = document.getElementById('quiz-question');
+    const choicesEl = document.getElementById('quiz-choices');
+    const resultEl = document.getElementById('quiz-result');
+    const scoreEl = document.getElementById('quiz-score');
+    if (!startBtn || !timerEl || !questionEl || !choicesEl || !resultEl || !scoreEl) return;
+
+    const questions = [
+        {
+            q: 'JavaScript에서 배열 길이를 반환하는 속성은?',
+            choices: ['size', 'length', 'count', 'total'],
+            a: 1
+        },
+        {
+            q: 'HTTP 상태 코드 404는 무엇을 의미할까?',
+            choices: ['권한 없음', '서버 오류', '찾을 수 없음', '요청 성공'],
+            a: 2
+        },
+        {
+            q: 'CSS에서 텍스트를 굵게 만드는 속성은?',
+            choices: ['font-weight', 'font-style', 'text-style', 'font-size'],
+            a: 0
+        },
+        {
+            q: 'Git에서 원격 저장소 변경 사항을 가져오는 명령은?',
+            choices: ['git pull', 'git push', 'git add', 'git reset'],
+            a: 0
+        },
+        {
+            q: 'JavaScript에서 객체를 JSON 문자열로 변환하는 메서드는?',
+            choices: ['JSON.parse', 'JSON.stringify', 'toJSON', 'stringifyJSON'],
+            a: 1
+        },
+        {
+            q: 'HTML에서 링크를 만드는 태그는?',
+            choices: ['<link>', '<a>', '<href>', '<url>'],
+            a: 1
+        }
+    ];
+
+    let timeLeft = 60;
+    let score = 0;
+    let total = 0;
+    let timerId = null;
+
+    function setQuestion() {
+        const item = questions[Math.floor(Math.random() * questions.length)];
+        questionEl.textContent = item.q;
+        choicesEl.innerHTML = '';
+        item.choices.forEach((choice, index) => {
+            const btn = document.createElement('button');
+            btn.className = 'btn btn-secondary';
+            btn.textContent = choice;
+            btn.addEventListener('click', () => {
+                total += 1;
+                if (index === item.a) {
+                    score += 1;
+                    showSuccess(resultEl, '정답!');
+                } else {
+                    showError(resultEl, '오답!');
+                }
+                scoreEl.textContent = `점수: ${score}/${total}`;
+                setQuestion();
+            });
+            choicesEl.appendChild(btn);
+        });
+    }
+
+    function stopGame() {
+        clearInterval(timerId);
+        timerId = null;
+        choicesEl.innerHTML = '';
+        showWarning(resultEl, '시간 종료!');
+    }
+
+    startBtn.addEventListener('click', () => {
+        timeLeft = 60;
+        score = 0;
+        total = 0;
+        timerEl.textContent = '남은 시간: 60s';
+        scoreEl.textContent = '점수: 0/0';
+        showSuccess(resultEl, '시작!');
+        setQuestion();
+        if (timerId) clearInterval(timerId);
+        timerId = setInterval(() => {
+            timeLeft -= 1;
+            timerEl.textContent = `남은 시간: ${timeLeft}s`;
+            if (timeLeft <= 0) {
+                stopGame();
+            }
+        }, 1000);
+    });
+}
+
+// ========================================
+// Typing Game
+// ========================================
+
+function initTypingGame() {
+    const startBtn = document.getElementById('typing-start');
+    const resetBtn = document.getElementById('typing-reset');
+    const targetEl = document.getElementById('typing-target');
+    const inputEl = document.getElementById('typing-input');
+    const statsEl = document.getElementById('typing-stats');
+    if (!startBtn || !resetBtn || !targetEl || !inputEl || !statsEl) return;
+
+    const snippets = [
+        'const sum = (a, b) => a + b;',
+        'fetch(url).then(res => res.json()).then(data => console.log(data));',
+        'for (let i = 0; i < items.length; i++) { console.log(items[i]); }',
+        'function debounce(fn, delay) { let t; return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), delay); }; }'
+    ];
+
+    let startTime = null;
+    let targetText = '';
+
+    function reset() {
+        inputEl.value = '';
+        statsEl.textContent = '';
+        startTime = null;
+    }
+
+    startBtn.addEventListener('click', () => {
+        targetText = snippets[Math.floor(Math.random() * snippets.length)];
+        targetEl.textContent = targetText;
+        reset();
+        inputEl.focus();
+    });
+
+    resetBtn.addEventListener('click', () => {
+        reset();
+        targetEl.textContent = '시작 버튼을 눌러 코드를 불러오세요.';
+    });
+
+    inputEl.addEventListener('input', () => {
+        if (!targetText) return;
+        if (!startTime) startTime = Date.now();
+
+        const typed = inputEl.value;
+        let correct = 0;
+        for (let i = 0; i < typed.length; i++) {
+            if (typed[i] === targetText[i]) correct += 1;
+        }
+
+        const elapsedMin = (Date.now() - startTime) / 60000;
+        const wpm = elapsedMin > 0 ? Math.round((correct / 5) / elapsedMin) : 0;
+        const accuracy = typed.length > 0 ? Math.round((correct / typed.length) * 100) : 0;
+        statsEl.textContent = `속도: ${wpm} WPM | 정확도: ${accuracy}%`;
+
+        if (typed.length >= targetText.length) {
+            statsEl.textContent += ' | 완료!';
+            targetText = '';
+        }
+    });
+}
+
+// ========================================
+// Order Puzzle
+// ========================================
+
+function initOrderPuzzle() {
+    const gridEl = document.getElementById('order-grid');
+    const statusEl = document.getElementById('order-status');
+    const restartBtn = document.getElementById('order-restart');
+    if (!gridEl || !statusEl || !restartBtn) return;
+
+    let current = 1;
+    let startTime = null;
+
+    function shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
+
+    function renderGrid() {
+        gridEl.innerHTML = '';
+        const numbers = shuffle(Array.from({ length: 9 }, (_, i) => i + 1));
+        numbers.forEach(num => {
+            const btn = document.createElement('button');
+            btn.textContent = num;
+            btn.addEventListener('click', () => {
+                if (num !== current) {
+                    statusEl.textContent = `다음 숫자: ${current}`;
+                    return;
+                }
+                if (!startTime) startTime = Date.now();
+                btn.disabled = true;
+                btn.style.opacity = '0.5';
+                current += 1;
+                if (current === 10) {
+                    const seconds = ((Date.now() - startTime) / 1000).toFixed(1);
+                    statusEl.textContent = `완료! ${seconds}초`;
+                } else {
+                    statusEl.textContent = `다음 숫자: ${current}`;
+                }
+            });
+            gridEl.appendChild(btn);
+        });
+        current = 1;
+        startTime = null;
+        statusEl.textContent = '다음 숫자: 1';
+    }
+
+    restartBtn.addEventListener('click', renderGrid);
+    renderGrid();
+}
+
+// ========================================
 // Navigation Links
 // ========================================
 
@@ -709,5 +1223,15 @@ document.addEventListener('DOMContentLoaded', () => {
     initNumberGuessingGame();
     initRockPaperScissors();
     initColorPaletteGenerator();
+    initJSONFormatter();
+    initBase64Tool();
+    initHashGenerator();
+    initTimezoneConverter();
+    initWritingHelper();
+    initImageTool();
+    initCheatSheet();
+    initCodingQuiz();
+    initTypingGame();
+    initOrderPuzzle();
     initNavigationLinks();
 });

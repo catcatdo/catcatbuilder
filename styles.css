@@ -287,6 +287,14 @@ body {
     line-height: 1.6;
 }
 
+.subsection-title {
+    font-size: 18px;
+    color: var(--text-heading);
+    margin: 35px 0 18px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+}
+
 /* ========================================
    Tools Grid
    ======================================== */
@@ -333,6 +341,123 @@ body {
     display: flex;
     flex-direction: column;
     gap: 15px;
+}
+
+.tool-textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 14px;
+    resize: vertical;
+    background-color: var(--bg-surface);
+    color: var(--text-primary);
+}
+
+.tool-textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+.tool-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.tool-output {
+    background-color: var(--bg-surface-muted);
+    border-radius: 6px;
+    padding: 12px;
+    min-height: 60px;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--text-secondary);
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.tool-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 0;
+    margin: 0;
+}
+
+.tool-list li {
+    background-color: var(--bg-surface-muted);
+    padding: 10px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.tool-meta {
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.input-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 10px;
+}
+
+.image-result img {
+    max-width: 100%;
+    border-radius: 6px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.image-result {
+    display: block;
+    text-align: left;
+    gap: 8px;
+}
+
+.quiz-choices {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+}
+
+.quiz-choices .btn {
+    text-align: left;
+}
+
+.typing-target {
+    background-color: var(--bg-surface-muted);
+    border-radius: 6px;
+    padding: 12px;
+    font-size: 13px;
+    white-space: pre-wrap;
+    color: var(--text-secondary);
+    min-height: 90px;
+}
+
+.order-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+
+.order-grid button {
+    padding: 14px;
+    border-radius: 6px;
+    border: none;
+    background-color: var(--bg-soft);
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.order-grid button:hover {
+    background-color: var(--primary);
+    color: #fff;
+    transform: translateY(-1px);
 }
 
 /* ========================================
