@@ -451,6 +451,10 @@ body {
     cursor: pointer;
 }
 
+.keyword-chip:hover {
+    background-color: var(--bg-soft-hover);
+}
+
 .input-inline {
     display: flex;
     flex-wrap: wrap;

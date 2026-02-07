@@ -565,6 +565,10 @@ function initStockWidget() {
     const saveBtn = document.getElementById('save-stock-list');
     const resetBtn = document.getElementById('reset-stock-list');
     const statusEl = document.getElementById('stock-config-status');
+    const usSuggest = document.getElementById('us-stock-suggest');
+    const krSuggest = document.getElementById('kr-stock-suggest');
+    const usMarketStatus = document.getElementById('us-market-status');
+    const krMarketStatus = document.getElementById('kr-market-status');
     if (!usList || !krList || !updatedEl) return;
 
     const defaultUs = ['NVDA', 'AMZN', 'TSLA', 'MSFT', 'MU'];
@@ -636,6 +640,14 @@ function initStockWidget() {
             .slice(0, 5);
     }
 
+    function normalizeKrSymbols(list) {
+        return list.map(symbol => {
+            if (symbol.endsWith('.KS') || symbol.endsWith('.KQ')) return symbol;
+            if (/^\d{6}$/.test(symbol)) return `${symbol}.KS`;
+            return symbol;
+        });
+    }
+
     function getStoredSymbols() {
         try {
             const raw = localStorage.getItem(storageKey);
@@ -655,12 +667,30 @@ function initStockWidget() {
         const stored = getStoredSymbols();
         const us = Array.isArray(stored?.us) && stored.us.length ? stored.us : defaultUs;
         const kr = Array.isArray(stored?.kr) && stored.kr.length ? stored.kr : defaultKr;
-        return { us, kr };
+        return { us, kr: normalizeKrSymbols(kr) };
     }
 
     function syncInputs() {
         if (usInput) usInput.value = getSymbols().us.join(', ');
         if (krInput) krInput.value = getSymbols().kr.join(', ');
+    }
+
+    function getMarketStatus(timeZone, openMinute, closeMinute, name) {
+        const dtf = new Intl.DateTimeFormat('en-US', {
+            timeZone,
+            weekday: 'short',
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: false
+        });
+        const parts = dtf.formatToParts(new Date());
+        const weekday = parts.find(p => p.type === 'weekday')?.value || '';
+        const hour = parseInt(parts.find(p => p.type === 'hour')?.value || '0', 10);
+        const minute = parseInt(parts.find(p => p.type === 'minute')?.value || '0', 10);
+        const minutes = hour * 60 + minute;
+        const isWeekend = weekday === 'Sat' || weekday === 'Sun';
+        const isOpen = !isWeekend && minutes >= openMinute && minutes < closeMinute;
+        return `${name}: ${isOpen ? '거래 중' : '휴장'} (현지 ${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')})`;
     }
 
     async function loadStocks() {
@@ -675,6 +705,12 @@ function initStockWidget() {
             renderList(usList, usItems, quotes);
             renderList(krList, krItems, quotes);
             updatedEl.textContent = `업데이트: ${new Date().toLocaleString('ko-KR')}`;
+            if (usMarketStatus) {
+                usMarketStatus.textContent = `${getMarketStatus('America/New_York', 9 * 60 + 30, 16 * 60, '미국 시장')} · 휴장일 미반영`;
+            }
+            if (krMarketStatus) {
+                krMarketStatus.textContent = `${getMarketStatus('Asia/Seoul', 9 * 60, 15 * 60 + 30, '한국 시장')} · 휴장일 미반영`;
+            }
         } catch (error) {
             renderError(usList);
             renderError(krList);
@@ -682,9 +718,64 @@ function initStockWidget() {
         }
     }
 
+    async function fetchSymbolSuggestions(query) {
+        const url = `https://query2.finance.yahoo.com/v1/finance/search?q=${encodeURIComponent(query)}&quotesCount=6&newsCount=0`;
+        const response = await fetch(url);
+        if (!response.ok) throw new Error('Search failed');
+        const data = await response.json();
+        return data.quotes || [];
+    }
+
+    function renderSuggestions(container, items, input) {
+        if (!container) return;
+        if (!items.length) {
+            container.innerHTML = '';
+            return;
+        }
+        container.innerHTML = items.map(item => {
+            const label = `${item.symbol} ${item.shortname || item.longname || ''}`.trim();
+            return `<button type="button" class="keyword-chip" data-symbol="${item.symbol}">${label}</button>`;
+        }).join('');
+
+        container.querySelectorAll('button[data-symbol]').forEach(button => {
+            button.addEventListener('click', () => {
+                if (!input) return;
+                const current = parseSymbolInput(input.value || '');
+                const symbol = button.dataset.symbol;
+                if (!current.includes(symbol)) {
+                    current.push(symbol);
+                    input.value = current.join(', ');
+                }
+            });
+        });
+    }
+
+    function setupSearch(input, container, filterFn) {
+        if (!input || !container) return;
+        let debounceId = null;
+        input.addEventListener('input', () => {
+            const value = input.value.trim();
+            if (debounceId) clearTimeout(debounceId);
+            debounceId = setTimeout(async () => {
+                const query = value.split(',').pop()?.trim();
+                if (!query || query.length < 2) {
+                    container.innerHTML = '';
+                    return;
+                }
+                try {
+                    const results = await fetchSymbolSuggestions(query);
+                    const filtered = filterFn ? results.filter(filterFn) : results;
+                    renderSuggestions(container, filtered.slice(0, 6), input);
+                } catch (error) {
+                    container.innerHTML = '<span class="small-note">검색 제한</span>';
+                }
+            }, 300);
+        });
+    }
+
     saveBtn?.addEventListener('click', () => {
         const us = parseSymbolInput(usInput?.value || '');
-        const kr = parseSymbolInput(krInput?.value || '');
+        const kr = normalizeKrSymbols(parseSymbolInput(krInput?.value || ''));
         if (!us.length || !kr.length) {
             setStatus('미국/한국 종목을 모두 입력하세요.');
             return;
@@ -703,6 +794,9 @@ function initStockWidget() {
 
     refreshUs?.addEventListener('click', loadStocks);
     refreshKr?.addEventListener('click', loadStocks);
+
+    setupSearch(usInput, usSuggest, item => item.region === 'US' || item.exchange?.includes('NMS') || item.exchange?.includes('NYQ'));
+    setupSearch(krInput, krSuggest, item => item.exchange?.includes('KSC') || item.exchange?.includes('KOSDAQ') || item.exchange?.includes('KSE'));
 
     syncInputs();
     loadStocks();
