@@ -119,6 +119,19 @@ body {
     color: var(--primary);
 }
 
+/* 릴황다이어리 메뉴 스타일 */
+.diary-link {
+    background: linear-gradient(135deg, #ff6b9d 0%, #d63384 100%);
+    color: white !important;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+.diary-link:hover {
+    background: linear-gradient(135deg, #ff8fb3 0%, #e04a8c 100%);
+}
+
 .header-actions {
     display: flex;
     align-items: center;
