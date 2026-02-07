@@ -551,6 +551,113 @@ function initQuoteGenerator() {
 }
 
 // ========================================
+// Stock Widget
+// ========================================
+
+function initStockWidget() {
+    const usList = document.getElementById('us-stock-list');
+    const krList = document.getElementById('kr-stock-list');
+    const updatedEl = document.getElementById('stock-updated');
+    const refreshUs = document.getElementById('refresh-us-stocks');
+    const refreshKr = document.getElementById('refresh-kr-stocks');
+    if (!usList || !krList || !updatedEl) return;
+
+    const usSymbols = [
+        { symbol: 'NVDA', name: 'NVIDIA' },
+        { symbol: 'AMZN', name: 'Amazon' },
+        { symbol: 'TSLA', name: 'Tesla' },
+        { symbol: 'MSFT', name: 'Microsoft' },
+        { symbol: 'MU', name: 'Micron' }
+    ];
+
+    const krSymbols = [
+        { symbol: '104620.KQ', name: 'Yellow Balloon Tour' },
+        { symbol: '004060.KS', name: 'SG Corporation' },
+        { symbol: '452260.KS', name: 'Hanwha Galleria' },
+        { symbol: '011930.KS', name: 'Shinsung E&G' },
+        { symbol: '255220.KQ', name: 'SG Co., Ltd.' }
+    ];
+
+    function renderLoading(container) {
+        container.innerHTML = '<div class="stock-row">불러오는 중...</div>';
+    }
+
+    function renderError(container) {
+        container.innerHTML = '<div class="stock-row">가격 정보를 불러오지 못했습니다.</div>';
+    }
+
+    function renderList(container, list, quotesBySymbol) {
+        container.innerHTML = list.map(item => {
+            const quote = quotesBySymbol[item.symbol];
+            if (!quote) {
+                return `
+                    <div class="stock-row">
+                        <div class="stock-name">
+                            <span>${item.name}</span>
+                            <span class="stock-symbol">${item.symbol}</span>
+                        </div>
+                        <div class="stock-price">-</div>
+                        <div class="stock-change">-</div>
+                    </div>
+                `;
+            }
+            const price = quote.regularMarketPrice ?? quote.postMarketPrice ?? quote.preMarketPrice;
+            const change = quote.regularMarketChange ?? 0;
+            const changePercent = quote.regularMarketChangePercent ?? 0;
+            const changeClass = change >= 0 ? 'positive' : 'negative';
+            return `
+                <div class="stock-row">
+                    <div class="stock-name">
+                        <span>${item.name}</span>
+                        <span class="stock-symbol">${item.symbol}</span>
+                    </div>
+                    <div class="stock-price">${price !== undefined ? price.toLocaleString() : '-'}</div>
+                    <div class="stock-change ${changeClass}">
+                        ${change >= 0 ? '+' : ''}${change.toFixed(2)} (${changePercent.toFixed(2)}%)
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+
+    async function fetchQuotes(symbols) {
+        const url = `https://query1.finance.yahoo.com/v7/finance/quote?symbols=${symbols.join(',')}`;
+        const response = await fetch(url);
+        if (!response.ok) throw new Error('Quote fetch failed');
+        const data = await response.json();
+        const list = data.quoteResponse?.result || [];
+        const map = {};
+        list.forEach(item => {
+            if (item && item.symbol) {
+                map[item.symbol] = item;
+            }
+        });
+        return map;
+    }
+
+    async function loadStocks() {
+        renderLoading(usList);
+        renderLoading(krList);
+        try {
+            const symbols = [...usSymbols.map(s => s.symbol), ...krSymbols.map(s => s.symbol)];
+            const quotes = await fetchQuotes(symbols);
+            renderList(usList, usSymbols, quotes);
+            renderList(krList, krSymbols, quotes);
+            updatedEl.textContent = `업데이트: ${new Date().toLocaleString('ko-KR')}`;
+        } catch (error) {
+            renderError(usList);
+            renderError(krList);
+            updatedEl.textContent = '업데이트 실패';
+        }
+    }
+
+    refreshUs?.addEventListener('click', loadStocks);
+    refreshKr?.addEventListener('click', loadStocks);
+
+    loadStocks();
+}
+
+// ========================================
 // Number Guessing Game
 // ========================================
 
@@ -1529,6 +1636,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initWeatherWidget();
     initCryptoWidget();
     initQuoteGenerator();
+    initStockWidget();
     initNumberGuessingGame();
     initRockPaperScissors();
     initColorPaletteGenerator();

@@ -600,6 +600,11 @@ body {
     background-color: #7f8c8d;
 }
 
+.btn-small {
+    padding: 6px 12px;
+    font-size: 12px;
+}
+
 .btn-game {
     background-color: var(--bg-soft);
     color: var(--primary);
@@ -716,6 +721,80 @@ body {
     flex-direction: column;
     gap: 10px;
     padding: 15px;
+}
+
+/* ========================================
+   Stock Widget
+   ======================================== */
+
+.stock-widget {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.stock-group {
+    background-color: var(--bg-surface-muted);
+    border-radius: 8px;
+    padding: 12px;
+}
+
+.stock-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 600;
+    color: var(--text-heading);
+    margin-bottom: 10px;
+}
+
+.stock-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.stock-row {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 8px;
+    align-items: center;
+    background-color: var(--bg-surface);
+    padding: 8px 10px;
+    border-radius: 6px;
+    font-size: 13px;
+}
+
+.stock-name {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.stock-symbol {
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+.stock-price {
+    font-weight: 600;
+}
+
+.stock-change {
+    font-weight: 600;
+}
+
+.stock-change.positive {
+    color: #27ae60;
+}
+
+.stock-change.negative {
+    color: #e74c3c;
+}
+
+.stock-meta {
+    font-size: 12px;
+    color: var(--text-muted);
 }
 
 .crypto-item {
