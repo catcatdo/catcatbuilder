@@ -264,10 +264,23 @@ document.getElementById('download-json')?.addEventListener('click', () => {
 // Save to GitHub (Cloudflare Worker)
 // ========================================
 
-function setGithubStatus(message, isError = false) {
+function setGithubStatus(message, isError = false, link) {
     const status = document.getElementById('github-status');
     if (!status) return;
-    status.textContent = message;
+    status.textContent = '';
+    const text = document.createElement('span');
+    text.textContent = message;
+    status.appendChild(text);
+    if (link) {
+        const space = document.createTextNode(' ');
+        const anchor = document.createElement('a');
+        anchor.href = link;
+        anchor.target = '_blank';
+        anchor.rel = 'noopener noreferrer';
+        anchor.textContent = '커밋 보기';
+        status.appendChild(space);
+        status.appendChild(anchor);
+    }
     status.style.color = isError ? '#e74c3c' : '#2c3e50';
 }
 
@@ -311,7 +324,8 @@ document.getElementById('save-to-github')?.addEventListener('click', async () =>
             throw new Error(result?.message || '저장 실패');
         }
 
-        setGithubStatus(`✅ 저장 완료: ${result.commit || '커밋 완료'}`);
+        const commitLabel = result.commit ? `✅ 저장 완료: ${result.commit}` : '✅ 저장 완료';
+        setGithubStatus(commitLabel, false, result.commitUrl || null);
     } catch (error) {
         console.error('GitHub save failed:', error);
         setGithubStatus(`❌ 저장 실패: ${error.message}`, true);

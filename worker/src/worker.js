@@ -37,7 +37,11 @@ export default {
       const content = JSON.stringify({ posts: payload.posts }, null, 2);
       const commitMessage = payload.message || `Update posts.json (${new Date().toISOString().slice(0, 10)})`;
       const result = await savePostsToGithub(env, content, commitMessage);
-      return jsonResponse({ message: 'ok', commit: result.commit }, 200, corsHeaders);
+      return jsonResponse(
+        { message: 'ok', commit: result.commit, commitUrl: result.commitUrl },
+        200,
+        corsHeaders
+      );
     } catch (error) {
       return jsonResponse({ message: error.message || 'GitHub update failed' }, 500, corsHeaders);
     }
@@ -104,7 +108,11 @@ async function savePostsToGithub(env, content, commitMessage) {
   }
 
   const result = await updateResponse.json();
-  return { commit: result.commit?.sha };
+  const commitSha = result.commit?.sha;
+  const commitUrl = commitSha
+    ? `https://github.com/${owner}/${repo}/commit/${commitSha}`
+    : null;
+  return { commit: commitSha, commitUrl };
 }
 
 async function getFileInfo({ owner, repo, path, branch, token }) {
