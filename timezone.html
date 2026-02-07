@@ -18,6 +18,17 @@
     <meta name="twitter:title" content="타임존 변환 | 릴황 유틸리티">
     <meta name="twitter:description" content="로컬 시간 기준으로 다양한 타임존을 빠르게 변환하세요.">
     <meta name="twitter:image" content="https://lilhwang.com/images/og-default.jpg">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "타임존 변환",
+        "url": "https://lilhwang.com/timezone.html",
+        "description": "로컬 시간 기준으로 다양한 타임존을 빠르게 변환하세요.",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any"
+    }
+    </script>
     <script>
         (function () {
             try {
@@ -33,7 +44,7 @@
     </script>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body data-keywords="타임존,시간,UTC,변환,개발자">
     <header class="header">
         <div class="container">
             <h1 class="logo">릴황의 유틸리티 포털</h1>
@@ -74,11 +85,14 @@
                         </div>
                         <div class="tool-actions">
                             <button class="btn btn-primary" id="tz-convert">변환</button>
+                            <a class="btn btn-secondary" href="developer-tools.html">도구 모음</a>
                         </div>
                         <div id="tz-result" class="result-box"></div>
                     </div>
                 </div>
             </div>
+            <h3 class="subsection-title">관련 블로그 글</h3>
+            <ul id="related-posts" class="tool-list"></ul>
         </div>
     </main>
 

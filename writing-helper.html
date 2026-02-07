@@ -18,6 +18,17 @@
     <meta name="twitter:title" content="글쓰기 도우미 | 릴황 유틸리티">
     <meta name="twitter:description" content="키워드 기반 제목 아이디어와 3문장 요약을 생성하는 글쓰기 도우미입니다.">
     <meta name="twitter:image" content="https://lilhwang.com/images/og-default.jpg">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "글쓰기 도우미",
+        "url": "https://lilhwang.com/writing-helper.html",
+        "description": "키워드 기반 제목 아이디어와 3문장 요약을 생성하는 글쓰기 도우미입니다.",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any"
+    }
+    </script>
     <script>
         (function () {
             try {
@@ -33,7 +44,7 @@
     </script>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body data-keywords="글쓰기,요약,제목,콘텐츠,블로그">
     <header class="header">
         <div class="container">
             <h1 class="logo">릴황의 유틸리티 포털</h1>
@@ -63,6 +74,7 @@
                         </div>
                         <div class="tool-actions">
                             <button class="btn btn-primary" id="generate-titles">제목 아이디어 생성</button>
+                            <a class="btn btn-secondary" href="developer-tools.html">도구 모음</a>
                         </div>
                         <ul id="title-suggestions" class="tool-list"></ul>
                         <textarea id="summary-input" class="tool-textarea" rows="6" placeholder="요약할 글을 붙여넣으세요"></textarea>
@@ -71,6 +83,8 @@
                     </div>
                 </div>
             </div>
+            <h3 class="subsection-title">관련 블로그 글</h3>
+            <ul id="related-posts" class="tool-list"></ul>
         </div>
     </main>
 

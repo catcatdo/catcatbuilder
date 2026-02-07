@@ -74,6 +74,7 @@ function base64ToUtf8(text) {
 function initTabs() {
     const tabButtons = document.querySelectorAll('.tab-btn');
     const tabContents = document.querySelectorAll('.tab-content');
+    if (!tabButtons.length || !tabContents.length) return;
 
     tabButtons.forEach(button => {
         button.addEventListener('click', () => {
@@ -1290,6 +1291,68 @@ function initNavigationLinks() {
 }
 
 // ========================================
+// Related Blog Posts
+// ========================================
+
+function stripHtml(value) {
+    return value.replace(/<[^>]*>/g, ' ');
+}
+
+async function initRelatedPosts() {
+    const container = document.getElementById('related-posts');
+    if (!container) return;
+
+    const keywordRaw = document.body.dataset.keywords || '';
+    const keywords = keywordRaw
+        .split(',')
+        .map(k => k.trim().toLowerCase())
+        .filter(Boolean);
+
+    if (keywords.length === 0) {
+        container.innerHTML = '<li>관련 글이 없습니다.</li>';
+        return;
+    }
+
+    try {
+        const response = await fetch(`posts.json?v=${Date.now()}`);
+        const data = await response.json();
+        const posts = Array.isArray(data.posts) ? data.posts : [];
+
+        const scored = posts.map(post => {
+            const title = (post.title || '').toLowerCase();
+            const tags = (post.tags || []).join(' ').toLowerCase();
+            const excerpt = (post.excerpt || '').toLowerCase();
+            const content = stripHtml(post.content || '').toLowerCase();
+            let score = 0;
+            keywords.forEach(keyword => {
+                if (title.includes(keyword)) score += 3;
+                if (tags.includes(keyword)) score += 2;
+                if (excerpt.includes(keyword)) score += 1;
+                if (content.includes(keyword)) score += 1;
+            });
+            return { post, score };
+        });
+
+        const top = scored
+            .filter(item => item.score > 0)
+            .sort((a, b) => b.score - a.score)
+            .slice(0, 3)
+            .map(item => item.post);
+
+        if (!top.length) {
+            container.innerHTML = '<li>관련 글이 없습니다.</li>';
+            return;
+        }
+
+        container.innerHTML = top.map(post =>
+            `<li><a href=\"blog.html#post-${post.id}\">${post.title}</a></li>`
+        ).join('');
+    } catch (error) {
+        container.innerHTML = '<li>관련 글을 불러오지 못했습니다.</li>';
+    }
+}
+
+// ========================================
 // Initialize All Features
 // ========================================
 
@@ -1318,4 +1381,5 @@ document.addEventListener('DOMContentLoaded', () => {
     initTypingGame();
     initOrderPuzzle();
     initNavigationLinks();
+    initRelatedPosts();
 });

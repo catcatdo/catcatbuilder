@@ -18,6 +18,17 @@
     <meta name="twitter:title" content="이미지 리사이즈/변환 | 릴황 유틸리티">
     <meta name="twitter:description" content="브라우저에서 이미지 리사이즈와 포맷 변환을 빠르게 수행하세요.">
     <meta name="twitter:image" content="https://lilhwang.com/images/og-default.jpg">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "이미지 리사이즈/변환",
+        "url": "https://lilhwang.com/image-tool.html",
+        "description": "브라우저에서 이미지 리사이즈와 포맷 변환을 빠르게 수행하세요.",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any"
+    }
+    </script>
     <script>
         (function () {
             try {
@@ -33,7 +44,7 @@
     </script>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body data-keywords="이미지,리사이즈,변환,webp,압축">
     <header class="header">
         <div class="container">
             <h1 class="logo">릴황의 유틸리티 포털</h1>
@@ -81,11 +92,14 @@
                         </div>
                         <div class="tool-actions">
                             <button class="btn btn-primary" id="process-image">변환하기</button>
+                            <a class="btn btn-secondary" href="developer-tools.html">도구 모음</a>
                         </div>
                         <div id="image-result" class="result-box image-result"></div>
                     </div>
                 </div>
             </div>
+            <h3 class="subsection-title">관련 블로그 글</h3>
+            <ul id="related-posts" class="tool-list"></ul>
         </div>
     </main>
 

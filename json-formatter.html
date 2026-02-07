@@ -18,6 +18,17 @@
     <meta name="twitter:title" content="JSON 포맷터 | 릴황 유틸리티">
     <meta name="twitter:description" content="JSON 포맷터로 보기 좋은 들여쓰기와 미니파이를 빠르게 처리하세요.">
     <meta name="twitter:image" content="https://lilhwang.com/images/og-default.jpg">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "JSON 포맷터",
+        "url": "https://lilhwang.com/json-formatter.html",
+        "description": "JSON 포맷터로 보기 좋은 들여쓰기와 미니파이를 빠르게 처리하세요.",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any"
+    }
+    </script>
     <script>
         (function () {
             try {
@@ -33,7 +44,7 @@
     </script>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body data-keywords="json,포맷터,formatter,개발자">
     <header class="header">
         <div class="container">
             <h1 class="logo">릴황의 유틸리티 포털</h1>
@@ -62,11 +73,14 @@
                             <button class="btn btn-primary" id="json-format">포맷</button>
                             <button class="btn btn-secondary" id="json-minify">미니파이</button>
                             <button class="btn btn-secondary" id="json-copy">복사</button>
+                            <a class="btn btn-secondary" href="developer-tools.html">도구 모음</a>
                         </div>
                         <pre id="json-output" class="tool-output"></pre>
                     </div>
                 </div>
             </div>
+            <h3 class="subsection-title">관련 블로그 글</h3>
+            <ul id="related-posts" class="tool-list"></ul>
         </div>
     </main>
 

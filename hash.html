@@ -18,6 +18,17 @@
     <meta name="twitter:title" content="해시 생성기 | 릴황 유틸리티">
     <meta name="twitter:description" content="SHA-256, SHA-1 해시를 빠르게 생성하는 개발자 도구입니다.">
     <meta name="twitter:image" content="https://lilhwang.com/images/og-default.jpg">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "해시 생성기",
+        "url": "https://lilhwang.com/hash.html",
+        "description": "SHA-256, SHA-1 해시를 빠르게 생성하는 개발자 도구입니다.",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any"
+    }
+    </script>
     <script>
         (function () {
             try {
@@ -33,7 +44,7 @@
     </script>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body data-keywords="해시,hash,SHA-256,SHA-1,개발자">
     <header class="header">
         <div class="container">
             <h1 class="logo">릴황의 유틸리티 포털</h1>
@@ -67,11 +78,14 @@
                         <textarea id="hash-input" class="tool-textarea" rows="6" placeholder="해시할 텍스트 입력"></textarea>
                         <div class="tool-actions">
                             <button class="btn btn-primary" id="hash-generate">해시 생성</button>
+                            <a class="btn btn-secondary" href="developer-tools.html">도구 모음</a>
                         </div>
                         <pre id="hash-output" class="tool-output"></pre>
                     </div>
                 </div>
             </div>
+            <h3 class="subsection-title">관련 블로그 글</h3>
+            <ul id="related-posts" class="tool-list"></ul>
         </div>
     </main>
 
