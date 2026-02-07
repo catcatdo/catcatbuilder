@@ -215,6 +215,24 @@
         </div>
     </header>
 
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h2>오늘 필요한 도구를 바로 찾으세요</h2>
+                    <p>계산기부터 개발 유틸리티, 실시간 위젯, 미니 게임까지 한 곳에 모았습니다.</p>
+                </div>
+                <div class="hero-search">
+                    <label for="tool-search">도구 검색</label>
+                    <div class="hero-search-row">
+                        <input type="text" id="tool-search" placeholder="예: JSON, 환율, 타임존, 주식">
+                        <span id="tool-search-count" class="small-note"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- 상단 광고 영역 -->
     <section class="ad-section ad-top">
         <div class="container">
@@ -246,8 +264,12 @@
                         <p class="section-description">BMI 계산기, 환율 변환기, 부가세 계산기, IP 주소 확인, 핑 테스트, 할일 목록 등 일상생활에 필요한 유용한 도구를 무료로 이용하세요.</p>
                         <div class="tools-grid">
                             <!-- BMI Calculator -->
-                            <div class="tool-card">
-                                <h3 class="tool-title">BMI 계산기</h3>
+                            <div class="tool-card" data-title="BMI 계산기" data-keywords="bmi,건강,체질량,체중">
+                                <div class="tool-header">
+                                    <span class="tool-icon">⚖️</span>
+                                    <h3 class="tool-title">BMI 계산기</h3>
+                                    <span class="tool-tag">생활</span>
+                                </div>
                                 <div class="tool-body">
                                     <div class="input-group">
                                         <label for="height">키 (cm)</label>
@@ -263,8 +285,12 @@
                             </div>
 
                             <!-- Currency Converter -->
-                            <div class="tool-card">
-                                <h3 class="tool-title">환율 변환기</h3>
+                            <div class="tool-card" data-title="환율 변환기" data-keywords="환율,달러,유로,엔화,파운드">
+                                <div class="tool-header">
+                                    <span class="tool-icon">💱</span>
+                                    <h3 class="tool-title">환율 변환기</h3>
+                                    <span class="tool-tag">금융</span>
+                                </div>
                                 <div class="tool-body">
                                     <div class="input-group">
                                         <label for="amount">금액</label>
@@ -296,8 +322,12 @@
                             </div>
 
                             <!-- Todo List -->
-                            <div class="tool-card">
-                                <h3 class="tool-title">할일 목록</h3>
+                            <div class="tool-card" data-title="할일 목록" data-keywords="todo,할일,일정,체크리스트">
+                                <div class="tool-header">
+                                    <span class="tool-icon">📝</span>
+                                    <h3 class="tool-title">할일 목록</h3>
+                                    <span class="tool-tag">생산성</span>
+                                </div>
                                 <div class="tool-body">
                                     <div class="input-group">
                                         <input type="text" id="todo-input" placeholder="새로운 할일 추가...">
@@ -308,8 +338,12 @@
                             </div>
 
                             <!-- VAT Calculator -->
-                            <div class="tool-card">
-                                <h3 class="tool-title">부가세 계산기</h3>
+                            <div class="tool-card" data-title="부가세 계산기" data-keywords="부가세,vat,세금,공급가액">
+                                <div class="tool-header">
+                                    <span class="tool-icon">🧾</span>
+                                    <h3 class="tool-title">부가세 계산기</h3>
+                                    <span class="tool-tag">금융</span>
+                                </div>
                                 <div class="tool-body">
                                     <div class="input-group">
                                         <label>계산 방식</label>
@@ -328,8 +362,12 @@
                             </div>
 
                             <!-- IP Address Checker -->
-                            <div class="tool-card">
-                                <h3 class="tool-title">내 IP 주소 확인</h3>
+                            <div class="tool-card" data-title="내 IP 주소 확인" data-keywords="ip,네트워크,아이피,주소">
+                                <div class="tool-header">
+                                    <span class="tool-icon">🌐</span>
+                                    <h3 class="tool-title">내 IP 주소 확인</h3>
+                                    <span class="tool-tag">네트워크</span>
+                                </div>
                                 <div class="tool-body">
                                     <button class="btn btn-primary" id="check-ip">IP 조회하기</button>
                                     <div id="ip-result" class="result-box ip-info"></div>
@@ -337,8 +375,12 @@
                             </div>
 
                             <!-- Ping Test -->
-                            <div class="tool-card">
-                                <h3 class="tool-title">핑 테스트</h3>
+                            <div class="tool-card" data-title="핑 테스트" data-keywords="핑,응답속도,네트워크,테스트">
+                                <div class="tool-header">
+                                    <span class="tool-icon">📡</span>
+                                    <h3 class="tool-title">핑 테스트</h3>
+                                    <span class="tool-tag">네트워크</span>
+                                </div>
                                 <div class="tool-body">
                                     <div class="input-group">
                                         <label for="ping-url">테스트할 URL (선택)</label>
@@ -353,8 +395,12 @@
                         <h3 class="subsection-title">개발자 유틸리티</h3>
                         <div class="tools-grid">
                             <!-- JSON Formatter -->
-                            <div class="tool-card">
-                                <h3 class="tool-title">JSON 포맷터</h3>
+                            <div class="tool-card" data-title="JSON 포맷터" data-keywords="json,포맷터,정렬,미니파이">
+                                <div class="tool-header">
+                                    <span class="tool-icon">🧩</span>
+                                    <h3 class="tool-title">JSON 포맷터</h3>
+                                    <span class="tool-tag">개발</span>
+                                </div>
                                 <div class="tool-body">
                                     <textarea id="json-input" class="tool-textarea" rows="6" placeholder="JSON을 붙여넣으세요"></textarea>
                                     <div class="tool-actions">
@@ -368,8 +414,12 @@
                             </div>
 
                             <!-- Base64 Encoder/Decoder -->
-                            <div class="tool-card">
-                                <h3 class="tool-title">Base64 인코더/디코더</h3>
+                            <div class="tool-card" data-title="Base64 인코더/디코더" data-keywords="base64,인코드,디코드,문자열">
+                                <div class="tool-header">
+                                    <span class="tool-icon">🔐</span>
+                                    <h3 class="tool-title">Base64 인코더/디코더</h3>
+                                    <span class="tool-tag">개발</span>
+                                </div>
                                 <div class="tool-body">
                                     <textarea id="base64-input" class="tool-textarea" rows="5" placeholder="텍스트 입력"></textarea>
                                     <div class="tool-actions">
@@ -383,8 +433,12 @@
                             </div>
 
                             <!-- Hash Generator -->
-                            <div class="tool-card">
-                                <h3 class="tool-title">해시 생성기</h3>
+                            <div class="tool-card" data-title="해시 생성기" data-keywords="hash,sha-256,sha-1,암호">
+                                <div class="tool-header">
+                                    <span class="tool-icon">#️⃣</span>
+                                    <h3 class="tool-title">해시 생성기</h3>
+                                    <span class="tool-tag">보안</span>
+                                </div>
                                 <div class="tool-body">
                                     <div class="input-group">
                                         <label for="hash-algo">알고리즘</label>
@@ -403,8 +457,12 @@
                             </div>
 
                             <!-- Timezone Converter -->
-                            <div class="tool-card">
-                                <h3 class="tool-title">타임존 변환</h3>
+                            <div class="tool-card" data-title="타임존 변환" data-keywords="timezone,utc,시간,변환">
+                                <div class="tool-header">
+                                    <span class="tool-icon">🕒</span>
+                                    <h3 class="tool-title">타임존 변환</h3>
+                                    <span class="tool-tag">개발</span>
+                                </div>
                                 <div class="tool-body">
                                     <div class="input-group">
                                         <label for="tz-input">날짜/시간 (로컬 기준)</label>
@@ -433,8 +491,12 @@
                         <h3 class="subsection-title">콘텐츠 & 이미지 도구</h3>
                         <div class="tools-grid">
                             <!-- Writing Helper -->
-                            <div class="tool-card">
-                                <h3 class="tool-title">글쓰기 도우미</h3>
+                            <div class="tool-card" data-title="글쓰기 도우미" data-keywords="글쓰기,요약,제목,블로그">
+                                <div class="tool-header">
+                                    <span class="tool-icon">✍️</span>
+                                    <h3 class="tool-title">글쓰기 도우미</h3>
+                                    <span class="tool-tag">콘텐츠</span>
+                                </div>
                                 <div class="tool-body">
                                     <div class="input-group">
                                         <label for="title-keywords">키워드 (쉼표로 구분)</label>
@@ -452,8 +514,12 @@
                             </div>
 
                             <!-- Image Tool -->
-                            <div class="tool-card">
-                                <h3 class="tool-title">이미지 리사이즈/변환</h3>
+                            <div class="tool-card" data-title="이미지 리사이즈/변환" data-keywords="이미지,webp,리사이즈,압축">
+                                <div class="tool-header">
+                                    <span class="tool-icon">🖼️</span>
+                                    <h3 class="tool-title">이미지 리사이즈/변환</h3>
+                                    <span class="tool-tag">디자인</span>
+                                </div>
                                 <div class="tool-body">
                                     <div class="input-group">
                                         <label for="image-input">이미지 파일</label>
@@ -486,8 +552,12 @@
                             </div>
 
                             <!-- Cheat Sheet -->
-                            <div class="tool-card">
-                                <h3 class="tool-title">단축키 치트시트</h3>
+                            <div class="tool-card" data-title="단축키 치트시트" data-keywords="단축키,치트시트,git,vscode">
+                                <div class="tool-header">
+                                    <span class="tool-icon">⌨️</span>
+                                    <h3 class="tool-title">단축키 치트시트</h3>
+                                    <span class="tool-tag">개발</span>
+                                </div>
                                 <div class="tool-body">
                                     <div class="input-group">
                                         <label for="cheatsheet-search">검색</label>
@@ -504,11 +574,15 @@
                     <!-- Widgets Section -->
                     <div class="tab-content" id="widgets-content">
                         <h2 class="section-heading">인터랙티브 위젯 - 실시간 정보 조회</h2>
-                <p class="section-description">날씨, 암호화폐 시세, 주식 스냅샷 등 실시간으로 업데이트되는 정보를 확인하세요.</p>
+                        <p class="section-description">날씨, 암호화폐 시세, 주식 스냅샷 등 실시간으로 업데이트되는 정보를 확인하세요.</p>
                         <div class="tools-grid">
                             <!-- Weather Widget -->
-                            <div class="tool-card">
-                                <h3 class="tool-title">날씨 위젯</h3>
+                            <div class="tool-card" data-title="날씨 위젯" data-keywords="날씨,기온,도시,forecast">
+                                <div class="tool-header">
+                                    <span class="tool-icon">⛅</span>
+                                    <h3 class="tool-title">날씨 위젯</h3>
+                                    <span class="tool-tag">위젯</span>
+                                </div>
                                 <div class="tool-body">
                                     <div class="input-group">
                                         <label for="city">도시명</label>
@@ -520,8 +594,12 @@
                             </div>
 
                             <!-- Crypto Prices -->
-                            <div class="tool-card">
-                                <h3 class="tool-title">암호화폐 시세</h3>
+                            <div class="tool-card" data-title="암호화폐 시세" data-keywords="crypto,비트코인,이더리움,코인">
+                                <div class="tool-header">
+                                    <span class="tool-icon">₿</span>
+                                    <h3 class="tool-title">암호화폐 시세</h3>
+                                    <span class="tool-tag">위젯</span>
+                                </div>
                                 <div class="tool-body">
                                     <button class="btn btn-primary" id="get-crypto">시세 조회</button>
                                     <div id="crypto-result" class="result-box crypto-grid"></div>
@@ -529,8 +607,12 @@
                             </div>
 
                             <!-- Stock Snapshot -->
-                            <div class="tool-card">
-                                <h3 class="tool-title">주식 스냅샷</h3>
+                            <div class="tool-card" data-title="주식 스냅샷" data-keywords="주식,핫종목,뉴스,미국,한국">
+                                <div class="tool-header">
+                                    <span class="tool-icon">📈</span>
+                                    <h3 class="tool-title">주식 스냅샷</h3>
+                                    <span class="tool-tag">위젯</span>
+                                </div>
                                 <div class="tool-body">
                                     <div class="stock-widget">
                                         <div class="stock-group">
@@ -563,8 +645,12 @@
                         <p class="section-description">숫자 맞추기, 가위바위보, 색상 팔레트 생성기 등 재미있는 미니게임을 즐기세요.</p>
                         <div class="tools-grid">
                             <!-- Number Guessing Game -->
-                            <div class="tool-card">
-                                <h3 class="tool-title">숫자 맞추기 게임</h3>
+                            <div class="tool-card" data-title="숫자 맞추기 게임" data-keywords="숫자,게임,추리">
+                                <div class="tool-header">
+                                    <span class="tool-icon">🎯</span>
+                                    <h3 class="tool-title">숫자 맞추기 게임</h3>
+                                    <span class="tool-tag">게임</span>
+                                </div>
                                 <div class="tool-body">
                                     <p class="game-info">1부터 100 사이의 숫자를 맞춰보세요!</p>
                                     <div class="input-group">
@@ -578,8 +664,12 @@
                             </div>
 
                             <!-- Rock Paper Scissors -->
-                            <div class="tool-card">
-                                <h3 class="tool-title">가위바위보</h3>
+                            <div class="tool-card" data-title="가위바위보" data-keywords="가위바위보,게임,대결">
+                                <div class="tool-header">
+                                    <span class="tool-icon">✊</span>
+                                    <h3 class="tool-title">가위바위보</h3>
+                                    <span class="tool-tag">게임</span>
+                                </div>
                                 <div class="tool-body">
                                     <div class="rps-buttons">
                                         <button class="btn btn-game" data-choice="rock">✊ 바위</button>
@@ -592,8 +682,12 @@
                             </div>
 
                             <!-- Color Palette Generator -->
-                            <div class="tool-card">
-                                <h3 class="tool-title">색상 팔레트 생성기</h3>
+                            <div class="tool-card" data-title="색상 팔레트 생성기" data-keywords="색상,팔레트,컬러,디자인">
+                                <div class="tool-header">
+                                    <span class="tool-icon">🎨</span>
+                                    <h3 class="tool-title">색상 팔레트 생성기</h3>
+                                    <span class="tool-tag">디자인</span>
+                                </div>
                                 <div class="tool-body">
                                     <button class="btn btn-primary" id="generate-palette">새 팔레트 생성</button>
                                     <div id="color-palette" class="color-palette"></div>
@@ -601,8 +695,12 @@
                             </div>
 
                             <!-- Coding Quiz -->
-                            <div class="tool-card">
-                                <h3 class="tool-title">60초 코딩 퀴즈</h3>
+                            <div class="tool-card" data-title="60초 코딩 퀴즈" data-keywords="퀴즈,코딩,개발,게임">
+                                <div class="tool-header">
+                                    <span class="tool-icon">⏱️</span>
+                                    <h3 class="tool-title">60초 코딩 퀴즈</h3>
+                                    <span class="tool-tag">게임</span>
+                                </div>
                                 <div class="tool-body">
                                     <div class="game-stats" id="quiz-timer">남은 시간: 60s</div>
                                     <div id="quiz-question" class="game-info">시작을 눌러 문제를 풀어보세요.</div>
@@ -615,8 +713,12 @@
                             </div>
 
                             <!-- Typing Game -->
-                            <div class="tool-card">
-                                <h3 class="tool-title">코드 타이핑 게임</h3>
+                            <div class="tool-card" data-title="코드 타이핑 게임" data-keywords="타이핑,코드,게임,연습">
+                                <div class="tool-header">
+                                    <span class="tool-icon">⌨️</span>
+                                    <h3 class="tool-title">코드 타이핑 게임</h3>
+                                    <span class="tool-tag">게임</span>
+                                </div>
                                 <div class="tool-body">
                                     <pre id="typing-target" class="typing-target">시작 버튼을 눌러 코드를 불러오세요.</pre>
                                     <textarea id="typing-input" class="tool-textarea" rows="4" placeholder="여기에 입력하세요"></textarea>
@@ -630,8 +732,12 @@
                             </div>
 
                             <!-- Order Puzzle -->
-                            <div class="tool-card">
-                                <h3 class="tool-title">순서 클릭 퍼즐</h3>
+                            <div class="tool-card" data-title="순서 클릭 퍼즐" data-keywords="퍼즐,순서,게임">
+                                <div class="tool-header">
+                                    <span class="tool-icon">🧠</span>
+                                    <h3 class="tool-title">순서 클릭 퍼즐</h3>
+                                    <span class="tool-tag">게임</span>
+                                </div>
                                 <div class="tool-body">
                                     <div class="game-info">1부터 9까지 순서대로 클릭하세요.</div>
                                     <div id="order-grid" class="order-grid"></div>

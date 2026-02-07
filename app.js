@@ -102,6 +102,41 @@ function initTabs() {
 }
 
 // ========================================
+// Tool Search
+// ========================================
+
+function initToolSearch() {
+    const input = document.getElementById('tool-search');
+    const count = document.getElementById('tool-search-count');
+    if (!input || !count) return;
+
+    const cards = Array.from(document.querySelectorAll('.tool-card'));
+
+    function update(query) {
+        const q = query.trim().toLowerCase();
+        let visible = 0;
+
+        cards.forEach(card => {
+            const title = (card.dataset.title || '').toLowerCase();
+            const keywords = (card.dataset.keywords || '').toLowerCase();
+            const match = !q || title.includes(q) || keywords.includes(q);
+            card.classList.toggle('is-hidden', !match);
+            if (match) visible += 1;
+        });
+
+        if (q) {
+            document.body.classList.add('searching');
+            count.textContent = `${visible}개 결과`;
+        } else {
+            document.body.classList.remove('searching');
+            count.textContent = '';
+        }
+    }
+
+    input.addEventListener('input', () => update(input.value));
+}
+
+// ========================================
 // BMI Calculator
 // ========================================
 
@@ -1637,6 +1672,7 @@ async function initRelatedPosts() {
 
 document.addEventListener('DOMContentLoaded', () => {
     initTabs();
+    initToolSearch();
     initBMICalculator();
     initCurrencyConverter();
     initTodoList();
