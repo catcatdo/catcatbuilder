@@ -1298,15 +1298,57 @@ function stripHtml(value) {
     return value.replace(/<[^>]*>/g, ' ');
 }
 
+function parseKeywords(value) {
+    return value
+        .split(',')
+        .map(k => k.trim().toLowerCase())
+        .filter(Boolean);
+}
+
+function getKeywordStorageKey() {
+    return `relatedKeywords:${window.location.pathname}`;
+}
+
+function initRelatedKeywordControls(defaultKeywords) {
+    const input = document.getElementById('related-keywords-input');
+    const saveBtn = document.getElementById('related-keywords-save');
+    const clearBtn = document.getElementById('related-keywords-clear');
+    const status = document.getElementById('related-keywords-status');
+    if (!input || !saveBtn || !clearBtn) return defaultKeywords;
+
+    const stored = localStorage.getItem(getKeywordStorageKey());
+    if (stored) {
+        input.value = stored;
+    } else {
+        input.value = defaultKeywords.join(', ');
+    }
+
+    function setStatus(message) {
+        if (!status) return;
+        status.textContent = message;
+    }
+
+    saveBtn.addEventListener('click', () => {
+        localStorage.setItem(getKeywordStorageKey(), input.value.trim());
+        setStatus('저장되었습니다.');
+    });
+
+    clearBtn.addEventListener('click', () => {
+        localStorage.removeItem(getKeywordStorageKey());
+        input.value = defaultKeywords.join(', ');
+        setStatus('기본 키워드로 복원되었습니다.');
+    });
+
+    return parseKeywords(input.value || defaultKeywords.join(', '));
+}
+
 async function initRelatedPosts() {
     const container = document.getElementById('related-posts');
     if (!container) return;
 
     const keywordRaw = document.body.dataset.keywords || '';
-    const keywords = keywordRaw
-        .split(',')
-        .map(k => k.trim().toLowerCase())
-        .filter(Boolean);
+    const defaultKeywords = parseKeywords(keywordRaw);
+    const keywords = initRelatedKeywordControls(defaultKeywords);
     const preferredCategory = (document.body.dataset.category || '').toLowerCase();
 
     if (keywords.length === 0) {
