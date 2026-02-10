@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>심리테스트 | lilhwang.com</title>
+    <meta name="description" content="재미있는 성격 심리테스트! 나와 닮은 캐릭터를 찾아보세요. 무료 심리테스트 모음.">
+    <meta name="keywords" content="심리테스트, 성격테스트, 무료 테스트, 캐릭터 테스트, 재미 테스트">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+    <link rel="canonical" href="https://lilhwang.com/test.html">
+
+    <meta property="og:title" content="심리테스트 | lilhwang.com">
+    <meta property="og:description" content="재미있는 성격 심리테스트! 나와 닮은 캐릭터를 찾아보세요.">
+    <meta property="og:image" content="https://lilhwang.com/images/og-default.jpg">
+    <meta property="og:url" content="https://lilhwang.com/test.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="릴황">
+    <meta property="og:locale" content="ko_KR">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="심리테스트 | lilhwang.com">
+    <meta name="twitter:description" content="재미있는 성격 심리테스트! 나와 닮은 캐릭터를 찾아보세요.">
+    <meta name="twitter:image" content="https://lilhwang.com/images/og-default.jpg">
+
+    <link rel="stylesheet" href="styles.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9087208932507444"
+     crossorigin="anonymous"></script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "심리테스트 - lilhwang.com",
+        "url": "https://lilhwang.com/test.html",
+        "description": "재미있는 성격 심리테스트! 나와 닮은 캐릭터를 찾아보세요.",
+        "applicationCategory": "EntertainmentApplication",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "KRW"
+        },
+        "inLanguage": "ko-KR"
+    }
+    </script>
+
+    <style>
+        /* ========================================
+           Test Container
+           ======================================== */
+        .test-container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* ========================================
+           Start Screen
+           ======================================== */
+        .start-screen {
+            text-align: center;
+            padding: 60px 20px;
+            animation: fadeIn 0.6s ease;
+        }
+        .start-emoji {
+            font-size: 80px;
+            display: block;
+            margin-bottom: 20px;
+            animation: bounce 2s ease infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        .start-screen h1 {
+            font-size: 2.2rem;
+            margin-bottom: 12px;
+            color: var(--text-heading, #2c3e50);
+        }
+        .start-screen .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary, #7f8c8d);
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        .start-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        .start-info-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: var(--text-muted, #95a5a6);
+        }
+        .start-info-item svg {
+            opacity: 0.6;
+        }
+        .btn-start {
+            display: inline-block;
+            padding: 16px 48px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #fff;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        .btn-start:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+        .btn-start:active {
+            transform: translateY(0);
+        }
+        .start-preview {
+            margin-top: 40px;
+            font-size: 32px;
+            letter-spacing: 8px;
+            opacity: 0.7;
+        }
+        .start-card {
+            background: var(--bg-surface, #fff);
+            border-radius: 20px;
+            padding: 50px 30px;
+            box-shadow: var(--shadow-md, 0 4px 20px rgba(0,0,0,0.08));
+            position: relative;
+            overflow: hidden;
+        }
+        .start-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        /* ========================================
+           Question Screen
+           ======================================== */
+        .question-screen {
+            display: none;
+            padding: 30px 0;
+        }
+        .progress-wrap {
+            margin-bottom: 30px;
+        }
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: var(--text-muted, #95a5a6);
+        }
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--bg-surface-muted, #ecf0f1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 4px;
+            transition: width 0.4s ease;
+            width: 0%;
+        }
+        .question-card {
+            background: var(--bg-surface, #fff);
+            border-radius: 16px;
+            padding: 40px 30px;
+            box-shadow: var(--shadow-md, 0 4px 20px rgba(0,0,0,0.08));
+            animation: fadeIn 0.4s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes slideOut {
+            from { opacity: 1; transform: translateX(0); }
+            to { opacity: 0; transform: translateX(-30px); }
+        }
+        .question-card.slide-in {
+            animation: slideIn 0.4s ease forwards;
+        }
+        .question-card.slide-out {
+            animation: slideOut 0.3s ease forwards;
+        }
+        .question-number {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #667eea;
+        }
+        .question-text {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            color: var(--text-primary, #2c3e50);
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+        .question-emoji {
+            font-size: 48px;
+            display: block;
+            margin-bottom: 16px;
+        }
+        .answers-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .answer-btn {
+            display: block;
+            width: 100%;
+            padding: 18px 24px;
+            font-size: 1rem;
+            line-height: 1.5;
+            text-align: left;
+            color: var(--text-primary, #2c3e50);
+            background: var(--bg-surface-muted, #f8f9fa);
+            border: 2px solid var(--border-color, #e9ecef);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+        .answer-btn:hover {
+            border-color: #667eea;
+            background: rgba(102, 126, 234, 0.05);
+            transform: translateX(4px);
+        }
+        .answer-btn:active {
+            transform: scale(0.98);
+        }
+        .answer-btn.selected {
+            border-color: #667eea;
+            background: rgba(102, 126, 234, 0.1);
+            font-weight: 600;
+        }
+
+        /* ========================================
+           Result Screen
+           ======================================== */
+        .result-screen {
+            display: none;
+            text-align: center;
+            padding: 40px 0;
+            animation: fadeIn 0.6s ease;
+        }
+        .result-emoji {
+            font-size: 100px;
+            display: block;
+            margin-bottom: 16px;
+            animation: popIn 0.6s ease;
+        }
+        @keyframes popIn {
+            0% { transform: scale(0); opacity: 0; }
+            60% { transform: scale(1.2); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .result-name {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #667eea;
+            margin-bottom: 8px;
+        }
+        .result-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary, #7f8c8d);
+            margin-bottom: 24px;
+        }
+        .result-badge {
+            display: inline-block;
+            padding: 8px 24px;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #fff;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50px;
+            margin-bottom: 30px;
+        }
+        .result-card {
+            background: var(--bg-surface, #fff);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: var(--shadow-md, 0 4px 20px rgba(0,0,0,0.08));
+            text-align: left;
+            margin-bottom: 24px;
+            animation: fadeIn 0.6s ease both;
+        }
+        .result-card:nth-child(2) { animation-delay: 0.1s; }
+        .result-card:nth-child(3) { animation-delay: 0.2s; }
+        .result-card:nth-child(4) { animation-delay: 0.3s; }
+        .result-card h3 {
+            font-size: 1.1rem;
+            color: var(--text-heading, #2c3e50);
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(102, 126, 234, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .result-description {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--text-primary, #34495e);
+        }
+        .result-traits {
+            list-style: none;
+            padding: 0;
+        }
+        .result-traits li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color, #f0f0f0);
+            font-size: 0.95rem;
+            color: var(--text-primary, #34495e);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .result-traits li:last-child {
+            border-bottom: none;
+        }
+        .trait-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(102, 126, 234, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+        .result-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        .btn-retry {
+            padding: 14px 32px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #667eea;
+            background: transparent;
+            border: 2px solid #667eea;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+        .btn-retry:hover {
+            background: #667eea;
+            color: #fff;
+        }
+        .btn-share {
+            padding: 14px 32px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #fff;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+        .btn-share:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        .btn-hub {
+            padding: 14px 32px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-secondary, #7f8c8d);
+            background: var(--bg-surface-muted, #f8f9fa);
+            border: 2px solid var(--border-color, #e0e0e0);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-block;
+            font-family: inherit;
+        }
+        .btn-hub:hover {
+            border-color: #667eea;
+            color: #667eea;
+        }
+
+        /* ========================================
+           Toast Notification
+           ======================================== */
+        .share-toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(80px);
+            background: var(--text-heading, #2c3e50);
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 9999;
+            pointer-events: none;
+        }
+        .share-toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* ========================================
+           Confetti / Celebration
+           ======================================== */
+        .confetti-wrap {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9998;
+            overflow: hidden;
+        }
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 2px;
+            animation: confettiFall linear forwards;
+        }
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(-10px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* ========================================
+           Loading State
+           ======================================== */
+        .loading-screen {
+            text-align: center;
+            padding: 80px 20px;
+        }
+        .loading-spinner {
+            width: 48px;
+            height: 48px;
+            border: 4px solid var(--border-color, #e0e0e0);
+            border-top-color: #667eea;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 20px;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .loading-text {
+            font-size: 1rem;
+            color: var(--text-muted, #95a5a6);
+        }
+
+        /* ========================================
+           Dynamic Theme Color Overrides
+           ======================================== */
+        .themed .btn-start,
+        .themed .btn-share,
+        .themed .result-badge {
+            background: var(--theme-gradient);
+            box-shadow: 0 4px 15px var(--theme-shadow);
+        }
+        .themed .btn-start:hover {
+            box-shadow: 0 6px 20px var(--theme-shadow);
+        }
+        .themed .progress-fill {
+            background: var(--theme-gradient);
+        }
+        .themed .question-number {
+            color: var(--theme-color);
+        }
+        .themed .answer-btn:hover,
+        .themed .answer-btn.selected {
+            border-color: var(--theme-color);
+            background: var(--theme-bg-light);
+        }
+        .themed .result-name {
+            color: var(--theme-color);
+        }
+        .themed .result-card h3 {
+            border-bottom-color: var(--theme-border);
+        }
+        .themed .trait-icon {
+            background: var(--theme-bg-light);
+        }
+        .themed .btn-retry {
+            color: var(--theme-color);
+            border-color: var(--theme-color);
+        }
+        .themed .btn-retry:hover {
+            background: var(--theme-color);
+            color: #fff;
+        }
+        .themed .btn-hub:hover {
+            border-color: var(--theme-color);
+            color: var(--theme-color);
+        }
+        .themed .start-card::before {
+            background: var(--theme-gradient);
+        }
+
+        /* ========================================
+           Responsive
+           ======================================== */
+        @media (max-width: 768px) {
+            .test-container { padding: 12px; }
+            .start-screen { padding: 40px 12px; }
+            .start-card { padding: 40px 20px; }
+            .start-emoji { font-size: 60px; }
+            .start-screen h1 { font-size: 1.6rem; }
+            .start-info { gap: 16px; }
+            .question-card { padding: 24px 18px; }
+            .question-text { font-size: 1.1rem; }
+            .answer-btn { padding: 14px 18px; font-size: 0.95rem; }
+            .result-emoji { font-size: 72px; }
+            .result-actions { flex-direction: column; align-items: center; }
+            .result-card { padding: 24px 20px; }
+        }
+        @media (max-width: 480px) {
+            .start-screen h1 { font-size: 1.3rem; }
+            .start-info { flex-direction: column; align-items: center; gap: 8px; }
+            .btn-start { padding: 14px 36px; font-size: 1rem; }
+            .question-card { padding: 20px 14px; border-radius: 12px; }
+            .question-text { font-size: 1rem; }
+            .question-emoji { font-size: 36px; }
+            .start-preview { font-size: 24px; letter-spacing: 4px; }
+            .result-emoji { font-size: 60px; }
+            .result-name { font-size: 1.4rem; }
+            .result-card { padding: 20px 16px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1 class="logo"><a href="index.html" style="text-decoration: none; color: inherit;">lilhwang<span class="logo-dot">.</span>com</a></h1>
+            <nav class="nav">
+                <a href="tests.html">심리테스트</a>
+                <a href="index.html">도구</a>
+                <a href="blog.html">블로그</a>
+                <a href="about.html">소개</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main -->
+    <main class="main-container">
+        <div class="test-container" id="test-app">
+
+            <!-- Loading (shown while data loads) -->
+            <div id="loading-screen" class="loading-screen">
+                <div class="loading-spinner"></div>
+                <p class="loading-text">테스트를 불러오는 중...</p>
+            </div>
+
+            <!-- Start Screen -->
+            <div id="start-screen" class="start-screen" style="display:none;">
+                <div class="start-card">
+                    <span class="start-emoji" id="start-emoji"></span>
+                    <h1 id="start-title"></h1>
+                    <p class="subtitle" id="start-subtitle"></p>
+                    <div class="start-info">
+                        <span class="start-info-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                            <span id="start-time"></span>
+                        </span>
+                        <span class="start-info-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+                            <span id="start-count"></span>
+                        </span>
+                        <span class="start-info-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><circle cx="9" cy="9" r="1" fill="currentColor"/><circle cx="15" cy="9" r="1" fill="currentColor"/></svg>
+                            <span id="start-results-count"></span>
+                        </span>
+                    </div>
+                    <button class="btn-start" id="btn-start">테스트 시작하기</button>
+                    <div class="start-preview" id="start-preview"></div>
+                </div>
+            </div>
+
+            <!-- Question Screen -->
+            <div id="question-screen" class="question-screen">
+                <div class="progress-wrap">
+                    <div class="progress-info">
+                        <span id="progress-text">Q1</span>
+                        <span id="progress-pct">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                </div>
+                <div class="question-card" id="question-card">
+                    <span class="question-emoji" id="q-emoji"></span>
+                    <div class="question-number" id="q-number">Q1</div>
+                    <p class="question-text" id="q-text"></p>
+                    <div class="answers-wrap" id="answers-wrap"></div>
+                </div>
+            </div>
+
+            <!-- Result Screen -->
+            <div id="result-screen" class="result-screen">
+                <span class="result-emoji" id="result-emoji"></span>
+                <div class="result-name" id="result-name"></div>
+                <div class="result-subtitle" id="result-subtitle"></div>
+                <div class="result-badge" id="result-badge"></div>
+
+                <div class="result-card" id="card-description">
+                    <h3>성격 분석</h3>
+                    <p class="result-description" id="result-description"></p>
+                </div>
+
+                <div class="result-card" id="card-traits">
+                    <h3>핵심 특성</h3>
+                    <ul class="result-traits" id="result-traits"></ul>
+                </div>
+
+                <div class="result-actions">
+                    <button class="btn-share" id="btn-share">결과 공유하기</button>
+                    <button class="btn-retry" id="btn-retry">다시 하기</button>
+                    <a class="btn-hub" href="tests.html">다른 테스트 보기</a>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 lilhwang.com. All rights reserved.</p>
+            <p class="footer-links">
+                <a href="about.html">소개</a> |
+                <a href="contact.html">연락처</a> |
+                <a href="privacy.html">개인정보처리방침</a> |
+                <a href="terms.html">이용약관</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Toast -->
+    <div class="share-toast" id="share-toast">링크가 복사되었습니다!</div>
+
+    <!-- Confetti container -->
+    <div class="confetti-wrap" id="confetti-wrap"></div>
+
+    <!-- Test Data -->
+    <script src="tests-data.js"></script>
+
+    <!-- Test Engine (inline) -->
+    <script>
+    (function() {
+        'use strict';
+
+        // ========================================
+        // 1. Get test ID from URL
+        // ========================================
+        const urlParams = new URLSearchParams(window.location.search);
+        const testId = urlParams.get('t');
+
+        // If no test ID or ALL_TESTS not loaded, redirect to hub
+        if (!testId || typeof ALL_TESTS === 'undefined') {
+            window.location.href = 'tests.html';
+            return;
+        }
+
+        // Find the test data
+        const testData = ALL_TESTS.find(function(t) { return t.id === testId; });
+        if (!testData) {
+            window.location.href = 'tests.html';
+            return;
+        }
+
+        // ========================================
+        // 2. State
+        // ========================================
+        let currentQ = 0;
+        let scores = {};
+        let isTransitioning = false;
+
+        // Initialize scores from all result keys
+        Object.keys(testData.results).forEach(function(k) {
+            scores[k] = 0;
+        });
+
+        // ========================================
+        // 3. Apply theme color
+        // ========================================
+        const themeColor = testData.color || '#667eea';
+        const themeColorEnd = shiftColor(themeColor, 40);
+        const app = document.getElementById('test-app');
+
+        app.classList.add('themed');
+        app.style.setProperty('--theme-color', themeColor);
+        app.style.setProperty('--theme-gradient', 'linear-gradient(135deg, ' + themeColor + ' 0%, ' + themeColorEnd + ' 100%)');
+        app.style.setProperty('--theme-shadow', hexToRgba(themeColor, 0.4));
+        app.style.setProperty('--theme-bg-light', hexToRgba(themeColor, 0.08));
+        app.style.setProperty('--theme-border', hexToRgba(themeColor, 0.2));
+
+        // ========================================
+        // 4. Update page meta
+        // ========================================
+        document.title = testData.title + ' | lilhwang.com';
+
+        var metaDesc = document.querySelector('meta[name="description"]');
+        if (metaDesc) metaDesc.setAttribute('content', testData.description || testData.subtitle || '');
+
+        var ogTitle = document.querySelector('meta[property="og:title"]');
+        if (ogTitle) ogTitle.setAttribute('content', testData.title + ' | lilhwang.com');
+
+        var ogDesc = document.querySelector('meta[property="og:description"]');
+        if (ogDesc) ogDesc.setAttribute('content', testData.description || testData.subtitle || '');
+
+        // ========================================
+        // 5. DOM references
+        // ========================================
+        var $loading     = document.getElementById('loading-screen');
+        var $start       = document.getElementById('start-screen');
+        var $question    = document.getElementById('question-screen');
+        var $result      = document.getElementById('result-screen');
+
+        var $startEmoji      = document.getElementById('start-emoji');
+        var $startTitle      = document.getElementById('start-title');
+        var $startSubtitle   = document.getElementById('start-subtitle');
+        var $startTime       = document.getElementById('start-time');
+        var $startCount      = document.getElementById('start-count');
+        var $startResults    = document.getElementById('start-results-count');
+        var $startPreview    = document.getElementById('start-preview');
+        var $btnStart        = document.getElementById('btn-start');
+
+        var $progressText = document.getElementById('progress-text');
+        var $progressPct  = document.getElementById('progress-pct');
+        var $progressFill = document.getElementById('progress-fill');
+        var $questionCard = document.getElementById('question-card');
+        var $qEmoji       = document.getElementById('q-emoji');
+        var $qNumber      = document.getElementById('q-number');
+        var $qText        = document.getElementById('q-text');
+        var $answersWrap  = document.getElementById('answers-wrap');
+
+        var $resultEmoji    = document.getElementById('result-emoji');
+        var $resultName     = document.getElementById('result-name');
+        var $resultSubtitle = document.getElementById('result-subtitle');
+        var $resultBadge    = document.getElementById('result-badge');
+        var $resultDesc     = document.getElementById('result-description');
+        var $resultTraits   = document.getElementById('result-traits');
+
+        var $btnShare  = document.getElementById('btn-share');
+        var $btnRetry  = document.getElementById('btn-retry');
+        var $toast     = document.getElementById('share-toast');
+        var $confetti  = document.getElementById('confetti-wrap');
+
+        // ========================================
+        // 6. Populate start screen
+        // ========================================
+        var totalQ = testData.questions.length;
+        var totalResults = Object.keys(testData.results).length;
+        var estimatedMin = Math.max(1, Math.ceil(totalQ * 0.25));
+
+        $startEmoji.textContent = testData.emoji || '';
+        $startTitle.textContent = testData.title;
+        $startSubtitle.innerHTML = testData.subtitle || testData.description || '';
+        $startTime.textContent = '약 ' + estimatedMin + '~' + (estimatedMin + 2) + '분';
+        $startCount.textContent = totalQ + '문항';
+        $startResults.textContent = totalResults + '가지 결과';
+
+        // Preview: show emojis of some results
+        var previewEmojis = Object.values(testData.results)
+            .slice(0, 12)
+            .map(function(r) { return r.emoji || ''; })
+            .join('');
+        $startPreview.textContent = previewEmojis;
+
+        // Show start screen, hide loading
+        $loading.style.display = 'none';
+        $start.style.display = 'block';
+
+        // ========================================
+        // 7. Start button
+        // ========================================
+        $btnStart.addEventListener('click', function() {
+            $start.style.display = 'none';
+            $question.style.display = 'block';
+            showQuestion();
+        });
+
+        // ========================================
+        // 8. Show question
+        // ========================================
+        function showQuestion() {
+            if (currentQ >= totalQ) {
+                showResult();
+                return;
+            }
+
+            var q = testData.questions[currentQ];
+            var pct = Math.round((currentQ / totalQ) * 100);
+
+            // Update progress
+            $progressText.textContent = 'Q' + (currentQ + 1) + ' / ' + totalQ;
+            $progressPct.textContent = pct + '%';
+            $progressFill.style.width = pct + '%';
+
+            // Animate card in
+            $questionCard.classList.remove('slide-in', 'slide-out');
+            void $questionCard.offsetWidth; // force reflow
+            $questionCard.classList.add('slide-in');
+
+            // Question content
+            $qEmoji.textContent = q.emoji || '';
+            $qEmoji.style.display = q.emoji ? 'block' : 'none';
+            $qNumber.textContent = 'Q' + (currentQ + 1);
+            $qText.textContent = q.text;
+
+            // Build answer buttons
+            $answersWrap.innerHTML = '';
+            q.options.forEach(function(option, idx) {
+                var btn = document.createElement('button');
+                btn.className = 'answer-btn';
+                btn.textContent = option.text;
+                btn.addEventListener('click', function() {
+                    if (isTransitioning) return;
+                    selectAnswer(option, btn);
+                });
+                $answersWrap.appendChild(btn);
+            });
+
+            isTransitioning = false;
+        }
+
+        // ========================================
+        // 9. Answer selection
+        // ========================================
+        function selectAnswer(option, btnEl) {
+            isTransitioning = true;
+
+            // Highlight selected
+            btnEl.classList.add('selected');
+
+            // Add scores from this option
+            if (option.scores && typeof option.scores === 'object') {
+                Object.keys(option.scores).forEach(function(key) {
+                    if (scores.hasOwnProperty(key)) {
+                        scores[key] += option.scores[key];
+                    } else {
+                        scores[key] = option.scores[key];
+                    }
+                });
+            }
+
+            // Slide out, then next question
+            setTimeout(function() {
+                $questionCard.classList.remove('slide-in');
+                $questionCard.classList.add('slide-out');
+
+                setTimeout(function() {
+                    currentQ++;
+                    showQuestion();
+                }, 300);
+            }, 350);
+        }
+
+        // ========================================
+        // 10. Calculate result
+        // ========================================
+        function calculateResult() {
+            var maxKey = null;
+            var maxScore = -Infinity;
+
+            Object.keys(scores).forEach(function(key) {
+                if (scores[key] > maxScore) {
+                    maxScore = scores[key];
+                    maxKey = key;
+                }
+            });
+
+            return maxKey;
+        }
+
+        // ========================================
+        // 11. Show result
+        // ========================================
+        function showResult() {
+            $question.style.display = 'none';
+            $result.style.display = 'block';
+
+            // Final progress bar at 100%
+            $progressFill.style.width = '100%';
+
+            var resultKey = calculateResult();
+            var result = testData.results[resultKey];
+
+            if (!result) {
+                // Fallback: pick first result
+                var keys = Object.keys(testData.results);
+                resultKey = keys[0];
+                result = testData.results[resultKey];
+            }
+
+            // Populate result screen
+            $resultEmoji.textContent = result.emoji || '';
+            $resultName.textContent = result.name || resultKey;
+            $resultSubtitle.textContent = result.subtitle || '';
+            $resultBadge.textContent = result.badge || resultKey.toUpperCase();
+            $resultBadge.style.display = result.badge !== undefined ? 'inline-block' : (result.name ? 'none' : 'inline-block');
+            $resultDesc.textContent = result.description || '';
+
+            // Traits
+            $resultTraits.innerHTML = '';
+            if (result.traits && Array.isArray(result.traits)) {
+                result.traits.forEach(function(trait, idx) {
+                    var li = document.createElement('li');
+                    var iconDiv = document.createElement('span');
+                    iconDiv.className = 'trait-icon';
+                    iconDiv.textContent = trait.icon || getTraitIcon(idx);
+                    var textSpan = document.createElement('span');
+                    if (typeof trait === 'string') {
+                        textSpan.textContent = trait;
+                    } else {
+                        textSpan.textContent = trait.text || trait.label || trait;
+                    }
+                    li.appendChild(iconDiv);
+                    li.appendChild(textSpan);
+                    $resultTraits.appendChild(li);
+                });
+            }
+
+            // Show cards that have content, hide empty ones
+            var $cardDesc = document.getElementById('card-description');
+            var $cardTraits = document.getElementById('card-traits');
+            $cardDesc.style.display = result.description ? 'block' : 'none';
+            $cardTraits.style.display = (result.traits && result.traits.length) ? 'block' : 'none';
+
+            // Celebration confetti
+            launchConfetti();
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ========================================
+        // 12. Share
+        // ========================================
+        $btnShare.addEventListener('click', function() {
+            var resultKey = calculateResult();
+            var result = testData.results[resultKey] || {};
+            var shareTitle = testData.title;
+            var shareText = '나의 결과: ' + (result.emoji || '') + ' ' + (result.name || resultKey) + '!';
+            var shareUrl = window.location.href;
+
+            if (navigator.share) {
+                navigator.share({
+                    title: shareTitle,
+                    text: shareText,
+                    url: shareUrl
+                }).catch(function() {});
+            } else {
+                // Clipboard fallback
+                var fullText = shareText + '\n' + shareUrl;
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(fullText).then(function() {
+                        showToast('링크가 복사되었습니다!');
+                    }).catch(function() {
+                        fallbackCopy(fullText);
+                    });
+                } else {
+                    fallbackCopy(fullText);
+                }
+            }
+        });
+
+        function fallbackCopy(text) {
+            var ta = document.createElement('textarea');
+            ta.value = text;
+            ta.style.position = 'fixed';
+            ta.style.left = '-9999px';
+            document.body.appendChild(ta);
+            ta.select();
+            try {
+                document.execCommand('copy');
+                showToast('링크가 복사되었습니다!');
+            } catch(e) {
+                showToast('공유 링크: ' + window.location.href);
+            }
+            document.body.removeChild(ta);
+        }
+
+        function showToast(msg) {
+            $toast.textContent = msg;
+            $toast.classList.add('show');
+            setTimeout(function() {
+                $toast.classList.remove('show');
+            }, 2500);
+        }
+
+        // ========================================
+        // 13. Retry
+        // ========================================
+        $btnRetry.addEventListener('click', function() {
+            // Reset state
+            currentQ = 0;
+            Object.keys(scores).forEach(function(k) { scores[k] = 0; });
+            isTransitioning = false;
+
+            // Clear confetti
+            $confetti.innerHTML = '';
+
+            // Switch screens
+            $result.style.display = 'none';
+            $start.style.display = 'block';
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // ========================================
+        // 14. Confetti effect
+        // ========================================
+        function launchConfetti() {
+            $confetti.innerHTML = '';
+            var colors = [themeColor, themeColorEnd, '#f7d794', '#78e08f', '#e056fd', '#686de0', '#ff6b6b', '#feca57'];
+            var count = 60;
+
+            for (var i = 0; i < count; i++) {
+                var piece = document.createElement('div');
+                piece.className = 'confetti';
+                piece.style.left = Math.random() * 100 + '%';
+                piece.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                piece.style.width = (Math.random() * 8 + 5) + 'px';
+                piece.style.height = (Math.random() * 8 + 5) + 'px';
+                piece.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                piece.style.animationDelay = (Math.random() * 1.5) + 's';
+                if (Math.random() > 0.5) {
+                    piece.style.borderRadius = '50%';
+                }
+                $confetti.appendChild(piece);
+            }
+
+            // Clean up confetti after animation
+            setTimeout(function() {
+                $confetti.innerHTML = '';
+            }, 5000);
+        }
+
+        // ========================================
+        // 15. Utility: color helpers
+        // ========================================
+        function hexToRgba(hex, alpha) {
+            hex = hex.replace('#', '');
+            if (hex.length === 3) {
+                hex = hex[0]+hex[0]+hex[1]+hex[1]+hex[2]+hex[2];
+            }
+            var r = parseInt(hex.substring(0, 2), 16);
+            var g = parseInt(hex.substring(2, 4), 16);
+            var b = parseInt(hex.substring(4, 6), 16);
+            return 'rgba(' + r + ', ' + g + ', ' + b + ', ' + alpha + ')';
+        }
+
+        function shiftColor(hex, amount) {
+            hex = hex.replace('#', '');
+            if (hex.length === 3) {
+                hex = hex[0]+hex[0]+hex[1]+hex[1]+hex[2]+hex[2];
+            }
+            var r = Math.min(255, Math.max(0, parseInt(hex.substring(0, 2), 16) - amount));
+            var g = Math.min(255, Math.max(0, parseInt(hex.substring(2, 4), 16) + Math.round(amount * 0.3)));
+            var b = Math.min(255, Math.max(0, parseInt(hex.substring(4, 6), 16) + amount));
+            return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+        }
+
+        function getTraitIcon(index) {
+            var icons = ['✨', '💡', '🎯', '🌟', '💪', '🔥', '🎨', '🧠', '💎', '🌈'];
+            return icons[index % icons.length];
+        }
+
+    })();
+    </script>
+</body>
+</html>

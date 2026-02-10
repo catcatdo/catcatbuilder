@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>심리테스트 모음 - 포켓몬, 원피스, 귀멸의 칼날 외 | lilhwang.com</title>
+    <meta name="description" content="포켓몬, 원피스, 귀멸의 칼날, 해리포터, 디즈니 캐릭터 등 재미있는 심리테스트 모음! MBTI 동물 테스트까지. 무료로 즐기세요.">
+    <meta name="keywords" content="심리테스트, 포켓몬 테스트, 원피스 캐릭터, 귀멸의 칼날, 해리포터 기숙사, MBTI, 성격 테스트, 무료 테스트">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+    <link rel="canonical" href="https://lilhwang.com/tests.html">
+
+    <meta property="og:title" content="심리테스트 모음 - 재미있는 캐릭터 테스트 | lilhwang.com">
+    <meta property="og:description" content="포켓몬, 원피스, 귀멸의 칼날, 해리포터 등 다양한 심리테스트를 무료로 즐기세요!">
+    <meta property="og:image" content="https://lilhwang.com/images/og-default.jpg">
+    <meta property="og:url" content="https://lilhwang.com/tests.html">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="stylesheet" href="styles.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9087208932507444"
+     crossorigin="anonymous"></script>
+
+    <style>
+        .tests-hero {
+            text-align: center;
+            padding: 50px 20px 30px;
+        }
+        .tests-hero-emoji {
+            font-size: 64px;
+            display: block;
+            margin-bottom: 16px;
+        }
+        .tests-hero h1 {
+            font-size: 2rem;
+            color: var(--text-primary, #2c3e50);
+            margin-bottom: 10px;
+        }
+        .tests-hero p {
+            font-size: 1.05rem;
+            color: var(--text-secondary, #7f8c8d);
+            max-width: 500px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        .tests-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .test-card {
+            background: var(--bg-primary, #fff);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        .test-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+        .test-card-banner {
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            position: relative;
+            overflow: hidden;
+        }
+        .test-card-banner::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            opacity: 0.15;
+        }
+        .test-card-body {
+            padding: 20px;
+        }
+        .test-card-body h3 {
+            font-size: 1.15rem;
+            color: var(--text-primary, #2c3e50);
+            margin-bottom: 6px;
+        }
+        .test-card-body p {
+            font-size: 0.9rem;
+            color: var(--text-secondary, #7f8c8d);
+            line-height: 1.5;
+            margin-bottom: 14px;
+        }
+        .test-card-meta {
+            display: flex;
+            gap: 12px;
+            font-size: 12px;
+            color: var(--text-secondary, #95a5a6);
+        }
+        .test-card-meta span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .test-card-tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .section-divider {
+            text-align: center;
+            max-width: 1000px;
+            margin: 30px auto 10px;
+            padding: 0 20px;
+        }
+        .section-divider h2 {
+            font-size: 1.3rem;
+            color: var(--text-primary, #2c3e50);
+            margin-bottom: 4px;
+        }
+        .section-divider p {
+            font-size: 0.9rem;
+            color: var(--text-secondary, #95a5a6);
+        }
+
+        /* Popular badge */
+        .badge-popular {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255,255,255,0.9);
+            color: #e74c3c;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        @media (max-width: 768px) {
+            .tests-hero { padding: 30px 16px 20px; }
+            .tests-hero-emoji { font-size: 48px; }
+            .tests-hero h1 { font-size: 1.5rem; }
+            .tests-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; padding: 14px; }
+            .test-card-banner { height: 80px; font-size: 40px; }
+        }
+        @media (max-width: 480px) {
+            .tests-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="logo"><a href="index.html" style="text-decoration:none;color:inherit;">lilhwang<span class="logo-dot">.</span>com</a></h1>
+            <nav class="nav">
+                <a href="tests.html" class="active">심리테스트</a>
+                <a href="index.html">도구</a>
+                <a href="blog.html">블로그</a>
+                <a href="about.html">소개</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-container">
+        <div class="tests-hero">
+            <span class="tests-hero-emoji">🔮</span>
+            <h1>심리테스트 모음</h1>
+            <p>나는 어떤 캐릭터일까? 다양한 심리테스트로 숨겨진 나를 찾아보세요!</p>
+        </div>
+
+        <!-- 인기 캐릭터 테스트 -->
+        <div class="section-divider">
+            <h2>인기 캐릭터 테스트</h2>
+            <p>애니메이션 & 영화 속 나의 캐릭터는?</p>
+        </div>
+        <div class="tests-grid" id="character-tests">
+            <!-- Filled by JS -->
+        </div>
+
+        <!-- 성격 & 심리 테스트 -->
+        <div class="section-divider">
+            <h2>성격 & 심리 테스트</h2>
+            <p>나도 몰랐던 내 안의 진짜 나</p>
+        </div>
+        <div class="tests-grid" id="personality-tests">
+            <!-- Filled by JS -->
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 lilhwang.com. All rights reserved.</p>
+            <p class="footer-links">
+                <a href="about.html">소개</a> |
+                <a href="blog.html">블로그</a> |
+                <a href="contact.html">연락처</a> |
+                <a href="privacy.html">개인정보처리방침</a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="tests-data.js"></script>
+    <script>
+        // Test categories
+        const characterTestIds = ['pokemon', 'demon-slayer', 'onepiece', 'harry-potter', 'disney'];
+        const personalityTestIds = ['mbti-animal', 'past-life', 'love-style', 'food-personality'];
+
+        function createTestCard(test) {
+            const isExternal = test.id === 'mbti-animal';
+            const href = isExternal ? 'mbti.html' : `test.html?t=${test.id}`;
+            const popular = ['pokemon', 'demon-slayer', 'onepiece', 'mbti-animal'].includes(test.id);
+
+            return `
+                <a class="test-card" href="${href}">
+                    <div class="test-card-banner" style="background:${test.color || '#667eea'}">
+                        ${popular ? '<span class="badge-popular">HOT</span>' : ''}
+                        ${test.emoji || '🔮'}
+                    </div>
+                    <div class="test-card-body">
+                        <span class="test-card-tag" style="background:${test.color || '#667eea'}">${test.tag || '테스트'}</span>
+                        <h3>${test.title}</h3>
+                        <p>${test.subtitle}</p>
+                        <div class="test-card-meta">
+                            <span>📝 ${test.questionCount || 12}문항</span>
+                            <span>⏱ 약 ${Math.ceil((test.questionCount || 12) * 0.3)}분</span>
+                            <span>🎯 ${test.resultCount || 10}가지 결과</span>
+                        </div>
+                    </div>
+                </a>
+            `;
+        }
+
+        // MBTI animal test (standalone page)
+        const mbtiCard = {
+            id: 'mbti-animal',
+            title: '나의 동물 유형 테스트',
+            subtitle: '20가지 질문으로 알아보는 MBTI 동물 유형! 48종 동물 중 나와 꼭 닮은 동물은?',
+            emoji: '🐾',
+            color: '#764ba2',
+            tag: 'MBTI',
+            questionCount: 20,
+            resultCount: 48
+        };
+
+        // Render character tests
+        const charContainer = document.getElementById('character-tests');
+        const charTests = (typeof ALL_TESTS !== 'undefined' ? ALL_TESTS : []).filter(t => characterTestIds.includes(t.id));
+        charContainer.innerHTML = charTests.map(createTestCard).join('');
+
+        // Render personality tests
+        const persContainer = document.getElementById('personality-tests');
+        const persTests = (typeof ALL_TESTS !== 'undefined' ? ALL_TESTS : []).filter(t => personalityTestIds.includes(t.id));
+        // Prepend MBTI animal card
+        persContainer.innerHTML = createTestCard(mbtiCard) + persTests.map(createTestCard).join('');
+    </script>
+</body>
+</html>
