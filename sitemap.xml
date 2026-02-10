@@ -113,10 +113,4 @@
         <changefreq>monthly</changefreq>
         <priority>0.4</priority>
     </url>
-    <url>
-        <loc>https://lilhwang.com/diary.html</loc>
-        <lastmod>2026-02-09</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.7</priority>
-    </url>
 </urlset>
