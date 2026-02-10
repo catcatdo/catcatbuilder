@@ -251,7 +251,6 @@
     line-height: 1.8;
     color: #444;
     margin-bottom: 30px;
-    white-space: pre-wrap; /* 이 줄을 추가하세요! */
 }
 
 .post-full-content h2 {
@@ -303,6 +302,66 @@
     background-color: transparent;
     padding: 0;
     color: #ecf0f1;
+}
+
+.post-full-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    font-size: 14px;
+    overflow-x: auto;
+    display: block;
+}
+
+.post-full-content thead {
+    display: table-header-group;
+}
+
+.post-full-content tbody {
+    display: table-row-group;
+}
+
+.post-full-content table,
+.post-full-content thead,
+.post-full-content tbody {
+    display: table;
+    width: 100%;
+}
+
+.post-full-content th,
+.post-full-content td {
+    border: 1px solid #ddd;
+    padding: 10px 12px;
+    text-align: left;
+}
+
+.post-full-content th {
+    background-color: #f7f9fa;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.post-full-content tr:nth-child(even) {
+    background-color: #fafafa;
+}
+
+.post-full-content strong {
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+@media (max-width: 768px) {
+    .post-full-content table {
+        font-size: 12px;
+    }
+    .post-full-content th,
+    .post-full-content td {
+        padding: 6px 8px;
+    }
+    .post-full-content pre {
+        padding: 14px;
+        font-size: 12px;
+    }
 }
 
 .post-full-content img {

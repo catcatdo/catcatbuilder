@@ -7,6 +7,149 @@ let currentCategory = 'all';
 let currentPage = 1;
 const postsPerPage = 6;
 
+// ========================================
+// Markdown Renderer
+// ========================================
+function renderMarkdown(md) {
+    if (!md) return '';
+
+    // Escape HTML helper
+    function esc(s) {
+        return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    // 1. Extract code blocks first (protect from other processing)
+    const codeBlocks = [];
+    md = md.replace(/```(\w*)\n([\s\S]*?)```/g, function(_, lang, code) {
+        codeBlocks.push('<pre><code' + (lang ? ' class="lang-' + esc(lang) + '"' : '') + '>' + esc(code.replace(/\n$/, '')) + '</code></pre>');
+        return '\x00CB' + (codeBlocks.length - 1) + '\x00';
+    });
+
+    // 2. Extract inline code
+    const inlineCodes = [];
+    md = md.replace(/`([^`\n]+)`/g, function(_, code) {
+        inlineCodes.push('<code>' + esc(code) + '</code>');
+        return '\x00IC' + (inlineCodes.length - 1) + '\x00';
+    });
+
+    // 3. Process line by line
+    const lines = md.split('\n');
+    let html = '';
+    let inList = false;
+    let inTable = false;
+    let tableHeader = false;
+
+    for (let i = 0; i < lines.length; i++) {
+        let line = lines[i];
+
+        // Code block placeholder
+        const cbMatch = line.match(/^\x00CB(\d+)\x00$/);
+        if (cbMatch) {
+            if (inList) { html += '</ul>'; inList = false; }
+            if (inTable) { html += '</tbody></table>'; inTable = false; }
+            html += codeBlocks[parseInt(cbMatch[1])];
+            continue;
+        }
+
+        // Heading
+        if (line.match(/^### /)) {
+            if (inList) { html += '</ul>'; inList = false; }
+            if (inTable) { html += '</tbody></table>'; inTable = false; }
+            html += '<h3>' + applyInline(line.slice(4)) + '</h3>';
+            continue;
+        }
+        if (line.match(/^## /)) {
+            if (inList) { html += '</ul>'; inList = false; }
+            if (inTable) { html += '</tbody></table>'; inTable = false; }
+            html += '<h2>' + applyInline(line.slice(3)) + '</h2>';
+            continue;
+        }
+
+        // Table
+        if (line.match(/^\|.+\|$/)) {
+            if (inList) { html += '</ul>'; inList = false; }
+            const cells = line.split('|').filter((_, idx, arr) => idx > 0 && idx < arr.length - 1).map(c => c.trim());
+            // Check if separator row
+            if (cells.every(c => /^[-:]+$/.test(c))) {
+                tableHeader = false;
+                continue;
+            }
+            if (!inTable) {
+                inTable = true;
+                tableHeader = true;
+                html += '<table><thead><tr>' + cells.map(c => '<th>' + applyInline(c) + '</th>').join('') + '</tr></thead><tbody>';
+                continue;
+            }
+            html += '<tr>' + cells.map(c => '<td>' + applyInline(c) + '</td>').join('') + '</tr>';
+            continue;
+        } else if (inTable) {
+            html += '</tbody></table>';
+            inTable = false;
+        }
+
+        // Unordered list
+        if (line.match(/^[-*] /)) {
+            if (!inList) { inList = true; html += '<ul>'; }
+            html += '<li>' + applyInline(line.slice(2)) + '</li>';
+            continue;
+        } else if (inList && line.trim() === '') {
+            html += '</ul>';
+            inList = false;
+        }
+
+        // Ordered list
+        if (line.match(/^\d+\. /)) {
+            const text = line.replace(/^\d+\. /, '');
+            if (!inList) { inList = true; html += '<ul>'; }
+            html += '<li>' + applyInline(text) + '</li>';
+            continue;
+        }
+
+        // Checkbox
+        if (line.match(/^- \[[ x]\] /)) {
+            if (!inList) { inList = true; html += '<ul>'; }
+            const checked = line.charAt(3) === 'x';
+            const text = line.slice(6);
+            html += '<li>' + (checked ? '☑ ' : '☐ ') + applyInline(text) + '</li>';
+            continue;
+        }
+
+        // Empty line = paragraph break
+        if (line.trim() === '') {
+            if (inList) { html += '</ul>'; inList = false; }
+            continue;
+        }
+
+        // Regular paragraph
+        if (inList) { html += '</ul>'; inList = false; }
+        html += '<p>' + applyInline(line) + '</p>';
+    }
+
+    if (inList) html += '</ul>';
+    if (inTable) html += '</tbody></table>';
+
+    // Restore inline code placeholders
+    html = html.replace(/\x00IC(\d+)\x00/g, function(_, idx) {
+        return inlineCodes[parseInt(idx)];
+    });
+    // Restore code block placeholders (in case they appeared inline)
+    html = html.replace(/\x00CB(\d+)\x00/g, function(_, idx) {
+        return codeBlocks[parseInt(idx)];
+    });
+
+    return html;
+}
+
+function applyInline(text) {
+    // Bold
+    text = text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+    // Italic
+    text = text.replace(/\*(.+?)\*/g, '<em>$1</em>');
+    // Links [text](url)
+    text = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+    return text;
+}
+
 const siteName = '릴황';
 const blogListMeta = {
     title: '릴황 블로그 | 개발, 기술, 일상 이야기',
@@ -180,8 +323,7 @@ function setBlogPostSchema(post, postId) {
             "@type": "Person",
             "name": "릴황 (lilhwang)",
             "url": "https://lilhwang.com/about.html",
-            "jobTitle": "웹 개발자 & IoT 엔지니어",
-            "sameAs": ["https://github.com/catcatdo"]
+            "jobTitle": "웹 개발자 & IoT 엔지니어"
         },
         "publisher": {
             "@type": "Organization",
@@ -245,7 +387,7 @@ function showPostDetail(postId) {
         imageContainer.innerHTML = '';
     }
 
-    document.getElementById('detail-content').innerHTML = post.content;
+    document.getElementById('detail-content').innerHTML = renderMarkdown(post.content);
 
     const tagsContainer = document.getElementById('detail-tags');
     if (post.tags && post.tags.length > 0) {
