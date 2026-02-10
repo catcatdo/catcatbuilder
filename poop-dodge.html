@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>똥피하기 게임 | 릴황 - 미니게임</title>
+    <meta name="description" content="하늘에서 떨어지는 똥을 피하는 클래식 미니게임! 키보드와 터치 모두 지원. 랭킹에 도전하세요!">
+    <meta name="keywords" content="똥피하기, 미니게임, 브라우저 게임, 무료 게임, 캐주얼 게임">
+    <meta name="author" content="lilhwang">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://lilhwang.com/poop-dodge.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="똥피하기 게임 | 릴황 미니게임">
+    <meta property="og:description" content="하늘에서 떨어지는 똥을 피하는 클래식 미니게임! 랭킹에 도전하세요!">
+    <meta property="og:url" content="https://lilhwang.com/poop-dodge.html">
+    <meta property="og:image" content="https://lilhwang.com/images/og-default.jpg">
+    <meta property="og:site_name" content="릴황">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="똥피하기 게임 | 릴황 미니게임">
+    <meta name="twitter:description" content="하늘에서 떨어지는 똥을 피하는 클래식 미니게임! 랭킹에 도전하세요!">
+    <meta name="twitter:image" content="https://lilhwang.com/images/og-default.jpg">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "똥피하기 게임",
+        "url": "https://lilhwang.com/poop-dodge.html",
+        "description": "하늘에서 떨어지는 똥을 피하는 클래식 미니게임",
+        "applicationCategory": "GameApplication",
+        "operatingSystem": "Any"
+    }
+    </script>
+    <script>
+        (function () {
+            try {
+                var key = 'theme-preference';
+                var saved = localStorage.getItem(key);
+                var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                var theme = saved || (systemDark ? 'dark' : 'light');
+                document.documentElement.setAttribute('data-theme', theme);
+            } catch (error) {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        })();
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9087208932507444"
+     crossorigin="anonymous"></script>
+    <style>
+        .game-wrapper {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        .game-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .game-subtitle {
+            text-align: center;
+            color: var(--text-secondary, #888);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .game-canvas-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+            border: 3px solid var(--border-color, #e0e0e0);
+            background: #87CEEB;
+        }
+
+        #gameCanvas {
+            display: block;
+            width: 100%;
+            height: auto;
+            touch-action: none;
+        }
+
+        .game-hud {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            background: var(--bg-card, #fff);
+            border-radius: 12px;
+            margin-top: 1rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border: 1px solid var(--border-color, #e0e0e0);
+        }
+
+        .hud-item {
+            text-align: center;
+        }
+
+        .hud-label {
+            font-size: 0.75rem;
+            color: var(--text-secondary, #888);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .hud-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            font-family: 'Space Grotesk', monospace;
+        }
+
+        .game-controls {
+            display: flex;
+            gap: 0.75rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .game-controls .btn {
+            padding: 0.75rem 2rem;
+            font-size: 1rem;
+            border-radius: 12px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .btn-start {
+            background: linear-gradient(135deg, #ff6b35, #ff8c42);
+            color: #fff;
+        }
+
+        .btn-start:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(255,107,53,0.4); }
+
+        .btn-restart {
+            background: linear-gradient(135deg, #4ecdc4, #44a08d);
+            color: #fff;
+        }
+
+        .btn-restart:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(78,205,196,0.4); }
+
+        /* Mobile touch controls */
+        .touch-controls {
+            display: none;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .touch-btn {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            border: 3px solid var(--border-color, #e0e0e0);
+            background: var(--bg-card, #fff);
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            user-select: none;
+            -webkit-user-select: none;
+            transition: all 0.15s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .touch-btn:active {
+            transform: scale(0.9);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+        }
+
+        @media (max-width: 768px) {
+            .touch-controls { display: flex; }
+        }
+
+        /* Overlay screens */
+        .game-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0,0,0,0.6);
+            z-index: 10;
+            border-radius: 13px;
+        }
+
+        .game-overlay.hidden { display: none; }
+
+        .overlay-emoji {
+            font-size: 4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .overlay-title {
+            color: #fff;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .overlay-score {
+            color: #ffd700;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .overlay-best {
+            color: #fff;
+            font-size: 0.95rem;
+            opacity: 0.8;
+            margin-bottom: 1rem;
+        }
+
+        .overlay-btn {
+            padding: 0.75rem 2.5rem;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            border: none;
+            cursor: pointer;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ff6b35, #ff8c42);
+            color: #fff;
+            box-shadow: 0 4px 16px rgba(255,107,53,0.4);
+            transition: all 0.2s;
+        }
+
+        .overlay-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255,107,53,0.5); }
+
+        .new-record {
+            color: #ff6b6b;
+            font-size: 1rem;
+            font-weight: 700;
+            animation: pulse 0.8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Ranking section */
+        .ranking-section {
+            margin-top: 2rem;
+            background: var(--bg-card, #fff);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            border: 1px solid var(--border-color, #e0e0e0);
+        }
+
+        .ranking-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .ranking-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .ranking-item {
+            display: flex;
+            align-items: center;
+            padding: 0.6rem 0.75rem;
+            border-radius: 10px;
+            margin-bottom: 0.4rem;
+            transition: background 0.2s;
+        }
+
+        .ranking-item:hover {
+            background: var(--bg-hover, rgba(0,0,0,0.03));
+        }
+
+        .ranking-item.top-1 { background: linear-gradient(135deg, rgba(255,215,0,0.15), rgba(255,215,0,0.05)); }
+        .ranking-item.top-2 { background: linear-gradient(135deg, rgba(192,192,192,0.15), rgba(192,192,192,0.05)); }
+        .ranking-item.top-3 { background: linear-gradient(135deg, rgba(205,127,50,0.15), rgba(205,127,50,0.05)); }
+
+        .rank-badge {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+            margin-right: 0.75rem;
+            flex-shrink: 0;
+        }
+
+        .rank-1 { background: #ffd700; color: #7a5c00; }
+        .rank-2 { background: #c0c0c0; color: #555; }
+        .rank-3 { background: #cd7f32; color: #fff; }
+        .rank-default { background: var(--bg-hover, #f0f0f0); color: var(--text-secondary); }
+
+        .rank-name {
+            flex: 1;
+            font-weight: 500;
+            color: var(--text-primary);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .rank-score {
+            font-weight: 700;
+            font-family: 'Space Grotesk', monospace;
+            color: var(--primary, #ff6b35);
+            font-size: 1rem;
+        }
+
+        .ranking-empty {
+            text-align: center;
+            color: var(--text-secondary, #888);
+            padding: 2rem 0;
+            font-size: 0.95rem;
+        }
+
+        .ranking-actions {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 0.75rem;
+        }
+
+        .btn-clear-rank {
+            background: none;
+            border: none;
+            color: var(--text-secondary, #888);
+            font-size: 0.8rem;
+            cursor: pointer;
+            padding: 0.3rem 0.6rem;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+
+        .btn-clear-rank:hover {
+            color: #e74c3c;
+            background: rgba(231,76,60,0.08);
+        }
+
+        /* Name input modal */
+        .name-modal {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+        }
+
+        .name-modal.hidden { display: none; }
+
+        .name-modal-content {
+            background: var(--bg-card, #fff);
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 340px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .name-modal-content h3 {
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .name-modal-content .modal-score {
+            color: #ff6b35;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .name-modal-content input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--border-color, #e0e0e0);
+            border-radius: 10px;
+            font-size: 1rem;
+            text-align: center;
+            background: var(--bg-body, #fff);
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            box-sizing: border-box;
+        }
+
+        .name-modal-content input:focus {
+            outline: none;
+            border-color: #ff6b35;
+        }
+
+        .name-modal-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .name-modal-actions .btn {
+            flex: 1;
+            padding: 0.7rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .btn-save-rank {
+            background: linear-gradient(135deg, #ff6b35, #ff8c42);
+            color: #fff;
+        }
+
+        .btn-skip-rank {
+            background: var(--bg-hover, #f0f0f0);
+            color: var(--text-secondary, #888);
+        }
+
+        /* Keyboard hint */
+        .keyboard-hint {
+            text-align: center;
+            color: var(--text-secondary, #888);
+            font-size: 0.85rem;
+            margin-top: 0.75rem;
+        }
+
+        .keyboard-hint kbd {
+            background: var(--bg-card, #f0f0f0);
+            border: 1px solid var(--border-color, #ddd);
+            border-radius: 4px;
+            padding: 0.15rem 0.5rem;
+            font-family: monospace;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 768px) {
+            .keyboard-hint { display: none; }
+            .game-title { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="logo"><a href="index.html" style="text-decoration: none; color: inherit;">lilhwang<span class="logo-dot">.</span>com</a></h1>
+            <div class="header-actions">
+                <nav class="nav">
+                    <a href="tests.html">심리테스트</a>
+                    <a href="index.html">도구</a>
+                    <a href="developer-tools.html">개발자</a>
+                    <a href="blog.html">블로그</a>
+                    <a href="about.html">소개</a>
+                </nav>
+                <button class="theme-toggle" id="theme-toggle" type="button" aria-label="다크 모드 전환">
+                    <span class="theme-icon" aria-hidden="true">🌙</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="game-wrapper">
+        <h2 class="game-title">💩 똥피하기</h2>
+        <p class="game-subtitle">하늘에서 떨어지는 똥을 피하세요! 오래 살아남을수록 높은 점수!</p>
+
+        <div class="game-canvas-container">
+            <canvas id="gameCanvas" width="400" height="600"></canvas>
+            <!-- Start overlay -->
+            <div class="game-overlay" id="startOverlay">
+                <div class="overlay-emoji">💩</div>
+                <div class="overlay-title">똥피하기</div>
+                <div class="overlay-score" style="color:#fff;opacity:0.8;font-size:0.95rem;">화살표 키 또는 터치로 이동</div>
+                <button class="overlay-btn" id="btnStart">게임 시작</button>
+            </div>
+            <!-- Game over overlay -->
+            <div class="game-overlay hidden" id="gameOverOverlay">
+                <div class="overlay-emoji">😵</div>
+                <div class="overlay-title">게임 오버!</div>
+                <div class="overlay-score" id="finalScore">점수: 0</div>
+                <div class="overlay-best" id="bestScore">최고 기록: 0</div>
+                <div class="new-record hidden" id="newRecord">🎉 새 기록!</div>
+                <button class="overlay-btn" id="btnRestart">다시 하기</button>
+            </div>
+        </div>
+
+        <div class="game-hud">
+            <div class="hud-item">
+                <div class="hud-label">점수</div>
+                <div class="hud-value" id="hudScore">0</div>
+            </div>
+            <div class="hud-item">
+                <div class="hud-label">레벨</div>
+                <div class="hud-value" id="hudLevel">1</div>
+            </div>
+            <div class="hud-item">
+                <div class="hud-label">최고</div>
+                <div class="hud-value" id="hudBest">0</div>
+            </div>
+        </div>
+
+        <div class="keyboard-hint">
+            <kbd>←</kbd> <kbd>→</kbd> 또는 <kbd>A</kbd> <kbd>D</kbd> 로 이동
+        </div>
+
+        <div class="touch-controls" id="touchControls">
+            <button class="touch-btn" id="btnLeft">⬅️</button>
+            <button class="touch-btn" id="btnRight">➡️</button>
+        </div>
+
+        <!-- Ranking -->
+        <div class="ranking-section">
+            <div class="ranking-title">🏆 랭킹 TOP 10</div>
+            <ul class="ranking-list" id="rankingList">
+                <li class="ranking-empty">아직 기록이 없습니다. 첫 번째 도전자가 되어보세요!</li>
+            </ul>
+            <div class="ranking-actions">
+                <button class="btn-clear-rank" id="btnClearRank">기록 초기화</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Name input modal -->
+    <div class="name-modal hidden" id="nameModal">
+        <div class="name-modal-content">
+            <h3>🏆 랭킹 등록</h3>
+            <div class="modal-score" id="modalScore">0점</div>
+            <input type="text" id="nameInput" placeholder="이름을 입력하세요" maxlength="10" autocomplete="off">
+            <div class="name-modal-actions">
+                <button class="btn btn-skip-rank" id="btnSkipRank">건너뛰기</button>
+                <button class="btn btn-save-rank" id="btnSaveRank">등록하기</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 lilhwang.com. All rights reserved.</p>
+            <nav class="footer-nav">
+                <a href="about.html">소개</a>
+                <a href="blog.html">블로그</a>
+                <a href="contact.html">연락처</a>
+                <a href="privacy.html">개인정보처리방침</a>
+                <a href="terms.html">이용약관</a>
+            </nav>
+        </div>
+    </footer>
+
+    <script>
+    (function () {
+        // ===== Theme Toggle =====
+        var themeToggle = document.getElementById('theme-toggle');
+        if (themeToggle) {
+            themeToggle.addEventListener('click', function () {
+                var current = document.documentElement.getAttribute('data-theme');
+                var next = current === 'dark' ? 'light' : 'dark';
+                document.documentElement.setAttribute('data-theme', next);
+                try { localStorage.setItem('theme-preference', next); } catch (e) {}
+                var icon = themeToggle.querySelector('.theme-icon');
+                if (icon) icon.textContent = next === 'dark' ? '🌙' : '☀️';
+            });
+            var saved = document.documentElement.getAttribute('data-theme');
+            var icon = themeToggle.querySelector('.theme-icon');
+            if (icon) icon.textContent = saved === 'dark' ? '🌙' : '☀️';
+        }
+
+        // ===== Constants =====
+        var CANVAS_W = 400;
+        var CANVAS_H = 600;
+        var PLAYER_W = 40;
+        var PLAYER_H = 40;
+        var POOP_SIZE = 30;
+        var PLAYER_SPEED = 6;
+        var RANKING_KEY = 'poop-dodge-ranking';
+        var MAX_RANK = 10;
+
+        // ===== DOM =====
+        var canvas = document.getElementById('gameCanvas');
+        var ctx = canvas.getContext('2d');
+        var startOverlay = document.getElementById('startOverlay');
+        var gameOverOverlay = document.getElementById('gameOverOverlay');
+        var finalScoreEl = document.getElementById('finalScore');
+        var bestScoreEl = document.getElementById('bestScore');
+        var newRecordEl = document.getElementById('newRecord');
+        var hudScore = document.getElementById('hudScore');
+        var hudLevel = document.getElementById('hudLevel');
+        var hudBest = document.getElementById('hudBest');
+        var rankingList = document.getElementById('rankingList');
+        var nameModal = document.getElementById('nameModal');
+        var nameInput = document.getElementById('nameInput');
+        var modalScore = document.getElementById('modalScore');
+
+        // ===== Game State =====
+        var player, poops, score, level, gameRunning, animFrame;
+        var keys = {};
+        var lastPoopTime = 0;
+        var bestEver = 0;
+
+        // ===== Scaling for responsive canvas =====
+        function getScale() {
+            return canvas.clientWidth / CANVAS_W;
+        }
+
+        // ===== Player =====
+        function createPlayer() {
+            return {
+                x: CANVAS_W / 2 - PLAYER_W / 2,
+                y: CANVAS_H - PLAYER_H - 10,
+                w: PLAYER_W,
+                h: PLAYER_H
+            };
+        }
+
+        // ===== Poop management =====
+        function spawnPoop() {
+            var size = POOP_SIZE + Math.random() * 10;
+            poops.push({
+                x: Math.random() * (CANVAS_W - size),
+                y: -size,
+                w: size,
+                h: size,
+                speed: 2 + level * 0.5 + Math.random() * 2,
+                rotation: Math.random() * Math.PI * 2
+            });
+        }
+
+        function getSpawnInterval() {
+            return Math.max(200, 800 - level * 60);
+        }
+
+        // ===== Collision =====
+        function checkCollision(a, b) {
+            var padding = 6;
+            return a.x + padding < b.x + b.w - padding &&
+                   a.x + a.w - padding > b.x + padding &&
+                   a.y + padding < b.y + b.h - padding &&
+                   a.y + a.h - padding > b.y + padding;
+        }
+
+        // ===== Drawing =====
+        function drawSky() {
+            var grad = ctx.createLinearGradient(0, 0, 0, CANVAS_H);
+            grad.addColorStop(0, '#87CEEB');
+            grad.addColorStop(0.7, '#B0E0E6');
+            grad.addColorStop(1, '#90EE90');
+            ctx.fillStyle = grad;
+            ctx.fillRect(0, 0, CANVAS_W, CANVAS_H);
+
+            // Ground
+            ctx.fillStyle = '#7CCD7C';
+            ctx.fillRect(0, CANVAS_H - 20, CANVAS_W, 20);
+            ctx.fillStyle = '#6BBF6B';
+            ctx.fillRect(0, CANVAS_H - 20, CANVAS_W, 3);
+        }
+
+        function drawPlayer() {
+            ctx.font = PLAYER_H + 'px serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('🏃', player.x + player.w / 2, player.y + player.h / 2);
+        }
+
+        function drawPoop(p) {
+            ctx.save();
+            ctx.translate(p.x + p.w / 2, p.y + p.h / 2);
+            ctx.rotate(p.rotation);
+            ctx.font = p.w + 'px serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('💩', 0, 0);
+            ctx.restore();
+        }
+
+        function drawHUD() {
+            ctx.fillStyle = 'rgba(0,0,0,0.5)';
+            ctx.fillRect(0, 0, CANVAS_W, 36);
+            ctx.fillStyle = '#fff';
+            ctx.font = 'bold 16px "Space Grotesk", sans-serif';
+            ctx.textAlign = 'left';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('점수: ' + score, 12, 18);
+            ctx.textAlign = 'center';
+            ctx.fillText('Lv.' + level, CANVAS_W / 2, 18);
+            ctx.textAlign = 'right';
+            ctx.fillText('최고: ' + bestEver, CANVAS_W - 12, 18);
+        }
+
+        // ===== Update =====
+        function update(timestamp) {
+            // Player movement
+            var moveLeft = keys['ArrowLeft'] || keys['KeyA'];
+            var moveRight = keys['ArrowRight'] || keys['KeyD'];
+
+            if (moveLeft) player.x -= PLAYER_SPEED;
+            if (moveRight) player.x += PLAYER_SPEED;
+
+            // Boundaries
+            if (player.x < 0) player.x = 0;
+            if (player.x + player.w > CANVAS_W) player.x = CANVAS_W - player.w;
+
+            // Spawn poops
+            if (timestamp - lastPoopTime > getSpawnInterval()) {
+                spawnPoop();
+                lastPoopTime = timestamp;
+            }
+
+            // Update poops
+            for (var i = poops.length - 1; i >= 0; i--) {
+                poops[i].y += poops[i].speed;
+                poops[i].rotation += 0.03;
+
+                // Off screen
+                if (poops[i].y > CANVAS_H) {
+                    poops.splice(i, 1);
+                    score++;
+                    continue;
+                }
+
+                // Collision
+                if (checkCollision(player, poops[i])) {
+                    gameOver();
+                    return;
+                }
+            }
+
+            // Level up every 10 points
+            level = Math.floor(score / 10) + 1;
+
+            // Update HUD
+            hudScore.textContent = score;
+            hudLevel.textContent = level;
+        }
+
+        // ===== Game Loop =====
+        function gameLoop(timestamp) {
+            if (!gameRunning) return;
+            update(timestamp);
+
+            drawSky();
+            drawPlayer();
+            for (var i = 0; i < poops.length; i++) {
+                drawPoop(poops[i]);
+            }
+            drawHUD();
+
+            animFrame = requestAnimationFrame(gameLoop);
+        }
+
+        // ===== Start / Stop =====
+        function startGame() {
+            player = createPlayer();
+            poops = [];
+            score = 0;
+            level = 1;
+            gameRunning = true;
+            lastPoopTime = 0;
+            keys = {};
+
+            startOverlay.classList.add('hidden');
+            gameOverOverlay.classList.add('hidden');
+
+            hudScore.textContent = '0';
+            hudLevel.textContent = '1';
+
+            animFrame = requestAnimationFrame(gameLoop);
+        }
+
+        function gameOver() {
+            gameRunning = false;
+            cancelAnimationFrame(animFrame);
+
+            var isNewRecord = score > bestEver;
+            if (isNewRecord) {
+                bestEver = score;
+                hudBest.textContent = bestEver;
+            }
+
+            finalScoreEl.textContent = '점수: ' + score;
+            bestScoreEl.textContent = '최고 기록: ' + bestEver;
+
+            if (isNewRecord && score > 0) {
+                newRecordEl.classList.remove('hidden');
+            } else {
+                newRecordEl.classList.add('hidden');
+            }
+
+            // Check if score qualifies for ranking
+            var rankings = getRankings();
+            if (score > 0 && (rankings.length < MAX_RANK || score > rankings[rankings.length - 1].score)) {
+                showNameModal(score);
+            } else {
+                gameOverOverlay.classList.remove('hidden');
+            }
+        }
+
+        // ===== Ranking System =====
+        function getRankings() {
+            try {
+                var data = localStorage.getItem(RANKING_KEY);
+                return data ? JSON.parse(data) : [];
+            } catch (e) {
+                return [];
+            }
+        }
+
+        function saveRankings(rankings) {
+            try {
+                localStorage.setItem(RANKING_KEY, JSON.stringify(rankings));
+            } catch (e) {}
+        }
+
+        function addRanking(name, scoreVal) {
+            var rankings = getRankings();
+            rankings.push({ name: name, score: scoreVal, date: new Date().toLocaleDateString('ko-KR') });
+            rankings.sort(function (a, b) { return b.score - a.score; });
+            if (rankings.length > MAX_RANK) rankings = rankings.slice(0, MAX_RANK);
+            saveRankings(rankings);
+            renderRankings();
+        }
+
+        function renderRankings() {
+            var rankings = getRankings();
+
+            // Update bestEver from rankings
+            if (rankings.length > 0 && rankings[0].score > bestEver) {
+                bestEver = rankings[0].score;
+                hudBest.textContent = bestEver;
+            }
+
+            if (rankings.length === 0) {
+                rankingList.innerHTML = '<li class="ranking-empty">아직 기록이 없습니다. 첫 번째 도전자가 되어보세요!</li>';
+                return;
+            }
+
+            var html = '';
+            for (var i = 0; i < rankings.length; i++) {
+                var r = rankings[i];
+                var topClass = i === 0 ? 'top-1' : i === 1 ? 'top-2' : i === 2 ? 'top-3' : '';
+                var badgeClass = i === 0 ? 'rank-1' : i === 1 ? 'rank-2' : i === 2 ? 'rank-3' : 'rank-default';
+                var medal = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : (i + 1);
+                html += '<li class="ranking-item ' + topClass + '">';
+                html += '<span class="rank-badge ' + badgeClass + '">' + medal + '</span>';
+                html += '<span class="rank-name">' + escapeHtml(r.name) + '</span>';
+                html += '<span class="rank-score">' + r.score + '점</span>';
+                html += '</li>';
+            }
+            rankingList.innerHTML = html;
+        }
+
+        function escapeHtml(str) {
+            var div = document.createElement('div');
+            div.appendChild(document.createTextNode(str));
+            return div.innerHTML;
+        }
+
+        // ===== Name Modal =====
+        function showNameModal(scoreVal) {
+            modalScore.textContent = scoreVal + '점';
+            nameInput.value = '';
+            nameModal.classList.remove('hidden');
+            setTimeout(function () { nameInput.focus(); }, 100);
+        }
+
+        function hideNameModal() {
+            nameModal.classList.add('hidden');
+            gameOverOverlay.classList.remove('hidden');
+        }
+
+        document.getElementById('btnSaveRank').addEventListener('click', function () {
+            var name = nameInput.value.trim();
+            if (!name) name = '익명';
+            addRanking(name, score);
+            hideNameModal();
+        });
+
+        document.getElementById('btnSkipRank').addEventListener('click', function () {
+            hideNameModal();
+        });
+
+        nameInput.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                document.getElementById('btnSaveRank').click();
+            }
+        });
+
+        // ===== Clear rankings =====
+        document.getElementById('btnClearRank').addEventListener('click', function () {
+            if (confirm('랭킹 기록을 모두 삭제하시겠습니까?')) {
+                try { localStorage.removeItem(RANKING_KEY); } catch (e) {}
+                bestEver = 0;
+                hudBest.textContent = '0';
+                renderRankings();
+            }
+        });
+
+        // ===== Input =====
+        document.addEventListener('keydown', function (e) {
+            if (e.code === 'ArrowLeft' || e.code === 'ArrowRight' || e.code === 'KeyA' || e.code === 'KeyD') {
+                e.preventDefault();
+                keys[e.code] = true;
+            }
+            // Space or Enter to start/restart
+            if ((e.code === 'Space' || e.code === 'Enter') && !gameRunning && nameModal.classList.contains('hidden')) {
+                e.preventDefault();
+                startGame();
+            }
+        });
+
+        document.addEventListener('keyup', function (e) {
+            keys[e.code] = false;
+        });
+
+        // Touch / button controls
+        var touchLeft = false, touchRight = false;
+
+        function setupTouchBtn(btnId, dir) {
+            var btn = document.getElementById(btnId);
+            function onStart(e) {
+                e.preventDefault();
+                if (dir === 'left') { touchLeft = true; keys['ArrowLeft'] = true; }
+                else { touchRight = true; keys['ArrowRight'] = true; }
+            }
+            function onEnd(e) {
+                e.preventDefault();
+                if (dir === 'left') { touchLeft = false; keys['ArrowLeft'] = false; }
+                else { touchRight = false; keys['ArrowRight'] = false; }
+            }
+            btn.addEventListener('touchstart', onStart, { passive: false });
+            btn.addEventListener('touchend', onEnd, { passive: false });
+            btn.addEventListener('touchcancel', onEnd, { passive: false });
+            btn.addEventListener('mousedown', onStart);
+            btn.addEventListener('mouseup', onEnd);
+            btn.addEventListener('mouseleave', onEnd);
+        }
+
+        setupTouchBtn('btnLeft', 'left');
+        setupTouchBtn('btnRight', 'right');
+
+        // Swipe on canvas for mobile
+        var touchStartX = null;
+        canvas.addEventListener('touchstart', function (e) {
+            var touch = e.touches[0];
+            var rect = canvas.getBoundingClientRect();
+            var scale = getScale();
+            var touchXOnCanvas = (touch.clientX - rect.left) / scale;
+
+            if (touchXOnCanvas < CANVAS_W / 2) {
+                keys['ArrowLeft'] = true;
+            } else {
+                keys['ArrowRight'] = true;
+            }
+            touchStartX = touch.clientX;
+        }, { passive: true });
+
+        canvas.addEventListener('touchend', function () {
+            if (!touchLeft) keys['ArrowLeft'] = false;
+            if (!touchRight) keys['ArrowRight'] = false;
+            touchStartX = null;
+        }, { passive: true });
+
+        // ===== Buttons =====
+        document.getElementById('btnStart').addEventListener('click', startGame);
+        document.getElementById('btnRestart').addEventListener('click', startGame);
+
+        // ===== Init =====
+        function init() {
+            renderRankings();
+
+            var rankings = getRankings();
+            if (rankings.length > 0) {
+                bestEver = rankings[0].score;
+            }
+            hudBest.textContent = bestEver;
+
+            // Draw initial screen
+            drawSky();
+            var p = createPlayer();
+            player = p;
+            drawPlayer();
+        }
+
+        init();
+    })();
+    </script>
+</body>
+</html>
