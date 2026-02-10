@@ -7,12 +7,136 @@
     <meta name="robots" content="noindex, nofollow">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="blog.css">
+    <style>
+        .editor-container {
+            background: #fff;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .editor-toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-bottom: 2px solid #e0e0e0;
+            align-items: center;
+        }
+        .toolbar-btn {
+            padding: 6px 10px;
+            border: 1px solid #ddd;
+            background: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+            min-width: 32px;
+            text-align: center;
+        }
+        .toolbar-btn:hover { background: #e8f4f8; border-color: #3498db; }
+        .toolbar-btn.active { background: #3498db; color: #fff; border-color: #3498db; }
+        .toolbar-sep { width: 1px; height: 24px; background: #ddd; margin: 0 4px; }
+        .toolbar-btn-image { background: #e8f4f8; border-color: #3498db; color: #3498db; font-weight: 600; }
+        .toolbar-btn-image:hover { background: #3498db; color: #fff; }
+        .editor-body {
+            min-height: 500px;
+            padding: 24px;
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            outline: none;
+            overflow-y: auto;
+        }
+        .editor-body:empty::before {
+            content: '여기를 클릭하고 글을 작성하세요. 글 사이를 클릭한 후 사진 버튼으로 이미지를 삽입할 수 있습니다.';
+            color: #aaa;
+            font-style: italic;
+            pointer-events: none;
+        }
+        .editor-body h2 { font-size: 24px; color: #2c3e50; margin: 20px 0 10px; }
+        .editor-body h3 { font-size: 20px; color: #2c3e50; margin: 16px 0 8px; }
+        .editor-body p { margin-bottom: 12px; }
+        .editor-body img { max-width: 100%; height: auto; border-radius: 8px; margin: 16px 0; cursor: pointer; display: block; }
+        .editor-body img:hover { outline: 3px solid #3498db; }
+        .editor-body img.selected { outline: 3px solid #e74c3c; }
+        .editor-body blockquote { border-left: 4px solid #3498db; padding: 10px 20px; margin: 16px 0; background: #f8f9fa; color: #555; }
+        .editor-body pre { background: #2c3e50; color: #ecf0f1; padding: 16px; border-radius: 8px; overflow-x: auto; margin: 16px 0; }
+        .editor-body code { background: #f4f4f4; padding: 2px 6px; border-radius: 3px; font-family: monospace; }
+        .editor-body pre code { background: transparent; color: #ecf0f1; }
+
+        .modal-overlay {
+            display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal {
+            background: #fff; border-radius: 12px; padding: 30px;
+            max-width: 560px; width: 90%; max-height: 80vh; overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        .modal h3 { margin-bottom: 20px; color: #2c3e50; }
+        .modal-tabs { display: flex; gap: 0; margin-bottom: 20px; border-bottom: 2px solid #e0e0e0; }
+        .modal-tab {
+            padding: 10px 20px; border: none; background: none; cursor: pointer;
+            font-size: 14px; color: #7f8c8d; border-bottom: 2px solid transparent; margin-bottom: -2px;
+        }
+        .modal-tab.active { color: #3498db; border-bottom-color: #3498db; font-weight: 600; }
+        .modal-tab-content { display: none; }
+        .modal-tab-content.active { display: block; }
+        .upload-zone {
+            border: 3px dashed #ddd; border-radius: 12px; padding: 40px 20px;
+            text-align: center; cursor: pointer; transition: all 0.3s; margin-bottom: 16px;
+        }
+        .upload-zone:hover, .upload-zone.dragover { border-color: #3498db; background: #f0f8ff; }
+        .upload-zone .upload-icon { font-size: 48px; margin-bottom: 10px; display: block; }
+        .upload-zone .upload-text { color: #666; font-size: 14px; }
+        .upload-preview { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 10px; margin: 16px 0; }
+        .upload-preview-item {
+            position: relative; border-radius: 8px; overflow: hidden;
+            aspect-ratio: 1; cursor: pointer; border: 3px solid transparent;
+        }
+        .upload-preview-item.selected { border-color: #3498db; }
+        .upload-preview-item img { width: 100%; height: 100%; object-fit: cover; }
+        .upload-preview-item .remove-btn {
+            position: absolute; top: 4px; right: 4px; background: rgba(231,76,60,0.9);
+            color: #fff; border: none; border-radius: 50%; width: 22px; height: 22px;
+            font-size: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+        }
+        .url-input-group { display: flex; gap: 8px; margin-bottom: 12px; }
+        .url-input-group input { flex: 1; }
+        .modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px; padding-top: 16px; border-top: 1px solid #e0e0e0; }
+        .image-count { font-size: 13px; color: #7f8c8d; margin: 8px 0; }
+        .image-gallery-bar { background: #f8f9fa; border-top: 2px solid #e0e0e0; padding: 12px; }
+        .image-gallery-bar h4 { font-size: 13px; color: #7f8c8d; margin-bottom: 8px; }
+        .image-gallery-thumbs { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; }
+        .image-gallery-thumbs img {
+            width: 60px; height: 60px; object-fit: cover; border-radius: 6px;
+            cursor: pointer; border: 2px solid transparent; flex-shrink: 0;
+        }
+        .image-gallery-thumbs img:hover { border-color: #3498db; }
+        .meta-form { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+        .meta-form .input-group.full { grid-column: 1 / -1; }
+        .preview-panel { display: none; background: #fff; border: 2px solid #e0e0e0; border-radius: 8px; padding: 40px; margin-top: 20px; }
+        .preview-panel.active { display: block; }
+        .preview-panel h1 { font-size: 28px; color: #2c3e50; margin-bottom: 16px; }
+        .preview-panel .preview-meta { color: #7f8c8d; font-size: 14px; margin-bottom: 24px; }
+        .char-count { text-align: right; font-size: 12px; color: #95a5a6; padding: 4px 12px; border-top: 1px solid #f0f0f0; }
+        .char-count.warn { color: #e67e22; }
+        .char-count.good { color: #27ae60; }
+        @media (max-width: 768px) {
+            .meta-form { grid-template-columns: 1fr; }
+            .editor-toolbar { gap: 2px; padding: 8px; }
+            .toolbar-btn { padding: 4px 8px; font-size: 13px; min-width: 28px; }
+            .editor-body { padding: 16px; min-height: 350px; }
+            .modal { padding: 20px; }
+        }
+    </style>
 </head>
 <body>
-    <!-- Header -->
     <header class="header">
         <div class="container">
-            <h1 class="logo"><a href="index.html" style="text-decoration: none; color: inherit;">유틸리티 포털</a></h1>
+            <h1 class="logo"><a href="index.html" style="text-decoration: none; color: inherit;">lilhwang<span class="logo-dot">.</span>com</a></h1>
             <nav class="nav">
                 <a href="index.html">홈</a>
                 <a href="blog.html">블로그</a>
@@ -21,10 +145,8 @@
         </div>
     </header>
 
-    <!-- Main Content -->
     <main class="main-container">
         <div class="container">
-            <!-- Login Section -->
             <div id="login-section" class="admin-section">
                 <div class="admin-login">
                     <h2>관리자 로그인</h2>
@@ -37,7 +159,6 @@
                 </div>
             </div>
 
-            <!-- Admin Dashboard -->
             <div id="admin-dashboard" class="admin-section" style="display: none;">
                 <div class="admin-header">
                     <h2>관리자 대시보드</h2>
@@ -50,9 +171,8 @@
                     <button class="admin-tab-btn" data-tab="json">JSON 내보내기</button>
                 </div>
 
-                <!-- Write Post Tab -->
                 <div class="admin-tab-content active" id="write-tab">
-                    <h3>새 게시글 작성</h3>
+                    <h3 id="editor-heading">새 게시글 작성</h3>
                     <div id="draft-notice" class="draft-notice" style="display: none;">
                         <div class="draft-text">이전에 작성 중이던 내용이 있습니다.</div>
                         <div class="draft-actions">
@@ -60,12 +180,11 @@
                             <button type="button" class="btn btn-secondary" id="discard-draft">임시저장 삭제</button>
                         </div>
                     </div>
-                    <form id="post-form" class="post-form">
-                        <div class="input-group">
+                    <div class="meta-form">
+                        <div class="input-group full">
                             <label for="post-title">제목 *</label>
                             <input type="text" id="post-title" required placeholder="게시글 제목">
                         </div>
-
                         <div class="input-group">
                             <label for="post-category">카테고리 *</label>
                             <select id="post-category" required>
@@ -74,54 +193,73 @@
                                 <option value="life">일상</option>
                             </select>
                         </div>
-
                         <div class="input-group">
-                            <label for="post-image">이미지 URL (선택)</label>
-                            <input type="url" id="post-image" placeholder="https://example.com/image.jpg">
-                            <small>GitHub 저장소의 images/posts/ 폴더에 이미지를 업로드한 후 URL을 입력하세요.</small>
+                            <label for="post-tags">태그 (쉼표 구분)</label>
+                            <input type="text" id="post-tags" placeholder="ESP32, 스마트팜, IoT">
                         </div>
-
-                        <div class="input-group">
-                            <label for="post-excerpt">요약 (선택)</label>
-                            <textarea id="post-excerpt" rows="2" placeholder="게시글 요약 (목록에 표시됩니다)"></textarea>
+                        <div class="input-group full">
+                            <label for="post-excerpt">요약 (목록에 표시)</label>
+                            <input type="text" id="post-excerpt" placeholder="게시글 요약">
                         </div>
+                    </div>
 
-                        <div class="input-group">
-                            <label for="post-content">본문 * (HTML 사용 가능)</label>
-                            <textarea id="post-content" rows="15" required placeholder="게시글 본문을 작성하세요. HTML 태그를 사용할 수 있습니다."></textarea>
-                            <small>
-                                사용 가능한 HTML 태그: &lt;p&gt;, &lt;h2&gt;, &lt;h3&gt;, &lt;strong&gt;, &lt;em&gt;, &lt;ul&gt;, &lt;ol&gt;, &lt;li&gt;, &lt;a&gt;, &lt;code&gt;, &lt;pre&gt;, &lt;img&gt; 등
-                            </small>
+                    <div class="editor-container">
+                        <div class="editor-toolbar">
+                            <button type="button" class="toolbar-btn" data-cmd="formatBlock" data-val="H2" title="제목 H2">H2</button>
+                            <button type="button" class="toolbar-btn" data-cmd="formatBlock" data-val="H3" title="소제목 H3">H3</button>
+                            <button type="button" class="toolbar-btn" data-cmd="formatBlock" data-val="P" title="본문">P</button>
+                            <div class="toolbar-sep"></div>
+                            <button type="button" class="toolbar-btn" data-cmd="bold" title="굵게"><b>B</b></button>
+                            <button type="button" class="toolbar-btn" data-cmd="italic" title="기울임"><i>I</i></button>
+                            <button type="button" class="toolbar-btn" data-cmd="underline" title="밑줄"><u>U</u></button>
+                            <div class="toolbar-sep"></div>
+                            <button type="button" class="toolbar-btn" data-cmd="insertUnorderedList" title="글머리 목록">&#8226;목록</button>
+                            <button type="button" class="toolbar-btn" data-cmd="insertOrderedList" title="번호 목록">1.목록</button>
+                            <div class="toolbar-sep"></div>
+                            <button type="button" class="toolbar-btn" data-cmd="formatBlock" data-val="BLOCKQUOTE" title="인용">인용</button>
+                            <button type="button" class="toolbar-btn" data-cmd="formatBlock" data-val="PRE" title="코드">코드</button>
+                            <button type="button" class="toolbar-btn" id="insert-link-btn" title="링크">링크</button>
+                            <div class="toolbar-sep"></div>
+                            <button type="button" class="toolbar-btn toolbar-btn-image" id="insert-image-btn" title="사진 삽입">사진 삽입</button>
+                            <div class="toolbar-sep"></div>
+                            <button type="button" class="toolbar-btn" data-cmd="removeFormat" title="서식 제거">서식제거</button>
                         </div>
-
-                        <div class="input-group">
-                            <label for="post-tags">태그 (쉼표로 구분)</label>
-                            <input type="text" id="post-tags" placeholder="예: JavaScript, React, 웹개발">
+                        <div class="editor-body" id="editor-body" contenteditable="true"></div>
+                        <div class="char-count" id="char-count">0자</div>
+                        <div class="image-gallery-bar" id="image-gallery-bar" style="display: none;">
+                            <h4>삽입된 이미지 (<span id="image-count">0</span>개)</h4>
+                            <div class="image-gallery-thumbs" id="image-gallery-thumbs"></div>
                         </div>
+                    </div>
 
-                        <div class="form-actions">
-                            <button type="submit" class="btn btn-primary">게시글 생성</button>
-                            <button type="button" class="btn btn-secondary" id="clear-form">초기화</button>
-                        </div>
-                    </form>
-                </div>
+                    <div class="form-actions" style="margin-top: 20px;">
+                        <button type="button" class="btn btn-primary" id="save-post-btn">게시글 저장</button>
+                        <button type="button" class="btn btn-secondary" id="preview-btn">미리보기</button>
+                        <button type="button" class="btn btn-secondary" id="clear-form">초기화</button>
+                    </div>
 
-                <!-- Manage Posts Tab -->
-                <div class="admin-tab-content" id="manage-tab">
-                    <h3>게시글 관리</h3>
-                    <div id="posts-management" class="posts-management">
-                        <!-- Posts list will be loaded here -->
+                    <div class="preview-panel" id="preview-panel">
+                        <button class="btn btn-secondary" id="close-preview" style="margin-bottom: 20px;">미리보기 닫기</button>
+                        <h1 id="preview-title"></h1>
+                        <div class="preview-meta" id="preview-meta"></div>
+                        <div class="post-full-content" id="preview-content"></div>
                     </div>
                 </div>
 
-                <!-- JSON Export Tab -->
+                <div class="admin-tab-content" id="manage-tab">
+                    <h3>게시글 관리 (<span id="total-posts-count">0</span>개)</h3>
+                    <div class="input-group" style="margin-bottom: 16px;">
+                        <input type="text" id="search-posts" placeholder="게시글 검색...">
+                    </div>
+                    <div id="posts-management" class="posts-management"></div>
+                </div>
+
                 <div class="admin-tab-content" id="json-tab">
                     <h3>posts.json 내보내기</h3>
-                    <p>아래의 JSON 코드를 복사하여 GitHub 저장소의 <code>posts.json</code> 파일을 업데이트하세요.</p>
+                    <p>JSON을 복사하거나 GitHub에 직접 저장할 수 있습니다.</p>
                     <div class="json-import">
                         <label for="import-json" class="json-import-label">posts.json 불러오기</label>
                         <input type="file" id="import-json" accept="application/json">
-                        <small>GitHub에서 내려받은 posts.json 파일을 선택하면 여기서 바로 수정할 수 있습니다.</small>
                     </div>
                     <div class="json-actions">
                         <button class="btn btn-primary" id="copy-json">JSON 복사</button>
@@ -130,33 +268,50 @@
                     </div>
                     <p id="github-status" class="github-status"></p>
                     <pre id="json-output" class="json-output"></pre>
-                    <div class="json-instructions">
-                        <h4>📝 업데이트 방법:</h4>
-                        <ol>
-                            <li>위의 "JSON 복사" 버튼을 클릭하여 JSON 데이터 복사</li>
-                            <li>GitHub 저장소 (catcatbuilder)로 이동</li>
-                            <li><code>posts.json</code> 파일을 찾아 편집</li>
-                            <li>파일 내용을 복사한 JSON으로 교체</li>
-                            <li>커밋 메시지 작성 후 저장</li>
-                            <li>몇 분 후 블로그에 새 게시글이 표시됩니다</li>
-                        </ol>
-                        <h4>🖼️ 이미지 업로드 방법:</h4>
-                        <ol>
-                            <li>GitHub 저장소에서 <code>images/posts/</code> 폴더 생성 (없는 경우)</li>
-                            <li>이미지 파일 업로드 (예: my-image.jpg)</li>
-                            <li>업로드된 이미지의 URL: <code>https://lilhwang.com/images/posts/my-image.jpg</code></li>
-                            <li>게시글 작성 시 이미지 URL 필드에 위 URL 입력</li>
-                        </ol>
-                    </div>
                 </div>
             </div>
         </div>
     </main>
 
-    <!-- Footer -->
+    <!-- 이미지 삽입 모달 -->
+    <div class="modal-overlay" id="image-modal">
+        <div class="modal">
+            <h3>사진 삽입</h3>
+            <div class="modal-tabs">
+                <button class="modal-tab active" data-modal-tab="upload">파일 업로드</button>
+                <button class="modal-tab" data-modal-tab="url">URL 입력</button>
+            </div>
+            <div class="modal-tab-content active" id="modal-upload-tab">
+                <div class="upload-zone" id="upload-zone">
+                    <span class="upload-icon">📷</span>
+                    <div class="upload-text">클릭하거나 파일을 끌어다 놓으세요<br>(여러 장 선택 가능, 최대 20장)</div>
+                    <input type="file" id="file-input" accept="image/*" multiple style="display: none;">
+                </div>
+                <div class="image-count" id="upload-count"></div>
+                <div class="upload-preview" id="upload-preview"></div>
+            </div>
+            <div class="modal-tab-content" id="modal-url-tab">
+                <div class="url-input-group">
+                    <input type="url" id="image-url-input" placeholder="https://example.com/image.jpg">
+                    <button class="btn btn-secondary" id="add-url-btn">추가</button>
+                </div>
+                <div class="image-count" id="url-count"></div>
+                <div class="upload-preview" id="url-preview"></div>
+            </div>
+            <div class="input-group" style="margin-top: 12px;">
+                <label for="image-alt">이미지 설명 (alt)</label>
+                <input type="text" id="image-alt" placeholder="이미지 설명">
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" id="close-modal-btn">취소</button>
+                <button class="btn btn-primary" id="insert-images-btn">선택한 이미지 삽입</button>
+            </div>
+        </div>
+    </div>
+
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2026 유틸리티 포털. All rights reserved.</p>
+            <p>&copy; 2026 lilhwang.com. All rights reserved.</p>
         </div>
     </footer>
 
