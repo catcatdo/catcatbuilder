@@ -200,6 +200,27 @@
         .diary-link:hover {
             background: linear-gradient(135deg, #ff8fb3 0%, #e04a8c 100%);
         }
+
+        /* 반응형 */
+        @media (max-width: 768px) {
+            .diary-hero { padding: 2rem 0; }
+            .diary-hero h1 { font-size: 1.8rem; }
+            .diary-hero .subtitle { font-size: 1rem; }
+            .diary-container { padding: 1.2rem 0.8rem; }
+            .diary-entry { padding: 1.2rem; margin-bottom: 1.2rem; }
+            .diary-title { font-size: 1.2rem; }
+            .diary-empty { padding: 2rem 1rem; }
+            .diary-empty .emoji { font-size: 3rem; }
+        }
+
+        @media (max-width: 480px) {
+            .diary-hero h1 { font-size: 1.5rem; }
+            .diary-hero::before { font-size: 1.5rem; }
+            .diary-container { padding: 1rem 0.5rem; }
+            .diary-entry { padding: 1rem; border-radius: 12px; }
+            .diary-entry::before { top: -10px; right: 10px; font-size: 1.5rem; }
+            .diary-content { font-size: 0.9rem; }
+        }
     </style>
 </head>
 <body>
