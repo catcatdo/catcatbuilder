@@ -1121,6 +1121,39 @@ body::before {
     font-style: normal;
 }
 
+/* Password Generator */
+.checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 13px;
+    cursor: pointer;
+}
+.pw-strength {
+    font-size: 13px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+.strength-medium {
+    background: #fff3cd;
+    color: #856404;
+}
+.strength-strong {
+    background: #d4edda;
+    color: #155724;
+}
+.strength-very-strong {
+    background: #c3e6cb;
+    color: #0b5d1e;
+}
+
 /* ========================================
    Game Specific Styles
    ======================================== */

@@ -517,9 +517,102 @@
 
                     <!-- Widgets Section -->
                     <div class="tab-content" id="widgets-content">
-                        <h2 class="section-heading">인터랙티브 위젯 - 실시간 정보 조회</h2>
-                        <p class="section-description">날씨, 암호화폐 시세, 주식 스냅샷 등 실시간으로 업데이트되는 정보를 확인하세요.</p>
+                        <h2 class="section-heading">인터랙티브 위젯 - 실시간 정보 & 유틸리티</h2>
+                        <p class="section-description">비밀번호 생성, QR코드, D-Day 계산, 단위 변환 등 자주 쓰는 유틸리티와 실시간 정보를 확인하세요.</p>
                         <div class="tools-grid">
+                            <!-- Password Generator -->
+                            <div class="tool-card" data-title="비밀번호 생성기" data-keywords="비밀번호,password,generator,보안,랜덤">
+                                <div class="tool-header">
+                                    <span class="tool-icon">🔐</span>
+                                    <h3 class="tool-title">비밀번호 생성기</h3>
+                                    <span class="tool-tag">유틸</span>
+                                </div>
+                                <div class="tool-body">
+                                    <div class="input-group">
+                                        <label for="pw-length">길이: <span id="pw-length-val">16</span>자</label>
+                                        <input type="range" id="pw-length" min="8" max="64" value="16">
+                                    </div>
+                                    <div class="checkbox-group">
+                                        <label><input type="checkbox" id="pw-upper" checked> 대문자</label>
+                                        <label><input type="checkbox" id="pw-lower" checked> 소문자</label>
+                                        <label><input type="checkbox" id="pw-numbers" checked> 숫자</label>
+                                        <label><input type="checkbox" id="pw-symbols" checked> 특수문자</label>
+                                    </div>
+                                    <button class="btn btn-primary" id="generate-pw">생성</button>
+                                    <div id="pw-result" class="result-box"></div>
+                                </div>
+                            </div>
+
+                            <!-- QR Code Generator -->
+                            <div class="tool-card" data-title="QR코드 생성기" data-keywords="QR,qrcode,큐알,링크,URL">
+                                <div class="tool-header">
+                                    <span class="tool-icon">📱</span>
+                                    <h3 class="tool-title">QR코드 생성기</h3>
+                                    <span class="tool-tag">유틸</span>
+                                </div>
+                                <div class="tool-body">
+                                    <div class="input-group">
+                                        <label for="qr-text">텍스트 또는 URL</label>
+                                        <input type="text" id="qr-text" placeholder="https://lilhwang.com">
+                                    </div>
+                                    <button class="btn btn-primary" id="generate-qr">QR코드 생성</button>
+                                    <div id="qr-result" class="result-box" style="text-align:center;"></div>
+                                </div>
+                            </div>
+
+                            <!-- D-Day Counter -->
+                            <div class="tool-card" data-title="D-Day 계산기" data-keywords="디데이,날짜,기념일,카운트다운,dday">
+                                <div class="tool-header">
+                                    <span class="tool-icon">📅</span>
+                                    <h3 class="tool-title">D-Day 계산기</h3>
+                                    <span class="tool-tag">유틸</span>
+                                </div>
+                                <div class="tool-body">
+                                    <div class="input-group">
+                                        <label for="dday-date">목표 날짜</label>
+                                        <input type="date" id="dday-date">
+                                    </div>
+                                    <div class="input-group">
+                                        <label for="dday-name">이벤트 이름 (선택)</label>
+                                        <input type="text" id="dday-name" placeholder="예: 시험일">
+                                    </div>
+                                    <button class="btn btn-primary" id="calc-dday">계산</button>
+                                    <div id="dday-result" class="result-box"></div>
+                                </div>
+                            </div>
+
+                            <!-- Unit Converter -->
+                            <div class="tool-card" data-title="단위 변환기" data-keywords="단위,변환,길이,무게,온도,converter">
+                                <div class="tool-header">
+                                    <span class="tool-icon">🔄</span>
+                                    <h3 class="tool-title">단위 변환기</h3>
+                                    <span class="tool-tag">유틸</span>
+                                </div>
+                                <div class="tool-body">
+                                    <div class="input-group">
+                                        <label for="unit-type">변환 유형</label>
+                                        <select id="unit-type">
+                                            <option value="length">길이</option>
+                                            <option value="weight">무게</option>
+                                            <option value="temperature">온도</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-group">
+                                        <label for="unit-from">변환 전</label>
+                                        <div style="display:flex;gap:8px;">
+                                            <input type="number" id="unit-value" placeholder="값 입력" style="flex:1;">
+                                            <select id="unit-from" style="flex:1;"></select>
+                                        </div>
+                                    </div>
+                                    <div class="input-group">
+                                        <label for="unit-to">변환 후</label>
+                                        <select id="unit-to"></select>
+                                    </div>
+                                    <button class="btn btn-primary" id="convert-unit">변환</button>
+                                    <div id="unit-result" class="result-box"></div>
+                                </div>
+                            </div>
+
                             <!-- Weather Widget -->
                             <div class="tool-card" data-title="날씨 위젯" data-keywords="날씨,기온,도시,forecast">
                                 <div class="tool-header">
@@ -578,6 +671,19 @@
                                         <div id="stock-updated" class="stock-meta"></div>
                                         <div class="small-note">실시간성이 완전하진 않을 수 있으며, 제공 제한이 생길 수 있습니다.</div>
                                     </div>
+                                </div>
+                            </div>
+
+                            <!-- Random Quote -->
+                            <div class="tool-card" data-title="오늘의 명언" data-keywords="명언,quote,동기부여,motivation">
+                                <div class="tool-header">
+                                    <span class="tool-icon">💬</span>
+                                    <h3 class="tool-title">오늘의 명언</h3>
+                                    <span class="tool-tag">위젯</span>
+                                </div>
+                                <div class="tool-body">
+                                    <button class="btn btn-primary" id="get-quote">명언 보기</button>
+                                    <div id="quote-result" class="result-box"></div>
                                 </div>
                             </div>
                         </div>

@@ -558,6 +558,253 @@ function initCryptoWidget() {
 }
 
 // ========================================
+// Password Generator
+// ========================================
+
+function initPasswordGenerator() {
+    const lengthSlider = document.getElementById('pw-length');
+    const lengthVal = document.getElementById('pw-length-val');
+    const generateBtn = document.getElementById('generate-pw');
+    const resultDiv = document.getElementById('pw-result');
+    if (!lengthSlider || !generateBtn || !resultDiv) return;
+
+    lengthSlider.addEventListener('input', () => {
+        lengthVal.textContent = lengthSlider.value;
+    });
+
+    generateBtn.addEventListener('click', () => {
+        const length = parseInt(lengthSlider.value);
+        const useUpper = document.getElementById('pw-upper').checked;
+        const useLower = document.getElementById('pw-lower').checked;
+        const useNumbers = document.getElementById('pw-numbers').checked;
+        const useSymbols = document.getElementById('pw-symbols').checked;
+
+        let chars = '';
+        if (useUpper) chars += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        if (useLower) chars += 'abcdefghijklmnopqrstuvwxyz';
+        if (useNumbers) chars += '0123456789';
+        if (useSymbols) chars += '!@#$%^&*()_+-=[]{}|;:,.<>?';
+
+        if (!chars) {
+            showError(resultDiv, '최소 하나의 문자 유형을 선택하세요.');
+            return;
+        }
+
+        const array = new Uint32Array(length);
+        crypto.getRandomValues(array);
+        let password = '';
+        for (let i = 0; i < length; i++) {
+            password += chars[array[i] % chars.length];
+        }
+
+        const strength = getPasswordStrength(password);
+        resultDiv.className = 'result-box success';
+        resultDiv.innerHTML = `
+            <div style="word-break:break-all;font-family:monospace;font-size:16px;margin-bottom:8px;">${password}</div>
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+                <span class="pw-strength ${strength.cls}">${strength.label}</span>
+                <button class="btn btn-secondary btn-small" onclick="copyToClipboard('${password}');this.textContent='복사됨!';">복사</button>
+            </div>
+        `;
+    });
+
+    function getPasswordStrength(pw) {
+        let score = 0;
+        if (pw.length >= 12) score++;
+        if (pw.length >= 20) score++;
+        if (/[a-z]/.test(pw) && /[A-Z]/.test(pw)) score++;
+        if (/\d/.test(pw)) score++;
+        if (/[^a-zA-Z0-9]/.test(pw)) score++;
+        if (score <= 2) return { label: '보통', cls: 'strength-medium' };
+        if (score <= 3) return { label: '강함', cls: 'strength-strong' };
+        return { label: '매우 강함', cls: 'strength-very-strong' };
+    }
+}
+
+// ========================================
+// QR Code Generator
+// ========================================
+
+function initQRCodeGenerator() {
+    const generateBtn = document.getElementById('generate-qr');
+    const textInput = document.getElementById('qr-text');
+    const resultDiv = document.getElementById('qr-result');
+    if (!generateBtn || !textInput || !resultDiv) return;
+
+    generateBtn.addEventListener('click', () => {
+        const text = textInput.value.trim();
+        if (!text) {
+            showError(resultDiv, '텍스트 또는 URL을 입력하세요.');
+            return;
+        }
+
+        const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(text)}`;
+        resultDiv.className = 'result-box success';
+        resultDiv.innerHTML = `
+            <img src="${qrUrl}" alt="QR Code" style="max-width:200px;margin:8px auto;display:block;">
+            <div style="margin-top:8px;text-align:center;">
+                <a href="${qrUrl}" download="qrcode.png" class="btn btn-secondary btn-small">다운로드</a>
+            </div>
+        `;
+    });
+
+    textInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') generateBtn.click();
+    });
+}
+
+// ========================================
+// D-Day Counter
+// ========================================
+
+function initDDayCounter() {
+    const calcBtn = document.getElementById('calc-dday');
+    const dateInput = document.getElementById('dday-date');
+    const nameInput = document.getElementById('dday-name');
+    const resultDiv = document.getElementById('dday-result');
+    if (!calcBtn || !dateInput || !resultDiv) return;
+
+    calcBtn.addEventListener('click', () => {
+        const targetDate = dateInput.value;
+        if (!targetDate) {
+            showError(resultDiv, '날짜를 선택하세요.');
+            return;
+        }
+
+        const target = new Date(targetDate + 'T00:00:00');
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        const diffMs = target - today;
+        const diffDays = Math.round(diffMs / (1000 * 60 * 60 * 24));
+        const eventName = nameInput.value.trim() || '목표일';
+
+        let message;
+        if (diffDays > 0) {
+            message = `
+                <div style="text-align:center;">
+                    <div style="font-size:14px;color:var(--color-text-secondary);">${eventName}까지</div>
+                    <div style="font-size:36px;font-weight:bold;color:var(--color-primary);margin:8px 0;">D-${diffDays}</div>
+                    <div style="font-size:13px;color:var(--color-text-secondary);">${target.toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' })}</div>
+                </div>
+            `;
+        } else if (diffDays === 0) {
+            message = `
+                <div style="text-align:center;">
+                    <div style="font-size:36px;font-weight:bold;color:var(--color-primary);margin:8px 0;">D-Day!</div>
+                    <div style="font-size:14px;">오늘이 바로 ${eventName}입니다!</div>
+                </div>
+            `;
+        } else {
+            message = `
+                <div style="text-align:center;">
+                    <div style="font-size:14px;color:var(--color-text-secondary);">${eventName}로부터</div>
+                    <div style="font-size:36px;font-weight:bold;color:var(--color-accent);margin:8px 0;">D+${Math.abs(diffDays)}</div>
+                    <div style="font-size:13px;color:var(--color-text-secondary);">${target.toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' })}</div>
+                </div>
+            `;
+        }
+        resultDiv.className = 'result-box success';
+        resultDiv.innerHTML = message;
+    });
+}
+
+// ========================================
+// Unit Converter
+// ========================================
+
+function initUnitConverter() {
+    const typeSelect = document.getElementById('unit-type');
+    const fromSelect = document.getElementById('unit-from');
+    const toSelect = document.getElementById('unit-to');
+    const valueInput = document.getElementById('unit-value');
+    const convertBtn = document.getElementById('convert-unit');
+    const resultDiv = document.getElementById('unit-result');
+    if (!typeSelect || !fromSelect || !toSelect || !convertBtn || !resultDiv) return;
+
+    const units = {
+        length: {
+            mm: { label: '밀리미터 (mm)', factor: 0.001 },
+            cm: { label: '센티미터 (cm)', factor: 0.01 },
+            m: { label: '미터 (m)', factor: 1 },
+            km: { label: '킬로미터 (km)', factor: 1000 },
+            inch: { label: '인치 (in)', factor: 0.0254 },
+            ft: { label: '피트 (ft)', factor: 0.3048 },
+            mile: { label: '마일 (mi)', factor: 1609.344 }
+        },
+        weight: {
+            mg: { label: '밀리그램 (mg)', factor: 0.001 },
+            g: { label: '그램 (g)', factor: 1 },
+            kg: { label: '킬로그램 (kg)', factor: 1000 },
+            lb: { label: '파운드 (lb)', factor: 453.592 },
+            oz: { label: '온스 (oz)', factor: 28.3495 },
+            ton: { label: '톤 (t)', factor: 1000000 }
+        },
+        temperature: {
+            celsius: { label: '섭씨 (°C)' },
+            fahrenheit: { label: '화씨 (°F)' },
+            kelvin: { label: '켈빈 (K)' }
+        }
+    };
+
+    function populateSelects() {
+        const type = typeSelect.value;
+        const unitList = units[type];
+        fromSelect.innerHTML = '';
+        toSelect.innerHTML = '';
+        for (const [key, val] of Object.entries(unitList)) {
+            fromSelect.innerHTML += `<option value="${key}">${val.label}</option>`;
+            toSelect.innerHTML += `<option value="${key}">${val.label}</option>`;
+        }
+        if (toSelect.options.length > 1) toSelect.selectedIndex = 1;
+    }
+
+    typeSelect.addEventListener('change', populateSelects);
+    populateSelects();
+
+    convertBtn.addEventListener('click', () => {
+        const value = parseFloat(valueInput.value);
+        if (isNaN(value)) {
+            showError(resultDiv, '숫자를 입력하세요.');
+            return;
+        }
+
+        const type = typeSelect.value;
+        const from = fromSelect.value;
+        const to = toSelect.value;
+        let result;
+
+        if (type === 'temperature') {
+            result = convertTemperature(value, from, to);
+        } else {
+            const fromFactor = units[type][from].factor;
+            const toFactor = units[type][to].factor;
+            result = (value * fromFactor) / toFactor;
+        }
+
+        const formatted = Number.isInteger(result) ? result : result.toFixed(6).replace(/0+$/, '').replace(/\.$/, '');
+        resultDiv.className = 'result-box success';
+        resultDiv.innerHTML = `
+            <div style="text-align:center;font-size:18px;">
+                <strong>${value}</strong> ${units[type][from].label} = <strong>${formatted}</strong> ${units[type][to].label}
+            </div>
+        `;
+    });
+
+    function convertTemperature(val, from, to) {
+        if (from === to) return val;
+        let celsius;
+        if (from === 'celsius') celsius = val;
+        else if (from === 'fahrenheit') celsius = (val - 32) * 5 / 9;
+        else celsius = val - 273.15;
+
+        if (to === 'celsius') return celsius;
+        if (to === 'fahrenheit') return celsius * 9 / 5 + 32;
+        return celsius + 273.15;
+    }
+}
+
+// ========================================
 // Random Quote Generator
 // ========================================
 
@@ -566,22 +813,36 @@ function initQuoteGenerator() {
     const resultDiv = document.getElementById('quote-result');
     if (!getQuoteBtn || !resultDiv) return;
 
-    getQuoteBtn.addEventListener('click', async () => {
-        showLoading();
+    const quotes = [
+        { content: 'The only way to do great work is to love what you do.', author: 'Steve Jobs' },
+        { content: 'Innovation distinguishes between a leader and a follower.', author: 'Steve Jobs' },
+        { content: 'Life is what happens when you\'re busy making other plans.', author: 'John Lennon' },
+        { content: 'The future belongs to those who believe in the beauty of their dreams.', author: 'Eleanor Roosevelt' },
+        { content: 'It is during our darkest moments that we must focus to see the light.', author: 'Aristotle' },
+        { content: 'The purpose of our lives is to be happy.', author: 'Dalai Lama' },
+        { content: 'Get busy living or get busy dying.', author: 'Stephen King' },
+        { content: 'You only live once, but if you do it right, once is enough.', author: 'Mae West' },
+        { content: 'In the middle of difficulty lies opportunity.', author: 'Albert Einstein' },
+        { content: 'Talk is cheap. Show me the code.', author: 'Linus Torvalds' },
+        { content: 'Programs must be written for people to read, and only incidentally for machines to execute.', author: 'Harold Abelson' },
+        { content: 'Any fool can write code that a computer can understand. Good programmers write code that humans can understand.', author: 'Martin Fowler' },
+        { content: 'First, solve the problem. Then, write the code.', author: 'John Johnson' },
+        { content: 'Experience is the name everyone gives to their mistakes.', author: 'Oscar Wilde' },
+        { content: 'The best error message is the one that never shows up.', author: 'Thomas Fuchs' },
+        { content: 'Simplicity is the soul of efficiency.', author: 'Austin Freeman' },
+        { content: 'Before software can be reusable it first has to be usable.', author: 'Ralph Johnson' },
+        { content: 'Make it work, make it right, make it fast.', author: 'Kent Beck' },
+        { content: 'Code is like humor. When you have to explain it, it\'s bad.', author: 'Cory House' },
+        { content: 'The best time to plant a tree was 20 years ago. The second best time is now.', author: 'Chinese Proverb' }
+    ];
 
-        try {
-            const data = await fetchAPI('https://api.quotable.io/random');
-
-            hideLoading();
-            resultDiv.className = 'result-box quote-box success';
-            resultDiv.innerHTML = `
-                <div class="quote-text">"${data.content}"</div>
-                <div class="quote-author">— ${data.author}</div>
-            `;
-        } catch (error) {
-            hideLoading();
-            showError(resultDiv, '명언을 불러오지 못했습니다.');
-        }
+    getQuoteBtn.addEventListener('click', () => {
+        const quote = quotes[Math.floor(Math.random() * quotes.length)];
+        resultDiv.className = 'result-box quote-box success';
+        resultDiv.innerHTML = `
+            <div class="quote-text">"${quote.content}"</div>
+            <div class="quote-author">— ${quote.author}</div>
+        `;
     });
 }
 
@@ -1679,6 +1940,10 @@ document.addEventListener('DOMContentLoaded', () => {
     initVATCalculator();
     initIPChecker();
     initPingTest();
+    initPasswordGenerator();
+    initQRCodeGenerator();
+    initDDayCounter();
+    initUnitConverter();
     initWeatherWidget();
     initCryptoWidget();
     initQuoteGenerator();
