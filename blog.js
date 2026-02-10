@@ -114,22 +114,23 @@ function renderPosts() {
 
     // Render posts
     container.innerHTML = postsToShow.map(post => `
-        <div class="post-card" data-post-id="${post.id}">
-            ${post.image ? `<div class="post-card-image" style="background-image: url('${post.image}')"></div>` : ''}
+        <article class="post-card" data-post-id="${post.id}">
+            ${post.image ? `<div class="post-card-image"><img src="${post.image}" alt="${post.title}" loading="lazy"></div>` : ''}
             <div class="post-card-content">
                 <h2 class="post-card-title">${post.title}</h2>
                 <div class="post-card-meta">
-                    <span>📅 ${formatDate(post.date)}</span>
-                    <span>📁 ${getCategoryName(post.category)}</span>
+                    <span class="meta-author">릴황</span>
+                    <span class="meta-date">${formatDate(post.date)}</span>
+                    <span class="meta-category">${getCategoryName(post.category)}</span>
                 </div>
                 ${post.excerpt ? `<p class="post-card-excerpt">${post.excerpt}</p>` : ''}
                 ${post.tags && post.tags.length > 0 ? `
                     <div class="post-card-tags">
-                        ${post.tags.map(tag => `<span class="post-tag">${tag}</span>`).join('')}
+                        ${post.tags.slice(0, 4).map(tag => `<span class="post-tag">${tag}</span>`).join('')}
                     </div>
                 ` : ''}
             </div>
-        </div>
+        </article>
     `).join('');
 
     // Add click events
@@ -148,6 +149,72 @@ function renderPosts() {
 // Show Post Detail
 // ========================================
 
+function injectJsonLd(data) {
+    let el = document.getElementById('json-ld-schema');
+    if (!el) {
+        el = document.createElement('script');
+        el.type = 'application/ld+json';
+        el.id = 'json-ld-schema';
+        document.head.appendChild(el);
+    }
+    el.textContent = JSON.stringify(data);
+}
+
+function setBlogPostSchema(post, postId) {
+    const url = `https://lilhwang.com/blog.html#post-${postId}`;
+    const imageUrl = post.image && post.image.trim()
+        ? new URL(post.image, window.location.origin + '/').href
+        : 'https://lilhwang.com/images/og-default.jpg';
+
+    const schema = {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": post.title,
+        "description": post.excerpt || post.title,
+        "image": imageUrl,
+        "datePublished": post.date,
+        "dateModified": post.date,
+        "url": url,
+        "mainEntityOfPage": { "@type": "WebPage", "@id": url },
+        "author": {
+            "@type": "Person",
+            "name": "릴황 (lilhwang)",
+            "url": "https://lilhwang.com/about.html",
+            "jobTitle": "웹 개발자 & IoT 엔지니어",
+            "sameAs": ["https://github.com/catcatdo"]
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "lilhwang.com",
+            "url": "https://lilhwang.com",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://lilhwang.com/images/og-default.jpg"
+            }
+        },
+        "inLanguage": "ko-KR",
+        "keywords": (post.tags || []).join(', ')
+    };
+
+    // Breadcrumb schema
+    const breadcrumb = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "홈", "item": "https://lilhwang.com/" },
+            { "@type": "ListItem", "position": 2, "name": "블로그", "item": "https://lilhwang.com/blog.html" },
+            { "@type": "ListItem", "position": 3, "name": post.title, "item": url }
+        ]
+    };
+
+    injectJsonLd([schema, breadcrumb]);
+}
+
+function removeBlogPostSchema() {
+    const el = document.getElementById('json-ld-schema');
+    if (el) el.remove();
+}
+
 function showPostDetail(postId) {
     const post = allPosts.find(p => p.id === postId);
     if (!post) return;
@@ -158,8 +225,18 @@ function showPostDetail(postId) {
 
     // Populate detail view
     document.getElementById('detail-title').textContent = post.title;
-    document.getElementById('detail-date').textContent = '📅 ' + formatDate(post.date);
-    document.getElementById('detail-category').textContent = '📁 ' + getCategoryName(post.category);
+    document.getElementById('detail-date').textContent = formatDate(post.date);
+    document.getElementById('detail-category').textContent = getCategoryName(post.category);
+
+    // Author info
+    const authorEl = document.getElementById('detail-author');
+    if (authorEl) authorEl.textContent = '릴황 (lilhwang)';
+
+    // Breadcrumb
+    const breadcrumbEl = document.getElementById('detail-breadcrumb');
+    if (breadcrumbEl) {
+        breadcrumbEl.innerHTML = `<a href="index.html">홈</a> &rsaquo; <a href="blog.html">블로그</a> &rsaquo; <span>${post.title}</span>`;
+    }
 
     const imageContainer = document.getElementById('detail-image');
     if (post.image) {
@@ -187,6 +264,9 @@ function showPostDetail(postId) {
 
     // Update meta tags for sharing
     updateBlogMeta(getPostMeta(post, postId));
+
+    // Inject structured data (BlogPosting + Breadcrumb)
+    setBlogPostSchema(post, postId);
 }
 
 // ========================================
@@ -198,6 +278,7 @@ document.getElementById('back-to-list')?.addEventListener('click', () => {
     document.getElementById('posts-list').style.display = 'block';
     window.location.hash = '';
     updateBlogMeta(blogListMeta);
+    removeBlogPostSchema();
     window.scrollTo(0, 0);
 });
 

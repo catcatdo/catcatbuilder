@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>기술 블로그 - lilhwang.com | 개발 튜토리얼 & 가이드</title>
     <meta name="description" content="웹 개발, Docker, Git, REST API, SEO 등 실전 개발 가이드와 튜토리얼을 제공합니다. 초보자부터 시니어까지 유용한 기술 블로그.">
-    <meta name="keywords" content="개발 블로그, 기술 블로그, 웹개발, Docker, Git, REST API, JavaScript, 튜토리얼, lilhwang">
+    <meta name="keywords" content="기술 블로그, 스마트팜, ESP32, IoT, 웹개발, Python, FastAPI">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
     <link rel="canonical" href="https://lilhwang.com/blog.html">
 
     <meta property="og:title" content="기술 블로그 | lilhwang.com - 개발 튜토리얼 & 가이드">
@@ -49,12 +50,14 @@
 
                     <!-- Post Detail View (Hidden by default) -->
                     <div id="post-detail" class="post-detail" style="display: none;">
+                        <nav class="breadcrumb" id="detail-breadcrumb" aria-label="breadcrumb"></nav>
                         <button class="btn btn-secondary back-btn" id="back-to-list">← 목록으로</button>
                         <article class="post-full">
                             <h1 class="post-full-title" id="detail-title"></h1>
                             <div class="post-full-meta">
-                                <span id="detail-date"></span>
-                                <span id="detail-category"></span>
+                                <span class="meta-author"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> <span id="detail-author"></span></span>
+                                <span class="meta-date"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> <span id="detail-date"></span></span>
+                                <span class="meta-category"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg> <span id="detail-category"></span></span>
                             </div>
                             <div class="post-full-image" id="detail-image"></div>
                             <div class="post-full-content" id="detail-content"></div>
@@ -89,8 +92,13 @@
                     <div class="widget author-widget">
                         <h3 class="widget-title">About</h3>
                         <div class="author-info">
-                            <div class="author-avatar">lilhwang</div>
-                            <p class="author-bio">웹 개발자. 실전에서 바로 적용할 수 있는 개발 가이드와 기술 트렌드를 공유합니다.</p>
+                            <div class="author-avatar">릴황</div>
+                            <p class="author-name"><strong>릴황 (lilhwang)</strong></p>
+                            <p class="author-bio">웹 개발자 & IoT 엔지니어. 700평 포도밭 스마트팜 운영, 홈서버 & 로컬 LLM 연구. 실전 경험에 기반한 개발 가이드와 스마트팜 기술을 공유합니다.</p>
+                            <div class="author-links">
+                                <a href="https://github.com/catcatdo" target="_blank" rel="noopener">GitHub</a>
+                                <a href="about.html">더 알아보기</a>
+                            </div>
                         </div>
                     </div>
 
