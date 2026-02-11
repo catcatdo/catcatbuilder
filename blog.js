@@ -18,6 +18,13 @@ function renderMarkdown(md) {
         return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
     }
 
+    // 0. Preserve HTML img tags from admin editor
+    const imgTags = [];
+    md = md.replace(/<img\s+[^>]*src=["'][^"']+["'][^>]*\/?>/gi, function(match) {
+        imgTags.push(match);
+        return '\x00IT' + (imgTags.length - 1) + '\x00';
+    });
+
     // 1. Extract code blocks first (protect from other processing)
     const codeBlocks = [];
     md = md.replace(/```(\w*)\n([\s\S]*?)```/g, function(_, lang, code) {
@@ -136,11 +143,17 @@ function renderMarkdown(md) {
     html = html.replace(/\x00CB(\d+)\x00/g, function(_, idx) {
         return codeBlocks[parseInt(idx)];
     });
+    // Restore preserved img tags from admin editor
+    html = html.replace(/\x00IT(\d+)\x00/g, function(_, idx) {
+        return imgTags[parseInt(idx)];
+    });
 
     return html;
 }
 
 function applyInline(text) {
+    // Images ![alt](url)
+    text = text.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" loading="lazy">');
     // Bold
     text = text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
     // Italic
