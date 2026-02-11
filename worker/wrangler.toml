@@ -7,4 +7,8 @@ GITHUB_OWNER = "catcatdo"
 GITHUB_REPO = "catcatbuilder"
 GITHUB_BRANCH = "main"
 POSTS_PATH = "posts.json"
-ALLOWED_ORIGINS = "https://lilhwang.com,http://localhost:8787"
+ALLOWED_ORIGINS = "https://lilhwang.com,http://localhost:8787,http://localhost:8000"
+
+[[kv_namespaces]]
+binding = "RANKINGS"
+id = "RANKINGS_KV_ID"
