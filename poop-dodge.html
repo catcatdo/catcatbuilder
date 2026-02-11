@@ -179,6 +179,22 @@
 
         @media (max-width: 768px) {
             .touch-controls { display: flex; }
+
+            /* Hide header on mobile for full game experience */
+            .header { display: none; }
+            .footer { display: none; }
+
+            .game-wrapper { padding: 0.5rem; }
+            .game-title { font-size: 1.3rem; margin-bottom: 0.2rem; }
+            .game-subtitle { font-size: 0.8rem; margin-bottom: 0.5rem; }
+            .game-canvas-container { border-radius: 10px; border-width: 2px; }
+            .game-hud { padding: 0.5rem 0.75rem; margin-top: 0.5rem; border-radius: 8px; }
+            .hud-value { font-size: 1.2rem; }
+            .hud-label { font-size: 0.7rem; }
+            .touch-controls { margin-top: 0.5rem; gap: 2rem; }
+            .touch-btn { width: 64px; height: 64px; font-size: 1.5rem; }
+            .ranking-section { margin-top: 1rem; padding: 1rem; border-radius: 10px; }
+            .ranking-title { font-size: 1.1rem; }
         }
 
         /* Overlay screens */
@@ -454,7 +470,6 @@
 
         @media (max-width: 768px) {
             .keyboard-hint { display: none; }
-            .game-title { font-size: 1.6rem; }
         }
     </style>
 </head>
