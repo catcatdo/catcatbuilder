@@ -3,22 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>기술 블로그 - lilhwang.com | 개발 튜토리얼 & 가이드</title>
-    <meta name="description" content="웹 개발, Docker, Git, REST API, SEO 등 실전 개발 가이드와 튜토리얼을 제공합니다. 초보자부터 시니어까지 유용한 기술 블로그.">
-    <meta name="keywords" content="기술 블로그, 스마트팜, ESP32, IoT, 웹개발, Python, FastAPI">
+    <title>실용 템플릿 라이브러리 - lilhwang.com | 무료 다운로드</title>
+    <meta name="description" content="가계부, 식단 플래너, 운동 기록, 여행 체크리스트, AI 프롬프트 등 일상에서 바로 쓸 수 있는 실용 템플릿을 무료로 제공합니다.">
+    <meta name="keywords" content="템플릿, 가계부, 식단, 운동기록, 체크리스트, 프롬프트, 무료 다운로드">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
-    <link rel="canonical" href="https://lilhwang.com/blog.html">
+    <link rel="canonical" href="https://lilhwang.com/templates.html">
 
-    <meta property="og:title" content="기술 블로그 | lilhwang.com - 개발 튜토리얼 & 가이드">
-    <meta property="og:description" content="웹 개발, Docker, Git, REST API, SEO 등 실전 개발 가이드와 튜토리얼을 제공합니다.">
+    <meta property="og:title" content="실용 템플릿 라이브러리 | lilhwang.com">
+    <meta property="og:description" content="가계부, 식단, 운동, 여행, AI 프롬프트 등 실용 템플릿을 무료로 제공합니다.">
     <meta property="og:image" content="https://lilhwang.com/images/og-default.jpg">
-    <meta property="og:url" content="https://lilhwang.com/blog.html">
+    <meta property="og:url" content="https://lilhwang.com/templates.html">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="릴황">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="기술 블로그 | lilhwang.com - 개발 튜토리얼 & 가이드">
-    <meta name="twitter:description" content="웹 개발, Docker, Git, REST API, SEO 등 실전 개발 가이드와 튜토리얼을 제공합니다.">
+    <meta name="twitter:title" content="실용 템플릿 라이브러리 | lilhwang.com">
+    <meta name="twitter:description" content="가계부, 식단, 운동, 여행, AI 프롬프트 등 실용 템플릿을 무료로 제공합니다.">
     <meta name="twitter:image" content="https://lilhwang.com/images/og-default.jpg">
     <script>
         (function () {
@@ -44,8 +44,8 @@
                 <a href="tests.html">심리테스트</a>
                 <a href="index.html">도구</a>
                 <a href="developer-tools.html">개발자</a>
-                <a href="blog.html" class="active">블로그</a>
-                <a href="templates.html">템플릿</a>
+                <a href="blog.html">블로그</a>
+                <a href="templates.html" class="active">템플릿</a>
                 <a href="about.html">소개</a>
             </nav>
         </div>
@@ -57,13 +57,13 @@
             <div class="blog-wrapper">
                 <!-- Blog Main Area -->
                 <div class="blog-main">
-                    <h1 class="blog-header">기술 블로그</h1>
-                    <p class="blog-subtitle">실전 개발 가이드, 튜토리얼, 기술 트렌드 분석</p>
+                    <h1 class="blog-header">실용 템플릿 라이브러리</h1>
+                    <p class="blog-subtitle">복사해서 바로 쓰는 생활 밀착형 템플릿 모음</p>
 
                     <!-- Post Detail View (Hidden by default) -->
                     <div id="post-detail" class="post-detail" style="display: none;">
                         <nav class="breadcrumb" id="detail-breadcrumb" aria-label="breadcrumb"></nav>
-                        <button class="btn btn-secondary back-btn" id="back-to-list">← 목록으로</button>
+                        <button class="btn btn-secondary back-btn" id="back-to-list">&larr; 목록으로</button>
                         <article class="post-full">
                             <h1 class="post-full-title" id="detail-title"></h1>
                             <div class="post-full-meta">
@@ -79,18 +79,10 @@
 
                     <!-- Posts List View -->
                     <div id="posts-list">
-                        <!-- Category Filter -->
-                        <div class="category-filter">
-                            <button class="category-btn active" data-category="all">전체</button>
-                            <button class="category-btn" data-category="tech">기술</button>
-                            <button class="category-btn" data-category="dev">개발</button>
-                            <button class="category-btn" data-category="life">일상</button>
-                        </div>
-
                         <!-- Posts Grid -->
                         <div id="posts-container" class="posts-grid">
                             <!-- Posts will be loaded here -->
-                            <div class="loading-message">게시글을 불러오는 중...</div>
+                            <div class="loading-message">템플릿을 불러오는 중...</div>
                         </div>
 
                         <!-- Pagination -->
@@ -100,34 +92,19 @@
 
                 <!-- Sidebar -->
                 <aside class="blog-sidebar">
-                    <!-- Author Info -->
+                    <!-- Template Info -->
                     <div class="widget author-widget">
-                        <h3 class="widget-title">About</h3>
+                        <h3 class="widget-title">템플릿 사용법</h3>
                         <div class="author-info">
-                            <div class="author-avatar">릴황</div>
-                            <p class="author-name"><strong>릴황 (lilhwang)</strong></p>
-                            <p class="author-bio">웹 개발자 & IoT 엔지니어. 700평 포도밭 스마트팜 운영, 홈서버 & 로컬 LLM 연구. 실전 경험에 기반한 개발 가이드와 스마트팜 기술을 공유합니다.</p>
-                            <div class="author-links">
-                                <a href="about.html">더 알아보기</a>
-                            </div>
+                            <p class="author-bio">각 템플릿의 코드 블록을 복사해서 메모장, 노션, 옵시디언 등 원하는 곳에 붙여넣기하세요. 마크다운을 지원하는 앱에서 가장 예쁘게 보여요.</p>
                         </div>
                     </div>
 
-                    <!-- Recent Posts -->
+                    <!-- Recent Templates -->
                     <div class="widget">
-                        <h3 class="widget-title">최근 게시글</h3>
+                        <h3 class="widget-title">최근 템플릿</h3>
                         <ul class="widget-list" id="recent-posts">
-                            <li>게시글을 불러오는 중...</li>
-                        </ul>
-                    </div>
-
-                    <!-- Categories -->
-                    <div class="widget">
-                        <h3 class="widget-title">카테고리</h3>
-                        <ul class="widget-list">
-                            <li><a href="#" data-category="tech">기술</a></li>
-                            <li><a href="#" data-category="dev">개발</a></li>
-                            <li><a href="#" data-category="life">일상</a></li>
+                            <li>템플릿을 불러오는 중...</li>
                         </ul>
                     </div>
 
@@ -156,6 +133,7 @@
         </div>
     </footer>
 
+    <script>window.BLOG_MODE = 'template';</script>
     <script src="blog.js"></script>
 </body>
 </html>

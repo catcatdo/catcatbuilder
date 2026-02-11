@@ -230,10 +230,16 @@ async function loadPosts() {
     try {
         const response = await fetch('posts.json?v=' + Date.now());
         const data = await response.json();
-        // 블로그에서는 일기(diary) 제외하고 로드
-        allPosts = data.posts
-            .filter(post => post.category !== 'diary')
-            .sort((a, b) => new Date(b.date) - new Date(a.date));
+        // 모드에 따라 필터링
+        if (window.BLOG_MODE === 'template') {
+            allPosts = data.posts
+                .filter(post => post.category === 'template')
+                .sort((a, b) => new Date(b.date) - new Date(a.date));
+        } else {
+            allPosts = data.posts
+                .filter(post => post.category !== 'diary' && post.category !== 'template')
+                .sort((a, b) => new Date(b.date) - new Date(a.date));
+        }
         renderPosts();
         renderRecentPosts();
         renderTagsCloud();
@@ -390,7 +396,11 @@ function showPostDetail(postId) {
     // Breadcrumb
     const breadcrumbEl = document.getElementById('detail-breadcrumb');
     if (breadcrumbEl) {
-        breadcrumbEl.innerHTML = `<a href="index.html">홈</a> &rsaquo; <a href="blog.html">블로그</a> &rsaquo; <span>${post.title}</span>`;
+        if (window.BLOG_MODE === 'template') {
+            breadcrumbEl.innerHTML = `<a href="index.html">홈</a> &rsaquo; <a href="templates.html">템플릿</a> &rsaquo; <span>${post.title}</span>`;
+        } else {
+            breadcrumbEl.innerHTML = `<a href="index.html">홈</a> &rsaquo; <a href="blog.html">블로그</a> &rsaquo; <span>${post.title}</span>`;
+        }
     }
 
     const imageContainer = document.getElementById('detail-image');
@@ -581,7 +591,8 @@ function getCategoryName(category) {
     const categories = {
         'tech': '기술',
         'dev': '개발',
-        'life': '일상'
+        'life': '일상',
+        'template': '템플릿'
     };
     return categories[category] || category;
 }
