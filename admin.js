@@ -2,6 +2,7 @@
 // Admin JavaScript — Rich Editor with Inline Image Insertion
 // ========================================
 
+const ADMIN_USERNAME = 'catcatdo';
 const ADMIN_PASSWORD = 'Dhktmfpahsh05!';
 let posts = [];
 let isLoggedIn = false;
@@ -25,17 +26,22 @@ function checkLogin() {
 }
 
 document.getElementById('login-btn')?.addEventListener('click', () => {
+    const username = document.getElementById('admin-username').value.trim();
     const password = document.getElementById('admin-password').value;
     const errorDiv = document.getElementById('login-error');
-    if (password === ADMIN_PASSWORD) {
+    if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
         isLoggedIn = true;
         sessionStorage.setItem('adminLoggedIn', 'true');
         sessionStorage.setItem('adminPassword', password);
         showDashboard();
         errorDiv.textContent = '';
     } else {
-        errorDiv.textContent = '비밀번호가 올바르지 않습니다.';
+        errorDiv.textContent = '아이디 또는 비밀번호가 올바르지 않습니다.';
     }
+});
+
+document.getElementById('admin-username')?.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') document.getElementById('admin-password').focus();
 });
 
 document.getElementById('admin-password')?.addEventListener('keypress', (e) => {
