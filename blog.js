@@ -45,6 +45,14 @@ function renderMarkdown(md) {
     let inList = false;
     let inTable = false;
     let tableHeader = false;
+    let paraLines = [];
+
+    function flushParagraph() {
+        if (paraLines.length > 0) {
+            html += '<p>' + paraLines.join('<br>') + '</p>';
+            paraLines = [];
+        }
+    }
 
     for (let i = 0; i < lines.length; i++) {
         let line = lines[i];
@@ -52,6 +60,7 @@ function renderMarkdown(md) {
         // Code block placeholder
         const cbMatch = line.match(/^\x00CB(\d+)\x00$/);
         if (cbMatch) {
+            flushParagraph();
             if (inList) { html += '</ul>'; inList = false; }
             if (inTable) { html += '</tbody></table>'; inTable = false; }
             html += codeBlocks[parseInt(cbMatch[1])];
@@ -60,12 +69,14 @@ function renderMarkdown(md) {
 
         // Heading
         if (line.match(/^### /)) {
+            flushParagraph();
             if (inList) { html += '</ul>'; inList = false; }
             if (inTable) { html += '</tbody></table>'; inTable = false; }
             html += '<h3>' + applyInline(line.slice(4)) + '</h3>';
             continue;
         }
         if (line.match(/^## /)) {
+            flushParagraph();
             if (inList) { html += '</ul>'; inList = false; }
             if (inTable) { html += '</tbody></table>'; inTable = false; }
             html += '<h2>' + applyInline(line.slice(3)) + '</h2>';
@@ -74,6 +85,7 @@ function renderMarkdown(md) {
 
         // Table
         if (line.match(/^\|.+\|$/)) {
+            flushParagraph();
             if (inList) { html += '</ul>'; inList = false; }
             const cells = line.split('|').filter((_, idx, arr) => idx > 0 && idx < arr.length - 1).map(c => c.trim());
             // Check if separator row
@@ -96,6 +108,7 @@ function renderMarkdown(md) {
 
         // Unordered list
         if (line.match(/^[-*] /)) {
+            flushParagraph();
             if (!inList) { inList = true; html += '<ul>'; }
             html += '<li>' + applyInline(line.slice(2)) + '</li>';
             continue;
@@ -106,6 +119,7 @@ function renderMarkdown(md) {
 
         // Ordered list
         if (line.match(/^\d+\. /)) {
+            flushParagraph();
             const text = line.replace(/^\d+\. /, '');
             if (!inList) { inList = true; html += '<ul>'; }
             html += '<li>' + applyInline(text) + '</li>';
@@ -114,6 +128,7 @@ function renderMarkdown(md) {
 
         // Checkbox
         if (line.match(/^- \[[ x]\] /)) {
+            flushParagraph();
             if (!inList) { inList = true; html += '<ul>'; }
             const checked = line.charAt(3) === 'x';
             const text = line.slice(6);
@@ -123,15 +138,17 @@ function renderMarkdown(md) {
 
         // Empty line = paragraph break
         if (line.trim() === '') {
+            flushParagraph();
             if (inList) { html += '</ul>'; inList = false; }
             continue;
         }
 
-        // Regular paragraph
+        // Regular text — collect into paragraph buffer
         if (inList) { html += '</ul>'; inList = false; }
-        html += '<p>' + applyInline(line) + '</p>';
+        paraLines.push(applyInline(line));
     }
 
+    flushParagraph();
     if (inList) html += '</ul>';
     if (inTable) html += '</tbody></table>';
 
