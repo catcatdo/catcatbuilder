@@ -24,6 +24,41 @@ export default {
       }
     }
 
+    // ===== Rankings API =====
+    if (url.pathname === '/rankings') {
+      const gameKey = url.searchParams.get('game') || 'poop-dodge';
+      const kvKey = `rankings:${gameKey}`;
+
+      if (request.method === 'GET') {
+        try {
+          const data = await env.RANKINGS.get(kvKey, 'json');
+          return jsonResponse(data || [], 200, corsHeaders);
+        } catch (error) {
+          return jsonResponse([], 200, corsHeaders);
+        }
+      }
+
+      if (request.method === 'POST') {
+        try {
+          const body = await request.json();
+          const name = String(body.name || '익명').slice(0, 10);
+          const score = parseInt(body.score, 10);
+          if (isNaN(score) || score < 1) {
+            return jsonResponse({ message: '유효하지 않은 점수입니다.' }, 400, corsHeaders);
+          }
+
+          const existing = await env.RANKINGS.get(kvKey, 'json') || [];
+          existing.push({ name, score, date: new Date().toLocaleDateString('ko-KR') });
+          existing.sort((a, b) => b.score - a.score);
+          const top10 = existing.slice(0, 10);
+          await env.RANKINGS.put(kvKey, JSON.stringify(top10));
+          return jsonResponse(top10, 200, corsHeaders);
+        } catch (error) {
+          return jsonResponse({ message: '랭킹 저장 실패' }, 500, corsHeaders);
+        }
+      }
+    }
+
     if (url.pathname !== '/save-posts') {
       return new Response('Not Found', { status: 404, headers: corsHeaders });
     }
