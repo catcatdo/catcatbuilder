@@ -266,6 +266,15 @@ function getPostImageVariants(post) {
         .slice(0, 3);
 }
 
+function getPrimaryPostImage(post) {
+    const variants = getPostImageVariants(post);
+    return uniqueNonEmpty([
+        variants.length ? variants[0] : '',
+        String(post.image || '').trim(),
+        buildInlineFallbackImage(post, 0, '')
+    ])[0] || 'images/blog-fallback.svg';
+}
+
 function buildPostAutoPrompt(post, bodyText, slotIndex) {
     const customPrompts = getPostImagePrompts(post);
     if (customPrompts.length) {
@@ -331,12 +340,12 @@ function buildPostImageCandidates(post, bodyText, slotIndex) {
     const coverImage = String(post.image || '').trim();
 
     return uniqueNonEmpty([
-        buildInlineFallbackImage(post, slotIndex, bodyText),
         localVariant,
         coverImage,
         buildGeneratedImageUrl(prompt, seedBase + '|ai'),
         buildKeywordStockImageUrl(keywordQuery, seedBase, 'a'),
-        buildKeywordStockImageUrl(keywordQuery, seedBase, 'b')
+        buildKeywordStockImageUrl(keywordQuery, seedBase, 'b'),
+        buildInlineFallbackImage(post, slotIndex, bodyText)
     ]);
 }
 
@@ -416,7 +425,7 @@ async function enhanceAutoPostImages(root) {
         const candidates = decodeCandidates(img.getAttribute('data-candidates'));
         if (!candidates.length) continue;
 
-        for (let j = 1; j < candidates.length; j += 1) {
+        for (let j = 0; j < candidates.length; j += 1) {
             const candidate = String(candidates[j] || '').trim();
             if (!candidate) continue;
             try {
@@ -587,7 +596,7 @@ function renderPosts() {
     // Render posts
     container.innerHTML = postsToShow.map(post => `
         <article class="post-card" data-post-id="${post.id}">
-            ${post.image ? `<div class="post-card-image"><img src="${post.image}" alt="${post.title}" loading="lazy"></div>` : ''}
+            <div class="post-card-image"><img src="${getPrimaryPostImage(post)}" alt="${post.title}" loading="lazy" onerror="this.onerror=null;this.src='images/blog-fallback.svg';"></div>
             <div class="post-card-content">
                 <h2 class="post-card-title">${post.title}</h2>
                 <div class="post-card-meta">
@@ -714,8 +723,9 @@ function showPostDetail(postId) {
     }
 
     const imageContainer = document.getElementById('detail-image');
-    if (post.image) {
-        imageContainer.innerHTML = `<img src="${post.image}" alt="${post.title}">`;
+    const heroImage = getPrimaryPostImage(post);
+    if (heroImage) {
+        imageContainer.innerHTML = `<img src="${heroImage}" alt="${post.title}" onerror="this.onerror=null;this.src='images/blog-fallback.svg';">`;
     } else {
         imageContainer.innerHTML = '';
     }

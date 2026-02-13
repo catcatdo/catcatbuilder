@@ -18,19 +18,36 @@
             .trim();
     }
 
+    function decodeHtmlEntities(value) {
+        var raw = String(value || '');
+        if (!raw) {
+            return '';
+        }
+        var textarea = document.createElement('textarea');
+        textarea.innerHTML = raw;
+        return textarea.value;
+    }
+
+    function normalizeReadableText(value) {
+        return decodeHtmlEntities(value)
+            .replace(/\u00a0/g, ' ')
+            .replace(/\s+/g, ' ')
+            .trim();
+    }
+
     function isNonEmptyString(value) {
         return typeof value === 'string' && value.trim().length > 0;
     }
 
     function resolveBody(issue) {
         if (issue.rewritten_body && String(issue.rewritten_body).trim()) {
-            return String(issue.rewritten_body).trim();
+            return normalizeReadableText(issue.rewritten_body);
         }
         if (issue.excerpt && String(issue.excerpt).trim()) {
-            return String(issue.excerpt).trim();
+            return normalizeReadableText(issue.excerpt);
         }
         if (issue.content) {
-            var text = stripHtml(issue.content);
+            var text = normalizeReadableText(stripHtml(issue.content));
             return text.length > 520 ? text.slice(0, 520) + '...' : text;
         }
         return '';
@@ -60,23 +77,23 @@
 
     function resolveCuratorInsight(issue) {
         if (isNonEmptyString(issue.curator_insight)) {
-            return issue.curator_insight.trim();
+            return normalizeReadableText(issue.curator_insight);
         }
         return '';
     }
 
     function resolveVisualSuggestion(issue) {
         if (isNonEmptyString(issue.visual_suggestion)) {
-            return issue.visual_suggestion.trim();
+            return normalizeReadableText(issue.visual_suggestion);
         }
         return '';
     }
 
     function resolveCatchyTitle(issue) {
         if (isNonEmptyString(issue.catchy_title)) {
-            return issue.catchy_title.trim();
+            return normalizeReadableText(issue.catchy_title);
         }
-        return issue.title || '제목 없음';
+        return normalizeReadableText(issue.title || '제목 없음');
     }
 
     function normalizeImageUrl(value) {
@@ -434,7 +451,7 @@
         var firstImage = imageCandidates.length ? imageCandidates[0] : '';
 
         var imageHtml = firstImage
-            ? '<div class="issue-image"><img src="' + escapeHtml(firstImage) + '" alt="' + escapeHtml(catchyTitle || '이슈 이미지') + '" loading="lazy" decoding="async" referrerpolicy="no-referrer" data-candidates="' + escapeHtml(encodedCandidates) + '"></div>'
+            ? '<div class="issue-image"><img src="' + escapeHtml(firstImage) + '" alt="' + escapeHtml(catchyTitle || '이슈 이미지') + '" loading="lazy" decoding="async" referrerpolicy="no-referrer" data-candidates="' + escapeHtml(encodedCandidates) + '" onerror="this.onerror=null;this.src=\'' + ISSUE_FALLBACK_IMAGE + '\';"></div>'
             : '';
 
         var tagsHtml = tags.length

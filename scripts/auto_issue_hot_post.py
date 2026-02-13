@@ -13,6 +13,7 @@ Rules implemented:
 from __future__ import annotations
 
 import json
+import html
 import re
 import sys
 from dataclasses import dataclass
@@ -69,8 +70,52 @@ class FeedItem:
 
 
 def clean_text(text: str) -> str:
-    text = re.sub(r"<[^>]+>", "", text or "")
+    text = html.unescape(text or "").replace("\xa0", " ")
+    text = re.sub(r"<[^>]+>", " ", text)
     text = re.sub(r"\s+", " ", text).strip()
+    return text
+
+
+def strip_title_source(title: str, source: str) -> str:
+    text = clean_text(title)
+    if " - " in text:
+        parts = [p.strip() for p in text.split(" - ") if p.strip()]
+        if len(parts) >= 2 and len(parts[-1]) <= 40:
+            text = " - ".join(parts[:-1]).strip()
+
+    if source:
+        src = re.escape(clean_text(source))
+        text = re.sub(rf"\s*(?:-|\|)\s*{src}\s*$", "", text, flags=re.IGNORECASE).strip()
+
+    return text.strip(" -|") or clean_text(title)
+
+
+def is_noisy_summary(summary: str) -> bool:
+    lower = summary.lower()
+    if not summary:
+        return True
+    if len(summary) > 220:
+        return True
+    if summary.count(" - ") >= 2:
+        return True
+    markers = re.findall(
+        r"(뉴스|일보|신문|브리핑|news|times|bloomberg|reuters|herald|post|press)",
+        lower,
+    )
+    return len(markers) >= 2
+
+
+def normalize_summary(summary: str, title: str, source: str) -> str:
+    text = clean_text(summary)
+    text = re.sub(r"\[[^\]]+\]", "", text).strip()
+    if source:
+        src = re.escape(clean_text(source))
+        text = re.sub(rf"\s*(?:-|\|)\s*{src}\s*$", "", text, flags=re.IGNORECASE).strip()
+        text = re.sub(rf"\s+{src}\s*$", "", text, flags=re.IGNORECASE).strip()
+
+    if is_noisy_summary(text):
+        text = strip_title_source(title, source)
+
     return text
 
 
@@ -104,12 +149,13 @@ def parse_feed(url: str) -> List[FeedItem]:
     root = ET.fromstring(data)
     items: List[FeedItem] = []
     for item in root.findall("./channel/item"):
-        title = clean_text(item.findtext("title", default=""))
+        raw_title = item.findtext("title", default="")
         link = clean_text(item.findtext("link", default=""))
         pub_raw = item.findtext("pubDate", default="")
-        desc = clean_text(item.findtext("description", default=""))
         source_el = item.find("source")
         source = clean_text(source_el.text if source_el is not None else "") or "Google News"
+        title = strip_title_source(raw_title, source)
+        desc = normalize_summary(item.findtext("description", default=""), title, source)
 
         if not title or not link:
             continue
