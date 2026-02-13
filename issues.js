@@ -87,6 +87,23 @@
         return url;
     }
 
+    function escapeXml(value) {
+        return String(value || '')
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&apos;');
+    }
+
+    function truncateText(value, maxLength) {
+        var str = String(value || '').trim();
+        if (str.length <= maxLength) {
+            return str;
+        }
+        return str.slice(0, Math.max(0, maxLength - 1)) + '…';
+    }
+
     function extractPromptFromVisualSuggestion(value) {
         var text = String(value || '').trim();
         if (!text) {
@@ -99,6 +116,25 @@
         }
 
         return text;
+    }
+
+    function extractKeywordsFromVisualSuggestion(value) {
+        var text = String(value || '').trim();
+        if (!text) {
+            return '';
+        }
+
+        var match = text.match(/무료\s*스톡\s*키워드\s*:\s*([^.\n]+)/i);
+        if (!match || !match[1]) {
+            return '';
+        }
+
+        return match[1]
+            .split(',')
+            .map(function (keyword) { return keyword.trim(); })
+            .filter(function (keyword) { return keyword.length > 0; })
+            .slice(0, 4)
+            .join(',');
     }
 
     function simpleHash(input) {
@@ -122,18 +158,128 @@
             '?model=flux&width=1280&height=720&nologo=true&seed=' + seed;
     }
 
-    function resolveDisplayImage(issue) {
+    function buildStockImageUrl(seedBase, salt) {
+        var seed = simpleHash(String(seedBase || '') + '|' + String(salt || '')) % 1000000;
+        return 'https://picsum.photos/seed/issue-' + seed + '/1280/720';
+    }
+
+    function buildInlineFallbackImage(issue) {
+        var title = truncateText(resolveCatchyTitle(issue) || 'Issue Brief', 56);
+        var insight = truncateText(resolveCuratorInsight(issue) || resolveBody(issue) || '핵심 이슈를 정리한 브리프', 88);
+        var tags = Array.isArray(issue.tags) ? issue.tags : [];
+        var chip = tags.length ? ('#' + String(tags[0] || '').trim()) : '#ISSUE';
+        var dateText = String(issue.published_at || '').slice(0, 10) || 'TODAY';
+        var svg =
+            '<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="Issue cover">' +
+                '<defs>' +
+                    '<linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">' +
+                        '<stop offset="0%" stop-color="#0f172a" />' +
+                        '<stop offset="55%" stop-color="#1e3a8a" />' +
+                        '<stop offset="100%" stop-color="#0b3b6a" />' +
+                    '</linearGradient>' +
+                '</defs>' +
+                '<rect width="1280" height="720" fill="url(#g1)" />' +
+                '<rect x="54" y="54" width="1172" height="612" rx="22" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="2" />' +
+                '<text x="96" y="130" fill="#bfdbfe" font-size="30" font-family="Arial, sans-serif">ISSUE BRIEF</text>' +
+                '<text x="96" y="198" fill="#ffffff" font-size="54" font-weight="700" font-family="Arial, sans-serif">' + escapeXml(title) + '</text>' +
+                '<text x="96" y="258" fill="#dbeafe" font-size="28" font-family="Arial, sans-serif">' + escapeXml(insight) + '</text>' +
+                '<rect x="96" y="584" width="260" height="58" rx="29" fill="rgba(255,255,255,0.16)" />' +
+                '<text x="130" y="621" fill="#ffffff" font-size="30" font-family="Arial, sans-serif">' + escapeXml(chip) + '</text>' +
+                '<text x="1030" y="621" fill="#bfdbfe" font-size="28" font-family="Arial, sans-serif">' + escapeXml(dateText) + '</text>' +
+            '</svg>';
+        return 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg);
+    }
+
+    function uniqueNonEmpty(list) {
+        var result = [];
+        var seen = {};
+        (list || []).forEach(function (item) {
+            var value = String(item || '').trim();
+            if (!value || seen[value]) {
+                return;
+            }
+            seen[value] = true;
+            result.push(value);
+        });
+        return result;
+    }
+
+    function resolveImageCandidates(issue) {
+        var seedBase = (issue.id || '') + '|' + (resolveCatchyTitle(issue) || issue.title || '');
+        var visualSuggestion = resolveVisualSuggestion(issue);
+        var prompt = extractPromptFromVisualSuggestion(visualSuggestion);
+        var keywordQuery = extractKeywordsFromVisualSuggestion(visualSuggestion) || prompt;
         var directImage = normalizeImageUrl(issue.image);
+
+        var candidates = [];
         if (directImage) {
-            return directImage;
+            candidates.push(directImage);
         }
 
-        var prompt = extractPromptFromVisualSuggestion(resolveVisualSuggestion(issue));
-        if (!prompt) {
-            return '';
+        if (prompt) {
+            candidates.push(buildGeneratedImageUrl(prompt, seedBase));
         }
 
-        return buildGeneratedImageUrl(prompt, (issue.id || '') + '|' + (issue.title || ''));
+        if (keywordQuery) {
+            candidates.push(buildStockImageUrl(seedBase + '|' + keywordQuery, 'a'));
+            candidates.push(buildStockImageUrl(seedBase + '|' + keywordQuery, 'b'));
+        } else {
+            candidates.push(buildStockImageUrl(seedBase, 'a'));
+        }
+
+        candidates.push(buildInlineFallbackImage(issue));
+        return uniqueNonEmpty(candidates);
+    }
+
+    function hideImage(img) {
+        if (!img) {
+            return;
+        }
+        img.style.display = 'none';
+        if (img.parentElement) {
+            img.parentElement.style.display = 'none';
+        }
+    }
+
+    function getImageCandidatesFromElement(img) {
+        var raw = img.getAttribute('data-candidates') || '';
+        if (!raw) {
+            return [];
+        }
+        try {
+            var parsed = JSON.parse(decodeURIComponent(raw));
+            return Array.isArray(parsed) ? parsed : [];
+        } catch (error) {
+            return [];
+        }
+    }
+
+    function advanceImageCandidate(img) {
+        var candidates = getImageCandidatesFromElement(img);
+        if (!candidates.length) {
+            hideImage(img);
+            return;
+        }
+
+        var currentIndex = parseInt(img.getAttribute('data-candidate-index') || '0', 10);
+        if (isNaN(currentIndex)) {
+            currentIndex = 0;
+        }
+
+        var nextIndex = currentIndex + 1;
+        if (nextIndex >= candidates.length) {
+            hideImage(img);
+            return;
+        }
+
+        img.setAttribute('data-candidate-index', String(nextIndex));
+        img.src = candidates[nextIndex];
+    }
+
+    function registerImageFallbackHandler() {
+        window.__issueImageFallback = function (img) {
+            advanceImageCandidate(img);
+        };
     }
 
     function parseDateValue(value) {
@@ -202,9 +348,14 @@
         var tags = Array.isArray(issue.tags) ? issue.tags : [];
         var comments = Array.isArray(issue.comments) ? issue.comments : [];
 
-        var safeImageUrl = resolveDisplayImage(issue);
-        var imageHtml = safeImageUrl
-            ? '<div class="issue-image"><img src="' + escapeHtml(safeImageUrl) + '" alt="' + escapeHtml(catchyTitle || '이슈 이미지') + '" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.onerror=null;this.style.display=&quot;none&quot;;if(this.parentElement){this.parentElement.style.display=&quot;none&quot;;}"></div>'
+        var imageCandidates = resolveImageCandidates(issue);
+        var firstImage = imageCandidates.length ? imageCandidates[0] : '';
+        var encodedCandidates = imageCandidates.length
+            ? encodeURIComponent(JSON.stringify(imageCandidates))
+            : '';
+
+        var imageHtml = firstImage
+            ? '<div class="issue-image"><img src="' + escapeHtml(firstImage) + '" alt="' + escapeHtml(catchyTitle || '이슈 이미지') + '" loading="lazy" decoding="async" data-candidates="' + escapeHtml(encodedCandidates) + '" data-candidate-index="0" onerror="window.__issueImageFallback && window.__issueImageFallback(this)"></div>'
             : '';
 
         var tagsHtml = tags.length
@@ -290,5 +441,6 @@
         container.innerHTML = issues.map(renderIssue).join('');
     }
 
+    registerImageFallbackHandler();
     document.addEventListener('DOMContentLoaded', renderIssues);
 })();
