@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>이슈 허브 | lilhwang.com</title>
-    <meta name="description" content="커뮤니티 이슈를 저작권 안전 방식으로 재구성한 본문과 iMessage 스타일 댓글 UI를 제공합니다.">
-    <meta name="keywords" content="이슈, 커뮤니티, 요약, 댓글, iMessage UI, 트렌드">
+    <meta name="description" content="커뮤니티 이슈를 저작권 안전 방식으로 재구성한 본문과 커뮤 반응 요약을 제공합니다.">
+    <meta name="keywords" content="이슈, 커뮤니티, 요약, 댓글, 커뮤 반응, 트렌드">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://lilhwang.com/issues.html">
 
     <meta property="og:type" content="website">
     <meta property="og:title" content="이슈 허브 | lilhwang.com">
-    <meta property="og:description" content="저작권 안전 재작성 본문 + iMessage 스타일 댓글 UI">
+    <meta property="og:description" content="저작권 안전 재작성 본문 + 커뮤 반응 요약">
     <meta property="og:url" content="https://lilhwang.com/issues.html">
     <meta property="og:image" content="https://lilhwang.com/images/og-default.jpg">
     <meta property="og:site_name" content="릴황">
@@ -90,6 +90,18 @@
             line-height: 1.7;
         }
 
+        .issue-image {
+            margin-top: -4px;
+        }
+
+        .issue-image img {
+            width: 100%;
+            max-height: 420px;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 1px solid var(--border-soft);
+        }
+
         .issue-note {
             font-size: 0.86rem;
             background: var(--bg-surface-muted);
@@ -114,7 +126,7 @@
             color: var(--text-secondary);
         }
 
-        .imessage-wrap {
+        .reaction-wrap {
             background: #e9edf2;
             border-radius: 16px;
             padding: 14px;
@@ -123,7 +135,7 @@
             border: 1px solid #d4dbe4;
         }
 
-        [data-theme="dark"] .imessage-wrap {
+        [data-theme="dark"] .reaction-wrap {
             background: #1b2430;
             border-color: #2f3d4e;
         }
@@ -220,7 +232,7 @@
             <div class="issues-shell">
                 <section class="issues-hero">
                     <h1>이슈 허브</h1>
-                    <p>커뮤니티 원문은 직접 복붙하지 않고, 핵심 쟁점 중심으로 재구성한 본문과 iMessage 스타일 댓글 흐름으로 제공합니다.</p>
+                    <p>커뮤니티 원문은 직접 복붙하지 않고, 핵심 쟁점 중심으로 재구성한 본문과 커뮤 반응 요약을 제공합니다.</p>
                 </section>
 
                 <section id="issues-container" aria-live="polite"></section>

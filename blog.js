@@ -254,7 +254,7 @@ async function loadPosts() {
                 .sort((a, b) => new Date(b.date) - new Date(a.date));
         } else {
             allPosts = data.posts
-                .filter(post => post.category !== 'diary' && post.category !== 'template')
+                .filter(post => post.category !== 'diary' && post.category !== 'template' && post.category !== 'issue')
                 .sort((a, b) => new Date(b.date) - new Date(a.date));
         }
         renderPosts();
@@ -609,6 +609,7 @@ function getCategoryName(category) {
         'tech': '기술',
         'dev': '개발',
         'life': '일상',
+        'issue': '이슈',
         'template': '템플릿'
     };
     return categories[category] || category;

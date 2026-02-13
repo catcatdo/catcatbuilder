@@ -596,7 +596,7 @@ document.getElementById('discard-draft')?.addEventListener('click', () => { if (
 // Utility
 // ========================================
 
-function getCategoryName(c) { return { tech: '기술', dev: '개발', life: '일상' }[c] || c; }
+function getCategoryName(c) { return { tech: '기술', dev: '개발', life: '일상', issue: '이슈' }[c] || c; }
 
 // ========================================
 // Init
