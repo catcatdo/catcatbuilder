@@ -64,6 +64,12 @@
         <priority>0.7</priority>
     </url>
     <url>
+        <loc>https://lilhwang.com/diary.html</loc>
+        <lastmod>2026-02-13</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
         <loc>https://lilhwang.com/guide-daily-tools.html</loc>
         <lastmod>2026-02-13</lastmod>
         <changefreq>monthly</changefreq>
