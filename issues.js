@@ -107,6 +107,16 @@
         return url;
     }
 
+    function getIssueImageVariants(issue) {
+        if (!Array.isArray(issue.image_variants)) {
+            return [];
+        }
+        return issue.image_variants
+            .map(function (path) { return normalizeImageUrl(path); })
+            .filter(function (path) { return path.length > 0; })
+            .slice(0, 3);
+    }
+
     function escapeXml(value) {
         return String(value || '')
             .replace(/&/g, '&amp;')
@@ -249,17 +259,38 @@
         return result;
     }
 
-    function resolveImageCandidates(issue) {
+    function resolveImageCandidates(issue, slotIndex) {
         var seedBase = (issue.id || '') + '|' + (resolveCatchyTitle(issue) || issue.title || '');
+        var slot = Math.max(0, Number(slotIndex) || 0);
         var visualSuggestion = resolveVisualSuggestion(issue);
         var promptFromVisual = extractPromptFromVisualSuggestion(visualSuggestion);
         var keywordQuery = extractKeywordsFromVisualSuggestion(visualSuggestion);
         var autoPrompt = buildAutoPrompt(issue, keywordQuery || promptFromVisual);
         var directImage = normalizeImageUrl(issue.image);
+        var variants = getIssueImageVariants(issue);
+        var slotVariant = variants.length ? variants[slot % variants.length] : '';
 
         var candidates = [];
-        if (directImage) {
-            candidates.push(directImage);
+        if (slot > 0) {
+            if (slotVariant) {
+                candidates.push(slotVariant);
+            }
+            variants.forEach(function (variant) {
+                candidates.push(variant);
+            });
+            if (directImage) {
+                candidates.push(directImage);
+            }
+        } else {
+            if (directImage) {
+                candidates.push(directImage);
+            }
+            if (slotVariant) {
+                candidates.push(slotVariant);
+            }
+            variants.forEach(function (variant) {
+                candidates.push(variant);
+            });
         }
 
         if (promptFromVisual) {
@@ -275,6 +306,34 @@
         candidates.push(buildInlineFallbackImage(issue));
 
         return uniqueNonEmpty(candidates);
+    }
+
+    function renderIssueInlineImages(issue) {
+        var body = resolveBody(issue);
+        var summary = resolveSummaryLines(issue);
+        var insight = resolveCuratorInsight(issue);
+        var contentLength = body.length + insight.length + summary.join(' ').length;
+        var imageCount = contentLength > 680 ? 3 : 2;
+
+        var blocks = [];
+        for (var i = 1; i <= imageCount; i += 1) {
+            var candidates = resolveImageCandidates(issue, i);
+            if (!candidates.length) {
+                continue;
+            }
+            var firstImage = candidates[0];
+            var encoded = encodeURIComponent(JSON.stringify(candidates));
+            blocks.push(
+                '<div class="issue-inline-image">' +
+                    '<img src="' + escapeHtml(firstImage) + '" alt="' + escapeHtml(resolveCatchyTitle(issue) || '이슈 이미지') + ' ' + i + '" loading="lazy" decoding="async" referrerpolicy="no-referrer" data-candidates="' + escapeHtml(encoded) + '" onerror="this.onerror=null;this.src=\'' + ISSUE_FALLBACK_IMAGE + '\';">' +
+                '</div>'
+            );
+        }
+
+        if (!blocks.length) {
+            return '';
+        }
+        return '<div class="issue-inline-gallery">' + blocks.join('') + '</div>';
     }
 
     function decodeCandidates(raw) {
@@ -397,7 +456,8 @@
             rewritten_body: resolveBody(post),
             tags: Array.isArray(post.tags) ? post.tags : [],
             comments: Array.isArray(post.comments) ? post.comments : [],
-            image: post.image || ''
+            image: post.image || '',
+            image_variants: Array.isArray(post.image_variants) ? post.image_variants : []
         };
     }
 
@@ -432,7 +492,8 @@
             rewritten_body: resolveBody(issue),
             tags: Array.isArray(issue.tags) ? issue.tags : [],
             comments: Array.isArray(issue.comments) ? issue.comments : [],
-            image: issue.image || ''
+            image: issue.image || '',
+            image_variants: getIssueImageVariants(issue)
         };
     }
 
@@ -444,7 +505,7 @@
         var tags = Array.isArray(issue.tags) ? issue.tags : [];
         var comments = Array.isArray(issue.comments) ? issue.comments : [];
 
-        var imageCandidates = resolveImageCandidates(issue);
+        var imageCandidates = resolveImageCandidates(issue, 0);
         var encodedCandidates = imageCandidates.length
             ? encodeURIComponent(JSON.stringify(imageCandidates))
             : '';
@@ -479,6 +540,7 @@
         var bodyHtml = rewrittenBody
             ? '<div class="issue-summary">' + escapeHtml(rewrittenBody) + '</div>'
             : '';
+        var inlineImageHtml = renderIssueInlineImages(issue);
 
         var commentsHtml = comments.length
             ? comments.map(function (comment) {
@@ -504,6 +566,7 @@
                 '<h2 class="issue-title">' + escapeHtml(catchyTitle) + '</h2>' +
                 imageHtml +
                 bodyHtml +
+                inlineImageHtml +
                 summaryHtml +
                 insightHtml +
                 tagsHtml +

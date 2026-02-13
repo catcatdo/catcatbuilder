@@ -15,6 +15,7 @@ window.ISSUE_THREADS = window.ISSUE_THREADS || [
     source_url: "",
     published_at: "2026-02-13T23:55:00+09:00",
     image: "images/generated/post-9001-cover.svg",
+    image_variants: ["images/generated/post-9001-v1.svg", "images/generated/post-9001-v2.svg", "images/generated/post-9001-v3.svg"],
     rewritten_body: "무면허 음주 상태에서 과속·역주행으로 사망 사고를 낸 20대 운전자가 항소심에서 감형되며 논란이 커졌습니다. 재판부는 별도 사건에서 이미 확정된 형과 이번 사건이 경합범 관계에 있어 형평을 다시 따져야 한다는 법리를 적용했다고 설명했습니다. 유족 측의 엄벌 요구와 법리상 감형 판단이 정면으로 충돌하면서, '국민 감정'과 '양형 체계' 사이 간극이 다시 쟁점으로 떠올랐습니다.",
     summary_lines: [
       "항소심 재판부는 1심 징역 8년을 파기하고 징역 6년과 벌금 30만원을 선고했다.",
@@ -83,6 +84,7 @@ window.ISSUE_THREADS = window.ISSUE_THREADS || [
     source_url: "https://www.joongang.co.kr/article/25404962",
     published_at: "2026-02-13T23:20:00+09:00",
     image: "images/generated/post-9002-cover.svg",
+    image_variants: ["images/generated/post-9002-v1.svg", "images/generated/post-9002-v2.svg", "images/generated/post-9002-v3.svg"],
     rewritten_body: "최가온의 하프파이프 금메달은 개인 재능만으로 설명하기 어려운 성과라는 평가가 나옵니다. 장기 협회 후원, 부상 치료비 지원, 해외 훈련과 멘탈·학습 관리 같은 다층 지원이 누적되며 성과로 연결됐다는 분석입니다. 동시에 이번 사례는 한국 동계 설상 종목이 아직도 민간 대기업의 지속 투자에 크게 의존하고 있다는 구조적 현실도 함께 드러냈습니다.",
     summary_lines: [
       "최가온이 2026 밀라노·코르티나 동계올림픽 스노보드 여자 하프파이프에서 우승하며 한국 설상 종목의 새 기록을 만들었다.",
@@ -151,6 +153,7 @@ window.ISSUE_THREADS = window.ISSUE_THREADS || [
     source_url: "https://m.sports.naver.com/kbaxxseball/article/468/0001217528",
     published_at: "2026-02-13",
     image: "images/generated/post-9003-cover.svg",
+    image_variants: ["images/generated/post-9003-v1.svg", "images/generated/post-9003-v2.svg", "images/generated/post-9003-v3.svg"],
     rewritten_body: "대만 전지훈련 중 롯데 선수들의 외부 동선과 CCTV 장면 확산을 둘러싼 논란이 이어졌지만, 당사자 및 구단 측에서는 성추행 의혹에 대해 사실이 아니라는 취지로 선을 그었습니다. 이후 커뮤니티 관심은 단순 자극 이슈보다 정보가 어떤 순서와 방식으로 퍼졌는지, 그리고 무엇이 확인 사실인지에 집중되는 흐름으로 이동했습니다.",
     summary_lines: [
       "해당 사안은 의혹 제기 이후 구단·당사자 측 해명이 나오며 '사실 아님' 입장이 공개됐다.",

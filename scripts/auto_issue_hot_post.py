@@ -255,23 +255,25 @@ def build_tags(item: FeedItem) -> List[str]:
 
 
 def build_catchy_title(item: FeedItem) -> str:
-    base = shorten(item.title, 52)
+    base = shorten(strip_title_source(item.title, item.source), 52)
     return f"{base}: 지금 논쟁의 핵심만 짚어봤다"
 
 
 def build_rewritten_body(item: FeedItem) -> str:
+    clean_title = strip_title_source(item.title, item.source)
     summary = clean_text(item.summary) or clean_text(item.title)
     return (
-        f"현재 주목받는 이슈는 '{clean_text(item.title)}'로, 온라인 확산 속도가 빠르게 올라가는 상황입니다. "
+        f"현재 주목받는 이슈는 '{clean_title}'로, 온라인 확산 속도가 빠르게 올라가는 상황입니다. "
         f"핵심은 {shorten(summary, 180)}에 있으며, 단편적 문장보다 사실 관계와 후속 조치의 순서를 함께 보는 해석이 필요합니다. "
         "초기 정보와 후속 발표 사이 간극이 큰 이슈일수록, 확인된 사실과 의견을 분리해 읽는 태도가 중요하다는 점이 다시 강조되고 있습니다."
     )
 
 
 def build_summary_lines(item: FeedItem) -> List[str]:
+    clean_title = strip_title_source(item.title, item.source)
     summary = clean_text(item.summary) or clean_text(item.title)
     return [
-        f"핫이슈로 떠오른 사안은 '{shorten(item.title, 70)}'이며 확산 속도가 빠르다.",
+        f"핫이슈로 떠오른 사안은 '{shorten(clean_title, 70)}'이며 확산 속도가 빠르다.",
         f"현재까지 공개된 핵심 맥락은 {shorten(summary, 95)}로 요약된다.",
         "단정적 해석보다 후속 발표·공식 자료·절차 진행 상황을 기준으로 판단해야 한다는 의견이 우세하다.",
     ]
@@ -285,7 +287,7 @@ def build_curator_insight(item: FeedItem) -> str:
 
 
 def build_visual_suggestion(item: FeedItem, tags: List[str]) -> str:
-    topic = shorten(item.title, 60)
+    topic = shorten(strip_title_source(item.title, item.source), 60)
     stock_keywords = [
         "breaking news", "editorial analysis", "press microphones", "city night",
     ]
