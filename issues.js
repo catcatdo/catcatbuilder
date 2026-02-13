@@ -366,7 +366,7 @@
 
         var summaryHtml = summaryLines.length
             ? '<div class="curation-block">' +
-                '<h3 class="subsection-title" style="margin-top:0;">[3-Line Summary]</h3>' +
+                '<h3 class="subsection-title" style="margin-top:0;">세줄요약</h3>' +
                 '<ol class="summary-list">' + summaryLines.map(function (line) {
                     return '<li>' + escapeHtml(line) + '</li>';
                 }).join('') + '</ol>' +
@@ -375,7 +375,7 @@
 
         var insightHtml = curatorInsight
             ? '<div class="curation-block">' +
-                '<h3 class="subsection-title" style="margin-top:0;">[Curator\'s Insight]</h3>' +
+                '<h3 class="subsection-title" style="margin-top:0;">릴황생각</h3>' +
                 '<p class="issue-summary issue-block-text">' + escapeHtml(curatorInsight) + '</p>' +
               '</div>'
             : '';
