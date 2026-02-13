@@ -87,6 +87,8 @@
         return url;
     }
 
+    var ISSUE_FALLBACK_IMAGE = 'images/issue-fallback.svg';
+
     function escapeXml(value) {
         return String(value || '')
             .replace(/&/g, '&amp;')
@@ -276,22 +278,10 @@
         candidates.push(buildKeywordStockImageUrl(keywordQuery || promptFromVisual || autoPrompt, seedBase, 'a'));
         candidates.push(buildKeywordStockImageUrl(keywordQuery || promptFromVisual || autoPrompt, seedBase, 'b'));
 
-        candidates.push(buildInlineFallbackImage(issue));
         return uniqueNonEmpty(candidates);
     }
 
-    function hideImage(img) {
-        if (!img) {
-            return;
-        }
-        img.style.display = 'none';
-        if (img.parentElement) {
-            img.parentElement.style.display = 'none';
-        }
-    }
-
-    function getImageCandidatesFromElement(img) {
-        var raw = img.getAttribute('data-candidates') || '';
+    function getImageCandidatesFromElement(raw) {
         if (!raw) {
             return [];
         }
@@ -303,32 +293,44 @@
         }
     }
 
-    function advanceImageCandidate(img) {
-        var candidates = getImageCandidatesFromElement(img);
-        if (!candidates.length) {
-            hideImage(img);
+    function tryResolveIssueImage(img, candidates, index) {
+        if (!img || !candidates || index >= candidates.length) {
             return;
         }
 
-        var currentIndex = parseInt(img.getAttribute('data-candidate-index') || '0', 10);
-        if (isNaN(currentIndex)) {
-            currentIndex = 0;
-        }
-
-        var nextIndex = currentIndex + 1;
-        if (nextIndex >= candidates.length) {
-            hideImage(img);
+        var candidateUrl = String(candidates[index] || '').trim();
+        if (!candidateUrl) {
+            tryResolveIssueImage(img, candidates, index + 1);
             return;
         }
 
-        img.setAttribute('data-candidate-index', String(nextIndex));
-        img.src = candidates[nextIndex];
+        var testImage = new Image();
+        testImage.loading = 'eager';
+        testImage.decoding = 'async';
+        testImage.referrerPolicy = 'no-referrer';
+        testImage.onload = function () {
+            img.src = candidateUrl;
+        };
+        testImage.onerror = function () {
+            tryResolveIssueImage(img, candidates, index + 1);
+        };
+        testImage.src = candidateUrl;
     }
 
-    function registerImageFallbackHandler() {
-        window.__issueImageFallback = function (img) {
-            advanceImageCandidate(img);
-        };
+    function hydrateIssueImages(container) {
+        if (!container) {
+            return;
+        }
+
+        var images = container.querySelectorAll('img[data-image-resolve="1"]');
+        images.forEach(function (img) {
+            var encoded = img.getAttribute('data-candidates') || '';
+            var candidates = getImageCandidatesFromElement(encoded);
+            if (!candidates.length) {
+                return;
+            }
+            tryResolveIssueImage(img, candidates, 0);
+        });
     }
 
     function parseDateValue(value) {
@@ -398,14 +400,11 @@
         var comments = Array.isArray(issue.comments) ? issue.comments : [];
 
         var imageCandidates = resolveImageCandidates(issue);
-        var firstImage = imageCandidates.length ? imageCandidates[0] : '';
         var encodedCandidates = imageCandidates.length
             ? encodeURIComponent(JSON.stringify(imageCandidates))
             : '';
 
-        var imageHtml = firstImage
-            ? '<div class="issue-image"><img src="' + escapeHtml(firstImage) + '" alt="' + escapeHtml(catchyTitle || '이슈 이미지') + '" loading="lazy" decoding="async" data-candidates="' + escapeHtml(encodedCandidates) + '" data-candidate-index="0" onerror="window.__issueImageFallback && window.__issueImageFallback(this)"></div>'
-            : '';
+        var imageHtml = '<div class="issue-image"><img src="' + escapeHtml(ISSUE_FALLBACK_IMAGE) + '" alt="' + escapeHtml(catchyTitle || '이슈 이미지') + '" loading="lazy" decoding="async" data-image-resolve="1" data-candidates="' + escapeHtml(encodedCandidates) + '"></div>';
 
         var tagsHtml = tags.length
             ? '<div class="tag-row">' + tags.map(function (tag) {
@@ -488,8 +487,8 @@
         }
 
         container.innerHTML = issues.map(renderIssue).join('');
+        hydrateIssueImages(container);
     }
 
-    registerImageFallbackHandler();
     document.addEventListener('DOMContentLoaded', renderIssues);
 })();

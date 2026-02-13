@@ -287,23 +287,7 @@ function buildKeywordStockImageUrl(keywordQuery, seedBase, salt) {
 }
 
 function buildInlineFallbackImage(post, slotIndex) {
-    const title = truncateText(post.title || 'Blog Brief', 52);
-    const subtitle = truncateText((post.excerpt || '').trim() || '핵심 내용을 빠르게 읽는 브리프', 72);
-    const tag = Array.isArray(post.tags) && post.tags.length ? '#' + String(post.tags[0]).trim() : '#BLOG';
-    const svg =
-        '<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">' +
-            '<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">' +
-                '<stop offset="0%" stop-color="#111827"/><stop offset="100%" stop-color="#1d4ed8"/>' +
-            '</linearGradient></defs>' +
-            '<rect width="1280" height="720" fill="url(#g)"/>' +
-            '<rect x="56" y="56" width="1168" height="608" rx="20" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="2"/>' +
-            '<text x="98" y="132" fill="#bfdbfe" font-size="30" font-family="Arial, sans-serif">ARTICLE IMAGE ' + escapeXml(String(slotIndex + 1)) + '</text>' +
-            '<text x="98" y="204" fill="#fff" font-size="52" font-family="Arial, sans-serif" font-weight="700">' + escapeXml(title) + '</text>' +
-            '<text x="98" y="264" fill="#dbeafe" font-size="28" font-family="Arial, sans-serif">' + escapeXml(subtitle) + '</text>' +
-            '<rect x="98" y="588" width="260" height="56" rx="28" fill="rgba(255,255,255,0.14)"/>' +
-            '<text x="132" y="624" fill="#fff" font-size="30" font-family="Arial, sans-serif">' + escapeXml(tag) + '</text>' +
-        '</svg>';
-    return 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg);
+    return 'images/blog-fallback.svg';
 }
 
 function buildPostImageCandidates(post, bodyText, slotIndex) {
@@ -329,51 +313,54 @@ function getCandidateArray(raw) {
     }
 }
 
-function hideAutoImage(img) {
-    if (!img) return;
-    const figure = img.closest('.auto-post-image');
-    if (figure) figure.style.display = 'none';
-}
-
-function moveToNextImageCandidate(img) {
-    const candidates = getCandidateArray(img.getAttribute('data-candidates'));
-    if (!candidates.length) {
-        hideAutoImage(img);
+function tryResolveAutoPostImage(img, candidates, index) {
+    if (!img || !candidates || index >= candidates.length) {
         return;
     }
-    let idx = parseInt(img.getAttribute('data-candidate-index') || '0', 10);
-    if (Number.isNaN(idx)) idx = 0;
-    const next = idx + 1;
-    if (next >= candidates.length) {
-        hideAutoImage(img);
+    const candidateUrl = String(candidates[index] || '').trim();
+    if (!candidateUrl) {
+        tryResolveAutoPostImage(img, candidates, index + 1);
         return;
     }
-    img.setAttribute('data-candidate-index', String(next));
-    img.src = candidates[next];
-}
 
-function ensureBlogAutoImageFallbackHandler() {
-    if (window.__blogAutoImageFallback) return;
-    window.__blogAutoImageFallback = function (img) {
-        moveToNextImageCandidate(img);
+    const tester = new Image();
+    tester.loading = 'eager';
+    tester.decoding = 'async';
+    tester.referrerPolicy = 'no-referrer';
+    tester.onload = () => {
+        img.src = candidateUrl;
     };
+    tester.onerror = () => {
+        tryResolveAutoPostImage(img, candidates, index + 1);
+    };
+    tester.src = candidateUrl;
+}
+
+function hydrateAutoPostImages(root) {
+    if (!root) return;
+    const images = root.querySelectorAll('img[data-auto-resolve="1"]');
+    images.forEach(img => {
+        const encoded = img.getAttribute('data-candidates') || '';
+        const candidates = getCandidateArray(encoded);
+        if (!candidates.length) return;
+        tryResolveAutoPostImage(img, candidates, 0);
+    });
 }
 
 function createAutoImageFigure(post, bodyText, slotIndex) {
     const candidates = buildPostImageCandidates(post, bodyText, slotIndex);
     if (!candidates.length) return '';
-    const first = candidates[0];
-    const encoded = encodeURIComponent(JSON.stringify(candidates));
+    const fallback = buildInlineFallbackImage(post, slotIndex);
+    const dynamicCandidates = candidates.filter(candidate => String(candidate || '').trim() !== fallback);
+    const encoded = encodeURIComponent(JSON.stringify(dynamicCandidates));
     const alt = `${post.title || '블로그'} 관련 이미지 ${slotIndex + 1}`;
     return '' +
         '<figure class="auto-post-image" data-auto-image="true">' +
-            '<img src="' + first + '" alt="' + alt.replace(/"/g, '&quot;') + '" loading="lazy" decoding="async" data-candidates="' + encoded + '" data-candidate-index="0" onerror="window.__blogAutoImageFallback && window.__blogAutoImageFallback(this)">' +
+            '<img src="' + fallback + '" alt="' + alt.replace(/"/g, '&quot;') + '" loading="lazy" decoding="async" data-auto-resolve="1" data-candidates="' + encoded + '">' +
         '</figure>';
 }
 
 function injectAutoImagesIntoPost(html, post) {
-    ensureBlogAutoImageFallbackHandler();
-
     const wrapper = document.createElement('div');
     wrapper.innerHTML = html || '';
 
@@ -656,7 +643,9 @@ function showPostDetail(postId) {
     }
 
     const renderedHtml = renderMarkdown(post.content);
-    document.getElementById('detail-content').innerHTML = injectAutoImagesIntoPost(renderedHtml, post);
+    const detailContent = document.getElementById('detail-content');
+    detailContent.innerHTML = injectAutoImagesIntoPost(renderedHtml, post);
+    hydrateAutoPostImages(detailContent);
 
     const tagsContainer = document.getElementById('detail-tags');
     if (post.tags && post.tags.length > 0) {

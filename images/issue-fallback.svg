@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="Issue fallback image">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="55%" stop-color="#1e3a8a"/>
+      <stop offset="100%" stop-color="#0b3b6a"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg)"/>
+  <rect x="56" y="56" width="1168" height="608" rx="24" fill="none" stroke="rgba(255,255,255,0.24)" stroke-width="2"/>
+  <circle cx="180" cy="152" r="18" fill="#93c5fd"/>
+  <rect x="220" y="136" width="180" height="32" rx="16" fill="rgba(147,197,253,0.24)"/>
+  <text x="82" y="160" fill="#bfdbfe" font-size="32" font-family="Arial, sans-serif" font-weight="700">ISSUE HUB</text>
+  <text x="82" y="260" fill="#ffffff" font-size="64" font-family="Arial, sans-serif" font-weight="700">관련 이미지를 불러오는 중입니다</text>
+  <text x="82" y="322" fill="#dbeafe" font-size="34" font-family="Arial, sans-serif">네트워크 환경에 따라 기본 커버가 표시될 수 있습니다.</text>
+  <rect x="82" y="556" width="250" height="64" rx="32" fill="rgba(255,255,255,0.16)"/>
+  <text x="118" y="598" fill="#ffffff" font-size="32" font-family="Arial, sans-serif">#TREND</text>
+</svg>
