@@ -180,6 +180,234 @@ function applyInline(text) {
     return text;
 }
 
+function uniqueNonEmpty(list) {
+    const seen = new Set();
+    const out = [];
+    (list || []).forEach(item => {
+        const value = String(item || '').trim();
+        if (!value || seen.has(value)) return;
+        seen.add(value);
+        out.push(value);
+    });
+    return out;
+}
+
+function truncateText(value, maxLength) {
+    const s = String(value || '').trim();
+    if (s.length <= maxLength) return s;
+    return s.slice(0, Math.max(0, maxLength - 1)) + '…';
+}
+
+function simpleHash(input) {
+    const str = String(input || '');
+    let hash = 0;
+    for (let i = 0; i < str.length; i += 1) {
+        hash = ((hash << 5) - hash + str.charCodeAt(i)) | 0;
+    }
+    return Math.abs(hash);
+}
+
+function escapeXml(value) {
+    return String(value || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&apos;');
+}
+
+function normalizeKeywordTokens(value) {
+    return String(value || '')
+        .split(/[,\n/|]+/)
+        .map(part => part.trim().toLowerCase())
+        .filter(Boolean)
+        .map(part => part.replace(/[^a-z0-9\- ]/g, '').replace(/\s+/g, '-'))
+        .filter(Boolean)
+        .slice(0, 6);
+}
+
+function getCategoryKeywordFallback(category) {
+    const map = {
+        tech: ['technology', 'workspace', 'digital'],
+        dev: ['developer', 'coding', 'software'],
+        life: ['lifestyle', 'daily', 'journal'],
+        template: ['design', 'mockup', 'ui']
+    };
+    return map[category] || ['editorial', 'article', 'news'];
+}
+
+function buildPostKeywordQuery(post) {
+    const tags = Array.isArray(post.tags) ? post.tags : [];
+    const title = String(post.title || '');
+    const tokens = uniqueNonEmpty(
+        normalizeKeywordTokens(tags.join(',')) // 우선 태그 반영
+            .concat(normalizeKeywordTokens(title))
+            .concat(getCategoryKeywordFallback(post.category))
+    );
+    return tokens.slice(0, 5).join(',');
+}
+
+function buildPostAutoPrompt(post, bodyText, slotIndex) {
+    const title = String(post.title || '');
+    const tags = Array.isArray(post.tags) ? post.tags : [];
+    const keywords = buildPostKeywordQuery(post).replace(/,/g, ', ');
+    const excerpt = String(post.excerpt || '').trim();
+    const snippet = truncateText(excerpt || bodyText || '', 120);
+
+    return [
+        'editorial article cover photo',
+        'documentary style',
+        'realistic lighting',
+        'no logo',
+        'no watermark',
+        'no visible text',
+        keywords,
+        title,
+        tags.slice(0, 3).join(', '),
+        snippet,
+        `composition variant ${slotIndex + 1}`
+    ].filter(Boolean).join(', ');
+}
+
+function buildGeneratedImageUrl(prompt, seedBase) {
+    const cleanPrompt = String(prompt || '').trim();
+    if (!cleanPrompt) return '';
+    const seed = simpleHash(seedBase || cleanPrompt) % 1000000;
+    return 'https://image.pollinations.ai/prompt/' +
+        encodeURIComponent(cleanPrompt) +
+        '?model=flux&width=1280&height=720&nologo=true&enhance=true&seed=' + seed;
+}
+
+function buildKeywordStockImageUrl(keywordQuery, seedBase, salt) {
+    let tokens = normalizeKeywordTokens(keywordQuery);
+    if (!tokens.length) tokens = ['editorial', 'news', 'analysis'];
+    const keywordPath = tokens.map(token => encodeURIComponent(token)).join(',');
+    const lock = simpleHash(String(seedBase || '') + '|' + String(salt || '')) % 1000000;
+    return 'https://loremflickr.com/1280/720/' + keywordPath + '?lock=' + lock;
+}
+
+function buildInlineFallbackImage(post, slotIndex) {
+    const title = truncateText(post.title || 'Blog Brief', 52);
+    const subtitle = truncateText((post.excerpt || '').trim() || '핵심 내용을 빠르게 읽는 브리프', 72);
+    const tag = Array.isArray(post.tags) && post.tags.length ? '#' + String(post.tags[0]).trim() : '#BLOG';
+    const svg =
+        '<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">' +
+            '<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">' +
+                '<stop offset="0%" stop-color="#111827"/><stop offset="100%" stop-color="#1d4ed8"/>' +
+            '</linearGradient></defs>' +
+            '<rect width="1280" height="720" fill="url(#g)"/>' +
+            '<rect x="56" y="56" width="1168" height="608" rx="20" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="2"/>' +
+            '<text x="98" y="132" fill="#bfdbfe" font-size="30" font-family="Arial, sans-serif">ARTICLE IMAGE ' + escapeXml(String(slotIndex + 1)) + '</text>' +
+            '<text x="98" y="204" fill="#fff" font-size="52" font-family="Arial, sans-serif" font-weight="700">' + escapeXml(title) + '</text>' +
+            '<text x="98" y="264" fill="#dbeafe" font-size="28" font-family="Arial, sans-serif">' + escapeXml(subtitle) + '</text>' +
+            '<rect x="98" y="588" width="260" height="56" rx="28" fill="rgba(255,255,255,0.14)"/>' +
+            '<text x="132" y="624" fill="#fff" font-size="30" font-family="Arial, sans-serif">' + escapeXml(tag) + '</text>' +
+        '</svg>';
+    return 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg);
+}
+
+function buildPostImageCandidates(post, bodyText, slotIndex) {
+    const seedBase = String(post.id || '') + '|' + String(post.title || '') + '|slot-' + String(slotIndex);
+    const keywordQuery = buildPostKeywordQuery(post);
+    const prompt = buildPostAutoPrompt(post, bodyText, slotIndex);
+
+    return uniqueNonEmpty([
+        buildGeneratedImageUrl(prompt, seedBase + '|ai'),
+        buildKeywordStockImageUrl(keywordQuery, seedBase, 'a'),
+        buildKeywordStockImageUrl(keywordQuery, seedBase, 'b'),
+        buildInlineFallbackImage(post, slotIndex)
+    ]);
+}
+
+function getCandidateArray(raw) {
+    if (!raw) return [];
+    try {
+        const parsed = JSON.parse(decodeURIComponent(raw));
+        return Array.isArray(parsed) ? parsed : [];
+    } catch (e) {
+        return [];
+    }
+}
+
+function hideAutoImage(img) {
+    if (!img) return;
+    const figure = img.closest('.auto-post-image');
+    if (figure) figure.style.display = 'none';
+}
+
+function moveToNextImageCandidate(img) {
+    const candidates = getCandidateArray(img.getAttribute('data-candidates'));
+    if (!candidates.length) {
+        hideAutoImage(img);
+        return;
+    }
+    let idx = parseInt(img.getAttribute('data-candidate-index') || '0', 10);
+    if (Number.isNaN(idx)) idx = 0;
+    const next = idx + 1;
+    if (next >= candidates.length) {
+        hideAutoImage(img);
+        return;
+    }
+    img.setAttribute('data-candidate-index', String(next));
+    img.src = candidates[next];
+}
+
+function ensureBlogAutoImageFallbackHandler() {
+    if (window.__blogAutoImageFallback) return;
+    window.__blogAutoImageFallback = function (img) {
+        moveToNextImageCandidate(img);
+    };
+}
+
+function createAutoImageFigure(post, bodyText, slotIndex) {
+    const candidates = buildPostImageCandidates(post, bodyText, slotIndex);
+    if (!candidates.length) return '';
+    const first = candidates[0];
+    const encoded = encodeURIComponent(JSON.stringify(candidates));
+    const alt = `${post.title || '블로그'} 관련 이미지 ${slotIndex + 1}`;
+    return '' +
+        '<figure class="auto-post-image" data-auto-image="true">' +
+            '<img src="' + first + '" alt="' + alt.replace(/"/g, '&quot;') + '" loading="lazy" decoding="async" data-candidates="' + encoded + '" data-candidate-index="0" onerror="window.__blogAutoImageFallback && window.__blogAutoImageFallback(this)">' +
+        '</figure>';
+}
+
+function injectAutoImagesIntoPost(html, post) {
+    ensureBlogAutoImageFallbackHandler();
+
+    const wrapper = document.createElement('div');
+    wrapper.innerHTML = html || '';
+
+    const existingImages = wrapper.querySelectorAll('img').length;
+    const textLength = (wrapper.textContent || '').replace(/\s+/g, ' ').trim().length;
+    const targetImages = textLength > 2800 ? 3 : 2;
+    const addCount = Math.max(0, targetImages - existingImages);
+    if (addCount <= 0) return wrapper.innerHTML;
+
+    const bodyText = (wrapper.textContent || '').replace(/\s+/g, ' ').trim();
+    const blocks = Array.from(wrapper.children).filter(el =>
+        ['P', 'H2', 'H3', 'UL', 'OL', 'BLOCKQUOTE', 'PRE', 'TABLE'].includes(el.tagName)
+    );
+
+    if (!blocks.length) {
+        for (let i = 0; i < addCount; i += 1) {
+            wrapper.insertAdjacentHTML('beforeend', createAutoImageFigure(post, bodyText, i));
+        }
+        return wrapper.innerHTML;
+    }
+
+    const usedIndexes = new Set();
+    for (let i = 0; i < addCount; i += 1) {
+        let idx = Math.floor(((i + 1) * blocks.length) / (addCount + 1)) - 1;
+        if (idx < 0) idx = 0;
+        if (idx >= blocks.length) idx = blocks.length - 1;
+        while (usedIndexes.has(idx) && idx < blocks.length - 1) idx += 1;
+        usedIndexes.add(idx);
+        blocks[idx].insertAdjacentHTML('afterend', createAutoImageFigure(post, bodyText, i));
+    }
+
+    return wrapper.innerHTML;
+}
+
 const siteName = '릴황';
 const blogListMeta = {
     title: '릴황 블로그 | 개발, 기술, 일상 이야기',
@@ -427,7 +655,8 @@ function showPostDetail(postId) {
         imageContainer.innerHTML = '';
     }
 
-    document.getElementById('detail-content').innerHTML = renderMarkdown(post.content);
+    const renderedHtml = renderMarkdown(post.content);
+    document.getElementById('detail-content').innerHTML = injectAutoImagesIntoPost(renderedHtml, post);
 
     const tagsContainer = document.getElementById('detail-tags');
     if (post.tags && post.tags.length > 0) {

@@ -371,6 +371,20 @@
     margin: 20px 0;
 }
 
+.post-full-content .auto-post-image {
+    margin: 28px 0;
+}
+
+.post-full-content .auto-post-image img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    background: #f3f4f6;
+    display: block;
+}
+
 .post-full-tags {
     display: flex;
     gap: 10px;

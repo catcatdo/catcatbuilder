@@ -137,6 +137,45 @@
             .join(',');
     }
 
+    function normalizeKeywordTokens(value) {
+        return String(value || '')
+            .split(/[,\n/|]+/)
+            .map(function (part) { return part.trim().toLowerCase(); })
+            .filter(function (part) { return part.length > 0; })
+            .map(function (part) {
+                return part.replace(/[^a-z0-9\- ]/g, '').replace(/\s+/g, '-');
+            })
+            .filter(function (part) { return part.length > 0; })
+            .slice(0, 5);
+    }
+
+    function buildAutoPrompt(issue, keywordQuery) {
+        var promptParts = [];
+        var title = resolveCatchyTitle(issue);
+        var summaryLines = resolveSummaryLines(issue);
+        var tags = Array.isArray(issue.tags) ? issue.tags : [];
+
+        if (keywordQuery) {
+            promptParts.push(keywordQuery.replace(/,/g, ', '));
+        }
+        if (title) {
+            promptParts.push(title);
+        }
+        if (summaryLines.length) {
+            promptParts.push(summaryLines[0]);
+        }
+        if (tags.length) {
+            promptParts.push(tags.slice(0, 3).join(', '));
+        }
+
+        if (!promptParts.length) {
+            return '';
+        }
+
+        return 'editorial news photo, documentary style, realistic lighting, no logo, no watermark, no visible text, ' +
+            promptParts.join(', ');
+    }
+
     function simpleHash(input) {
         var str = String(input || '');
         var hash = 0;
@@ -155,12 +194,21 @@
         var seed = simpleHash(seedBase || cleanPrompt) % 1000000;
         return 'https://image.pollinations.ai/prompt/' +
             encodeURIComponent(cleanPrompt) +
-            '?model=flux&width=1280&height=720&nologo=true&seed=' + seed;
+            '?model=flux&width=1280&height=720&nologo=true&enhance=true&seed=' + seed;
     }
 
-    function buildStockImageUrl(seedBase, salt) {
-        var seed = simpleHash(String(seedBase || '') + '|' + String(salt || '')) % 1000000;
-        return 'https://picsum.photos/seed/issue-' + seed + '/1280/720';
+    function buildKeywordStockImageUrl(keywordQuery, seedBase, salt) {
+        var tokens = normalizeKeywordTokens(keywordQuery);
+        if (!tokens.length) {
+            tokens = ['news', 'editorial', 'analysis'];
+        }
+
+        var keywordPath = tokens.map(function (token) {
+            return encodeURIComponent(token);
+        }).join(',');
+
+        var lock = simpleHash(String(seedBase || '') + '|' + String(salt || '')) % 1000000;
+        return 'https://loremflickr.com/1280/720/' + keywordPath + '?lock=' + lock;
     }
 
     function buildInlineFallbackImage(issue) {
@@ -207,8 +255,9 @@
     function resolveImageCandidates(issue) {
         var seedBase = (issue.id || '') + '|' + (resolveCatchyTitle(issue) || issue.title || '');
         var visualSuggestion = resolveVisualSuggestion(issue);
-        var prompt = extractPromptFromVisualSuggestion(visualSuggestion);
-        var keywordQuery = extractKeywordsFromVisualSuggestion(visualSuggestion) || prompt;
+        var promptFromVisual = extractPromptFromVisualSuggestion(visualSuggestion);
+        var keywordQuery = extractKeywordsFromVisualSuggestion(visualSuggestion);
+        var autoPrompt = buildAutoPrompt(issue, keywordQuery || promptFromVisual);
         var directImage = normalizeImageUrl(issue.image);
 
         var candidates = [];
@@ -216,16 +265,16 @@
             candidates.push(directImage);
         }
 
-        if (prompt) {
-            candidates.push(buildGeneratedImageUrl(prompt, seedBase));
+        if (promptFromVisual) {
+            candidates.push(buildGeneratedImageUrl(promptFromVisual, seedBase + '|visual'));
         }
 
-        if (keywordQuery) {
-            candidates.push(buildStockImageUrl(seedBase + '|' + keywordQuery, 'a'));
-            candidates.push(buildStockImageUrl(seedBase + '|' + keywordQuery, 'b'));
-        } else {
-            candidates.push(buildStockImageUrl(seedBase, 'a'));
+        if (autoPrompt && autoPrompt !== promptFromVisual) {
+            candidates.push(buildGeneratedImageUrl(autoPrompt, seedBase + '|auto'));
         }
+
+        candidates.push(buildKeywordStockImageUrl(keywordQuery || promptFromVisual || autoPrompt, seedBase, 'a'));
+        candidates.push(buildKeywordStockImageUrl(keywordQuery || promptFromVisual || autoPrompt, seedBase, 'b'));
 
         candidates.push(buildInlineFallbackImage(issue));
         return uniqueNonEmpty(candidates);
