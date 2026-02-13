@@ -15,6 +15,10 @@
             .trim();
     }
 
+    function isNonEmptyString(value) {
+        return typeof value === 'string' && value.trim().length > 0;
+    }
+
     function resolveBody(issue) {
         if (issue.rewritten_body && String(issue.rewritten_body).trim()) {
             return String(issue.rewritten_body).trim();
@@ -29,6 +33,49 @@
         return '';
     }
 
+    function resolveSummaryLines(issue) {
+        if (Array.isArray(issue.summary_lines)) {
+            return issue.summary_lines
+                .map(function (line) { return String(line || '').trim(); })
+                .filter(function (line) { return line.length > 0; })
+                .slice(0, 3);
+        }
+
+        var body = resolveBody(issue);
+        if (!body) {
+            return [];
+        }
+
+        var normalized = body.replace(/\s+/g, ' ').trim();
+        var chunks = normalized
+            .split(/\.\s+|\!\s+|\?\s+|\n+/)
+            .map(function (chunk) { return chunk.trim(); })
+            .filter(function (chunk) { return chunk.length > 0; });
+
+        return chunks.slice(0, 3);
+    }
+
+    function resolveCuratorInsight(issue) {
+        if (isNonEmptyString(issue.curator_insight)) {
+            return issue.curator_insight.trim();
+        }
+        return '';
+    }
+
+    function resolveVisualSuggestion(issue) {
+        if (isNonEmptyString(issue.visual_suggestion)) {
+            return issue.visual_suggestion.trim();
+        }
+        return '';
+    }
+
+    function resolveCatchyTitle(issue) {
+        if (isNonEmptyString(issue.catchy_title)) {
+            return issue.catchy_title.trim();
+        }
+        return issue.title || '제목 없음';
+    }
+
     function parseDateValue(value) {
         var t = Date.parse(value || '');
         return isNaN(t) ? 0 : t;
@@ -41,6 +88,10 @@
             source_name: '관리자 작성',
             source_url: '',
             published_at: post.date || '',
+            catchy_title: post.title || '제목 없음',
+            summary_lines: [],
+            curator_insight: '',
+            visual_suggestion: '',
             rewritten_body: resolveBody(post),
             tags: Array.isArray(post.tags) ? post.tags : [],
             comments: [],
@@ -72,6 +123,10 @@
             source_name: issue.source_name || '미상',
             source_url: issue.source_url || '',
             published_at: issue.published_at || '',
+            catchy_title: resolveCatchyTitle(issue),
+            summary_lines: resolveSummaryLines(issue),
+            curator_insight: resolveCuratorInsight(issue),
+            visual_suggestion: resolveVisualSuggestion(issue),
             rewritten_body: resolveBody(issue),
             tags: Array.isArray(issue.tags) ? issue.tags : [],
             comments: Array.isArray(issue.comments) ? issue.comments : [],
@@ -80,6 +135,11 @@
     }
 
     function renderIssue(issue) {
+        var catchyTitle = resolveCatchyTitle(issue);
+        var summaryLines = resolveSummaryLines(issue);
+        var curatorInsight = resolveCuratorInsight(issue);
+        var visualSuggestion = resolveVisualSuggestion(issue);
+        var rewrittenBody = resolveBody(issue);
         var tags = Array.isArray(issue.tags) ? issue.tags : [];
         var comments = Array.isArray(issue.comments) ? issue.comments : [];
 
@@ -95,6 +155,33 @@
             ? '<div class="tag-row">' + tags.map(function (tag) {
                 return '<span class="tag-pill">#' + escapeHtml(tag) + '</span>';
             }).join('') + '</div>'
+            : '';
+
+        var summaryHtml = summaryLines.length
+            ? '<div class="curation-block">' +
+                '<h3 class="subsection-title" style="margin-top:0;">[3-Line Summary]</h3>' +
+                '<ol class="summary-list">' + summaryLines.map(function (line) {
+                    return '<li>' + escapeHtml(line) + '</li>';
+                }).join('') + '</ol>' +
+              '</div>'
+            : '';
+
+        var insightHtml = curatorInsight
+            ? '<div class="curation-block">' +
+                '<h3 class="subsection-title" style="margin-top:0;">[Curator\'s Insight]</h3>' +
+                '<p class="issue-summary issue-block-text">' + escapeHtml(curatorInsight) + '</p>' +
+              '</div>'
+            : '';
+
+        var visualHtml = visualSuggestion
+            ? '<div class="curation-block">' +
+                '<h3 class="subsection-title" style="margin-top:0;">[Visual Suggestion]</h3>' +
+                '<p class="issue-summary issue-block-text">' + escapeHtml(visualSuggestion) + '</p>' +
+              '</div>'
+            : '';
+
+        var bodyHtml = rewrittenBody
+            ? '<div class="issue-summary">' + escapeHtml(rewrittenBody) + '</div>'
             : '';
 
         var commentsHtml = comments.length
@@ -120,11 +207,14 @@
                     '<span>작성일: ' + escapeHtml(issue.published_at || '') + '</span>' +
                     '<span>' + sourceLink + '</span>' +
                 '</div>' +
-                '<h2 class="issue-title">' + escapeHtml(issue.title || '제목 없음') + '</h2>' +
+                '<h2 class="issue-title">' + escapeHtml(catchyTitle) + '</h2>' +
                 imageHtml +
-                '<div class="issue-summary">' + escapeHtml(issue.rewritten_body || '') + '</div>' +
+                bodyHtml +
+                summaryHtml +
+                insightHtml +
+                visualHtml +
                 tagsHtml +
-                '<div class="issue-note">저작권 안전 운영: 원문을 직접 재게시하지 않고 핵심 쟁점을 재서술합니다.</div>' +
+                '<div class="issue-note">저작권 안전 운영: 원문 제목/문장을 그대로 복제하지 않고, 핵심 정보 + 큐레이터 관점으로 재구성합니다.</div>' +
                 '<div>' +
                     '<h3 class="subsection-title" style="margin-top:0;">커뮤 반응</h3>' +
                     '<div class="reaction-wrap">' + commentsHtml + '</div>' +
