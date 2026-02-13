@@ -34,7 +34,7 @@
     <link rel="stylesheet" href="styles.css">
     <style>
         .issues-shell {
-            max-width: 1080px;
+            max-width: min(960px, 100%);
             margin: 0 auto;
             display: grid;
             gap: 20px;
@@ -108,14 +108,19 @@
 
         .issue-image {
             margin-top: -4px;
+            max-width: min(100%, 760px);
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .issue-image img {
             width: 100%;
-            max-height: 420px;
+            aspect-ratio: 16 / 9;
+            max-height: min(46vh, 360px);
             object-fit: cover;
             border-radius: 12px;
             border: 1px solid var(--border-soft);
+            display: block;
         }
 
         .issue-inline-gallery {
@@ -233,6 +238,14 @@
 
             .issue-card {
                 padding: 16px;
+            }
+
+            .issue-image {
+                max-width: 100%;
+            }
+
+            .issue-image img {
+                max-height: min(34vh, 250px);
             }
 
             .issue-inline-gallery {

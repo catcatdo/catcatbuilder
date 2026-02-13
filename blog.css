@@ -87,7 +87,7 @@
 
 .post-card-image {
     width: 100%;
-    height: 200px;
+    height: clamp(150px, 18vw, 210px);
     overflow: hidden;
     background-color: #f0f0f0;
 }
@@ -238,12 +238,17 @@
 }
 
 .post-full-image {
-    margin-bottom: 30px;
+    margin: 0 auto 26px;
+    max-width: min(100%, 860px);
 }
 
 .post-full-image img {
     width: 100%;
-    border-radius: 8px;
+    aspect-ratio: 16 / 9;
+    max-height: min(52vh, 500px);
+    object-fit: cover;
+    border-radius: 10px;
+    display: block;
 }
 
 .post-full-content {
@@ -365,10 +370,14 @@
 }
 
 .post-full-content img {
+    width: min(100%, 820px);
     max-width: 100%;
     height: auto;
+    max-height: min(48vh, 420px);
+    object-fit: contain;
     border-radius: 8px;
-    margin: 20px 0;
+    margin: 20px auto;
+    display: block;
 }
 
 .post-full-content .auto-post-image {
@@ -783,6 +792,18 @@
         padding: 25px;
     }
 
+    .post-card-image {
+        height: clamp(140px, 34vw, 185px);
+    }
+
+    .post-full-image {
+        max-width: 100%;
+    }
+
+    .post-full-image img {
+        max-height: min(40vh, 320px);
+    }
+
     .post-full-title {
         font-size: 26px;
     }
@@ -809,6 +830,14 @@
 }
 
 @media (max-width: 480px) {
+    .post-card-image {
+        height: 150px;
+    }
+
+    .post-full-image img {
+        max-height: 250px;
+    }
+
     .admin-login {
         padding: 30px 20px;
     }
