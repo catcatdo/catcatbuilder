@@ -1330,6 +1330,81 @@ body::before {
     line-height: 1.6;
 }
 
+.link-matrix {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-soft);
+    border-radius: 14px;
+    padding: 18px;
+    box-shadow: var(--shadow-sm);
+}
+
+.matrix-title {
+    font-size: 18px;
+    color: var(--text-heading);
+    margin-bottom: 10px;
+    font-family: 'Space Grotesk', 'Noto Sans KR', sans-serif;
+}
+
+.matrix-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+}
+
+.matrix-link {
+    display: block;
+    text-decoration: none;
+    color: var(--text-secondary);
+    background-color: var(--bg-surface-muted);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-weight: 600;
+}
+
+.matrix-link:hover {
+    color: var(--text-heading);
+    border-color: var(--primary);
+}
+
+.updates-panel {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-soft);
+    border-radius: 14px;
+    padding: 18px;
+    box-shadow: var(--shadow-sm);
+}
+
+.updates-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 8px;
+}
+
+.updates-list li {
+    background-color: var(--bg-surface-muted);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-size: 14px;
+}
+
+.updates-list a {
+    color: var(--text-secondary);
+    text-decoration: none;
+}
+
+.updates-list a:hover {
+    color: var(--text-heading);
+}
+
+.updates-empty {
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
 /* ========================================
    Loading Spinner
    ======================================== */

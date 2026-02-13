@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>개발자 도구 워크플로우 가이드 | lilhwang.com</title>
+    <meta name="description" content="JSON, Base64, 해시, 타임존, 이미지 도구를 연결해 쓰는 개발자 실전 워크플로우 가이드입니다.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://lilhwang.com/guide-dev-workflow.html">
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        (function () {
+            try {
+                document.documentElement.setAttribute('data-theme', localStorage.getItem('theme-preference') || 'light');
+            } catch (e) {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        })();
+    </script>
+</head>
+<body>
+<header class="header">
+    <div class="container">
+        <h1 class="logo"><a href="index.html" style="text-decoration:none;color:inherit;">lilhwang<span class="logo-dot">.</span>com</a></h1>
+        <nav class="nav">
+            <a href="developer-tools.html">개발자도구</a>
+            <a href="blog.html">블로그</a>
+            <a href="resource-center.html">정보허브</a>
+            <a href="update-log.html">업데이트</a>
+        </nav>
+    </div>
+</header>
+
+<main class="main-container">
+    <div class="container" style="max-width:980px;display:grid;gap:18px;">
+        <section class="updates-panel">
+            <h1 class="matrix-title">개발자 도구 워크플로우 가이드</h1>
+            <p class="section-description" style="margin-bottom:0;">배포 전 검증, API 디버깅, 협업 일정 공유에 바로 쓸 수 있는 최소 흐름입니다.</p>
+        </section>
+
+        <section class="updates-panel">
+            <h2 class="matrix-title">API 응답 점검 루틴</h2>
+            <ul class="tool-list">
+                <li><a href="json-formatter.html">JSON 포맷터</a>에서 응답 구조를 정렬해 누락 필드 확인</li>
+                <li><a href="base64.html">Base64 도구</a>로 토큰/페이로드 인코딩 확인</li>
+                <li><a href="hash.html">해시 생성기</a>로 샘플 데이터 무결성 체크</li>
+            </ul>
+        </section>
+
+        <section class="updates-panel">
+            <h2 class="matrix-title">배포 커뮤니케이션 루틴</h2>
+            <ul class="tool-list">
+                <li><a href="timezone.html">타임존 변환</a>으로 글로벌 팀 배포 시간 통일</li>
+                <li><a href="image-tool.html">이미지 리사이즈</a>로 릴리스 노트 이미지 최적화</li>
+                <li><a href="writing-helper.html">글쓰기 도우미</a>로 공지 초안 정리</li>
+            </ul>
+        </section>
+
+        <section class="link-matrix">
+            <h2 class="matrix-title">관련 페이지</h2>
+            <div class="matrix-grid">
+                <a class="matrix-link" href="developer-tools.html">개발자 도구 모음</a>
+                <a class="matrix-link" href="guide-adsense-content.html">콘텐츠 운영 가이드</a>
+                <a class="matrix-link" href="guide-safety-privacy.html">안전/개인정보 가이드</a>
+                <a class="matrix-link" href="update-log.html">콘텐츠 업데이트 로그</a>
+            </div>
+        </section>
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <p>&copy; 2026 lilhwang.com. All rights reserved.</p>
+    </div>
+</footer>
+<script src="app.js"></script>
+<script src="updates.js"></script>
+</body>
+</html>

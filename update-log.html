@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>콘텐츠 업데이트 로그 | lilhwang.com</title>
+    <meta name="description" content="lilhwang.com의 콘텐츠/도구 업데이트 이력을 자동으로 보여주는 로그 페이지입니다.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://lilhwang.com/update-log.html">
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        (function () {
+            try {
+                document.documentElement.setAttribute('data-theme', localStorage.getItem('theme-preference') || 'light');
+            } catch (e) {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        })();
+    </script>
+</head>
+<body>
+<header class="header">
+    <div class="container">
+        <h1 class="logo"><a href="index.html" style="text-decoration:none;color:inherit;">lilhwang<span class="logo-dot">.</span>com</a></h1>
+        <nav class="nav">
+            <a href="index.html">도구</a>
+            <a href="blog.html">블로그</a>
+            <a href="resource-center.html">정보허브</a>
+            <a href="update-log.html" class="active">업데이트</a>
+            <a href="editorial-policy.html">편집정책</a>
+        </nav>
+    </div>
+</header>
+
+<main class="main-container">
+    <div class="container" style="max-width:980px;display:grid;gap:18px;">
+        <section class="updates-panel">
+            <h1 class="matrix-title">콘텐츠 업데이트 로그</h1>
+            <p class="section-description" style="margin-bottom:0;">아래 목록은 <code>updates.json</code> 기준으로 자동 반영됩니다. 항목을 추가하면 이 페이지와 각 섹션 위젯에 동시에 반영됩니다.</p>
+        </section>
+
+        <section class="updates-panel">
+            <ul class="updates-list" data-updates-feed data-updates-limit="100"></ul>
+        </section>
+
+        <section class="link-matrix">
+            <h2 class="matrix-title">바로가기</h2>
+            <div class="matrix-grid">
+                <a class="matrix-link" href="resource-center.html">정보 허브 메인</a>
+                <a class="matrix-link" href="guide-adsense-content.html">콘텐츠 운영 가이드</a>
+                <a class="matrix-link" href="blog.html">기술 블로그</a>
+                <a class="matrix-link" href="index.html">도구 메인</a>
+                <a class="matrix-link" href="editorial-policy.html">편집정책/콘텐츠 원칙</a>
+            </div>
+        </section>
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <p>&copy; 2026 lilhwang.com. All rights reserved.</p>
+    </div>
+</footer>
+<script src="app.js"></script>
+<script src="updates.js"></script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+[
+  {
+    "date": "2026-02-13",
+    "title": "도구 활용 정보 허브 신규 오픈",
+    "url": "resource-center.html",
+    "category": "콘텐츠"
+  },
+  {
+    "date": "2026-02-13",
+    "title": "일상 도구 빠른 시작 가이드 추가",
+    "url": "guide-daily-tools.html",
+    "category": "가이드"
+  },
+  {
+    "date": "2026-02-13",
+    "title": "개발자 워크플로우 가이드 추가",
+    "url": "guide-dev-workflow.html",
+    "category": "가이드"
+  },
+  {
+    "date": "2026-02-13",
+    "title": "애드센스 대비 콘텐츠 운영 가이드 추가",
+    "url": "guide-adsense-content.html",
+    "category": "가이드"
+  },
+  {
+    "date": "2026-02-13",
+    "title": "온라인 도구 안전/개인정보 체크리스트 추가",
+    "url": "guide-safety-privacy.html",
+    "category": "가이드"
+  },
+  {
+    "date": "2026-02-13",
+    "title": "자동 콘텐츠 업데이트 로그 페이지 오픈",
+    "url": "update-log.html",
+    "category": "운영"
+  },
+  {
+    "date": "2026-02-13",
+    "title": "편집정책 및 콘텐츠 원칙 페이지 추가",
+    "url": "editorial-policy.html",
+    "category": "정책"
+  }
+]

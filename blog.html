@@ -20,6 +20,30 @@
     <meta name="twitter:title" content="기술 블로그 | lilhwang.com - 개발 튜토리얼 & 가이드">
     <meta name="twitter:description" content="웹 개발, Docker, Git, REST API, SEO 등 실전 개발 가이드와 튜토리얼을 제공합니다.">
     <meta name="twitter:image" content="https://lilhwang.com/images/og-default.jpg">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "블로그 글은 얼마나 자주 업데이트되나요?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "사이트 운영 상황에 맞춰 실전 가이드 중심으로 정기 업데이트합니다."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "도구 사용법 글도 제공하나요?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "네. 정보허브와 연계해 도구 활용법, 체크리스트, 워크플로우 콘텐츠를 제공합니다."
+                }
+            }
+        ]
+    }
+    </script>
     <script>
         (function () {
             try {
@@ -45,6 +69,8 @@
                 <a href="index.html">도구</a>
                 <a href="developer-tools.html">개발자</a>
                 <a href="blog.html" class="active">블로그</a>
+                <a href="resource-center.html">정보허브</a>
+                <a href="update-log.html">업데이트</a>
                 <a href="templates.html">템플릿</a>
                 <a href="about.html">소개</a>
             </nav>
@@ -138,6 +164,21 @@
                             <!-- Tags will be loaded here -->
                         </div>
                     </div>
+
+                    <div class="widget link-matrix">
+                        <h3 class="widget-title">탐색 매트릭스</h3>
+                        <div class="matrix-grid">
+                            <a class="matrix-link" href="resource-center.html">정보 허브</a>
+                            <a class="matrix-link" href="guide-daily-tools.html">일상 도구 가이드</a>
+                            <a class="matrix-link" href="guide-dev-workflow.html">개발 워크플로우</a>
+                            <a class="matrix-link" href="guide-adsense-content.html">콘텐츠 운영 가이드</a>
+                        </div>
+                    </div>
+
+                    <div class="widget updates-panel">
+                        <h3 class="widget-title">최근 업데이트</h3>
+                        <ul class="updates-list" data-updates-feed data-updates-limit="5"></ul>
+                    </div>
                 </aside>
             </div>
         </div>
@@ -149,6 +190,8 @@
             <p>&copy; 2026 lilhwang.com. All rights reserved.</p>
             <p class="footer-links">
                 <a href="about.html">소개</a> |
+                <a href="resource-center.html">정보허브</a> |
+                <a href="update-log.html">업데이트</a> |
                 <a href="contact.html">연락처</a> |
                 <a href="privacy.html">개인정보처리방침</a> |
                 <a href="terms.html">이용약관</a>
@@ -157,5 +200,6 @@
     </footer>
 
     <script src="blog.js"></script>
+    <script src="updates.js"></script>
 </body>
 </html>

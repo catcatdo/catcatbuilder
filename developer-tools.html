@@ -30,6 +30,30 @@
         "operatingSystem": "Any"
     }
     </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "개발자 도구는 회원가입 없이 쓸 수 있나요?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "네. 주요 기능은 회원가입 없이 바로 실행할 수 있습니다."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "도구 사용 가이드는 어디에 있나요?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "정보허브와 개발자 워크플로우 가이드 페이지에서 단계별 사용법을 확인할 수 있습니다."
+                }
+            }
+        ]
+    }
+    </script>
     <script>
         (function () {
             try {
@@ -54,6 +78,8 @@
             <div class="header-actions">
                 <nav class="nav">
                     <a href="index.html">홈</a>
+                    <a href="resource-center.html">정보허브</a>
+                    <a href="update-log.html">업데이트</a>
                     <a href="blog.html">블로그</a>
                 </nav>
                 <button class="theme-toggle" id="theme-toggle" type="button" aria-label="다크 모드 전환">
@@ -110,6 +136,21 @@
                     <div class="faq-a">연락 주시면 우선순위를 반영해 빠르게 추가하겠습니다.</div>
                 </div>
             </div>
+
+            <h3 class="subsection-title">탐색 매트릭스</h3>
+            <section class="link-matrix">
+                <div class="matrix-grid">
+                    <a class="matrix-link" href="resource-center.html">정보 허브 메인</a>
+                    <a class="matrix-link" href="guide-dev-workflow.html">개발 워크플로우 가이드</a>
+                    <a class="matrix-link" href="guide-adsense-content.html">콘텐츠 운영 가이드</a>
+                    <a class="matrix-link" href="update-log.html">콘텐츠 업데이트 로그</a>
+                </div>
+            </section>
+
+            <h3 class="subsection-title">최근 업데이트</h3>
+            <section class="updates-panel">
+                <ul class="updates-list" data-updates-feed data-updates-limit="6"></ul>
+            </section>
 
             <h3 class="subsection-title">도구별 검색 트래픽 키워드</h3>
             <div class="tools-grid">
@@ -169,9 +210,16 @@
     <footer class="footer">
         <div class="container">
             <p>&copy; 2026 lilhwang.com. All rights reserved.</p>
+            <p class="footer-links">
+                <a href="resource-center.html">정보허브</a> |
+                <a href="update-log.html">업데이트</a> |
+                <a href="blog.html">블로그</a> |
+                <a href="privacy.html">개인정보처리방침</a>
+            </p>
         </div>
     </footer>
 
     <script src="app.js"></script>
+    <script src="updates.js"></script>
 </body>
 </html>

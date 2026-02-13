@@ -3,7 +3,7 @@
     <!-- Main Page -->
     <url>
         <loc>https://lilhwang.com/</loc>
-        <lastmod>2026-02-09</lastmod>
+        <lastmod>2026-02-13</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
@@ -35,9 +35,57 @@
     <!-- Blog Page -->
     <url>
         <loc>https://lilhwang.com/blog.html</loc>
-        <lastmod>2026-02-09</lastmod>
+        <lastmod>2026-02-13</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://lilhwang.com/resource-center.html</loc>
+        <lastmod>2026-02-13</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://lilhwang.com/update-log.html</loc>
+        <lastmod>2026-02-13</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://lilhwang.com/editorial-policy.html</loc>
+        <lastmod>2026-02-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://lilhwang.com/tests.html</loc>
+        <lastmod>2026-02-13</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://lilhwang.com/guide-daily-tools.html</loc>
+        <lastmod>2026-02-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://lilhwang.com/guide-dev-workflow.html</loc>
+        <lastmod>2026-02-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://lilhwang.com/guide-adsense-content.html</loc>
+        <lastmod>2026-02-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://lilhwang.com/guide-safety-privacy.html</loc>
+        <lastmod>2026-02-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
     </url>
 
     <!-- Developer Utility Pages -->
@@ -85,13 +133,13 @@
     </url>
     <url>
         <loc>https://lilhwang.com/developer-tools.html</loc>
-        <lastmod>2026-02-09</lastmod>
+        <lastmod>2026-02-13</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://lilhwang.com/about.html</loc>
-        <lastmod>2026-02-09</lastmod>
+        <lastmod>2026-02-13</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>

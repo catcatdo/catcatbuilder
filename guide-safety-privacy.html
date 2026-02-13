@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>온라인 도구 안전/개인정보 가이드 | lilhwang.com</title>
+    <meta name="description" content="브라우저 기반 도구 사용 시 지켜야 할 안전 수칙과 개인정보 보호 체크리스트를 정리한 가이드입니다.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://lilhwang.com/guide-safety-privacy.html">
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        (function () {
+            try {
+                document.documentElement.setAttribute('data-theme', localStorage.getItem('theme-preference') || 'light');
+            } catch (e) {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        })();
+    </script>
+</head>
+<body>
+<header class="header">
+    <div class="container">
+        <h1 class="logo"><a href="index.html" style="text-decoration:none;color:inherit;">lilhwang<span class="logo-dot">.</span>com</a></h1>
+        <nav class="nav">
+            <a href="index.html">도구</a>
+            <a href="resource-center.html">정보허브</a>
+            <a href="update-log.html">업데이트</a>
+            <a href="privacy.html">개인정보처리방침</a>
+        </nav>
+    </div>
+</header>
+
+<main class="main-container">
+    <div class="container" style="max-width:980px;display:grid;gap:18px;">
+        <section class="updates-panel">
+            <h1 class="matrix-title">온라인 도구 안전/개인정보 가이드</h1>
+            <p class="section-description" style="margin-bottom:0;">공용 환경과 개인 환경에서 모두 적용 가능한 기본 수칙입니다.</p>
+        </section>
+
+        <section class="updates-panel">
+            <h2 class="matrix-title">개인정보 보호 기본 수칙</h2>
+            <ul class="tool-list">
+                <li>민감한 원문(개인식별 정보, 계정 토큰)은 입력하지 않거나 마스킹 후 테스트</li>
+                <li>공용 기기 사용 후 브라우저 저장 데이터(LocalStorage, 쿠키, 자동완성) 정리</li>
+                <li>주소창 도메인을 확인한 뒤에만 외부 URL 진단/조회 도구 사용</li>
+            </ul>
+        </section>
+
+        <section class="updates-panel">
+            <h2 class="matrix-title">브라우저 사용 후 점검</h2>
+            <ul class="tool-list">
+                <li>다운로드 파일, 클립보드, 최근 입력 기록 정리</li>
+                <li>중요 계산 결과는 개인 저장소에 백업 후 브라우저 탭 종료</li>
+                <li>의심스러운 팝업/확장프로그램이 있다면 브라우저 재시작 후 재검증</li>
+            </ul>
+        </section>
+
+        <section class="link-matrix">
+            <h2 class="matrix-title">관련 페이지</h2>
+            <div class="matrix-grid">
+                <a class="matrix-link" href="privacy.html">개인정보처리방침</a>
+                <a class="matrix-link" href="terms.html">이용약관</a>
+                <a class="matrix-link" href="guide-adsense-content.html">콘텐츠 운영 가이드</a>
+                <a class="matrix-link" href="update-log.html">콘텐츠 업데이트 로그</a>
+            </div>
+        </section>
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <p>&copy; 2026 lilhwang.com. All rights reserved.</p>
+    </div>
+</footer>
+<script src="app.js"></script>
+<script src="updates.js"></script>
+</body>
+</html>
