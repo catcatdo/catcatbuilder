@@ -8,6 +8,73 @@
 
 window.ISSUE_THREADS = window.ISSUE_THREADS || [
   {
+    id: "issue-20260213-drunk-driving-appeal",
+    title: "음주·무면허·역주행 사망사고 항소심",
+    catchy_title: "두 명 숨진 사고, 왜 형량이 줄었나: 감형 판결이 남긴 질문",
+    source_name: "커뮤니티 제보 기사 텍스트",
+    source_url: "",
+    published_at: "2026-02-13T23:55:00+09:00",
+    rewritten_body: "무면허 음주 상태에서 과속·역주행으로 사망 사고를 낸 20대 운전자가 항소심에서 감형되며 논란이 커졌습니다. 재판부는 별도 사건에서 이미 확정된 형과 이번 사건이 경합범 관계에 있어 형평을 다시 따져야 한다는 법리를 적용했다고 설명했습니다. 유족 측의 엄벌 요구와 법리상 감형 판단이 정면으로 충돌하면서, '국민 감정'과 '양형 체계' 사이 간극이 다시 쟁점으로 떠올랐습니다.",
+    summary_lines: [
+      "항소심 재판부는 1심 징역 8년을 파기하고 징역 6년과 벌금 30만원을 선고했다.",
+      "감형 이유로는 이전 보험사기방지특별법 사건 확정판결과의 경합범 관계를 고려한 양형 형평이 제시됐다.",
+      "사고 경위의 중대성과 유족의 엄벌 요구에도 형량이 줄면서 법리적 정합성과 사회적 수용성 논쟁이 확대됐다."
+    ],
+    curator_insight: "이 이슈는 '판결이 옳으냐'만의 문제가 아니라, 대형 참사 사건에서 양형 법리가 어떻게 작동하는지에 대한 신뢰 문제로 번지고 있습니다. 비슷한 사건일수록 판결 이유를 더 입체적으로 설명하는 사법 커뮤니케이션이 중요해졌습니다.",
+    visual_suggestion: "무료 스톡 키워드: night city road, traffic lane warning, courthouse exterior, emergency lights blur, road safety concept. 생성형 프롬프트: \"empty urban road at night with centerline markings, distant courthouse silhouette, red and blue emergency light bokeh, serious documentary tone, realistic photography, no people, no logos\"",
+    tags: ["음주운전", "항소심", "양형논란", "교통사고", "사회이슈"],
+    comments: [
+      {
+        side: "left",
+        author: "분노중",
+        text: "결과만 보면 너무 약한데.. 진짜 답답하다",
+        time: "오후 11:56"
+      },
+      {
+        side: "right",
+        author: "법리파",
+        text: "감정은 별개고 경합범 계산은 법대로 간 거지",
+        time: "오후 11:57"
+      },
+      {
+        side: "left",
+        author: "현실체감",
+        text: "유족 입장에선 절대 납득 안 될 듯",
+        time: "오후 11:58"
+      },
+      {
+        side: "right",
+        author: "중립체크",
+        text: "판결문 설명을 더 쉽게 공개해야 함 ㅠ",
+        time: "오후 11:59"
+      },
+      {
+        side: "left",
+        author: "강경론",
+        text: "무면허+음주+과속이면 가중 더 세야지",
+        time: "오전 12:00"
+      },
+      {
+        side: "right",
+        author: "제도론",
+        text: "양형기준 자체를 손봐야 반복 안 됨",
+        time: "오전 12:01"
+      },
+      {
+        side: "left",
+        author: "냉정모드",
+        text: "법리 적용과 별개로 사회 메시지는 약해 보임",
+        time: "오전 12:02"
+      },
+      {
+        side: "right",
+        author: "결론대기",
+        text: "대중이 이해할 근거 설명이 더 필요함 ㄹㅇ",
+        time: "오전 12:03"
+      }
+    ]
+  },
+  {
     id: "issue-20260213-choi-gaon-gold-support",
     title: "최가온 금메달과 기업 후원 구조",
     catchy_title: "금메달 뒤에 300억의 시간: 최가온 우승이 던진 한국 설상의 현실",
