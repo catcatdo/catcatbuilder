@@ -76,6 +76,17 @@
         return issue.title || '제목 없음';
     }
 
+    function normalizeImageUrl(value) {
+        var url = String(value || '').trim();
+        if (!url) {
+            return '';
+        }
+        if (url.indexOf('http://') === 0) {
+            return 'https://' + url.slice(7);
+        }
+        return url;
+    }
+
     function parseDateValue(value) {
         var t = Date.parse(value || '');
         return isNaN(t) ? 0 : t;
@@ -143,12 +154,9 @@
         var tags = Array.isArray(issue.tags) ? issue.tags : [];
         var comments = Array.isArray(issue.comments) ? issue.comments : [];
 
-        var sourceLink = issue.source_url
-            ? '<a href="' + escapeHtml(issue.source_url) + '" target="_blank" rel="noopener">원문 링크</a>'
-            : '원문 링크 없음';
-
-        var imageHtml = issue.image
-            ? '<div class="issue-image"><img src="' + escapeHtml(issue.image) + '" alt="' + escapeHtml(issue.title || '이슈 이미지') + '" loading="lazy"></div>'
+        var safeImageUrl = normalizeImageUrl(issue.image);
+        var imageHtml = safeImageUrl
+            ? '<div class="issue-image"><img src="' + escapeHtml(safeImageUrl) + '" alt="' + escapeHtml(catchyTitle || '이슈 이미지') + '" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.onerror=null;this.style.display=&quot;none&quot;;if(this.parentElement){this.parentElement.style.display=&quot;none&quot;;}"></div>'
             : '';
 
         var tagsHtml = tags.length
@@ -203,9 +211,7 @@
         return '' +
             '<article class="issue-card" id="issue-' + escapeHtml(issue.id || '') + '">' +
                 '<div class="issue-meta">' +
-                    '<span>출처: ' + escapeHtml(issue.source_name || '미상') + '</span>' +
                     '<span>작성일: ' + escapeHtml(issue.published_at || '') + '</span>' +
-                    '<span>' + sourceLink + '</span>' +
                 '</div>' +
                 '<h2 class="issue-title">' + escapeHtml(catchyTitle) + '</h2>' +
                 imageHtml +
@@ -214,7 +220,6 @@
                 insightHtml +
                 visualHtml +
                 tagsHtml +
-                '<div class="issue-note">저작권 안전 운영: 원문 제목/문장을 그대로 복제하지 않고, 핵심 정보 + 큐레이터 관점으로 재구성합니다.</div>' +
                 '<div>' +
                     '<h3 class="subsection-title" style="margin-top:0;">커뮤 반응</h3>' +
                     '<div class="reaction-wrap">' + commentsHtml + '</div>' +
