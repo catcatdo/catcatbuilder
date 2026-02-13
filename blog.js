@@ -240,15 +240,38 @@ function getCategoryKeywordFallback(category) {
 function buildPostKeywordQuery(post) {
     const tags = Array.isArray(post.tags) ? post.tags : [];
     const title = String(post.title || '');
+    const promptText = Array.isArray(post.image_prompts) ? post.image_prompts.join(', ') : '';
     const tokens = uniqueNonEmpty(
         normalizeKeywordTokens(tags.join(',')) // 우선 태그 반영
             .concat(normalizeKeywordTokens(title))
+            .concat(normalizeKeywordTokens(promptText))
             .concat(getCategoryKeywordFallback(post.category))
     );
     return tokens.slice(0, 5).join(',');
 }
 
+function getPostImagePrompts(post) {
+    if (!Array.isArray(post.image_prompts)) return [];
+    return post.image_prompts
+        .map(p => String(p || '').trim())
+        .filter(Boolean)
+        .slice(0, 3);
+}
+
 function buildPostAutoPrompt(post, bodyText, slotIndex) {
+    const customPrompts = getPostImagePrompts(post);
+    if (customPrompts.length) {
+        const pick = customPrompts[slotIndex % customPrompts.length];
+        return [
+            'editorial article image',
+            'realistic lighting',
+            'no logo',
+            'no watermark',
+            'no visible text',
+            pick
+        ].join(', ');
+    }
+
     const title = String(post.title || '');
     const tags = Array.isArray(post.tags) ? post.tags : [];
     const keywords = buildPostKeywordQuery(post).replace(/,/g, ', ');

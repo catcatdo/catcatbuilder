@@ -377,13 +377,13 @@
             source_name: '관리자 작성',
             source_url: '',
             published_at: post.date || '',
-            catchy_title: post.title || '제목 없음',
-            summary_lines: [],
-            curator_insight: '',
-            visual_suggestion: '',
+            catchy_title: post.catchy_title || post.title || '제목 없음',
+            summary_lines: Array.isArray(post.summary_lines) ? post.summary_lines : [],
+            curator_insight: post.curator_insight || '',
+            visual_suggestion: post.visual_suggestion || '',
             rewritten_body: resolveBody(post),
             tags: Array.isArray(post.tags) ? post.tags : [],
-            comments: [],
+            comments: Array.isArray(post.comments) ? post.comments : [],
             image: post.image || ''
         };
     }

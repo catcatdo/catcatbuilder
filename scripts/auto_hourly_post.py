@@ -228,6 +228,33 @@ def build_excerpt(item: FeedItem) -> str:
     return f"[{item.source}] {base}"
 
 
+def build_feed_image_prompts(item: FeedItem, category: str) -> List[str]:
+    title = clean_text(item.title)
+    summary = clean_text(item.summary)
+    short_summary = summary[:140] if summary else title[:140]
+
+    category_hint = {
+        "tech": "technology industry trend",
+        "dev": "software engineering operations",
+        "life": "daily life impact story",
+    }.get(category, "news analysis")
+
+    return [
+        (
+            f"editorial news photo, {category_hint}, {title}, {short_summary}, "
+            "documentary style, realistic lighting, no logo, no watermark, no visible text"
+        ),
+        (
+            f"conceptual illustration for news analysis, key topic: {title}, "
+            f"supporting context: {short_summary}, clean composition, modern style, no text"
+        ),
+        (
+            f"magazine cover style visual, {category_hint}, {title}, "
+            "high contrast, cinematic framing, no brand mark, no letters"
+        ),
+    ]
+
+
 def build_content(item: FeedItem) -> str:
     date_kr = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
     summary = item.summary or "핵심 내용은 원문 링크에서 확인 가능합니다."
@@ -285,6 +312,28 @@ def build_fallback_excerpt(topic: Dict[str, Any]) -> str:
         f"[문제해결 가이드] {topic['problem']} 상황에서 바로 적용할 수 있는 "
         "실전 점검 순서를 정리했습니다."
     )
+
+
+def build_fallback_image_prompts(topic: Dict[str, Any]) -> List[str]:
+    title = clean_text(topic["title"])
+    problem = clean_text(topic["problem"])
+    category = clean_text(topic["category"])
+    tags = ", ".join(topic.get("tags", [])[:4])
+
+    return [
+        (
+            f"editorial problem-solving image, {category}, {title}, {problem}, "
+            f"keywords: {tags}, realistic style, no logo, no text"
+        ),
+        (
+            f"workflow checklist concept visual, {title}, {problem}, "
+            "clean desk, notebook, dashboard mood, documentary photo style, no text"
+        ),
+        (
+            f"strategy meeting concept, {category} operations planning, {title}, "
+            "minimal modern composition, realistic lighting, no letters"
+        ),
+    ]
 
 
 def build_fallback_content(topic: Dict[str, Any]) -> str:
@@ -383,6 +432,7 @@ def main() -> int:
 
     if chosen is not None:
         category = choose_category(chosen.title, chosen.summary)
+        image_prompts = build_feed_image_prompts(chosen, category)
         new_post = {
             "id": next_id,
             "title": f"[자동브리핑] {chosen.title}",
@@ -392,6 +442,7 @@ def main() -> int:
             "excerpt": build_excerpt(chosen),
             "content": build_content(chosen),
             "tags": build_tags(chosen.title, chosen.summary, chosen.source),
+            "image_prompts": image_prompts[:3],
         }
         updates_title = f"자동 이슈 브리핑 게시: {chosen.title[:48]}"
         print(f"[ok] feed post id={next_id} title={chosen.title}")
@@ -399,6 +450,7 @@ def main() -> int:
         state["seen_links"] = list(seen)[-600:]
     else:
         topic = build_fallback_topic(state)
+        image_prompts = build_fallback_image_prompts(topic)
         new_post = {
             "id": next_id,
             "title": f"[자동문제해결] {topic['title']}",
@@ -408,6 +460,7 @@ def main() -> int:
             "excerpt": build_fallback_excerpt(topic),
             "content": build_fallback_content(topic),
             "tags": topic["tags"],
+            "image_prompts": image_prompts[:3],
         }
         updates_title = f"자동 문제해결 가이드 게시: {topic['title'][:40]}"
         print(f"[ok] fallback post id={next_id} title={topic['title']}")
