@@ -7,10 +7,15 @@
     </linearGradient>
   </defs>
   <rect width="1280" height="720" fill="url(#bg)"/>
+  
+  <circle cx="939" cy="236" r="108" fill="rgba(255,255,255,0.12)"/>
+  <circle cx="1067" cy="356" r="84" fill="rgba(255,255,255,0.10)"/>
+  <rect x="789" y="426" width="350" height="132" rx="20" fill="rgba(255,255,255,0.10)"/>
+
   <rect x="56" y="56" width="1168" height="608" rx="24" fill="none" stroke="rgba(255,255,255,0.24)" stroke-width="2"/>
   <text x="84" y="146" fill="#bfdbfe" font-size="30" font-family="Arial, sans-serif" font-weight="700">MAIN COVER</text>
   <text x="84" y="230" fill="#ffffff" font-size="54" font-family="Arial, sans-serif" font-weight="700">[초보 입문] 안 쓰는 노트북으로 24시간 홈서버 만들기</text>
   <text x="84" y="292" fill="#dbeafe" font-size="30" font-family="Arial, sans-serif">서랍 속 노트북에 Ubuntu를 설치하고 FastAPI 대시보드를 올려서 24시간 돌아가는 스마트팜 서버로 만드는 과정. 전기세 월…</text>
   <rect x="84" y="582" width="1110" height="62" rx="31" fill="rgba(255,255,255,0.16)"/>
-  <text x="116" y="622" fill="#ffffff" font-size="30" font-family="Arial, sans-serif">#홈서버 #노트북 #UBUNTU #LINUX</text>
+  <text x="116" y="622" fill="#ffffff" font-size="30" font-family="Arial, sans-serif">#홈서버 #노트북 #Ubuntu #Linux #FastAPI #SSH</text>
 </svg>

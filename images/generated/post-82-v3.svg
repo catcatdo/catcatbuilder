@@ -7,10 +7,15 @@
     </linearGradient>
   </defs>
   <rect width="1280" height="720" fill="url(#bg)"/>
+  
+  <circle cx="936" cy="236" r="108" fill="rgba(255,255,255,0.12)"/>
+  <circle cx="1064" cy="356" r="84" fill="rgba(255,255,255,0.10)"/>
+  <rect x="786" y="426" width="350" height="132" rx="20" fill="rgba(255,255,255,0.10)"/>
+
   <rect x="56" y="56" width="1168" height="608" rx="24" fill="none" stroke="rgba(255,255,255,0.24)" stroke-width="2"/>
   <text x="84" y="146" fill="#bfdbfe" font-size="30" font-family="Arial, sans-serif" font-weight="700">ARTICLE IMAGE 3</text>
   <text x="84" y="230" fill="#ffffff" font-size="54" font-family="Arial, sans-serif" font-weight="700">[템플릿] 디지털 디톡스 21일 챌린지 트래커</text>
   <text x="84" y="292" fill="#dbeafe" font-size="30" font-family="Arial, sans-serif">스마트폰 사용 시간이 하루 5시간 넘나요? 21일간 조금씩 줄여가는 디지털 디톡스 챌린지 템플릿이에요. 복사해서 바로 시작하세요.</text>
   <rect x="84" y="582" width="1110" height="62" rx="31" fill="rgba(255,255,255,0.16)"/>
-  <text x="116" y="622" fill="#ffffff" font-size="30" font-family="Arial, sans-serif">#디지털디톡스 #스마트폰 #챌린지 #템플릿</text>
+  <text x="116" y="622" fill="#ffffff" font-size="30" font-family="Arial, sans-serif">#디지털디톡스 #스마트폰 #챌린지 #템플릿 #습관 #건강</text>
 </svg>

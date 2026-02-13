@@ -7,10 +7,15 @@
     </linearGradient>
   </defs>
   <rect width="1280" height="720" fill="url(#bg)"/>
+  
+  <circle cx="927" cy="236" r="108" fill="rgba(255,255,255,0.12)"/>
+  <circle cx="1055" cy="356" r="84" fill="rgba(255,255,255,0.10)"/>
+  <rect x="777" y="426" width="350" height="132" rx="20" fill="rgba(255,255,255,0.10)"/>
+
   <rect x="56" y="56" width="1168" height="608" rx="24" fill="none" stroke="rgba(255,255,255,0.24)" stroke-width="2"/>
   <text x="84" y="146" fill="#bfdbfe" font-size="30" font-family="Arial, sans-serif" font-weight="700">ARTICLE IMAGE 1</text>
   <text x="84" y="230" fill="#ffffff" font-size="54" font-family="Arial, sans-serif" font-weight="700">[템플릿] 가계부 템플릿 — 월급 들어오면 어디로 가는지 추적하기</text>
   <text x="84" y="292" fill="#dbeafe" font-size="30" font-family="Arial, sans-serif">&quot;돈이 어디로 사라지는 거지?&quot; 매달 느끼시나요? 심플한 가계부 템플릿으로 지출 패턴을 파악하고 새는 돈을 잡으세요.</text>
   <rect x="84" y="582" width="1110" height="62" rx="31" fill="rgba(255,255,255,0.16)"/>
-  <text x="116" y="622" fill="#ffffff" font-size="30" font-family="Arial, sans-serif">#가계부 #절약 #재테크 #템플릿</text>
+  <text x="116" y="622" fill="#ffffff" font-size="30" font-family="Arial, sans-serif">#가계부 #절약 #재테크 #템플릿 #돈관리 #생활</text>
 </svg>

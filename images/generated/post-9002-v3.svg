@@ -1,16 +1,23 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="Generated cover">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#1f2937"/>
-      <stop offset="58%" stop-color="#065f46"/>
-      <stop offset="100%" stop-color="#0f766e"/>
+      <stop offset="0%" stop-color="#111827"/>
+      <stop offset="58%" stop-color="#4c1d95"/>
+      <stop offset="100%" stop-color="#2563eb"/>
     </linearGradient>
   </defs>
   <rect width="1280" height="720" fill="url(#bg)"/>
+  
+  <ellipse cx="988" cy="500" rx="220" ry="88" fill="rgba(255,255,255,0.14)"/>
+  <rect x="864" y="374" width="82" height="130" rx="14" fill="rgba(255,255,255,0.26)"/>
+  <rect x="958" y="332" width="82" height="172" rx="14" fill="rgba(255,255,255,0.34)"/>
+  <rect x="1052" y="390" width="82" height="114" rx="14" fill="rgba(255,255,255,0.22)"/>
+  <circle cx="998" cy="284" r="36" fill="#fde68a"/>
+
   <rect x="56" y="56" width="1168" height="608" rx="24" fill="none" stroke="rgba(255,255,255,0.24)" stroke-width="2"/>
   <text x="84" y="146" fill="#bfdbfe" font-size="30" font-family="Arial, sans-serif" font-weight="700">ARTICLE IMAGE 3</text>
   <text x="84" y="230" fill="#ffffff" font-size="54" font-family="Arial, sans-serif" font-weight="700">금메달 뒤에 300억의 시간</text>
-  <text x="84" y="292" fill="#dbeafe" font-size="30" font-family="Arial, sans-serif">최가온 우승과 설상 인프라 분석</text>
+  <text x="84" y="292" fill="#dbeafe" font-size="30" font-family="Arial, sans-serif">최가온 우승과 한국 설상 시스템</text>
   <rect x="84" y="582" width="1110" height="62" rx="31" fill="rgba(255,255,255,0.16)"/>
-  <text x="116" y="622" fill="#ffffff" font-size="30" font-family="Arial, sans-serif">#동계올림픽 #스노보드 #스포츠후원</text>
+  <text x="116" y="622" fill="#ffffff" font-size="30" font-family="Arial, sans-serif">#스노보드 #올림픽 #스포츠후원 #최가온 #금메달 #뒤에</text>
 </svg>

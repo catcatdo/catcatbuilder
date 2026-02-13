@@ -7,10 +7,15 @@
     </linearGradient>
   </defs>
   <rect width="1280" height="720" fill="url(#bg)"/>
+  
+  <circle cx="935" cy="236" r="108" fill="rgba(255,255,255,0.12)"/>
+  <circle cx="1063" cy="356" r="84" fill="rgba(255,255,255,0.10)"/>
+  <rect x="785" y="426" width="350" height="132" rx="20" fill="rgba(255,255,255,0.10)"/>
+
   <rect x="56" y="56" width="1168" height="608" rx="24" fill="none" stroke="rgba(255,255,255,0.24)" stroke-width="2"/>
   <text x="84" y="146" fill="#bfdbfe" font-size="30" font-family="Arial, sans-serif" font-weight="700">ARTICLE IMAGE 1</text>
   <text x="84" y="230" fill="#ffffff" font-size="54" font-family="Arial, sans-serif" font-weight="700">Git 브랜치 전략 완벽 정리: 팀 프로젝트 충돌 없이 협업하기</text>
   <text x="84" y="292" fill="#dbeafe" font-size="30" font-family="Arial, sans-serif">팀 프로젝트에서 Git 충돌을 최소화하는 브랜치 전략을 정리했습니다. Git Flow, GitHub Flow 비교와 팀 규모별 추천…</text>
   <rect x="84" y="582" width="1110" height="62" rx="31" fill="rgba(255,255,255,0.16)"/>
-  <text x="116" y="622" fill="#ffffff" font-size="30" font-family="Arial, sans-serif">#GIT #브랜치 #협업 #GITHUBFLOW</text>
+  <text x="116" y="622" fill="#ffffff" font-size="30" font-family="Arial, sans-serif">#Git #브랜치 #협업 #GitHubFlow #GitFlow #팀개발</text>
 </svg>

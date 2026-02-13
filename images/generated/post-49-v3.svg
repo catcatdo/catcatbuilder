@@ -7,10 +7,15 @@
     </linearGradient>
   </defs>
   <rect width="1280" height="720" fill="url(#bg)"/>
+  
+  <circle cx="923" cy="236" r="108" fill="rgba(255,255,255,0.12)"/>
+  <circle cx="1051" cy="356" r="84" fill="rgba(255,255,255,0.10)"/>
+  <rect x="773" y="426" width="350" height="132" rx="20" fill="rgba(255,255,255,0.10)"/>
+
   <rect x="56" y="56" width="1168" height="608" rx="24" fill="none" stroke="rgba(255,255,255,0.24)" stroke-width="2"/>
   <text x="84" y="146" fill="#bfdbfe" font-size="30" font-family="Arial, sans-serif" font-weight="700">ARTICLE IMAGE 3</text>
   <text x="84" y="230" fill="#ffffff" font-size="54" font-family="Arial, sans-serif" font-weight="700">[초보 입문] 라즈베리파이 처음 사면 뭘 하나: 개봉부터 SSH 접속까지 완전 가이드</text>
   <text x="84" y="292" fill="#dbeafe" font-size="30" font-family="Arial, sans-serif">라즈베리파이 5를 택배로 받고 처음 켜서 SSH로 접속하기까지. 구매 목록, OS 굽기, WiFi 설정, 첫 Python 실행까지 …</text>
   <rect x="84" y="582" width="1110" height="62" rx="31" fill="rgba(255,255,255,0.16)"/>
-  <text x="116" y="622" fill="#ffffff" font-size="30" font-family="Arial, sans-serif">#라즈베리파이 #RASPBERRYPI #SSH #초보자</text>
+  <text x="116" y="622" fill="#ffffff" font-size="30" font-family="Arial, sans-serif">#라즈베리파이 #RaspberryPi #SSH #초보자 #Linux #홈서버</text>
 </svg>

@@ -7,10 +7,15 @@
     </linearGradient>
   </defs>
   <rect width="1280" height="720" fill="url(#bg)"/>
+  
+  <circle cx="922" cy="236" r="108" fill="rgba(255,255,255,0.12)"/>
+  <circle cx="1050" cy="356" r="84" fill="rgba(255,255,255,0.10)"/>
+  <rect x="772" y="426" width="350" height="132" rx="20" fill="rgba(255,255,255,0.10)"/>
+
   <rect x="56" y="56" width="1168" height="608" rx="24" fill="none" stroke="rgba(255,255,255,0.24)" stroke-width="2"/>
   <text x="84" y="146" fill="#bfdbfe" font-size="30" font-family="Arial, sans-serif" font-weight="700">MAIN COVER</text>
   <text x="84" y="230" fill="#ffffff" font-size="54" font-family="Arial, sans-serif" font-weight="700">Discord ByteString 오류 해결: UTF-8 인코딩 문제 한 번에 잡기</text>
   <text x="84" y="292" fill="#dbeafe" font-size="30" font-family="Arial, sans-serif">Discord 연동 중 발생하는 ByteString/Unicode 오류를 UTF-8 기준으로 정리하고 재발 방지 체크포인트를 공유합…</text>
   <rect x="84" y="582" width="1110" height="62" rx="31" fill="rgba(255,255,255,0.16)"/>
-  <text x="116" y="622" fill="#ffffff" font-size="30" font-family="Arial, sans-serif">#DISCORD #BYTESTRING #UTF8 #인코딩</text>
+  <text x="116" y="622" fill="#ffffff" font-size="30" font-family="Arial, sans-serif">#Discord #ByteString #UTF8 #인코딩 #Unicode #디버깅</text>
 </svg>

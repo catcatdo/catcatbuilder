@@ -7,10 +7,15 @@
     </linearGradient>
   </defs>
   <rect width="1280" height="720" fill="url(#bg)"/>
+  
+  <circle cx="929" cy="236" r="108" fill="rgba(255,255,255,0.12)"/>
+  <circle cx="1057" cy="356" r="84" fill="rgba(255,255,255,0.10)"/>
+  <rect x="779" y="426" width="350" height="132" rx="20" fill="rgba(255,255,255,0.10)"/>
+
   <rect x="56" y="56" width="1168" height="608" rx="24" fill="none" stroke="rgba(255,255,255,0.24)" stroke-width="2"/>
   <text x="84" y="146" fill="#bfdbfe" font-size="30" font-family="Arial, sans-serif" font-weight="700">MAIN COVER</text>
   <text x="84" y="230" fill="#ffffff" font-size="54" font-family="Arial, sans-serif" font-weight="700">[자동문제해결] 갑자기 색인이 줄어들 때 30분 안에 점검하는 체크리스트</text>
   <text x="84" y="292" fill="#dbeafe" font-size="30" font-family="Arial, sans-serif">[문제해결 가이드] Search Console에서 갑자기 &apos;발견됨-현재 색인되지 않음&apos;이 늘어나는 상황 상황에서 바로 적용할 수 있…</text>
   <rect x="84" y="582" width="1110" height="62" rx="31" fill="rgba(255,255,255,0.16)"/>
-  <text x="116" y="622" fill="#ffffff" font-size="30" font-family="Arial, sans-serif">#SEO #색인문제 #검색유입 #문제해결</text>
+  <text x="116" y="622" fill="#ffffff" font-size="30" font-family="Arial, sans-serif">#SEO #색인문제 #검색유입 #문제해결 #운영팁 #자동브리핑</text>
 </svg>

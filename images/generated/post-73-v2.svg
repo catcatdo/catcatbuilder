@@ -7,10 +7,15 @@
     </linearGradient>
   </defs>
   <rect width="1280" height="720" fill="url(#bg)"/>
+  
+  <circle cx="948" cy="236" r="108" fill="rgba(255,255,255,0.12)"/>
+  <circle cx="1076" cy="356" r="84" fill="rgba(255,255,255,0.10)"/>
+  <rect x="798" y="426" width="350" height="132" rx="20" fill="rgba(255,255,255,0.10)"/>
+
   <rect x="56" y="56" width="1168" height="608" rx="24" fill="none" stroke="rgba(255,255,255,0.24)" stroke-width="2"/>
   <text x="84" y="146" fill="#bfdbfe" font-size="30" font-family="Arial, sans-serif" font-weight="700">ARTICLE IMAGE 2</text>
   <text x="84" y="230" fill="#ffffff" font-size="54" font-family="Arial, sans-serif" font-weight="700">내가 죽으면 디지털 데이터는 어떻게 될까? — 디지털 유산 관리 가이드</text>
   <text x="84" y="292" fill="#dbeafe" font-size="30" font-family="Arial, sans-serif">구글 계정, 카카오톡, 인스타그램, 클라우드 사진... 내가 갑자기 못 쓰게 되면 이 데이터는 어떻게 되나요? 디지털 유산 관리법을…</text>
   <rect x="84" y="582" width="1110" height="62" rx="31" fill="rgba(255,255,255,0.16)"/>
-  <text x="116" y="622" fill="#ffffff" font-size="30" font-family="Arial, sans-serif">#디지털유산 #데이터관리 #보안 #클라우드</text>
+  <text x="116" y="622" fill="#ffffff" font-size="30" font-family="Arial, sans-serif">#디지털유산 #데이터관리 #보안 #클라우드 #백업 #라이프</text>
 </svg>

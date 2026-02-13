@@ -7,10 +7,15 @@
     </linearGradient>
   </defs>
   <rect width="1280" height="720" fill="url(#bg)"/>
+  
+  <circle cx="946" cy="236" r="108" fill="rgba(255,255,255,0.12)"/>
+  <circle cx="1074" cy="356" r="84" fill="rgba(255,255,255,0.10)"/>
+  <rect x="796" y="426" width="350" height="132" rx="20" fill="rgba(255,255,255,0.10)"/>
+
   <rect x="56" y="56" width="1168" height="608" rx="24" fill="none" stroke="rgba(255,255,255,0.24)" stroke-width="2"/>
   <text x="84" y="146" fill="#bfdbfe" font-size="30" font-family="Arial, sans-serif" font-weight="700">ARTICLE IMAGE 2</text>
   <text x="84" y="230" fill="#ffffff" font-size="54" font-family="Arial, sans-serif" font-weight="700">[초보 입문] Python 진짜 1도 모르는 사람을 위한 FastAPI 첫걸음</text>
   <text x="84" y="292" fill="#dbeafe" font-size="30" font-family="Arial, sans-serif">Python 설치부터 시작해서 웹 브라우저에 센서 대시보드를 띄우는 것까지. 프로그래밍을 한 번도 해본 적 없는 분을 위한 단계별 …</text>
   <rect x="84" y="582" width="1110" height="62" rx="31" fill="rgba(255,255,255,0.16)"/>
-  <text x="116" y="622" fill="#ffffff" font-size="30" font-family="Arial, sans-serif">#PYTHON #FASTAPI #초보자 #프로그래밍입문</text>
+  <text x="116" y="622" fill="#ffffff" font-size="30" font-family="Arial, sans-serif">#Python #FastAPI #초보자 #프로그래밍입문 #웹서버 #대시보드</text>
 </svg>

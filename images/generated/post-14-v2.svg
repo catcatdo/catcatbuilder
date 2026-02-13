@@ -7,10 +7,15 @@
     </linearGradient>
   </defs>
   <rect width="1280" height="720" fill="url(#bg)"/>
+  
+  <circle cx="924" cy="236" r="108" fill="rgba(255,255,255,0.12)"/>
+  <circle cx="1052" cy="356" r="84" fill="rgba(255,255,255,0.10)"/>
+  <rect x="774" y="426" width="350" height="132" rx="20" fill="rgba(255,255,255,0.10)"/>
+
   <rect x="56" y="56" width="1168" height="608" rx="24" fill="none" stroke="rgba(255,255,255,0.24)" stroke-width="2"/>
   <text x="84" y="146" fill="#bfdbfe" font-size="30" font-family="Arial, sans-serif" font-weight="700">ARTICLE IMAGE 2</text>
   <text x="84" y="230" fill="#ffffff" font-size="54" font-family="Arial, sans-serif" font-weight="700">GitHub Pages로 무료 블로그 만들기: 완벽 가이드</text>
   <text x="84" y="292" fill="#dbeafe" font-size="30" font-family="Arial, sans-serif">서버 비용 0원으로 나만의 블로그를 만드는 방법을 단계별로 안내합니다. GitHub Pages와 정적 사이트의 장점, 도메인 연결까…</text>
   <rect x="84" y="582" width="1110" height="62" rx="31" fill="rgba(255,255,255,0.16)"/>
-  <text x="116" y="622" fill="#ffffff" font-size="30" font-family="Arial, sans-serif">#GITHUBPAGES #블로그 #무료호스팅 #웹개발</text>
+  <text x="116" y="622" fill="#ffffff" font-size="30" font-family="Arial, sans-serif">#GitHubPages #블로그 #무료호스팅 #웹개발 #정적사이트 #도메인</text>
 </svg>

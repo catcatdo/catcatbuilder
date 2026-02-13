@@ -7,10 +7,15 @@
     </linearGradient>
   </defs>
   <rect width="1280" height="720" fill="url(#bg)"/>
+  
+  <circle cx="930" cy="236" r="108" fill="rgba(255,255,255,0.12)"/>
+  <circle cx="1058" cy="356" r="84" fill="rgba(255,255,255,0.10)"/>
+  <rect x="780" y="426" width="350" height="132" rx="20" fill="rgba(255,255,255,0.10)"/>
+
   <rect x="56" y="56" width="1168" height="608" rx="24" fill="none" stroke="rgba(255,255,255,0.24)" stroke-width="2"/>
   <text x="84" y="146" fill="#bfdbfe" font-size="30" font-family="Arial, sans-serif" font-weight="700">ARTICLE IMAGE 1</text>
   <text x="84" y="230" fill="#ffffff" font-size="54" font-family="Arial, sans-serif" font-weight="700">Cloudflare Workers 활용법: 서버리스 함수 10분 만에 배포하기</text>
   <text x="84" y="292" fill="#dbeafe" font-size="30" font-family="Arial, sans-serif">서버 없이 API를 만들 수 있는 Cloudflare Workers 사용법을 10분 안에 따라할 수 있도록 정리했습니다.</text>
   <rect x="84" y="582" width="1110" height="62" rx="31" fill="rgba(255,255,255,0.16)"/>
-  <text x="116" y="622" fill="#ffffff" font-size="30" font-family="Arial, sans-serif">#CLOUDFLARE #WORKERS #서버리스 #API</text>
+  <text x="116" y="622" fill="#ffffff" font-size="30" font-family="Arial, sans-serif">#Cloudflare #Workers #서버리스 #API #엣지컴퓨팅 #배포</text>
 </svg>
