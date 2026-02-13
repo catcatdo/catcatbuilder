@@ -8,6 +8,73 @@
 
 window.ISSUE_THREADS = window.ISSUE_THREADS || [
   {
+    id: "issue-20260213-choi-gaon-gold-support",
+    title: "최가온 금메달과 기업 후원 구조",
+    catchy_title: "금메달 뒤에 300억의 시간: 최가온 우승이 던진 한국 설상의 현실",
+    source_name: "중앙일보",
+    source_url: "https://www.joongang.co.kr/article/25404962",
+    published_at: "2026-02-13T23:20:00+09:00",
+    rewritten_body: "최가온의 하프파이프 금메달은 개인 재능만으로 설명하기 어려운 성과라는 평가가 나옵니다. 장기 협회 후원, 부상 치료비 지원, 해외 훈련과 멘탈·학습 관리 같은 다층 지원이 누적되며 성과로 연결됐다는 분석입니다. 동시에 이번 사례는 한국 동계 설상 종목이 아직도 민간 대기업의 지속 투자에 크게 의존하고 있다는 구조적 현실도 함께 드러냈습니다.",
+    summary_lines: [
+      "최가온이 2026 밀라노·코르티나 동계올림픽 스노보드 여자 하프파이프에서 우승하며 한국 설상 종목의 새 기록을 만들었다.",
+      "롯데는 협회 지원, 부상 시 치료비 지원, 해외 전지훈련·장비·멘탈 프로그램 등 장기 투자로 선수 육성 기반을 키워왔다.",
+      "이번 성과는 기업 후원의 순기능을 보여주지만, 특정 종목이 기업 의지에 좌우되는 구조를 어떻게 공공 시스템으로 보완할지도 과제로 남겼다."
+    ],
+    curator_insight: "이 뉴스의 핵심은 '영웅 서사'보다 '인프라 서사'에 있습니다. 메달은 한 경기에서 나오지만, 시스템은 최소 5~10년 단위로 축적된다는 점을 보여준 사례입니다.",
+    visual_suggestion: "무료 스톡 키워드: snowboard halfpipe, winter athlete training, rehabilitation gym, team support staff, olympic podium silhouette. 생성형 프롬프트: \"female snowboard athlete on halfpipe at sunrise, coaches and support crew in background, documentary sports photo, realistic snow texture, no logo, no identifiable face\"",
+    tags: ["동계올림픽", "스노보드", "최가온", "스포츠후원", "트렌드분석"],
+    comments: [
+      {
+        side: "left",
+        author: "응원파",
+        text: "돈이 아니라 시간 투자였던 느낌.. 멋있다",
+        time: "오후 11:21"
+      },
+      {
+        side: "right",
+        author: "현실파",
+        text: "결국 기업 없으면 종목 유지 힘든 구조네",
+        time: "오후 11:22"
+      },
+      {
+        side: "left",
+        author: "스노우팬",
+        text: "부상 때 버텨준 지원이 진짜 컸지 ㅠ",
+        time: "오후 11:23"
+      },
+      {
+        side: "right",
+        author: "균형론",
+        text: "한 종목만 혜택 몰리면 형평성 이슈 생김",
+        time: "오후 11:24"
+      },
+      {
+        side: "left",
+        author: "성과중심",
+        text: "결과로 증명했으니 모델은 배울만함 ㅋㅋ",
+        time: "오후 11:25"
+      },
+      {
+        side: "right",
+        author: "냉정하게",
+        text: "PR도 있겠지만 선수에 실질 도움된 건 팩트",
+        time: "오후 11:26"
+      },
+      {
+        side: "left",
+        author: "제도파",
+        text: "민간+국가 같이 가는 구조로 바꿔야 함",
+        time: "오후 11:27"
+      },
+      {
+        side: "right",
+        author: "결론",
+        text: "메달 하나가 시스템 얘기까지 끌어낸 게 포인트",
+        time: "오후 11:28"
+      }
+    ]
+  },
+  {
     id: "issue-20260213-lotte-tainan-followup",
     title: "롯데 타이난 논란 후속 정리",
     catchy_title: "의혹은 부인됐는데 왜 더 시끄러울까: 롯데 타이난 이슈의 빈칸",
