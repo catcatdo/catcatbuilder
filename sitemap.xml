@@ -11,7 +11,7 @@
     <!-- Tools Section -->
     <url>
         <loc>https://lilhwang.com/#tools</loc>
-        <lastmod>2026-02-09</lastmod>
+        <lastmod>2026-02-13</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -19,7 +19,7 @@
     <!-- Widgets Section -->
     <url>
         <loc>https://lilhwang.com/#widgets</loc>
-        <lastmod>2026-02-09</lastmod>
+        <lastmod>2026-02-13</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -27,7 +27,7 @@
     <!-- Games Section -->
     <url>
         <loc>https://lilhwang.com/#games</loc>
-        <lastmod>2026-02-09</lastmod>
+        <lastmod>2026-02-13</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -97,43 +97,43 @@
     <!-- Developer Utility Pages -->
     <url>
         <loc>https://lilhwang.com/json-formatter.html</loc>
-        <lastmod>2026-02-09</lastmod>
+        <lastmod>2026-02-13</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
         <loc>https://lilhwang.com/base64.html</loc>
-        <lastmod>2026-02-09</lastmod>
+        <lastmod>2026-02-13</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
         <loc>https://lilhwang.com/hash.html</loc>
-        <lastmod>2026-02-09</lastmod>
+        <lastmod>2026-02-13</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
         <loc>https://lilhwang.com/timezone.html</loc>
-        <lastmod>2026-02-09</lastmod>
+        <lastmod>2026-02-13</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
         <loc>https://lilhwang.com/writing-helper.html</loc>
-        <lastmod>2026-02-09</lastmod>
+        <lastmod>2026-02-13</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
         <loc>https://lilhwang.com/image-tool.html</loc>
-        <lastmod>2026-02-09</lastmod>
+        <lastmod>2026-02-13</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
         <loc>https://lilhwang.com/cheatsheet.html</loc>
-        <lastmod>2026-02-09</lastmod>
+        <lastmod>2026-02-13</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.7</priority>
     </url>
@@ -151,19 +151,19 @@
     </url>
     <url>
         <loc>https://lilhwang.com/contact.html</loc>
-        <lastmod>2026-02-09</lastmod>
+        <lastmod>2026-02-13</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
     <url>
         <loc>https://lilhwang.com/privacy.html</loc>
-        <lastmod>2026-02-09</lastmod>
+        <lastmod>2026-02-13</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.4</priority>
     </url>
     <url>
         <loc>https://lilhwang.com/terms.html</loc>
-        <lastmod>2026-02-09</lastmod>
+        <lastmod>2026-02-13</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.4</priority>
     </url>

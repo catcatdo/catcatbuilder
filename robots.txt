@@ -8,3 +8,4 @@ Sitemap: https://lilhwang.com/sitemap.xml
 
 # Disallow crawling of ads (optional)
 Disallow: /pagead/
+Disallow: /admin.html
