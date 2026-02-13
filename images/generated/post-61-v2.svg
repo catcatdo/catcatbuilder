@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="Generated cover">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1f2937"/>
+      <stop offset="58%" stop-color="#065f46"/>
+      <stop offset="100%" stop-color="#0f766e"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg)"/>
+  <rect x="56" y="56" width="1168" height="608" rx="24" fill="none" stroke="rgba(255,255,255,0.24)" stroke-width="2"/>
+  <text x="84" y="146" fill="#bfdbfe" font-size="30" font-family="Arial, sans-serif" font-weight="700">ARTICLE IMAGE 2</text>
+  <text x="84" y="230" fill="#ffffff" font-size="54" font-family="Arial, sans-serif" font-weight="700">🎯 만다라트 목표 플래너 템플릿 — 오타니 쇼헤이가 쓴 그 방법</text>
+  <text x="84" y="292" fill="#dbeafe" font-size="30" font-family="Arial, sans-serif">오타니 쇼헤이가 고교 시절 작성한 만다라트 플래너. 큰 목표를 64개의 구체적 행동으로 쪼개는 마법 같은 도구예요. 바로 쓸 수 있…</text>
+  <rect x="84" y="582" width="1110" height="62" rx="31" fill="rgba(255,255,255,0.16)"/>
+  <text x="116" y="622" fill="#ffffff" font-size="30" font-family="Arial, sans-serif">#템플릿 #만다라트 #목표 #계획</text>
+</svg>

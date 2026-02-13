@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="Generated cover">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#111827"/>
+      <stop offset="58%" stop-color="#1d4ed8"/>
+      <stop offset="100%" stop-color="#2563eb"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg)"/>
+  <rect x="56" y="56" width="1168" height="608" rx="24" fill="none" stroke="rgba(255,255,255,0.24)" stroke-width="2"/>
+  <text x="84" y="146" fill="#bfdbfe" font-size="30" font-family="Arial, sans-serif" font-weight="700">ARTICLE IMAGE 3</text>
+  <text x="84" y="230" fill="#ffffff" font-size="54" font-family="Arial, sans-serif" font-weight="700">[베란다 스마트팜 2편] 조립부터 스마트폰 모니터링까지 — 완성 코드 포함</text>
+  <text x="84" y="292" fill="#dbeafe" font-size="30" font-family="Arial, sans-serif">수경재배 키트 조립, ESP32 센서 배선, 아두이노 코드, FastAPI 서버 코드까지 전부 복사-붙여넣기 가능한 완성 코드와 함…</text>
+  <rect x="84" y="582" width="1110" height="62" rx="31" fill="rgba(255,255,255,0.16)"/>
+  <text x="116" y="622" fill="#ffffff" font-size="30" font-family="Arial, sans-serif">#스마트팜 #베란다 #ESP32 #FASTAPI</text>
+</svg>

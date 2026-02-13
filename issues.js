@@ -1,5 +1,6 @@
 (function () {
     var IMAGE_PROXY_ENDPOINT = 'https://catcatbuilder-admin.catcatdo-bc9.workers.dev/image-proxy?url=';
+    var ISSUE_FALLBACK_IMAGE = 'images/issue-fallback.svg';
 
     function escapeHtml(value) {
         return String(value)
@@ -214,36 +215,7 @@
     }
 
     function buildInlineFallbackImage(issue) {
-        var title = truncateText(resolveCatchyTitle(issue) || 'Issue Brief', 56);
-        var insight = truncateText(resolveCuratorInsight(issue) || resolveBody(issue) || '핵심 이슈를 정리한 브리프', 88);
-        var tags = Array.isArray(issue.tags) ? issue.tags : [];
-        var chip = tags.length ? ('#' + String(tags[0] || '').trim()) : '#ISSUE';
-        var dateText = String(issue.published_at || '').slice(0, 10) || 'TODAY';
-        var palette = [
-            ['#0f172a', '#1e3a8a', '#0b3b6a'],
-            ['#1f2937', '#065f46', '#0f766e'],
-            ['#111827', '#7c2d12', '#b45309'],
-            ['#1e1b4b', '#4c1d95', '#312e81']
-        ][simpleHash(title + '|' + chip) % 4];
-        var svg =
-            '<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="Issue cover">' +
-                '<defs>' +
-                    '<linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">' +
-                        '<stop offset="0%" stop-color="' + palette[0] + '" />' +
-                        '<stop offset="55%" stop-color="' + palette[1] + '" />' +
-                        '<stop offset="100%" stop-color="' + palette[2] + '" />' +
-                    '</linearGradient>' +
-                '</defs>' +
-                '<rect width="1280" height="720" fill="url(#g1)" />' +
-                '<rect x="54" y="54" width="1172" height="612" rx="22" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="2" />' +
-                '<text x="96" y="130" fill="#bfdbfe" font-size="30" font-family="Arial, sans-serif">ISSUE BRIEF</text>' +
-                '<text x="96" y="198" fill="#ffffff" font-size="54" font-weight="700" font-family="Arial, sans-serif">' + escapeXml(title) + '</text>' +
-                '<text x="96" y="258" fill="#dbeafe" font-size="28" font-family="Arial, sans-serif">' + escapeXml(insight) + '</text>' +
-                '<rect x="96" y="584" width="260" height="58" rx="29" fill="rgba(255,255,255,0.16)" />' +
-                '<text x="130" y="621" fill="#ffffff" font-size="30" font-family="Arial, sans-serif">' + escapeXml(chip) + '</text>' +
-                '<text x="1030" y="621" fill="#bfdbfe" font-size="28" font-family="Arial, sans-serif">' + escapeXml(dateText) + '</text>' +
-            '</svg>';
-        return 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg);
+        return ISSUE_FALLBACK_IMAGE;
     }
 
     function uniqueNonEmpty(list) {
@@ -269,8 +241,6 @@
         var directImage = normalizeImageUrl(issue.image);
 
         var candidates = [];
-        candidates.push(buildInlineFallbackImage(issue));
-
         if (directImage) {
             candidates.push(directImage);
         }
@@ -285,6 +255,7 @@
 
         candidates.push(buildKeywordStockImageUrl(keywordQuery || promptFromVisual || autoPrompt, seedBase, 'a'));
         candidates.push(buildKeywordStockImageUrl(keywordQuery || promptFromVisual || autoPrompt, seedBase, 'b'));
+        candidates.push(buildInlineFallbackImage(issue));
 
         return uniqueNonEmpty(candidates);
     }
@@ -338,6 +309,21 @@
         }
     }
 
+    function canUseLocalImage(url) {
+        var target = String(url || '').trim();
+        if (!target) {
+            return Promise.reject(new Error('empty'));
+        }
+        return new Promise(function (resolve, reject) {
+            var tester = new Image();
+            tester.loading = 'eager';
+            tester.decoding = 'async';
+            tester.onload = function () { resolve(target); };
+            tester.onerror = function () { reject(new Error('local not loadable')); };
+            tester.src = target;
+        });
+    }
+
     async function enhanceIssueImages(container) {
         if (!container) {
             return;
@@ -352,10 +338,20 @@
             }
 
             for (var j = 1; j < candidates.length; j += 1) {
+                var candidate = String(candidates[j] || '').trim();
+                if (!candidate) {
+                    continue;
+                }
                 try {
-                    var dataUrl = await fetchRemoteImageAsDataUrl(candidates[j]);
-                    if (typeof dataUrl === 'string' && dataUrl.indexOf('data:image/') === 0) {
-                        img.src = dataUrl;
+                    if (/^https?:\/\//i.test(candidate)) {
+                        var dataUrl = await fetchRemoteImageAsDataUrl(candidate);
+                        if (typeof dataUrl === 'string' && dataUrl.indexOf('data:image/') === 0) {
+                            img.src = dataUrl;
+                            break;
+                        }
+                    } else {
+                        await canUseLocalImage(candidate);
+                        img.src = candidate;
                         break;
                     }
                 } catch (error) {

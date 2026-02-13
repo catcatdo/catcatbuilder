@@ -258,6 +258,14 @@ function getPostImagePrompts(post) {
         .slice(0, 3);
 }
 
+function getPostImageVariants(post) {
+    if (!Array.isArray(post.image_variants)) return [];
+    return post.image_variants
+        .map(path => String(path || '').trim())
+        .filter(Boolean)
+        .slice(0, 3);
+}
+
 function buildPostAutoPrompt(post, bodyText, slotIndex) {
     const customPrompts = getPostImagePrompts(post);
     if (customPrompts.length) {
@@ -311,45 +319,21 @@ function buildKeywordStockImageUrl(keywordQuery, seedBase, salt) {
 }
 
 function buildInlineFallbackImage(post, slotIndex, bodyText) {
-    const title = truncateText(post.title || 'Blog Brief', 44);
-    const subtitle = truncateText((post.excerpt || '').trim() || bodyText || '핵심 내용을 빠르게 읽는 브리프', 78);
-    const keywords = buildPostKeywordQuery(post)
-        .split(',')
-        .filter(Boolean)
-        .slice(0, 3)
-        .map(k => `#${k.toUpperCase()}`);
-    const keywordLine = keywords.length ? keywords.join(' ') : '#BLOG #ARTICLE';
-    const palette = [
-        ['#111827', '#1d4ed8', '#1e40af'],
-        ['#0f172a', '#065f46', '#0f766e'],
-        ['#1f2937', '#7c2d12', '#b45309'],
-        ['#1e1b4b', '#4c1d95', '#6d28d9']
-    ][simpleHash(`${post.id || ''}|${post.title || ''}|${slotIndex}`) % 4];
-    const svg =
-        '<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">' +
-            '<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">' +
-                `<stop offset="0%" stop-color="${palette[0]}"/>` +
-                `<stop offset="55%" stop-color="${palette[1]}"/>` +
-                `<stop offset="100%" stop-color="${palette[2]}"/>` +
-            '</linearGradient></defs>' +
-            '<rect width="1280" height="720" fill="url(#g)"/>' +
-            '<rect x="56" y="56" width="1168" height="608" rx="20" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="2"/>' +
-            `<text x="98" y="132" fill="#bfdbfe" font-size="30" font-family="Arial, sans-serif">ARTICLE IMAGE ${escapeXml(String(slotIndex + 1))}</text>` +
-            `<text x="98" y="206" fill="#fff" font-size="50" font-family="Arial, sans-serif" font-weight="700">${escapeXml(title)}</text>` +
-            `<text x="98" y="266" fill="#dbeafe" font-size="28" font-family="Arial, sans-serif">${escapeXml(subtitle)}</text>` +
-            '<rect x="98" y="586" width="1084" height="58" rx="29" fill="rgba(255,255,255,0.14)"/>' +
-            `<text x="126" y="624" fill="#fff" font-size="28" font-family="Arial, sans-serif">${escapeXml(keywordLine)}</text>` +
-        '</svg>';
-    return 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg);
+    return 'images/blog-fallback.svg';
 }
 
 function buildPostImageCandidates(post, bodyText, slotIndex) {
     const seedBase = String(post.id || '') + '|' + String(post.title || '') + '|slot-' + String(slotIndex);
     const keywordQuery = buildPostKeywordQuery(post);
     const prompt = buildPostAutoPrompt(post, bodyText, slotIndex);
+    const variants = getPostImageVariants(post);
+    const localVariant = variants.length ? variants[slotIndex % variants.length] : '';
+    const coverImage = String(post.image || '').trim();
 
     return uniqueNonEmpty([
         buildInlineFallbackImage(post, slotIndex, bodyText),
+        localVariant,
+        coverImage,
         buildGeneratedImageUrl(prompt, seedBase + '|ai'),
         buildKeywordStockImageUrl(keywordQuery, seedBase, 'a'),
         buildKeywordStockImageUrl(keywordQuery, seedBase, 'b')
@@ -411,6 +395,19 @@ async function fetchRemoteImageAsDataUrl(url) {
     }
 }
 
+function canUseLocalImage(url) {
+    const target = String(url || '').trim();
+    if (!target) return Promise.reject(new Error('empty'));
+    return new Promise((resolve, reject) => {
+        const tester = new Image();
+        tester.loading = 'eager';
+        tester.decoding = 'async';
+        tester.onload = () => resolve(target);
+        tester.onerror = () => reject(new Error('local not loadable'));
+        tester.src = target;
+    });
+}
+
 async function enhanceAutoPostImages(root) {
     if (!root) return;
     const images = root.querySelectorAll('img[data-candidates]');
@@ -420,10 +417,18 @@ async function enhanceAutoPostImages(root) {
         if (!candidates.length) continue;
 
         for (let j = 1; j < candidates.length; j += 1) {
+            const candidate = String(candidates[j] || '').trim();
+            if (!candidate) continue;
             try {
-                const dataUrl = await fetchRemoteImageAsDataUrl(candidates[j]);
-                if (typeof dataUrl === 'string' && dataUrl.startsWith('data:image/')) {
-                    img.src = dataUrl;
+                if (/^https?:\/\//i.test(candidate)) {
+                    const dataUrl = await fetchRemoteImageAsDataUrl(candidate);
+                    if (typeof dataUrl === 'string' && dataUrl.startsWith('data:image/')) {
+                        img.src = dataUrl;
+                        break;
+                    }
+                } else {
+                    await canUseLocalImage(candidate);
+                    img.src = candidate;
                     break;
                 }
             } catch (error) {

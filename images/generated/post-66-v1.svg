@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="Generated cover">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="58%" stop-color="#1e3a8a"/>
+      <stop offset="100%" stop-color="#0b3b6a"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg)"/>
+  <rect x="56" y="56" width="1168" height="608" rx="24" fill="none" stroke="rgba(255,255,255,0.24)" stroke-width="2"/>
+  <text x="84" y="146" fill="#bfdbfe" font-size="30" font-family="Arial, sans-serif" font-weight="700">ARTICLE IMAGE 1</text>
+  <text x="84" y="230" fill="#ffffff" font-size="54" font-family="Arial, sans-serif" font-weight="700">일론 머스크 vs 샘 올트먼, 대체 왜 싸우는 거야? 테크 업계 최대 갈등 총정리</text>
+  <text x="84" y="292" fill="#dbeafe" font-size="30" font-family="Arial, sans-serif">OpenAI 공동 창립자였던 머스크가 왜 올트먼을 고소했을까? 두 사람의 관계, 갈등의 핵심, 그리고 이것이 AI 산업에 미치는 영…</text>
+  <rect x="84" y="582" width="1110" height="62" rx="31" fill="rgba(255,255,255,0.16)"/>
+  <text x="116" y="622" fill="#ffffff" font-size="30" font-family="Arial, sans-serif">#일론머스크 #샘올트먼 #OPENAI #AI</text>
+</svg>

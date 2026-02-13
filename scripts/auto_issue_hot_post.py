@@ -23,6 +23,8 @@ from typing import Any, Dict, List, Optional
 from urllib.request import Request, urlopen
 import xml.etree.ElementTree as ET
 
+from cover_generator import generate_covers_for_post
+
 
 ROOT = Path(__file__).resolve().parent.parent
 POSTS_PATH = ROOT / "posts.json"
@@ -281,15 +283,25 @@ def build_fallback_issue(state: Dict[str, Any]) -> Dict[str, Any]:
 def compose_issue_post_from_item(next_id: int, now_date: str, item: FeedItem) -> Dict[str, Any]:
     tags = build_tags(item)
     catchy = build_catchy_title(item)
+    cover_image, image_variants = generate_covers_for_post(
+        ROOT,
+        next_id,
+        catchy,
+        shorten(clean_text(item.summary) or clean_text(item.title), 120),
+        tags,
+        "issue",
+        variants=3,
+    )
     return {
         "id": next_id,
         "title": catchy,
         "category": "issue",
         "date": now_date,
-        "image": "",
+        "image": cover_image,
         "excerpt": shorten(clean_text(item.summary) or clean_text(item.title), 160),
         "content": build_rewritten_body(item),
         "tags": tags,
+        "image_variants": image_variants[:3],
         "catchy_title": catchy,
         "summary_lines": build_summary_lines(item),
         "curator_insight": build_curator_insight(item),
@@ -302,18 +314,28 @@ def compose_issue_post_fallback(next_id: int, now_date: str, topic: Dict[str, An
     catchy = f"{topic['title']}: 오늘 다시 보는 핵심 포인트"
     summary = clean_text(topic["summary"])
     tags = topic.get("tags", ["자동이슈봇"])
+    cover_image, image_variants = generate_covers_for_post(
+        ROOT,
+        next_id,
+        catchy,
+        summary,
+        tags,
+        "issue",
+        variants=3,
+    )
     return {
         "id": next_id,
         "title": catchy,
         "category": "issue",
         "date": now_date,
-        "image": "",
+        "image": cover_image,
         "excerpt": shorten(summary, 150),
         "content": (
             f"대형 속보 공백 시간대에도 사용자 검색 수요는 계속됩니다. 이번 자동 이슈는 '{topic['topic']}'를 주제로 "
             "실무 관점에서 다시 점검해야 할 포인트를 정리한 브리핑입니다."
         ),
         "tags": tags,
+        "image_variants": image_variants[:3],
         "catchy_title": catchy,
         "summary_lines": [
             f"이번 자동 이슈 주제는 '{topic['topic']}'이며 반복적으로 검색되는 문제 영역이다.",

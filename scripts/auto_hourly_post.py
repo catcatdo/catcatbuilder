@@ -19,6 +19,8 @@ from typing import List, Dict, Any
 from urllib.request import urlopen, Request
 import xml.etree.ElementTree as ET
 
+from cover_generator import generate_covers_for_post
+
 ROOT = Path(__file__).resolve().parent.parent
 POSTS_PATH = ROOT / "posts.json"
 UPDATES_PATH = ROOT / "updates.json"
@@ -433,16 +435,26 @@ def main() -> int:
     if chosen is not None:
         category = choose_category(chosen.title, chosen.summary)
         image_prompts = build_feed_image_prompts(chosen, category)
+        cover_image, image_variants = generate_covers_for_post(
+            ROOT,
+            next_id,
+            f"[자동브리핑] {chosen.title}",
+            build_excerpt(chosen),
+            build_tags(chosen.title, chosen.summary, chosen.source),
+            category,
+            variants=3,
+        )
         new_post = {
             "id": next_id,
             "title": f"[자동브리핑] {chosen.title}",
             "category": category,
             "date": now_date,
-            "image": "",
+            "image": cover_image,
             "excerpt": build_excerpt(chosen),
             "content": build_content(chosen),
             "tags": build_tags(chosen.title, chosen.summary, chosen.source),
             "image_prompts": image_prompts[:3],
+            "image_variants": image_variants[:3],
         }
         updates_title = f"자동 이슈 브리핑 게시: {chosen.title[:48]}"
         print(f"[ok] feed post id={next_id} title={chosen.title}")
@@ -451,16 +463,26 @@ def main() -> int:
     else:
         topic = build_fallback_topic(state)
         image_prompts = build_fallback_image_prompts(topic)
+        cover_image, image_variants = generate_covers_for_post(
+            ROOT,
+            next_id,
+            f"[자동문제해결] {topic['title']}",
+            build_fallback_excerpt(topic),
+            topic["tags"],
+            topic["category"],
+            variants=3,
+        )
         new_post = {
             "id": next_id,
             "title": f"[자동문제해결] {topic['title']}",
             "category": topic["category"],
             "date": now_date,
-            "image": "",
+            "image": cover_image,
             "excerpt": build_fallback_excerpt(topic),
             "content": build_fallback_content(topic),
             "tags": topic["tags"],
             "image_prompts": image_prompts[:3],
+            "image_variants": image_variants[:3],
         }
         updates_title = f"자동 문제해결 가이드 게시: {topic['title'][:40]}"
         print(f"[ok] fallback post id={next_id} title={topic['title']}")
