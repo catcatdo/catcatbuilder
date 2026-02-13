@@ -402,6 +402,59 @@
     border-top: 1px solid #ecf0f1;
 }
 
+.related-posts {
+    margin-top: 22px;
+    border-top: 1px solid #ecf0f1;
+    padding-top: 18px;
+}
+
+.related-posts-title {
+    font-size: 18px;
+    color: #2c3e50;
+    margin: 0 0 12px;
+}
+
+.related-posts-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.related-post-link {
+    width: 100%;
+    text-align: left;
+    border: 1px solid #dbe3ea;
+    border-radius: 10px;
+    background: #fff;
+    padding: 12px;
+    cursor: pointer;
+    display: grid;
+    gap: 8px;
+}
+
+.related-post-link:hover {
+    border-color: #3498db;
+    box-shadow: 0 2px 10px rgba(52, 152, 219, 0.12);
+}
+
+.related-post-category {
+    font-size: 12px;
+    color: #3498db;
+    font-weight: 700;
+}
+
+.related-post-heading {
+    font-size: 14px;
+    color: #2c3e50;
+    line-height: 1.45;
+    font-weight: 600;
+}
+
+.related-post-date {
+    font-size: 12px;
+    color: #95a5a6;
+}
+
 /* ========================================
    Pagination
    ======================================== */
@@ -505,6 +558,32 @@
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
+}
+
+.subscribe-widget .widget-text {
+    margin-bottom: 10px;
+}
+
+.subscribe-links {
+    display: grid;
+    gap: 8px;
+}
+
+.subscribe-link {
+    display: block;
+    text-decoration: none;
+    color: #1f2937;
+    background: #f5f7fb;
+    border: 1px solid #dbe3ea;
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.subscribe-link:hover {
+    color: #0f6fff;
+    border-color: #0f6fff;
 }
 
 .tag-item {
@@ -806,6 +885,10 @@
 
     .post-full-title {
         font-size: 26px;
+    }
+
+    .related-posts-list {
+        grid-template-columns: 1fr;
     }
 
     .category-filter {

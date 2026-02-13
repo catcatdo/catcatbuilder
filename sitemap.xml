@@ -16,10 +16,34 @@
         <priority>0.9</priority>
     </url>
     <url>
+        <loc>https://lilhwang.com/blog/</loc>
+        <lastmod>2026-02-13</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
         <loc>https://lilhwang.com/issues.html</loc>
         <lastmod>2026-02-13</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://lilhwang.com/issues/</loc>
+        <lastmod>2026-02-13</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://lilhwang.com/rss.xml</loc>
+        <lastmod>2026-02-13</lastmod>
+        <changefreq>hourly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://lilhwang.com/issues-rss.xml</loc>
+        <lastmod>2026-02-13</lastmod>
+        <changefreq>hourly</changefreq>
+        <priority>0.8</priority>
     </url>
     <url>
         <loc>https://lilhwang.com/resource-center.html</loc>

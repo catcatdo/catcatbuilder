@@ -8,6 +8,101 @@ let currentPage = 1;
 const postsPerPage = 6;
 const IMAGE_PROXY_ENDPOINT = 'https://catcatbuilder-admin.catcatdo-bc9.workers.dev/image-proxy?url=';
 
+function escapeHtml(value) {
+    return String(value || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
+
+function getRelatedPosts(targetPost, limit = 3) {
+    if (!targetPost) return [];
+
+    const targetTags = new Set(
+        (Array.isArray(targetPost.tags) ? targetPost.tags : [])
+            .map(tag => String(tag || '').trim().toLowerCase())
+            .filter(Boolean)
+    );
+
+    const ranked = allPosts
+        .filter(post => post && post.id !== targetPost.id)
+        .map(post => {
+            let score = 0;
+            const postTags = Array.isArray(post.tags) ? post.tags : [];
+            const postTitle = String(post.title || '').toLowerCase();
+
+            if (post.category === targetPost.category) score += 3;
+
+            for (const tag of postTags) {
+                const t = String(tag || '').trim().toLowerCase();
+                if (!t) continue;
+                if (targetTags.has(t)) score += 4;
+                if (postTitle.includes(t)) score += 1;
+            }
+
+            const recency = Date.parse(post.date || '') || 0;
+            return { post, score, recency };
+        })
+        .sort((a, b) => {
+            if (b.score !== a.score) return b.score - a.score;
+            return b.recency - a.recency;
+        });
+
+    const picked = [];
+    const pickedIds = new Set();
+
+    for (const item of ranked) {
+        if (picked.length >= limit) break;
+        if (item.score <= 0) continue;
+        picked.push(item.post);
+        pickedIds.add(item.post.id);
+    }
+
+    if (picked.length < limit) {
+        for (const item of ranked) {
+            if (picked.length >= limit) break;
+            if (pickedIds.has(item.post.id)) continue;
+            picked.push(item.post);
+            pickedIds.add(item.post.id);
+        }
+    }
+
+    return picked;
+}
+
+function renderRelatedPosts(targetPost) {
+    const section = document.getElementById('related-posts-section');
+    const list = document.getElementById('related-posts-list');
+    if (!section || !list) return;
+
+    const related = getRelatedPosts(targetPost, 3);
+    if (!related.length) {
+        list.innerHTML = '';
+        section.style.display = 'none';
+        return;
+    }
+
+    list.innerHTML = related.map(post => `
+        <button type="button" class="related-post-link" data-post-id="${post.id}">
+            <span class="related-post-category">${getCategoryName(post.category)}</span>
+            <span class="related-post-heading">${escapeHtml(post.title)}</span>
+            <span class="related-post-date">${formatDate(post.date)}</span>
+        </button>
+    `).join('');
+
+    section.style.display = 'block';
+    list.querySelectorAll('.related-post-link').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const nextId = parseInt(btn.dataset.postId, 10);
+            if (!isNaN(nextId)) {
+                showPostDetail(nextId);
+            }
+        });
+    });
+}
+
 // ========================================
 // Markdown Renderer
 // ========================================
@@ -729,6 +824,8 @@ function showPostDetail(postId) {
         tagsContainer.innerHTML = '';
     }
 
+    renderRelatedPosts(post);
+
     // Scroll to top
     window.scrollTo(0, 0);
 
@@ -749,6 +846,10 @@ function showPostDetail(postId) {
 document.getElementById('back-to-list')?.addEventListener('click', () => {
     document.getElementById('post-detail').style.display = 'none';
     document.getElementById('posts-list').style.display = 'block';
+    const relatedSection = document.getElementById('related-posts-section');
+    const relatedList = document.getElementById('related-posts-list');
+    if (relatedSection) relatedSection.style.display = 'none';
+    if (relatedList) relatedList.innerHTML = '';
     window.location.hash = '';
     updateBlogMeta(blogListMeta);
     removeBlogPostSchema();

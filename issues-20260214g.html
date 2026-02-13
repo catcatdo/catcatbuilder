@@ -20,6 +20,7 @@
     <meta name="twitter:title" content="이슈 허브 | lilhwang.com">
     <meta name="twitter:description" content="커뮤니티 이슈를 재구성한 문제해결형 콘텐츠 허브">
     <meta name="twitter:image" content="https://lilhwang.com/images/og-default.jpg">
+    <link rel="alternate" type="application/rss+xml" title="릴황 이슈 RSS" href="https://lilhwang.com/issues-rss.xml">
 
     <script>
         (function () {
@@ -51,8 +52,36 @@
         .issues-hero h1 {
             font-size: 2rem;
             color: var(--text-heading);
-            margin-bottom: 0;
+            margin-bottom: 8px;
             font-family: 'Space Grotesk', 'Noto Sans KR', sans-serif;
+        }
+
+        .issues-hero-subtitle {
+            margin: 0 0 14px;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .issues-hero-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .issues-hero-link {
+            text-decoration: none;
+            color: var(--text-heading);
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 8px 12px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .issues-hero-link:hover {
+            border-color: var(--primary);
+            color: var(--primary);
         }
 
         .issue-card {
@@ -281,6 +310,11 @@
             <div class="issues-shell">
                 <section class="issues-hero">
                     <h1>이슈 허브</h1>
+                    <p class="issues-hero-subtitle">핫이슈 업데이트를 RSS로 바로 받아볼 수 있습니다.</p>
+                    <div class="issues-hero-links">
+                        <a class="issues-hero-link" href="https://lilhwang.com/issues-rss.xml" target="_blank" rel="noopener">이슈 RSS 구독</a>
+                        <a class="issues-hero-link" href="https://lilhwang.com/rss.xml" target="_blank" rel="noopener">블로그 RSS 보기</a>
+                    </div>
                 </section>
 
                 <section id="issues-container" aria-live="polite"></section>
