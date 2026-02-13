@@ -463,7 +463,7 @@
 
     async function loadAdminIssues() {
         try {
-            var response = await fetch('posts.json?v=' + Date.now());
+            var response = await fetch('posts.json?v=' + Date.now(), { cache: 'no-store' });
             if (!response.ok) {
                 return [];
             }

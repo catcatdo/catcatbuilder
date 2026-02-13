@@ -547,7 +547,7 @@ function getPostMeta(post, postId) {
 
 async function loadPosts() {
     try {
-        const response = await fetch('posts.json?v=' + Date.now());
+        const response = await fetch('posts.json?v=' + Date.now(), { cache: 'no-store' });
         const data = await response.json();
         // 모드에 따라 필터링
         if (window.BLOG_MODE === 'template') {
