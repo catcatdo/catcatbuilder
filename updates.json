@@ -178,5 +178,11 @@
     "title": "자동 이슈 브리핑 게시: OpenAI GPT-5.3-Codex-Spark Shows What’s Possible",
     "url": "blog.html#post-119",
     "category": "자동발행"
+  },
+  {
+    "date": "2026-02-13",
+    "title": "자동 이슈봇 게시: \"노트북이 300만원이나?\" … 구매 포기하는 대학생",
+    "url": "issues.html#issue-post-120",
+    "category": "자동이슈봇"
   }
 ]
