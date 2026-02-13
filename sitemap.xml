@@ -8,30 +8,6 @@
         <priority>1.0</priority>
     </url>
 
-    <!-- Tools Section -->
-    <url>
-        <loc>https://lilhwang.com/#tools</loc>
-        <lastmod>2026-02-13</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-    <!-- Widgets Section -->
-    <url>
-        <loc>https://lilhwang.com/#widgets</loc>
-        <lastmod>2026-02-13</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-    <!-- Games Section -->
-    <url>
-        <loc>https://lilhwang.com/#games</loc>
-        <lastmod>2026-02-13</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
     <!-- Blog Page -->
     <url>
         <loc>https://lilhwang.com/blog.html</loc>
@@ -68,6 +44,24 @@
         <lastmod>2026-02-13</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://lilhwang.com/test.html</loc>
+        <lastmod>2026-02-13</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://lilhwang.com/mbti.html</loc>
+        <lastmod>2026-02-13</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://lilhwang.com/poop-dodge.html</loc>
+        <lastmod>2026-02-13</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
     </url>
     <url>
         <loc>https://lilhwang.com/guide-daily-tools.html</loc>
