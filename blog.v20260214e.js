@@ -718,8 +718,7 @@ function showPostDetail(postId) {
 
     const renderedHtml = renderMarkdown(post.content);
     const detailContent = document.getElementById('detail-content');
-    detailContent.innerHTML = injectAutoImagesIntoPost(renderedHtml, post);
-    enhanceAutoPostImages(detailContent);
+    detailContent.innerHTML = renderedHtml;
 
     const tagsContainer = document.getElementById('detail-tags');
     if (post.tags && post.tags.length > 0) {

@@ -517,7 +517,6 @@
         var bodyHtml = rewrittenBody
             ? '<div class="issue-summary">' + escapeHtml(rewrittenBody) + '</div>'
             : '';
-        var inlineImageHtml = renderIssueInlineImages(issue);
 
         var commentsHtml = comments.length
             ? comments.map(function (comment) {
@@ -543,7 +542,6 @@
                 '<h2 class="issue-title">' + escapeHtml(catchyTitle) + '</h2>' +
                 imageHtml +
                 bodyHtml +
-                inlineImageHtml +
                 summaryHtml +
                 insightHtml +
                 tagsHtml +
