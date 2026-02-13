@@ -87,6 +87,55 @@
         return url;
     }
 
+    function extractPromptFromVisualSuggestion(value) {
+        var text = String(value || '').trim();
+        if (!text) {
+            return '';
+        }
+
+        var match = text.match(/생성형\s*프롬프트\s*:\s*["“]?([^"”\n]+)["”]?/i);
+        if (match && match[1]) {
+            return match[1].trim();
+        }
+
+        return text;
+    }
+
+    function simpleHash(input) {
+        var str = String(input || '');
+        var hash = 0;
+        for (var i = 0; i < str.length; i += 1) {
+            hash = ((hash << 5) - hash + str.charCodeAt(i)) | 0;
+        }
+        return Math.abs(hash);
+    }
+
+    function buildGeneratedImageUrl(prompt, seedBase) {
+        var cleanPrompt = String(prompt || '').trim();
+        if (!cleanPrompt) {
+            return '';
+        }
+
+        var seed = simpleHash(seedBase || cleanPrompt) % 1000000;
+        return 'https://image.pollinations.ai/prompt/' +
+            encodeURIComponent(cleanPrompt) +
+            '?model=flux&width=1280&height=720&nologo=true&seed=' + seed;
+    }
+
+    function resolveDisplayImage(issue) {
+        var directImage = normalizeImageUrl(issue.image);
+        if (directImage) {
+            return directImage;
+        }
+
+        var prompt = extractPromptFromVisualSuggestion(resolveVisualSuggestion(issue));
+        if (!prompt) {
+            return '';
+        }
+
+        return buildGeneratedImageUrl(prompt, (issue.id || '') + '|' + (issue.title || ''));
+    }
+
     function parseDateValue(value) {
         var t = Date.parse(value || '');
         return isNaN(t) ? 0 : t;
@@ -149,12 +198,11 @@
         var catchyTitle = resolveCatchyTitle(issue);
         var summaryLines = resolveSummaryLines(issue);
         var curatorInsight = resolveCuratorInsight(issue);
-        var visualSuggestion = resolveVisualSuggestion(issue);
         var rewrittenBody = resolveBody(issue);
         var tags = Array.isArray(issue.tags) ? issue.tags : [];
         var comments = Array.isArray(issue.comments) ? issue.comments : [];
 
-        var safeImageUrl = normalizeImageUrl(issue.image);
+        var safeImageUrl = resolveDisplayImage(issue);
         var imageHtml = safeImageUrl
             ? '<div class="issue-image"><img src="' + escapeHtml(safeImageUrl) + '" alt="' + escapeHtml(catchyTitle || '이슈 이미지') + '" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.onerror=null;this.style.display=&quot;none&quot;;if(this.parentElement){this.parentElement.style.display=&quot;none&quot;;}"></div>'
             : '';
@@ -178,13 +226,6 @@
             ? '<div class="curation-block">' +
                 '<h3 class="subsection-title" style="margin-top:0;">[Curator\'s Insight]</h3>' +
                 '<p class="issue-summary issue-block-text">' + escapeHtml(curatorInsight) + '</p>' +
-              '</div>'
-            : '';
-
-        var visualHtml = visualSuggestion
-            ? '<div class="curation-block">' +
-                '<h3 class="subsection-title" style="margin-top:0;">[Visual Suggestion]</h3>' +
-                '<p class="issue-summary issue-block-text">' + escapeHtml(visualSuggestion) + '</p>' +
               '</div>'
             : '';
 
@@ -218,7 +259,6 @@
                 bodyHtml +
                 summaryHtml +
                 insightHtml +
-                visualHtml +
                 tagsHtml +
                 '<div>' +
                     '<h3 class="subsection-title" style="margin-top:0;">커뮤 반응</h3>' +
