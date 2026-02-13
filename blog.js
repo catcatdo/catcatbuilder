@@ -6,6 +6,7 @@ let allPosts = [];
 let currentCategory = 'all';
 let currentPage = 1;
 const postsPerPage = 6;
+const IMAGE_PROXY_ENDPOINT = 'https://catcatbuilder-admin.catcatdo-bc9.workers.dev/image-proxy?url=';
 
 // ========================================
 // Markdown Renderer
@@ -286,8 +287,37 @@ function buildKeywordStockImageUrl(keywordQuery, seedBase, salt) {
     return 'https://loremflickr.com/1280/720/' + keywordPath + '?lock=' + lock;
 }
 
-function buildInlineFallbackImage(post, slotIndex) {
-    return 'images/blog-fallback.svg';
+function buildInlineFallbackImage(post, slotIndex, bodyText) {
+    const title = truncateText(post.title || 'Blog Brief', 44);
+    const subtitle = truncateText((post.excerpt || '').trim() || bodyText || '핵심 내용을 빠르게 읽는 브리프', 78);
+    const keywords = buildPostKeywordQuery(post)
+        .split(',')
+        .filter(Boolean)
+        .slice(0, 3)
+        .map(k => `#${k.toUpperCase()}`);
+    const keywordLine = keywords.length ? keywords.join(' ') : '#BLOG #ARTICLE';
+    const palette = [
+        ['#111827', '#1d4ed8', '#1e40af'],
+        ['#0f172a', '#065f46', '#0f766e'],
+        ['#1f2937', '#7c2d12', '#b45309'],
+        ['#1e1b4b', '#4c1d95', '#6d28d9']
+    ][simpleHash(`${post.id || ''}|${post.title || ''}|${slotIndex}`) % 4];
+    const svg =
+        '<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">' +
+            '<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">' +
+                `<stop offset="0%" stop-color="${palette[0]}"/>` +
+                `<stop offset="55%" stop-color="${palette[1]}"/>` +
+                `<stop offset="100%" stop-color="${palette[2]}"/>` +
+            '</linearGradient></defs>' +
+            '<rect width="1280" height="720" fill="url(#g)"/>' +
+            '<rect x="56" y="56" width="1168" height="608" rx="20" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="2"/>' +
+            `<text x="98" y="132" fill="#bfdbfe" font-size="30" font-family="Arial, sans-serif">ARTICLE IMAGE ${escapeXml(String(slotIndex + 1))}</text>` +
+            `<text x="98" y="206" fill="#fff" font-size="50" font-family="Arial, sans-serif" font-weight="700">${escapeXml(title)}</text>` +
+            `<text x="98" y="266" fill="#dbeafe" font-size="28" font-family="Arial, sans-serif">${escapeXml(subtitle)}</text>` +
+            '<rect x="98" y="586" width="1084" height="58" rx="29" fill="rgba(255,255,255,0.14)"/>' +
+            `<text x="126" y="624" fill="#fff" font-size="28" font-family="Arial, sans-serif">${escapeXml(keywordLine)}</text>` +
+        '</svg>';
+    return 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg);
 }
 
 function buildPostImageCandidates(post, bodyText, slotIndex) {
@@ -296,14 +326,26 @@ function buildPostImageCandidates(post, bodyText, slotIndex) {
     const prompt = buildPostAutoPrompt(post, bodyText, slotIndex);
 
     return uniqueNonEmpty([
+        buildInlineFallbackImage(post, slotIndex, bodyText),
         buildGeneratedImageUrl(prompt, seedBase + '|ai'),
         buildKeywordStockImageUrl(keywordQuery, seedBase, 'a'),
-        buildKeywordStockImageUrl(keywordQuery, seedBase, 'b'),
-        buildInlineFallbackImage(post, slotIndex)
+        buildKeywordStockImageUrl(keywordQuery, seedBase, 'b')
     ]);
 }
 
-function getCandidateArray(raw) {
+function createAutoImageFigure(post, bodyText, slotIndex) {
+    const candidates = buildPostImageCandidates(post, bodyText, slotIndex);
+    if (!candidates.length) return '';
+    const firstImage = candidates[0];
+    const encoded = encodeURIComponent(JSON.stringify(candidates));
+    const alt = `${post.title || '블로그'} 관련 이미지 ${slotIndex + 1}`;
+    return '' +
+        '<figure class="auto-post-image" data-auto-image="true">' +
+            '<img src="' + firstImage + '" alt="' + alt.replace(/"/g, '&quot;') + '" loading="lazy" decoding="async" data-candidates="' + encoded + '">' +
+        '</figure>';
+}
+
+function decodeCandidates(raw) {
     if (!raw) return [];
     try {
         const parsed = JSON.parse(decodeURIComponent(raw));
@@ -313,51 +355,59 @@ function getCandidateArray(raw) {
     }
 }
 
-function tryResolveAutoPostImage(img, candidates, index) {
-    if (!img || !candidates || index >= candidates.length) {
-        return;
-    }
-    const candidateUrl = String(candidates[index] || '').trim();
-    if (!candidateUrl) {
-        tryResolveAutoPostImage(img, candidates, index + 1);
-        return;
-    }
-
-    const tester = new Image();
-    tester.loading = 'eager';
-    tester.decoding = 'async';
-    tester.referrerPolicy = 'no-referrer';
-    tester.onload = () => {
-        img.src = candidateUrl;
-    };
-    tester.onerror = () => {
-        tryResolveAutoPostImage(img, candidates, index + 1);
-    };
-    tester.src = candidateUrl;
-}
-
-function hydrateAutoPostImages(root) {
-    if (!root) return;
-    const images = root.querySelectorAll('img[data-auto-resolve="1"]');
-    images.forEach(img => {
-        const encoded = img.getAttribute('data-candidates') || '';
-        const candidates = getCandidateArray(encoded);
-        if (!candidates.length) return;
-        tryResolveAutoPostImage(img, candidates, 0);
+function blobToDataUrl(blob) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = () => reject(new Error('blob->dataURL failed'));
+        reader.readAsDataURL(blob);
     });
 }
 
-function createAutoImageFigure(post, bodyText, slotIndex) {
-    const candidates = buildPostImageCandidates(post, bodyText, slotIndex);
-    if (!candidates.length) return '';
-    const fallback = buildInlineFallbackImage(post, slotIndex);
-    const dynamicCandidates = candidates.filter(candidate => String(candidate || '').trim() !== fallback);
-    const encoded = encodeURIComponent(JSON.stringify(dynamicCandidates));
-    const alt = `${post.title || '블로그'} 관련 이미지 ${slotIndex + 1}`;
-    return '' +
-        '<figure class="auto-post-image" data-auto-image="true">' +
-            '<img src="' + fallback + '" alt="' + alt.replace(/"/g, '&quot;') + '" loading="lazy" decoding="async" data-auto-resolve="1" data-candidates="' + encoded + '">' +
-        '</figure>';
+async function fetchRemoteImageAsDataUrl(url) {
+    const target = String(url || '').trim();
+    if (!/^https?:\/\//i.test(target)) throw new Error('not remote');
+
+    async function fetchBlob(fetchUrl) {
+        const response = await fetch(fetchUrl, { mode: 'cors', credentials: 'omit' });
+        if (!response.ok) throw new Error(`http ${response.status}`);
+        const blob = await response.blob();
+        if (!blob || !blob.type || !blob.type.startsWith('image/')) {
+            throw new Error('not image');
+        }
+        return blob;
+    }
+
+    try {
+        const directBlob = await fetchBlob(target);
+        return await blobToDataUrl(directBlob);
+    } catch (directError) {
+        const proxyUrl = IMAGE_PROXY_ENDPOINT + encodeURIComponent(target);
+        const proxiedBlob = await fetchBlob(proxyUrl);
+        return await blobToDataUrl(proxiedBlob);
+    }
+}
+
+async function enhanceAutoPostImages(root) {
+    if (!root) return;
+    const images = root.querySelectorAll('img[data-candidates]');
+    for (let i = 0; i < images.length; i += 1) {
+        const img = images[i];
+        const candidates = decodeCandidates(img.getAttribute('data-candidates'));
+        if (!candidates.length) continue;
+
+        for (let j = 1; j < candidates.length; j += 1) {
+            try {
+                const dataUrl = await fetchRemoteImageAsDataUrl(candidates[j]);
+                if (typeof dataUrl === 'string' && dataUrl.startsWith('data:image/')) {
+                    img.src = dataUrl;
+                    break;
+                }
+            } catch (error) {
+                // Try next candidate.
+            }
+        }
+    }
 }
 
 function injectAutoImagesIntoPost(html, post) {
@@ -645,7 +695,7 @@ function showPostDetail(postId) {
     const renderedHtml = renderMarkdown(post.content);
     const detailContent = document.getElementById('detail-content');
     detailContent.innerHTML = injectAutoImagesIntoPost(renderedHtml, post);
-    hydrateAutoPostImages(detailContent);
+    enhanceAutoPostImages(detailContent);
 
     const tagsContainer = document.getElementById('detail-tags');
     if (post.tags && post.tags.length > 0) {

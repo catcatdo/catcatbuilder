@@ -1,4 +1,6 @@
 (function () {
+    var IMAGE_PROXY_ENDPOINT = 'https://catcatbuilder-admin.catcatdo-bc9.workers.dev/image-proxy?url=';
+
     function escapeHtml(value) {
         return String(value)
             .replace(/&/g, '&amp;')
@@ -86,8 +88,6 @@
         }
         return url;
     }
-
-    var ISSUE_FALLBACK_IMAGE = 'images/issue-fallback.svg';
 
     function escapeXml(value) {
         return String(value || '')
@@ -219,13 +219,19 @@
         var tags = Array.isArray(issue.tags) ? issue.tags : [];
         var chip = tags.length ? ('#' + String(tags[0] || '').trim()) : '#ISSUE';
         var dateText = String(issue.published_at || '').slice(0, 10) || 'TODAY';
+        var palette = [
+            ['#0f172a', '#1e3a8a', '#0b3b6a'],
+            ['#1f2937', '#065f46', '#0f766e'],
+            ['#111827', '#7c2d12', '#b45309'],
+            ['#1e1b4b', '#4c1d95', '#312e81']
+        ][simpleHash(title + '|' + chip) % 4];
         var svg =
             '<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="Issue cover">' +
                 '<defs>' +
                     '<linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">' +
-                        '<stop offset="0%" stop-color="#0f172a" />' +
-                        '<stop offset="55%" stop-color="#1e3a8a" />' +
-                        '<stop offset="100%" stop-color="#0b3b6a" />' +
+                        '<stop offset="0%" stop-color="' + palette[0] + '" />' +
+                        '<stop offset="55%" stop-color="' + palette[1] + '" />' +
+                        '<stop offset="100%" stop-color="' + palette[2] + '" />' +
                     '</linearGradient>' +
                 '</defs>' +
                 '<rect width="1280" height="720" fill="url(#g1)" />' +
@@ -263,6 +269,8 @@
         var directImage = normalizeImageUrl(issue.image);
 
         var candidates = [];
+        candidates.push(buildInlineFallbackImage(issue));
+
         if (directImage) {
             candidates.push(directImage);
         }
@@ -281,7 +289,7 @@
         return uniqueNonEmpty(candidates);
     }
 
-    function getImageCandidatesFromElement(raw) {
+    function decodeCandidates(raw) {
         if (!raw) {
             return [];
         }
@@ -293,44 +301,68 @@
         }
     }
 
-    function tryResolveIssueImage(img, candidates, index) {
-        if (!img || !candidates || index >= candidates.length) {
-            return;
-        }
-
-        var candidateUrl = String(candidates[index] || '').trim();
-        if (!candidateUrl) {
-            tryResolveIssueImage(img, candidates, index + 1);
-            return;
-        }
-
-        var testImage = new Image();
-        testImage.loading = 'eager';
-        testImage.decoding = 'async';
-        testImage.referrerPolicy = 'no-referrer';
-        testImage.onload = function () {
-            img.src = candidateUrl;
-        };
-        testImage.onerror = function () {
-            tryResolveIssueImage(img, candidates, index + 1);
-        };
-        testImage.src = candidateUrl;
+    function blobToDataUrl(blob) {
+        return new Promise(function (resolve, reject) {
+            var reader = new FileReader();
+            reader.onload = function () { resolve(reader.result); };
+            reader.onerror = function () { reject(new Error('blob->dataURL failed')); };
+            reader.readAsDataURL(blob);
+        });
     }
 
-    function hydrateIssueImages(container) {
+    async function fetchRemoteImageAsDataUrl(url) {
+        var target = normalizeImageUrl(url);
+        if (!/^https?:\/\//i.test(target)) {
+            throw new Error('not remote url');
+        }
+
+        async function fetchBlob(fetchUrl) {
+            var response = await fetch(fetchUrl, { mode: 'cors', credentials: 'omit' });
+            if (!response.ok) {
+                throw new Error('http ' + response.status);
+            }
+            var blob = await response.blob();
+            if (!blob || !blob.type || blob.type.indexOf('image/') !== 0) {
+                throw new Error('not image response');
+            }
+            return blob;
+        }
+
+        try {
+            var directBlob = await fetchBlob(target);
+            return await blobToDataUrl(directBlob);
+        } catch (directError) {
+            var proxyUrl = IMAGE_PROXY_ENDPOINT + encodeURIComponent(target);
+            var proxiedBlob = await fetchBlob(proxyUrl);
+            return await blobToDataUrl(proxiedBlob);
+        }
+    }
+
+    async function enhanceIssueImages(container) {
         if (!container) {
             return;
         }
 
-        var images = container.querySelectorAll('img[data-image-resolve="1"]');
-        images.forEach(function (img) {
-            var encoded = img.getAttribute('data-candidates') || '';
-            var candidates = getImageCandidatesFromElement(encoded);
+        var images = container.querySelectorAll('img[data-candidates]');
+        for (var i = 0; i < images.length; i += 1) {
+            var img = images[i];
+            var candidates = decodeCandidates(img.getAttribute('data-candidates'));
             if (!candidates.length) {
-                return;
+                continue;
             }
-            tryResolveIssueImage(img, candidates, 0);
-        });
+
+            for (var j = 1; j < candidates.length; j += 1) {
+                try {
+                    var dataUrl = await fetchRemoteImageAsDataUrl(candidates[j]);
+                    if (typeof dataUrl === 'string' && dataUrl.indexOf('data:image/') === 0) {
+                        img.src = dataUrl;
+                        break;
+                    }
+                } catch (error) {
+                    // Try next candidate.
+                }
+            }
+        }
     }
 
     function parseDateValue(value) {
@@ -403,8 +435,11 @@
         var encodedCandidates = imageCandidates.length
             ? encodeURIComponent(JSON.stringify(imageCandidates))
             : '';
+        var firstImage = imageCandidates.length ? imageCandidates[0] : '';
 
-        var imageHtml = '<div class="issue-image"><img src="' + escapeHtml(ISSUE_FALLBACK_IMAGE) + '" alt="' + escapeHtml(catchyTitle || '이슈 이미지') + '" loading="lazy" decoding="async" data-image-resolve="1" data-candidates="' + escapeHtml(encodedCandidates) + '"></div>';
+        var imageHtml = firstImage
+            ? '<div class="issue-image"><img src="' + escapeHtml(firstImage) + '" alt="' + escapeHtml(catchyTitle || '이슈 이미지') + '" loading="lazy" decoding="async" referrerpolicy="no-referrer" data-candidates="' + escapeHtml(encodedCandidates) + '"></div>'
+            : '';
 
         var tagsHtml = tags.length
             ? '<div class="tag-row">' + tags.map(function (tag) {
@@ -487,7 +522,7 @@
         }
 
         container.innerHTML = issues.map(renderIssue).join('');
-        hydrateIssueImages(container);
+        enhanceIssueImages(container);
     }
 
     document.addEventListener('DOMContentLoaded', renderIssues);

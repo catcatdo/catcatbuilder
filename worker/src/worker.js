@@ -24,6 +24,67 @@ export default {
       }
     }
 
+    // ===== Image Proxy (for keyword-based generated images) =====
+    if (url.pathname === '/image-proxy') {
+      if (request.method !== 'GET') {
+        return jsonResponse({ message: 'Method Not Allowed' }, 405, corsHeaders);
+      }
+
+      const targetUrlRaw = url.searchParams.get('url') || '';
+      if (!targetUrlRaw) {
+        return jsonResponse({ message: 'url query is required' }, 400, corsHeaders);
+      }
+
+      let targetUrl;
+      try {
+        targetUrl = new URL(targetUrlRaw);
+      } catch (error) {
+        return jsonResponse({ message: 'Invalid target url' }, 400, corsHeaders);
+      }
+
+      if (!['https:', 'http:'].includes(targetUrl.protocol)) {
+        return jsonResponse({ message: 'Unsupported protocol' }, 400, corsHeaders);
+      }
+
+      const allowedHosts = [
+        'image.pollinations.ai',
+        'loremflickr.com',
+        'picsum.photos'
+      ];
+      const host = targetUrl.hostname.toLowerCase();
+      const isAllowed = allowedHosts.some(item => host === item || host.endsWith(`.${item}`));
+      if (!isAllowed) {
+        return jsonResponse({ message: 'Host not allowed' }, 403, corsHeaders);
+      }
+
+      try {
+        const upstream = await fetch(targetUrl.toString(), {
+          method: 'GET',
+          headers: {
+            'User-Agent': 'catcatbuilder-image-proxy/1.0'
+          },
+          cf: { cacheTtl: 86400, cacheEverything: true }
+        });
+
+        if (!upstream.ok) {
+          return jsonResponse({ message: `Upstream error: ${upstream.status}` }, 502, corsHeaders);
+        }
+
+        const contentType = upstream.headers.get('content-type') || '';
+        if (!contentType.toLowerCase().startsWith('image/')) {
+          return jsonResponse({ message: 'Upstream is not image' }, 502, corsHeaders);
+        }
+
+        const headers = new Headers(corsHeaders);
+        headers.set('Content-Type', contentType);
+        headers.set('Cache-Control', 'public, max-age=86400');
+
+        return new Response(upstream.body, { status: 200, headers });
+      } catch (error) {
+        return jsonResponse({ message: 'Failed to proxy image' }, 502, corsHeaders);
+      }
+    }
+
     // ===== Rankings API =====
     if (url.pathname === '/rankings') {
       const gameKey = url.searchParams.get('game') || 'poop-dodge';
