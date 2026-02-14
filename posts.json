@@ -2,7 +2,7 @@
   "posts": [
     {
       "id": 5,
-      "title": "몰트봇 vs OpenClaw 뭐가 다를까? 초보자를 위한 완벽 비교 (2026)",
+      "title": "몰트봇 비교 오픈클로 뭐가 다를까? 초보자를 위한 완벽 비교 (2026)",
       "category": "dev",
       "date": "2026-02-03",
       "image": "images/generated/post-5-cover.svg",
@@ -28,7 +28,7 @@
     },
     {
       "id": 6,
-      "title": "[오그랑지 스마트팜] 로컬 LLM 서버: 맥 스튜디오 선택 가이드",
+      "title": "[오그랑지 스마트팜] 로컬 대규모 언어모델 서버: 맥 스튜디오 선택 가이드",
       "category": "dev",
       "date": "2026-02-04",
       "image": "images/generated/post-6-cover.svg",
@@ -55,7 +55,7 @@
     },
     {
       "id": 7,
-      "title": "Discord ByteString 오류 해결: UTF-8 인코딩 문제 한 번에 잡기",
+      "title": "디스코드 바이트스트링 오류 해결: 유티에프팔 인코딩 문제 한 번에 잡기",
       "category": "dev",
       "date": "2026-02-05",
       "image": "images/generated/post-7-cover.svg",
@@ -79,7 +79,7 @@
     },
     {
       "id": 8,
-      "title": "OpenClaw에 Codex 연결하기: 로컬 개발 워크플로우 정리",
+      "title": "오픈클로에 코덱스 연결하기: 로컬 개발 워크플로우 정리",
       "category": "dev",
       "date": "2026-02-05",
       "image": "images/generated/post-8-cover.svg",
@@ -103,7 +103,7 @@
     },
     {
       "id": 9,
-      "title": "AdSense 승인률 올리는 필수 페이지 체크리스트 (2026)",
+      "title": "애드센스 승인률 올리는 필수 페이지 체크리스트 (2026)",
       "category": "dev",
       "date": "2026-02-05",
       "image": "images/generated/post-9-cover.svg",
@@ -127,7 +127,7 @@
     },
     {
       "id": 10,
-      "title": "OpenAI Codex 출시! 2026년 개발자 생산성의 판도가 바뀌다 🚀",
+      "title": "오픈에이아이 코덱스 출시! 2026년 개발자 생산성의 판도가 바뀌다 🚀",
       "category": "dev",
       "date": "2026-02-05",
       "image": "images/generated/post-10-cover.svg",
@@ -152,7 +152,7 @@
     },
     {
       "id": 11,
-      "title": "OpenClaw에 Discord 봇 연결하기: 5분 완성 가이드 🤖",
+      "title": "오픈클로에 디스코드 봇 연결하기: 5분 완성 가이드 🤖",
       "category": "dev",
       "date": "2026-02-07",
       "image": "images/generated/post-11-cover.svg",
@@ -201,7 +201,7 @@
     },
     {
       "id": 14,
-      "title": "GitHub Pages로 무료 블로그 만들기: 완벽 가이드",
+      "title": "깃허브 페이지스로 무료 블로그 만들기: 완벽 가이드",
       "category": "dev",
       "date": "2026-02-10",
       "image": "images/generated/post-14-cover.svg",
@@ -225,7 +225,7 @@
     },
     {
       "id": 15,
-      "title": "SEO 최적화 실전 가이드: 검색엔진 상위 노출 전략 총정리",
+      "title": "검색최적화 최적화 실전 가이드: 검색엔진 상위 노출 전략 총정리",
       "category": "tech",
       "date": "2026-02-10",
       "image": "images/generated/post-15-cover.svg",
@@ -371,7 +371,7 @@
     },
     {
       "id": 21,
-      "title": "Cloudflare Workers 활용법: 서버리스 함수 10분 만에 배포하기",
+      "title": "클라우드플레어 워커스 활용법: 서버리스 함수 10분 만에 배포하기",
       "category": "dev",
       "date": "2026-02-08",
       "image": "images/generated/post-21-cover.svg",
@@ -417,7 +417,7 @@
     },
     {
       "id": 23,
-      "title": "Git 브랜치 전략 완벽 정리: 팀 프로젝트 충돌 없이 협업하기",
+      "title": "지아이티 브랜치 전략 완벽 정리: 팀 프로젝트 충돌 없이 협업하기",
       "category": "dev",
       "date": "2026-02-09",
       "image": "images/generated/post-23-cover.svg",
@@ -440,7 +440,7 @@
     },
     {
       "id": 24,
-      "title": "Docker 입문 가이드: 컨테이너로 개발 환경 한 번에 통일하기",
+      "title": "도커 입문 가이드: 컨테이너로 개발 환경 한 번에 통일하기",
       "category": "dev",
       "date": "2026-02-09",
       "image": "images/generated/post-24-cover.svg",
@@ -463,7 +463,7 @@
     },
     {
       "id": 25,
-      "title": "REST API 설계 원칙: 초보자도 따라하는 실전 가이드",
+      "title": "레스트 에이피아이 설계 원칙: 초보자도 따라하는 실전 가이드",
       "category": "dev",
       "date": "2026-02-10",
       "image": "images/generated/post-25-cover.svg",
@@ -486,7 +486,7 @@
     },
     {
       "id": 26,
-      "title": "서울에서 코딩하기 좋은 카페 BEST 7: 노마드 개발자 추천",
+      "title": "서울에서 코딩하기 좋은 카페 베스트 7: 노마드 개발자 추천",
       "category": "life",
       "date": "2026-02-06",
       "image": "images/generated/post-26-cover.svg",
@@ -509,7 +509,7 @@
     },
     {
       "id": 27,
-      "title": "MBTI별 코딩 스타일 분석: 당신의 MBTI는 어떻게 코딩할까?",
+      "title": "엠비티아이별 코딩 스타일 분석: 당신의 엠비티아이는 어떻게 코딩할까?",
       "category": "life",
       "date": "2026-02-06",
       "image": "images/generated/post-27-cover.svg",
@@ -555,7 +555,7 @@
     },
     {
       "id": 29,
-      "title": "2026년 IT 자격증 추천 TOP 5: 진짜 쓸모 있는 것만 골랐다",
+      "title": "2026년 아이티 자격증 추천 톱 5: 진짜 쓸모 있는 것만 골랐다",
       "category": "tech",
       "date": "2026-02-07",
       "image": "images/generated/post-29-cover.svg",
@@ -647,7 +647,7 @@
     },
     {
       "id": 33,
-      "title": "AI가 개발자를 대체할까? 현직 5년차의 솔직한 생각",
+      "title": "인공지능가 개발자를 대체할까? 현직 5년차의 솔직한 생각",
       "category": "tech",
       "date": "2026-02-09",
       "image": "images/generated/post-33-cover.svg",
@@ -693,7 +693,7 @@
     },
     {
       "id": 35,
-      "title": "ChatGPT로 월 50만원 부수입? 현실적으로 가능한 AI 부업 5가지",
+      "title": "챗지피티로 월 50만원 부수입? 현실적으로 가능한 인공지능 부업 5가지",
       "category": "tech",
       "date": "2026-02-10",
       "image": "images/generated/post-35-cover.svg",
@@ -716,7 +716,7 @@
     },
     {
       "id": 36,
-      "title": "[오그랑지 스마트팜] 라즈베리파이 Zero 2W + ESP32로 웹 제어 관수 시스템 만들기",
+      "title": "[오그랑지 스마트팜] 라즈베리파이 지이알오 2더블유 + 이에스피삼이로 웹 제어 관수 시스템 만들기",
       "category": "dev",
       "date": "2026-02-10",
       "image": "images/generated/post-36-cover.svg",
@@ -768,7 +768,7 @@
     },
     {
       "id": 38,
-      "title": "[오그랑지 스마트팜] FastAPI로 IoT 대시보드 만들기: 실시간 센서 모니터링",
+      "title": "[오그랑지 스마트팜] 패스트에이피아이로 사물인터넷 대시보드 만들기: 실시간 센서 모니터링",
       "category": "dev",
       "date": "2026-02-10",
       "image": "images/generated/post-38-cover.svg",
@@ -794,7 +794,7 @@
     },
     {
       "id": 39,
-      "title": "[오그랑지 스마트팜] ESP32 토양 수분 센서 네트워크: 배선부터 데이터 수집까지",
+      "title": "[오그랑지 스마트팜] 이에스피삼이 토양 수분 센서 네트워크: 배선부터 데이터 수집까지",
       "category": "dev",
       "date": "2026-02-10",
       "image": "images/generated/post-39-cover.svg",
@@ -820,7 +820,7 @@
     },
     {
       "id": 40,
-      "title": "[홈서버 랩] Mac Studio M4 Max로 로컬 LLM 서버 구축: Ollama + Open WebUI 완벽 세팅",
+      "title": "[홈서버 랩] 맥 스튜디오 엠4 엠에이엑스로 로컬 대규모 언어모델 서버 구축: 올라마 + 오픈 웹유아이 완벽 세팅",
       "category": "dev",
       "date": "2026-02-10",
       "image": "images/generated/post-40-cover.svg",
@@ -846,7 +846,7 @@
     },
     {
       "id": 41,
-      "title": "[홈서버 랩] Synology NAS에 Docker 컨테이너 10개 올리기: 셀프 호스팅 실전 가이드",
+      "title": "[홈서버 랩] 시놀로지 나스에 도커 컨테이너 10개 올리기: 셀프 호스팅 실전 가이드",
       "category": "dev",
       "date": "2026-02-10",
       "image": "images/generated/post-41-cover.svg",
@@ -872,7 +872,7 @@
     },
     {
       "id": 42,
-      "title": "[홈서버 랩] Ubuntu에 게임 서버 호스팅하기: Minecraft부터 Palworld까지",
+      "title": "[홈서버 랩] 우분투에 게임 서버 호스팅하기: 마인크래프트부터 팰월드까지",
       "category": "dev",
       "date": "2026-02-10",
       "image": "images/generated/post-42-cover.svg",
@@ -898,7 +898,7 @@
     },
     {
       "id": 43,
-      "title": "[트러블슈팅] Python 가상환경 오류 총정리: venv, conda, pyenv 삽질 해결기",
+      "title": "[트러블슈팅] 파이썬 가상환경 오류 총정리: 브이이엔브이, 씨오엔디에이, 피와이이엔브이 삽질 해결기",
       "category": "dev",
       "date": "2026-02-10",
       "image": "images/generated/post-43-cover.svg",
@@ -924,7 +924,7 @@
     },
     {
       "id": 44,
-      "title": "[홈서버 랩] NAS용 HDD 고르는 법: WD Red Plus vs Seagate IronWolf 6개월 실사용 비교",
+      "title": "[홈서버 랩] 나스용 하드디스크 고르는 법: 더블유디 알이디 피엘유에스 비교 에스이에이지에이티이 아이알오엔더블유오엘에프 6개월 실사용 비교",
       "category": "dev",
       "date": "2026-02-10",
       "image": "images/generated/post-44-cover.svg",
@@ -950,7 +950,7 @@
     },
     {
       "id": 45,
-      "title": "[오그랑지 스마트팜] 로컬 LLM으로 관수 타이밍 자동화: AI가 물 줄 때를 정한다",
+      "title": "[오그랑지 스마트팜] 로컬 대규모 언어모델으로 관수 타이밍 자동화: 인공지능가 물 줄 때를 정한다",
       "category": "dev",
       "date": "2026-02-10",
       "image": "images/generated/post-45-cover.svg",
@@ -976,7 +976,7 @@
     },
     {
       "id": 46,
-      "title": "[초보 입문] ESP32 첫 구매부터 LED 켜기까지: 아두이노도 모르는 비전공자의 IoT 입문기",
+      "title": "[초보 입문] 이에스피삼이 첫 구매부터 엘이디 켜기까지: 아두이노도 모르는 비전공자의 사물인터넷 입문기",
       "category": "tech",
       "date": "2026-02-10",
       "image": "images/generated/post-46-cover.svg",
@@ -1002,7 +1002,7 @@
     },
     {
       "id": 47,
-      "title": "[초보 입문] 쿠팡에서 산 토양 수분 센서를 ESP32에 연결하기: 선 3개면 끝!",
+      "title": "[초보 입문] 쿠팡에서 산 토양 수분 센서를 이에스피삼이에 연결하기: 선 3개면 끝!",
       "category": "tech",
       "date": "2026-02-10",
       "image": "images/generated/post-47-cover.svg",
@@ -1028,7 +1028,7 @@
     },
     {
       "id": 48,
-      "title": "[실패기] 스마트팜 만들다 태워먹은 부품들: ESP32 3개, 센서 5개, 총 피해액 6만원",
+      "title": "[실패기] 스마트팜 만들다 태워먹은 부품들: 이에스피삼이 3개, 센서 5개, 총 피해액 6만원",
       "category": "tech",
       "date": "2026-02-10",
       "image": "images/generated/post-48-cover.svg",
@@ -1054,7 +1054,7 @@
     },
     {
       "id": 49,
-      "title": "[초보 입문] 라즈베리파이 처음 사면 뭘 하나: 개봉부터 SSH 접속까지 완전 가이드",
+      "title": "[초보 입문] 라즈베리파이 처음 사면 뭘 하나: 개봉부터 에스에스에이치 접속까지 완전 가이드",
       "category": "tech",
       "date": "2026-02-10",
       "image": "images/generated/post-49-cover.svg",
@@ -1080,7 +1080,7 @@
     },
     {
       "id": 50,
-      "title": "[초보 입문] 베란다에서 시작하는 수경재배: 상추 키우면서 ESP32 센서 달아보기",
+      "title": "[초보 입문] 베란다에서 시작하는 수경재배: 상추 키우면서 이에스피삼이 센서 달아보기",
       "category": "tech",
       "date": "2026-02-10",
       "image": "images/generated/post-50-cover.svg",
@@ -1106,7 +1106,7 @@
     },
     {
       "id": 51,
-      "title": "[초보 입문] ESP32를 비에서 살리는 법: 방수 실패 3번, 성공 1번의 기록",
+      "title": "[초보 입문] 이에스피삼이를 비에서 살리는 법: 방수 실패 3번, 성공 1번의 기록",
       "category": "tech",
       "date": "2026-02-10",
       "image": "images/generated/post-51-cover.svg",
@@ -1132,7 +1132,7 @@
     },
     {
       "id": 52,
-      "title": "[초보 입문] Python 진짜 1도 모르는 사람을 위한 FastAPI 첫걸음",
+      "title": "[초보 입문] 파이썬 진짜 1도 모르는 사람을 위한 패스트에이피아이 첫걸음",
       "category": "dev",
       "date": "2026-02-10",
       "image": "images/generated/post-52-cover.svg",
@@ -1236,7 +1236,7 @@
     },
     {
       "id": 56,
-      "title": "Mac Studio M3 Ultra 한 달 사용기 — 192GB 램으로 Open Claw 돌리고 와우까지 해본 솔직 후기",
+      "title": "맥 스튜디오 엠3 유엘티알에이 한 달 사용기 — 192지비 램으로 오픈클로 돌리고 와우까지 해본 솔직 후기",
       "category": "tech",
       "date": "2026-02-10",
       "image": "images/generated/post-56-cover.svg",
@@ -1264,7 +1264,7 @@
     },
     {
       "id": 57,
-      "title": "AI가 이렇게까지 해준다고? 일상에서 바로 써먹는 AI 활용법 5가지",
+      "title": "인공지능가 이렇게까지 해준다고? 일상에서 바로 써먹는 인공지능 활용법 5가지",
       "category": "tech",
       "date": "2026-02-11",
       "image": "images/generated/post-57-cover.svg",
@@ -1308,7 +1308,7 @@
     },
     {
       "id": 59,
-      "title": "걷기만 했는데 5kg이 빠졌다고? 직장인 걷기 다이어트 완전 가이드",
+      "title": "걷기만 했는데 5케이지이 빠졌다고? 직장인 걷기 다이어트 완전 가이드",
       "category": "life",
       "date": "2026-02-11",
       "image": "images/generated/post-59-cover.svg",
@@ -1441,7 +1441,7 @@
     },
     {
       "id": 65,
-      "title": "알리익스프레스·테무 쇼핑, AI로 번역하고 꿀딜 찾는 법 총정리",
+      "title": "알리익스프레스·테무 쇼핑, 인공지능로 번역하고 꿀딜 찾는 법 총정리",
       "category": "tech",
       "date": "2026-02-11",
       "image": "images/generated/post-65-cover.svg",
@@ -1463,7 +1463,7 @@
     },
     {
       "id": 66,
-      "title": "일론 머스크 vs 샘 올트먼, 대체 왜 싸우는 거야? 테크 업계 최대 갈등 총정리",
+      "title": "일론 머스크 비교 샘 올트먼, 대체 왜 싸우는 거야? 테크 업계 최대 갈등 총정리",
       "category": "tech",
       "date": "2026-02-11",
       "image": "images/generated/post-66-cover.svg",
@@ -1507,7 +1507,7 @@
     },
     {
       "id": 68,
-      "title": "애플카 결국 접었다 — 빅테크가 전기차 버리고 AI로 간 진짜 이유",
+      "title": "애플카 결국 접었다 — 빅테크가 전기차 버리고 인공지능로 간 진짜 이유",
       "category": "tech",
       "date": "2026-02-11",
       "image": "images/generated/post-68-cover.svg",
@@ -1639,7 +1639,7 @@
     },
     {
       "id": 74,
-      "title": "AI한테 여행 계획 맡겨봤더니 — 2박 3일 국내 여행 일정 자동 생성 후기",
+      "title": "인공지능한테 여행 계획 맡겨봤더니 — 2박 3일 국내 여행 일정 자동 생성 후기",
       "category": "tech",
       "date": "2026-02-11",
       "image": "images/generated/post-74-cover.svg",
@@ -1683,7 +1683,7 @@
     },
     {
       "id": 76,
-      "title": "명상 앱 비교 — 바쁜 직장인을 위한 스트레스 관리 앱 TOP 5",
+      "title": "명상 앱 비교 — 바쁜 직장인을 위한 스트레스 관리 앱 톱 5",
       "category": "life",
       "date": "2026-02-11",
       "image": "images/generated/post-76-cover.svg",
@@ -1771,7 +1771,7 @@
     },
     {
       "id": 80,
-      "title": "[템플릿] AI 이미지 생성 프롬프트 공식 — 원하는 그림 뽑는 법",
+      "title": "[템플릿] 인공지능 이미지 생성 프롬프트 공식 — 원하는 그림 뽑는 법",
       "category": "template",
       "date": "2026-02-11",
       "image": "images/generated/post-80-cover.svg",
@@ -1991,7 +1991,7 @@
     },
     {
       "id": 90,
-      "title": "[템플릿] DIY 프로젝트 비용 계산기 — 재료비부터 도구까지 한눈에",
+      "title": "[템플릿] 디아이와이 프로젝트 비용 계산기 — 재료비부터 도구까지 한눈에",
       "category": "template",
       "date": "2026-02-11",
       "image": "images/generated/post-90-cover.svg",
@@ -2079,7 +2079,7 @@
     },
     {
       "id": 94,
-      "title": "[템플릿] AI에게 잘 물어보는 마스터 프롬프트 템플릿",
+      "title": "[템플릿] 인공지능에게 잘 물어보는 마스터 프롬프트 템플릿",
       "category": "template",
       "date": "2026-02-11",
       "image": "images/generated/post-94-cover.svg",
@@ -2101,7 +2101,7 @@
     },
     {
       "id": 95,
-      "title": "UN AI 과학 패널 승인: 성능 경쟁에서 책임 경쟁으로",
+      "title": "유엔 인공지능 과학 패널 승인: 성능 경쟁에서 책임 경쟁으로",
       "category": "tech",
       "date": "2026-02-13",
       "image": "images/generated/post-95-cover.svg",
@@ -2123,7 +2123,7 @@
     },
     {
       "id": 96,
-      "title": "TSMC 일본 3nm 발표, AI 시대 공급망 전쟁의 시작",
+      "title": "티에스엠씨 일본 3엔엠 발표, 인공지능 시대 공급망 전쟁의 시작",
       "category": "tech",
       "date": "2026-02-13",
       "image": "images/generated/post-96-cover.svg",
@@ -2145,7 +2145,7 @@
     },
     {
       "id": 97,
-      "title": "EU의 TikTok 중독성 설계 지적이 바꾸는 플랫폼의 미래",
+      "title": "유럽연합의 틱톡 중독성 설계 지적이 바꾸는 플랫폼의 미래",
       "category": "tech",
       "date": "2026-02-13",
       "image": "images/generated/post-97-cover.svg",
@@ -2167,7 +2167,7 @@
     },
     {
       "id": 98,
-      "title": "[자동브리핑] Google CTO for AI infrastructure on what gives the company edge over not just OpenAI, but also Nvidia: Re",
+      "title": "[자동브리핑] 글로벌 기술 이슈 핵심 정리",
       "category": "tech",
       "date": "2026-02-13",
       "image": "images/generated/post-98-cover.svg",
@@ -2210,7 +2210,7 @@
     },
     {
       "id": 100,
-      "title": "[자동브리핑] Cybersecurity founders: Apply now for the Google for Startups Gemini Startup Forum.",
+      "title": "[자동브리핑] 글로벌 기술 이슈 핵심 정리",
       "category": "dev",
       "date": "2026-02-13",
       "image": "images/generated/post-100-cover.svg",
@@ -2231,7 +2231,7 @@
     },
     {
       "id": 101,
-      "title": "[자동브리핑] Etsy Google AI Shopping Tie Up Sparks Questions On Value And Risks",
+      "title": "[자동브리핑] 글로벌 기술 이슈 핵심 정리",
       "category": "tech",
       "date": "2026-02-13",
       "image": "images/generated/post-101-cover.svg",
@@ -2251,7 +2251,7 @@
     },
     {
       "id": 102,
-      "title": "[자동브리핑] OpenAI accuses DeepSeek of “free-riding” on American R&D",
+      "title": "[자동브리핑] 글로벌 기술 이슈 핵심 정리",
       "category": "tech",
       "date": "2026-02-13",
       "image": "images/generated/post-102-cover.svg",
@@ -2271,7 +2271,7 @@
     },
     {
       "id": 103,
-      "title": "[자동브리핑] Gemini 3 Deep Think gets major upgrade, now limited to Google AI Ultra users",
+      "title": "[자동브리핑] 글로벌 기술 이슈 핵심 정리",
       "category": "tech",
       "date": "2026-02-13",
       "image": "images/generated/post-103-cover.svg",
@@ -2291,7 +2291,7 @@
     },
     {
       "id": 104,
-      "title": "[자동브리핑] OpenAI launches GPT-5.3-Codex-Spark on Cerebras chips — marks AI giants first production deployment away from Nvidia",
+      "title": "[자동브리핑] 글로벌 기술 이슈 핵심 정리",
       "category": "tech",
       "date": "2026-02-13",
       "image": "images/generated/post-104-cover.svg",
@@ -2312,7 +2312,7 @@
     },
     {
       "id": 105,
-      "title": "[자동브리핑] Google fears massive attempt to clone Gemini AI through model extraction",
+      "title": "[자동브리핑] 글로벌 기술 이슈 핵심 정리",
       "category": "tech",
       "date": "2026-02-13",
       "image": "images/generated/post-105-cover.svg",
@@ -2332,7 +2332,7 @@
     },
     {
       "id": 106,
-      "title": "[자동브리핑] Nvidia’s Upstart Rivals See Cracks in AI Chip Market Leader’s Dominance",
+      "title": "[자동브리핑] 글로벌 기술 이슈 핵심 정리",
       "category": "tech",
       "date": "2026-02-13",
       "image": "images/generated/post-106-cover.svg",
@@ -2353,7 +2353,7 @@
     },
     {
       "id": 107,
-      "title": "[자동브리핑] Pinterest to struggle for ad dollars against AI giants Meta, Google - analysts (PINS:NYSE)",
+      "title": "[자동브리핑] 글로벌 기술 이슈 핵심 정리",
       "category": "tech",
       "date": "2026-02-13",
       "image": "images/generated/post-107-cover.svg",
@@ -2374,7 +2374,7 @@
     },
     {
       "id": 108,
-      "title": "[자동브리핑] Amazon, Google And Others Are Pouring $700 Billion Into AI CapEx, Top Analyst Explains Why This Makes It 'Hard' To Bet Against Nvidia",
+      "title": "[자동브리핑] 글로벌 기술 이슈 핵심 정리",
       "category": "tech",
       "date": "2026-02-13",
       "image": "images/generated/post-108-cover.svg",
@@ -2395,7 +2395,7 @@
     },
     {
       "id": 109,
-      "title": "[자동브리핑] AI Insider’s Week in Review: ChatGPT Tests Ads, Apple Delays Siri Upgrades, AI-Related Leadership Changes, Plus India's Deepfake Rules & Latest Funding in Rounds",
+      "title": "[자동브리핑] 글로벌 기술 이슈 핵심 정리",
       "category": "tech",
       "date": "2026-02-13",
       "image": "images/generated/post-109-cover.svg",
@@ -2416,7 +2416,7 @@
     },
     {
       "id": 110,
-      "title": "[자동브리핑] Google's AI Mode Transforms Search into Shopping Hub",
+      "title": "[자동브리핑] 글로벌 기술 이슈 핵심 정리",
       "category": "tech",
       "date": "2026-02-13",
       "image": "images/generated/post-110-cover.svg",
@@ -2436,7 +2436,7 @@
     },
     {
       "id": 111,
-      "title": "[자동브리핑] Should Five9’s Expanded Google AI CX Partnership Require Action From Five9 (FIVN) Investors?",
+      "title": "[자동브리핑] 글로벌 기술 이슈 핵심 정리",
       "category": "tech",
       "date": "2026-02-13",
       "image": "images/generated/post-111-cover.svg",
@@ -2457,7 +2457,7 @@
     },
     {
       "id": 112,
-      "title": "[자동브리핑] OpenAI says China's DeepSeek trained its AI by distilling US models: memo - Reuters",
+      "title": "[자동브리핑] 글로벌 기술 이슈 핵심 정리",
       "category": "tech",
       "date": "2026-02-13",
       "image": "images/generated/post-112-cover.svg",
@@ -2562,7 +2562,7 @@
     },
     {
       "id": 114,
-      "title": "[자동브리핑] Apple Inc. (AAPL)’s upcoming hardware and AI updates keep Street optimistic - MSN",
+      "title": "[자동브리핑] 글로벌 기술 이슈 핵심 정리",
       "category": "tech",
       "date": "2026-02-13",
       "image": "images/generated/post-114-cover.svg",
@@ -2587,7 +2587,7 @@
     },
     {
       "id": 115,
-      "title": "[자동브리핑] Google testing ad formats for travel in AI Mode - PhocusWire",
+      "title": "[자동브리핑] 글로벌 기술 이슈 핵심 정리",
       "category": "tech",
       "date": "2026-02-13",
       "image": "images/generated/post-115-cover.svg",
@@ -2612,7 +2612,7 @@
     },
     {
       "id": 116,
-      "title": "[자동브리핑] State-Sponsored Hackers Using Popular AI Tools Including Gemini, Google Warns",
+      "title": "[자동브리핑] 글로벌 기술 이슈 핵심 정리",
       "category": "dev",
       "date": "2026-02-13",
       "image": "images/generated/post-116-cover.svg",
@@ -2638,7 +2638,7 @@
     },
     {
       "id": 117,
-      "title": "[자동브리핑] Google Docs can now AI-generate audio summaries of your documents",
+      "title": "[자동브리핑] 글로벌 기술 이슈 핵심 정리",
       "category": "tech",
       "date": "2026-02-13",
       "image": "images/generated/post-117-cover.svg",
@@ -2663,7 +2663,7 @@
     },
     {
       "id": 118,
-      "title": "[자동브리핑] Google Docs adds AI-powered audio summaries for hands-free productivity",
+      "title": "[자동브리핑] 글로벌 기술 이슈 핵심 정리",
       "category": "tech",
       "date": "2026-02-13",
       "image": "images/generated/post-118-cover.svg",
@@ -2688,7 +2688,7 @@
     },
     {
       "id": 119,
-      "title": "[자동브리핑] OpenAI GPT-5.3-Codex-Spark Shows What’s Possible with Cerebras",
+      "title": "[자동브리핑] 글로벌 기술 이슈 핵심 정리",
       "category": "tech",
       "date": "2026-02-13",
       "image": "images/generated/post-119-cover.svg",
@@ -2793,7 +2793,7 @@
     },
     {
       "id": 121,
-      "title": "[자동브리핑] AI Daily: OpenAI ‘surprised’ by December IPO rumors",
+      "title": "[자동브리핑] 오픈에이아이 글로벌 기술 이슈 핵심 정리",
       "category": "tech",
       "date": "2026-02-13",
       "image": "images/generated/post-121-cover.svg",
@@ -2818,7 +2818,7 @@
     },
     {
       "id": 122,
-      "title": "[자동브리핑] OpenAI Accuses China’s DeepSeek of Stealing Its Tech to Build Cut‑Rate Rival AI Models",
+      "title": "[자동브리핑] 오픈에이아이·딥시크 검색·광고 생태계 변화 핵심 정리",
       "category": "tech",
       "date": "2026-02-13",
       "image": "images/generated/post-122-cover.svg",
@@ -2843,7 +2843,7 @@
     },
     {
       "id": 123,
-      "title": "[자동브리핑] Nvidia shares go cold even as Big Tech spending on AI balloons",
+      "title": "[자동브리핑] 엔비디아 인공지능 반도체 경쟁 핵심 정리",
       "category": "tech",
       "date": "2026-02-13",
       "image": "images/generated/post-123-cover.svg",
@@ -2869,7 +2869,7 @@
     },
     {
       "id": 124,
-      "title": "[자동브리핑] Hyperconverged edge heats up with Nvidia’s AI expansion",
+      "title": "[자동브리핑] 엔비디아 인공지능 반도체 경쟁 핵심 정리",
       "category": "tech",
       "date": "2026-02-13",
       "image": "images/generated/post-124-cover.svg",
@@ -2895,7 +2895,7 @@
     },
     {
       "id": 125,
-      "title": "[자동브리핑] Nvidia's stock is down and AMD is up. The culprit may be Arista.",
+      "title": "[자동브리핑] 엔비디아 인공지능 반도체 경쟁 핵심 정리",
       "category": "tech",
       "date": "2026-02-13",
       "image": "images/generated/post-125-cover.svg",
@@ -2920,7 +2920,7 @@
     },
     {
       "id": 126,
-      "title": "[자동브리핑] OpenAI Retires Controversial 4o AI Model, Angering Loyal Users",
+      "title": "[자동브리핑] 오픈에이아이 검색·광고 생태계 변화 핵심 정리",
       "category": "tech",
       "date": "2026-02-13",
       "image": "images/generated/post-126-cover.svg",
@@ -3022,7 +3022,7 @@
     },
     {
       "id": 128,
-      "title": "[자동브리핑] 2 AI Stocks Soaring Over 400% That Could Be the Next NVIDIA",
+      "title": "[자동브리핑] 엔비디아 인공지능 반도체 경쟁 핵심 정리",
       "category": "tech",
       "date": "2026-02-13",
       "image": "images/generated/post-128-cover.svg",
@@ -3048,7 +3048,7 @@
     },
     {
       "id": 129,
-      "title": "[자동브리핑] Nvidia’s Upstart Rivals See Cracks in AI Chip Market Leader’s Dominance",
+      "title": "[자동브리핑] 엔비디아 인공지능 반도체 경쟁 핵심 정리",
       "category": "tech",
       "date": "2026-02-13",
       "image": "images/generated/post-129-cover.svg",
@@ -3074,7 +3074,7 @@
     },
     {
       "id": 130,
-      "title": "[자동브리핑] Anthropic got an 11% user boost from its OpenAI-bashing Super Bowl ad, data shows",
+      "title": "[자동브리핑] 오픈에이아이 글로벌 기술 이슈 핵심 정리",
       "category": "tech",
       "date": "2026-02-13",
       "image": "images/generated/post-130-cover.svg",
@@ -3099,7 +3099,7 @@
     },
     {
       "id": 131,
-      "title": "[자동브리핑] Breaking the Energy Wall: Nvidia and Duke Energy Forge New Alliance to Power the AI Revolution",
+      "title": "[자동브리핑] 엔비디아 인공지능 반도체 경쟁 핵심 정리",
       "category": "tech",
       "date": "2026-02-13",
       "image": "images/generated/post-131-cover.svg",
@@ -3125,7 +3125,7 @@
     },
     {
       "id": 132,
-      "title": "[자동브리핑] Apple Loop: iPhone 17e Surprise, Apple’s Embarrassing AI Delay, iPhone Fold Concept Art",
+      "title": "[자동브리핑] 애플 글로벌 기술 이슈 핵심 정리",
       "category": "tech",
       "date": "2026-02-13",
       "image": "images/generated/post-132-cover.svg",
@@ -3150,7 +3150,7 @@
     },
     {
       "id": 133,
-      "title": "[자동브리핑] l'agence presents its fall 2026 collection & partners with google on experiential ai virtual try-on activation",
+      "title": "[자동브리핑] 구글 글로벌 기술 이슈 핵심 정리",
       "category": "tech",
       "date": "2026-02-14",
       "image": "images/generated/post-133-cover.svg",
@@ -3254,7 +3254,7 @@
     },
     {
       "id": 135,
-      "title": "[자동브리핑] Google AI Shows A Site Is Offline Due To JS Content Delivery",
+      "title": "[자동브리핑] 구글 글로벌 기술 이슈 핵심 정리",
       "category": "tech",
       "date": "2026-02-14",
       "image": "images/generated/post-135-cover.svg",
@@ -3279,7 +3279,7 @@
     },
     {
       "id": 136,
-      "title": "[자동브리핑] Private Capital Now Drives 80% of Korea’s Venture Growth: What Global LPs Need to Know",
+      "title": "[자동브리핑] 글로벌 기술 이슈 핵심 정리",
       "category": "life",
       "date": "2026-02-14",
       "image": "images/generated/post-136-cover.svg",
@@ -3304,7 +3304,7 @@
     },
     {
       "id": 137,
-      "title": "[자동브리핑] L'AGENCE PRESENTS ITS FALL 2026 COLLECTION & PARTNERS WITH GOOGLE ON EXPERIENTIAL AI VIRTUAL TRY-ON ACTIVATION",
+      "title": "[자동브리핑] 구글 글로벌 기술 이슈 핵심 정리",
       "category": "tech",
       "date": "2026-02-14",
       "image": "images/generated/post-137-cover.svg",

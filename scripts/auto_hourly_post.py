@@ -21,6 +21,7 @@ from urllib.request import urlopen, Request
 import xml.etree.ElementTree as ET
 
 from cover_generator import generate_covers_for_post
+from korean_title_utils import has_latin, summarize_auto_brief_title
 
 ROOT = Path(__file__).resolve().parent.parent
 POSTS_PATH = ROOT / "posts.json"
@@ -304,11 +305,11 @@ def build_feed_image_prompts(item: FeedItem, category: str) -> List[str]:
     ]
 
 
-def build_content(item: FeedItem) -> str:
+def build_content(item: FeedItem, display_title: str) -> str:
     date_kr = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
     summary = item.summary or "핵심 내용은 원문 링크에서 확인 가능합니다."
 
-    return f"""## 오늘의 핵심 이슈: {item.title}
+    return f"""## 오늘의 핵심 이슈: {display_title}
 
 매시간 이슈 브리핑 업데이트입니다. 이 글은 {date_kr} 기준으로 최신 기술/산업 뉴스를 빠르게 파악할 수 있도록 정리한 콘텐츠입니다.
 
@@ -481,11 +482,17 @@ def main() -> int:
 
     if chosen is not None:
         category = choose_category(chosen.title, chosen.summary)
+        localized_headline = (
+            summarize_auto_brief_title(chosen.title)
+            if has_latin(chosen.title)
+            else clean_text(chosen.title)
+        )
+        post_title = f"[자동브리핑] {localized_headline}"
         image_prompts = build_feed_image_prompts(chosen, category)
         cover_image, image_variants = generate_covers_for_post(
             ROOT,
             next_id,
-            f"[자동브리핑] {chosen.title}",
+            post_title,
             build_excerpt(chosen),
             build_tags(chosen.title, chosen.summary, chosen.source),
             category,
@@ -493,17 +500,17 @@ def main() -> int:
         )
         new_post = {
             "id": next_id,
-            "title": f"[자동브리핑] {chosen.title}",
+            "title": post_title,
             "category": category,
             "date": now_date,
             "image": cover_image,
             "excerpt": build_excerpt(chosen),
-            "content": build_content(chosen),
+            "content": build_content(chosen, localized_headline),
             "tags": build_tags(chosen.title, chosen.summary, chosen.source),
             "image_prompts": image_prompts[:3],
             "image_variants": image_variants[:3],
         }
-        updates_title = f"자동 이슈 브리핑 게시: {chosen.title[:48]}"
+        updates_title = f"자동 이슈 브리핑 게시: {localized_headline[:48]}"
         print(f"[ok] feed post id={next_id} title={chosen.title}")
         seen.add(chosen.link)
         state["seen_links"] = list(seen)[-600:]

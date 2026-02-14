@@ -25,6 +25,7 @@ from urllib.request import Request, urlopen
 import xml.etree.ElementTree as ET
 
 from cover_generator import generate_covers_for_post
+from korean_title_utils import has_latin, localize_mixed_title, summarize_auto_brief_title
 
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -254,26 +255,31 @@ def build_tags(item: FeedItem) -> List[str]:
     return uniq[:6]
 
 
-def build_catchy_title(item: FeedItem) -> str:
-    base = shorten(strip_title_source(item.title, item.source), 52)
+def localize_issue_topic(item: FeedItem) -> str:
+    base = strip_title_source(item.title, item.source)
+    if has_latin(base):
+        return summarize_auto_brief_title(base).replace("핵심 정리", "쟁점 정리")
+    return localize_mixed_title(base)
+
+
+def build_catchy_title(local_topic: str) -> str:
+    base = shorten(local_topic, 52)
     return f"{base}: 지금 논쟁의 핵심만 짚어봤다"
 
 
-def build_rewritten_body(item: FeedItem) -> str:
-    clean_title = strip_title_source(item.title, item.source)
+def build_rewritten_body(item: FeedItem, local_topic: str) -> str:
     summary = clean_text(item.summary) or clean_text(item.title)
     return (
-        f"현재 주목받는 이슈는 '{clean_title}'로, 온라인 확산 속도가 빠르게 올라가는 상황입니다. "
+        f"현재 주목받는 이슈는 '{local_topic}'로, 온라인 확산 속도가 빠르게 올라가는 상황입니다. "
         f"핵심은 {shorten(summary, 180)}에 있으며, 단편적 문장보다 사실 관계와 후속 조치의 순서를 함께 보는 해석이 필요합니다. "
         "초기 정보와 후속 발표 사이 간극이 큰 이슈일수록, 확인된 사실과 의견을 분리해 읽는 태도가 중요하다는 점이 다시 강조되고 있습니다."
     )
 
 
-def build_summary_lines(item: FeedItem) -> List[str]:
-    clean_title = strip_title_source(item.title, item.source)
+def build_summary_lines(item: FeedItem, local_topic: str) -> List[str]:
     summary = clean_text(item.summary) or clean_text(item.title)
     return [
-        f"핫이슈로 떠오른 사안은 '{shorten(clean_title, 70)}'이며 확산 속도가 빠르다.",
+        f"핫이슈로 떠오른 사안은 '{shorten(local_topic, 70)}'이며 확산 속도가 빠르다.",
         f"현재까지 공개된 핵심 맥락은 {shorten(summary, 95)}로 요약된다.",
         "단정적 해석보다 후속 발표·공식 자료·절차 진행 상황을 기준으로 판단해야 한다는 의견이 우세하다.",
     ]
@@ -286,8 +292,8 @@ def build_curator_insight(item: FeedItem) -> str:
     )
 
 
-def build_visual_suggestion(item: FeedItem, tags: List[str]) -> str:
-    topic = shorten(strip_title_source(item.title, item.source), 60)
+def build_visual_suggestion(local_topic: str, tags: List[str]) -> str:
+    topic = shorten(local_topic, 60)
     stock_keywords = [
         "breaking news", "editorial analysis", "press microphones", "city night",
     ]
@@ -330,7 +336,8 @@ def build_fallback_issue(state: Dict[str, Any]) -> Dict[str, Any]:
 
 def compose_issue_post_from_item(next_id: int, now_date: str, item: FeedItem) -> Dict[str, Any]:
     tags = build_tags(item)
-    catchy = build_catchy_title(item)
+    local_topic = localize_issue_topic(item)
+    catchy = build_catchy_title(local_topic)
     cover_image, image_variants = generate_covers_for_post(
         ROOT,
         next_id,
@@ -347,14 +354,14 @@ def compose_issue_post_from_item(next_id: int, now_date: str, item: FeedItem) ->
         "date": now_date,
         "image": cover_image,
         "excerpt": shorten(clean_text(item.summary) or clean_text(item.title), 160),
-        "content": build_rewritten_body(item),
+        "content": build_rewritten_body(item, local_topic),
         "tags": tags,
         "image_variants": image_variants[:3],
         "catchy_title": catchy,
-        "summary_lines": build_summary_lines(item),
+        "summary_lines": build_summary_lines(item, local_topic),
         "curator_insight": build_curator_insight(item),
-        "visual_suggestion": build_visual_suggestion(item, tags),
-        "comments": build_comments(shorten(item.title, 18)),
+        "visual_suggestion": build_visual_suggestion(local_topic, tags),
+        "comments": build_comments(shorten(local_topic, 18)),
     }
 
 
@@ -423,7 +430,7 @@ def main() -> int:
     hottest = pick_hottest(all_items, seen)
     if hottest is not None:
         new_post = compose_issue_post_from_item(next_id, now_date, hottest)
-        updates_title = f"자동 이슈봇 게시: {shorten(hottest.title, 42)}"
+        updates_title = f"자동 이슈봇 게시: {shorten(new_post['title'], 42)}"
         seen.add(hottest.link)
         state["seen_links"] = list(seen)[-900:]
         print(f"[ok] hot issue id={next_id} title={hottest.title}")
