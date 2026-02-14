@@ -1048,5 +1048,76 @@ window.ISSUE_THREADS = window.ISSUE_THREADS || [
         time: "오전 7:17"
       }
     ]
+  },
+  {
+    id: "issue-20260215-git-branch-strategy-playbook",
+    title: "팀 개발을 위한 Git 브랜치 전략: 충돌 줄이고 배포 속도 높이는 실전 가이드",
+    description: "<p>브랜치 전략은 팀 생산성을 좌우하는 운영 규칙입니다.</p><p>이 글은 main·develop·feature·release·hotfix 구조를 팀 규모에 맞게 적용하고, PR·머지·CI/CD 기준까지 한 번에 정리합니다.</p>",
+    date: "2026-02-15",
+    catchy_title: "브랜치만 정리해도 배포가 빨라진다: 팀 Git 워크플로 운영 체크리스트",
+    source_name: "개발팀 운영 경험 기반 오리지널 콘텐츠",
+    source_url: "",
+    published_at: "2026-02-15T08:39:00+09:00",
+    image: "images/issue-fallback.svg",
+    image_variants: [],
+    rewritten_body: "Git 충돌을 완전히 없앨 수는 없지만, 브랜치 구조와 머지 기준을 명확히 하면 충돌 비용은 크게 줄일 수 있습니다. 핵심은 배포 가능한 main을 보호하고, 기능 개발은 짧은 수명의 feature 브랜치에서 진행하며, 릴리스와 긴급 수정 경로를 분리하는 것입니다. 여기에 작은 PR, 일관된 커밋 메시지, 자동 테스트 게이트를 함께 적용하면 브랜치 전략이 문서가 아니라 실제 속도로 연결됩니다. 팀 규모와 릴리스 주기에 따라 GitHub Flow, GitFlow 경량형, Trunk 기반 중 하나를 선택하고, 분기마다 운영 지표를 점검해 과한 규칙을 줄이는 방식이 가장 안정적입니다.",
+    summary_lines: [
+      "브랜치 전략의 목표는 충돌 회피보다 배포 가능한 메인 브랜치의 안정성을 일관되게 유지하는 데 있다.",
+      "작은 PR, 명확한 커밋 메시지, 리뷰 체크리스트, 자동 테스트를 함께 운영해야 전략이 실효성을 가진다.",
+      "팀 규모와 배포 주기에 맞춰 GitHub Flow 또는 GitFlow 경량형을 선택하고 정기적으로 규칙을 단순화해야 한다."
+    ],
+    curator_insight: "좋은 브랜치 전략은 도구 선택보다 운영 습관 설계에 가깝습니다. 규칙이 많을수록 좋아지는 것이 아니라, 팀이 지킬 수 있는 최소 규칙을 자동화와 결합해 반복 가능한 배포 리듬을 만드는 것이 핵심입니다.",
+    visual_suggestion: "무료 스톡 키워드: git workflow board, software team collaboration, pull request review, CI pipeline dashboard, release planning. 생성형 프롬프트: \"software engineering team reviewing git branching strategy on a whiteboard, pull request dashboard on monitor, clean office lighting, realistic documentary photo, no logos, no readable proprietary text\"",
+    tags: ["Git", "브랜치전략", "협업워크플로우", "코드리뷰", "CI/CD"],
+    comments: [
+      {
+        side: "left",
+        author: "백엔드리드",
+        text: "브랜치 규칙 정리했더니 머지 충돌이 확 줄었음",
+        time: "오전 8:40"
+      },
+      {
+        side: "right",
+        author: "스타트업개발",
+        text: "작은 팀은 develop 없이 GitHub Flow가 더 빠르더라",
+        time: "오전 8:41"
+      },
+      {
+        side: "left",
+        author: "리뷰담당",
+        text: "PR 크기 제한 하나만 걸어도 리뷰 품질이 달라짐",
+        time: "오전 8:42"
+      },
+      {
+        side: "right",
+        author: "DevOps관점",
+        text: "브랜치 전략보다 CI 게이트가 더 중요하다고 봄",
+        time: "오전 8:43"
+      },
+      {
+        side: "left",
+        author: "주니어개발",
+        text: "커밋 메시지 템플릿 넣으니까 히스토리 읽기 쉬워짐",
+        time: "오전 8:44"
+      },
+      {
+        side: "right",
+        author: "실무PM",
+        text: "release 브랜치 분리하니 배포 일정 예측이 쉬웠음",
+        time: "오전 8:45"
+      },
+      {
+        side: "left",
+        author: "성능엔지니어",
+        text: "핫픽스 경로를 따로 두면 장애 대응 속도가 빨라짐",
+        time: "오전 8:46"
+      },
+      {
+        side: "right",
+        author: "정리러",
+        text: "결국 팀 상황에 맞게 단순하게 유지하는 게 정답",
+        time: "오전 8:47"
+      }
+    ]
   }
 ];
