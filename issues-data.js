@@ -766,5 +766,74 @@ window.ISSUE_THREADS = window.ISSUE_THREADS || [
         time: "오전 5:23"
       }
     ]
+  },
+  {
+    id: "issue-20260215-ai-coding-revolution",
+    title: "AI가 개발자의 일을 완전히 바꾸고 있다 - Spotify 사례 분석",
+    catchy_title: "코드 안 짜도 되는 개발자? Spotify CEO가 밝힌 AI 시대 개발자의 미래",
+    source_name: "TechCrunch 기반 오리지널 콘텐츠",
+    source_url: "",
+    published_at: "2026-02-15T05:39:00+09:00",
+    image: "images/generated/post-9011-cover.svg",
+    image_variants: ["images/generated/post-9011-v1.svg", "images/generated/post-9011-v2.svg", "images/generated/post-9011-v3.svg"],
+    rewritten_body: "최근 Spotify의 공동 CEO가 파격적인 발언을 했다. '우리 최고 개발자들은 12월 이후로 코드 한 줄도 직접 작성하지 않았다.' 이는 AI 코딩 도구가 개발 방식을 근본적으로 변화시키고 있음을 보여주는 상징적 사례다. Spotify는 2025년에만 50개 이상의 새로운 기능을 출시했으며, 'Honk'이라는 AI 시스템을 통해 개발자들이 슬랙에서 폰으로 지시만 하면 Claude가 버그 수정과 기능 추가를 자동으로 수행하고 배포까지 완료한다. 이제 개발자의 역할은 코드 작성자에서 AI 출력물 검토자, 아키텍처 설계자로 전환되고 있다.",
+    summary_lines: [
+      "Spotify CEO: 최고 개발자들이 12월 이후로 코드 한 줄도 직접 작성하지 않음",
+      "'Honk' 시스템으로 슬랙에서 폰으로 지시만 하면 AI가 개발부터 배포까지 자동 수행",
+      "개발자 역할이 코드 작성자에서 AI 검토자·아키텍처 설계자로 전환 중"
+    ],
+    curator_insight: "이 이슈는 단순한 'AI가 개발자를 대체한다'는 이야기가 아닙니다. 실제로는 개발자의 역할이 더 전략적이고 창의적인 방향으로 진화하고 있습니다. 코드를 직접 작성하는 시간은 줄어들지만, 시스템 설계와 비즈니스 로직에 대한 이해가 더 중요해지고 있습니다. AI 도구를 활용할 줄 아는 개발자와 그렇지 못한 개발자 간의 생산성 격차는 앞으로 더욱 커질 것입니다.",
+    visual_suggestion: "묣료 스톡 키워드: AI coding, developer workspace, futuristic office, code on screen, human AI collaboration. 생성형 프롬프트: 'modern developer workspace with holographic AI assistant interface, code floating in air, developer giving voice commands via smartphone, Spotify logo subtly visible, futuristic but realistic office environment, soft blue and purple lighting, professional photography style, no text on screens, clean minimal aesthetic'",
+    tags: ["AI", "개발자", "코딩", "Spotify", "Claude", "개발트렌드", "생산성"],
+    comments: [
+      {
+        side: "left",
+        author: "현업개발자",
+        text: "프롬프트 엔지니어링이 새로운 코딩 스킬이 될 듯",
+        time: "오전 5:40"
+      },
+      {
+        side: "right",
+        author: "AI회의론",
+        text: "그래도 핵심 로직은 사람이 짜야 함",
+        time: "오전 5:41"
+      },
+      {
+        side: "left",
+        author: "주니어개발",
+        text: "신입은 기본기 다지는 게 더 중요해진 느낌",
+        time: "오전 5:42"
+      },
+      {
+        side: "right",
+        author: "시니어시점",
+        text: "아키텍처 보는 눈이 진짜 경쟁력이 될 거임",
+        time: "오전 5:43"
+      },
+      {
+        side: "left",
+        author: "생산성추구",
+        text: "AI 쓰니까 반복 작업에서 핵심 로직에 집중 가능함",
+        time: "오전 5:44"
+      },
+      {
+        side: "right",
+        author: "보안우려",
+        text: "회사 코드를 AI에 넣는 게 찜찜하긴 함",
+        time: "오전 5:45"
+      },
+      {
+        side: "left",
+        author: "미래준비",
+        text: "AI 도구 안 쓰면 5년 뒤에 도태될 듯",
+        time: "오전 5:46"
+      },
+      {
+        side: "right",
+        author: "현실주의",
+        text: "결국 AI가 만든 것도 사람이 검토해야 함",
+        time: "오전 5:47"
+      }
+    ]
   }
 ];
