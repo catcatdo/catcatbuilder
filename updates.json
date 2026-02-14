@@ -376,5 +376,11 @@
     "title": "자동 이슈봇 게시: 글로벌 기술 이슈 쟁점 정리: 지금 논쟁의 핵심만 짚어봤다",
     "url": "issues.html#issue-post-152",
     "category": "자동이슈봇"
+  },
+  {
+    "date": "2026-02-14",
+    "title": "자동 이슈 브리핑 게시: 구글 글로벌 기술 이슈 핵심 정리",
+    "url": "blog.html#post-153",
+    "category": "자동발행"
   }
 ]
