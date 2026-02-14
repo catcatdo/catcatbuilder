@@ -564,7 +564,13 @@
             .concat(staticIssues)
             .map(normalizeIssue)
             .sort(function (a, b) {
-                return parseDateValue(b.published_at) - parseDateValue(a.published_at);
+                var dateDiff = parseDateValue(b.published_at) - parseDateValue(a.published_at);
+                if (dateDiff !== 0) {
+                    return dateDiff;
+                }
+                var bId = parseInt(String(b.id || "").replace(/[^0-9]/g, ""), 10) || 0;
+                var aId = parseInt(String(a.id || "").replace(/[^0-9]/g, ""), 10) || 0;
+                return bId - aId;
             });
 
         if (!issues.length) {

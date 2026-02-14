@@ -634,11 +634,23 @@ async function loadPosts() {
         if (window.BLOG_MODE === 'template') {
             allPosts = data.posts
                 .filter(post => post.category === 'template')
-                .sort((a, b) => new Date(b.date) - new Date(a.date));
+                .sort((a, b) => {
+                    const dateDiff = new Date(b.date || 0) - new Date(a.date || 0);
+                    if (dateDiff !== 0) {
+                        return dateDiff;
+                    }
+                    return Number(b.id || 0) - Number(a.id || 0);
+                });
         } else {
             allPosts = data.posts
                 .filter(post => post.category !== 'diary' && post.category !== 'template' && post.category !== 'issue')
-                .sort((a, b) => new Date(b.date) - new Date(a.date));
+                .sort((a, b) => {
+                    const dateDiff = new Date(b.date || 0) - new Date(a.date || 0);
+                    if (dateDiff !== 0) {
+                        return dateDiff;
+                    }
+                    return Number(b.id || 0) - Number(a.id || 0);
+                });
         }
         renderPosts();
         renderRecentPosts();

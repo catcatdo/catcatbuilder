@@ -1883,7 +1883,13 @@ async function initRelatedPosts() {
 
             if (!top.length) {
                 const fallback = posts
-                    .sort((a, b) => new Date(b.date) - new Date(a.date))
+                    .sort((a, b) => {
+                        const dateDiff = new Date(b.date || 0) - new Date(a.date || 0);
+                        if (dateDiff !== 0) {
+                            return dateDiff;
+                        }
+                        return Number(b.id || 0) - Number(a.id || 0);
+                    })
                     .slice(0, 3);
                 container.innerHTML = fallback.length
                     ? fallback.map(post => `<li><a href="blog.html#post-${post.id}">${post.title}</a></li>`).join('')
