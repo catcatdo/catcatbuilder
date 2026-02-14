@@ -21,7 +21,7 @@ from urllib.request import urlopen, Request
 import xml.etree.ElementTree as ET
 
 from cover_generator import generate_covers_for_post
-from korean_title_utils import has_latin, summarize_auto_brief_title
+from korean_title_utils import has_latin, localize_one_line_summary, summarize_auto_brief_title
 
 ROOT = Path(__file__).resolve().parent.parent
 POSTS_PATH = ROOT / "posts.json"
@@ -307,7 +307,13 @@ def build_feed_image_prompts(item: FeedItem, category: str) -> List[str]:
 
 def build_content(item: FeedItem, display_title: str) -> str:
     date_kr = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
-    summary = item.summary or "핵심 내용은 원문 링크에서 확인 가능합니다."
+    summary = localize_one_line_summary(
+        item.summary or "",
+        title=display_title or item.title,
+        source=item.source,
+    )
+    if not summary:
+        summary = "핵심 내용은 원문 링크에서 확인 가능합니다."
 
     return f"""## 오늘의 핵심 이슈: {display_title}
 

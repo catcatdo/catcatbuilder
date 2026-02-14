@@ -229,3 +229,20 @@ def localize_post_title(title: str) -> str:
         base = re.sub(r"^\[자동브리핑\]\s*", "", text)
         return f"[자동브리핑] {summarize_auto_brief_title(base)}"
     return localize_mixed_title(text)
+
+
+def localize_one_line_summary(
+    summary: str,
+    title: str = "",
+    source: str = "",
+    force_rewrite: bool = False,
+) -> str:
+    text = str(summary or "").strip()
+    if text and not has_latin(text) and not force_rewrite:
+        return text
+
+    topic = summarize_auto_brief_title(title or text).replace("핵심 정리", "핵심 흐름")
+    src = str(source or "").strip()
+    if src and not has_latin(src):
+        return f"{topic} 관련 {src} 보도를 중심으로 쟁점이 빠르게 확산되고 있습니다."
+    return f"{topic} 관련 주요 매체 보도를 중심으로 쟁점이 빠르게 확산되고 있습니다."
