@@ -192,8 +192,8 @@ def localize_mixed_title(title: str) -> str:
             return WORD_REPLACEMENTS[low]
         if low.endswith("'s") and low[:-2] in WORD_REPLACEMENTS:
             return WORD_REPLACEMENTS[low[:-2]] + "의"
-        spelled = _spell_token(token)
-        return spelled or token
+        # Keep unknown tokens as-is to avoid unnatural hangul spelling chains.
+        return token
 
     out = TOKEN_RE.sub(repl, out)
     out = re.sub(r"\s{2,}", " ", out).strip()

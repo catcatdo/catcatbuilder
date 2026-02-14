@@ -10,16 +10,16 @@
   
   <rect x="740" y="152" width="470" height="394" rx="22" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.28)" stroke-width="2"/>
   <path d="M772 498 L840 452 L898 468 L962 408 L1038 430 L1112 340 L1180 302" fill="none" stroke="#22c55e" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
-  <rect x="826" y="420" width="24" height="78" rx="4" fill="#60a5fa"/>
-  <rect x="876" y="382" width="24" height="116" rx="4" fill="#60a5fa"/>
-  <rect x="926" y="358" width="24" height="140" rx="4" fill="#34d399"/>
-  <rect x="976" y="326" width="24" height="172" rx="4" fill="#34d399"/>
-  <rect x="1026" y="294" width="24" height="204" rx="4" fill="#22c55e"/>
+  <rect x="819" y="420" width="24" height="78" rx="4" fill="#60a5fa"/>
+  <rect x="869" y="382" width="24" height="116" rx="4" fill="#60a5fa"/>
+  <rect x="919" y="358" width="24" height="140" rx="4" fill="#34d399"/>
+  <rect x="969" y="326" width="24" height="172" rx="4" fill="#34d399"/>
+  <rect x="1019" y="294" width="24" height="204" rx="4" fill="#22c55e"/>
 
   <rect x="56" y="56" width="1168" height="608" rx="24" fill="none" stroke="rgba(255,255,255,0.24)" stroke-width="2"/>
   <text x="84" y="146" fill="#bfdbfe" font-size="30" font-family="Arial, sans-serif" font-weight="700">대표 이미지</text>
-  <text x="84" y="230" fill="#ffffff" font-size="54" font-family="Arial, sans-serif" font-weight="700">[자동브리핑] 엔비디아 인공지능 반도체 경쟁 핵심 정리</text>
-  <text x="84" y="292" fill="#dbeafe" font-size="30" font-family="Arial, sans-serif">[와이에이에이치오오 에프아이엔에이엔씨이] 엔비디아 이엑스티이엔디에스 인공지능 에프알오엠 디에이티에이 씨이엔티이알에스 티오 에프에이씨…</text>
+  <text x="84" y="230" fill="#ffffff" font-size="54" font-family="Arial, sans-serif" font-weight="700">엔비디아 인공지능 반도체 경쟁 핵심 정리</text>
+  <text x="84" y="292" fill="#dbeafe" font-size="30" font-family="Arial, sans-serif">핵심 포인트를 빠르게 정리한 콘텐츠</text>
   <rect x="84" y="582" width="1110" height="62" rx="31" fill="rgba(255,255,255,0.16)"/>
-  <text x="116" y="622" fill="#ffffff" font-size="30" font-family="Arial, sans-serif">#자동브리핑 #시간당이슈 #AI #반도체 #와이에이에이치오오에프… #엔비디아</text>
+  <text x="116" y="622" fill="#ffffff" font-size="30" font-family="Arial, sans-serif">#시간당이슈 #AI #반도체 #핵심 #엔비디아 #인공지능</text>
 </svg>

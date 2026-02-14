@@ -3553,14 +3553,13 @@
     },
     {
       "id": 142,
-      "title": "[자동브리핑] 글로벌 기술 이슈 핵심 정리",
+      "title": "글로벌 기술 이슈 핵심 정리",
       "category": "life",
       "date": "2026-02-14",
       "image": "images/generated/post-142-cover.svg",
       "excerpt": "[Google Cloud] E.SUN Bank case study",
       "content": "## 오늘의 핵심 이슈: 글로벌 기술 이슈 핵심 정리\n\n매시간 이슈 브리핑 업데이트입니다. 이 글은 2026-02-14 05:28 UTC 기준으로 최신 기술/산업 뉴스를 빠르게 파악할 수 있도록 정리한 콘텐츠입니다.\n\n### 한 줄 요약\n글로벌 기술 이슈 핵심 흐름 관련 주요 매체 보도를 중심으로 쟁점이 빠르게 확산되고 있습니다.\n\n### 왜 이 이슈가 중요한가\n지금 시장은 단순한 제품 경쟁을 넘어 **정책, 인프라, 운영 안정성**이 함께 맞물리는 구간에 들어왔습니다. 이 뉴스가 중요한 이유는 단기 헤드라인보다 중장기 의사결정에 영향을 주기 때문입니다.\n\n1. 기업 관점: 투자 우선순위와 로드맵이 달라집니다.\n2. 개발팀 관점: 어떤 기술 스택에 시간을 써야 할지 기준이 바뀝니다.\n3. 사용자 관점: 서비스 품질, 가격, 정책 경험에 직접 영향을 줍니다.\n\n### 실무 관점 체크포인트\n아래 항목을 기준으로 뉴스를 보면 정보가 바로 실행 계획으로 연결됩니다.\n\n- 이 변화가 **비용 구조**를 바꾸는가?\n- 이 변화가 **규제/정책 리스크**를 늘리거나 줄이는가?\n- 이 변화가 **공급망/인프라 가용성**에 영향을 주는가?\n- 우리 서비스에서 1~3개월 내 반영해야 할 항목은 무엇인가?\n\n### 바로 적용 가능한 액션 3가지\n1. 내부 노션/위키에 이슈 로그를 추가해 관련 팀이 같은 문맥을 공유합니다.\n2. 현재 운영 중인 기능 중 영향받을 수 있는 항목(비용, 정책, 성능)을 체크합니다.\n3. 대체 시나리오(모델/벤더/운영 정책)를 최소 1개 이상 준비합니다.\n\n### 에디터 메모\n이 페이지는 트래픽용 자극 제목보다 **실행 가능한 정보 밀도**를 우선합니다. 그래서 원문 출처를 명시하고, 팀/개인에게 바로 쓸 수 있는 체크리스트 형태로 정리합니다.\n\n### 원문 출처\n- 매체: Google Cloud\n- 기사 제목: E.SUN Bank case study\n- 링크: https://news.google.com/rss/articles/CBMiVkFVX3lxTE1BdEFqNXdrSnlsQ2tBNDNLanVfaFRSVVBFbkh2cy13UmdxNS1QWFlUZ1NSZjVvVWYxNnNKVnJlVVpUanFBYU1FaEZLRUN4UHc0Z044a2x3?oc=5\n\n### 참고\n- 본 글은 시점형 브리핑이며, 후속 보도가 나오면 해석이 달라질 수 있습니다.\n- 최신 맥락은 원문 기사와 후속 업데이트를 함께 확인하는 것을 권장합니다.",
       "tags": [
-        "자동브리핑",
         "시간당이슈",
         "Google Cloud"
       ],
@@ -3577,14 +3576,13 @@
     },
     {
       "id": 143,
-      "title": "[자동브리핑] 오픈에이아이 글로벌 기술 이슈 핵심 정리",
+      "title": "오픈에이아이 글로벌 기술 이슈 핵심 정리",
       "category": "tech",
       "date": "2026-02-14",
       "image": "images/generated/post-143-cover.svg",
       "excerpt": "[Times of India] Microsoft AI CEO Mustafa Suleyman confirms company is 'dumping' OpenAI, says: My personal mission at Micr",
       "content": "## 오늘의 핵심 이슈: 오픈에이아이 글로벌 기술 이슈 핵심 정리\n\n매시간 이슈 브리핑 업데이트입니다. 이 글은 2026-02-14 05:54 UTC 기준으로 최신 기술/산업 뉴스를 빠르게 파악할 수 있도록 정리한 콘텐츠입니다.\n\n### 한 줄 요약\n글로벌 기술 이슈 핵심 흐름 관련 주요 매체 보도를 중심으로 쟁점이 빠르게 확산되고 있습니다.\n\n### 왜 이 이슈가 중요한가\n지금 시장은 단순한 제품 경쟁을 넘어 **정책, 인프라, 운영 안정성**이 함께 맞물리는 구간에 들어왔습니다. 이 뉴스가 중요한 이유는 단기 헤드라인보다 중장기 의사결정에 영향을 주기 때문입니다.\n\n1. 기업 관점: 투자 우선순위와 로드맵이 달라집니다.\n2. 개발팀 관점: 어떤 기술 스택에 시간을 써야 할지 기준이 바뀝니다.\n3. 사용자 관점: 서비스 품질, 가격, 정책 경험에 직접 영향을 줍니다.\n\n### 실무 관점 체크포인트\n아래 항목을 기준으로 뉴스를 보면 정보가 바로 실행 계획으로 연결됩니다.\n\n- 이 변화가 **비용 구조**를 바꾸는가?\n- 이 변화가 **규제/정책 리스크**를 늘리거나 줄이는가?\n- 이 변화가 **공급망/인프라 가용성**에 영향을 주는가?\n- 우리 서비스에서 1~3개월 내 반영해야 할 항목은 무엇인가?\n\n### 바로 적용 가능한 액션 3가지\n1. 내부 노션/위키에 이슈 로그를 추가해 관련 팀이 같은 문맥을 공유합니다.\n2. 현재 운영 중인 기능 중 영향받을 수 있는 항목(비용, 정책, 성능)을 체크합니다.\n3. 대체 시나리오(모델/벤더/운영 정책)를 최소 1개 이상 준비합니다.\n\n### 에디터 메모\n이 페이지는 트래픽용 자극 제목보다 **실행 가능한 정보 밀도**를 우선합니다. 그래서 원문 출처를 명시하고, 팀/개인에게 바로 쓸 수 있는 체크리스트 형태로 정리합니다.\n\n### 원문 출처\n- 매체: Times of India\n- 기사 제목: Microsoft AI CEO Mustafa Suleyman confirms company is 'dumping' OpenAI, says: My personal mission at Micr\n- 링크: https://news.google.com/rss/articles/CBMioAJBVV95cUxQWU5EZ3pCRnlxLUlSc2t6ODZEcXZ2NTB1emNTQmY5aHFsSnNiS3JBUjZhYjRyUXBhRWpyS3JkRHUxUG5LbGNaMTdNMEFjN1YwcFdFWV9LZFJ2NTVfUVlJZVNZYl9XRmwwSFgyZndubmJLM0ZjaEZCWFhIVnRCbE5hZ25Vb0t2RzRUMnpSYW5STW85RVBOYklFeHNKaDFTb1Z6U1k5d0paVjBJcDFUWjFjclZXS2Z2am9GSEdJQVNDZW1zalVNUm9JdFFkY05VUXFQRnVpWkh0MWI1Sm04YmxZU25uU3g2SjhmVFEzQS12TXM4dURqRkRnSk1hcFVqcndGaE9wY0w0NlhCeDBvX0Ewd1VreXZCUWVyeUJ6WHpaa0PSAaYCQVVfeXFMTkU4eW5sSXFHZVpfMXVlM09yWHdHbWthNm90aDVZc2I3WVM2dGZBcFdISGNqVVpPVVphMG5VblR1ZXhhckJ2cDg0ZmdjaWp5WHlqY3Aza2tXb0VIN2ZYMmdOV1Y3dHltdUxsbHZUd0FmSHlkRXk5aFFFRG9ZQlRHNzNqa2RvTmltY1g0QmlBS29VVU5Ba0ZtQ0dFTHpCamNHWEoybTFVTHVUSXd0SS1MTVRTWFgxNlJiRDRyVl9XeWpRaEFwRW0waXZ1Smw2U1Z4MjBiQzV3dWlmdTZsVWtTMm5qaHNmNi0tNFRpaVhGUVU1LWh2TWFwbkpkZXRXMFVsV0hhd00wRUhVQkxyZk5iOVpZcnhvV2dkUi0xVlJIUUJaZmVaRk5B?oc=5\n\n### 참고\n- 본 글은 시점형 브리핑이며, 후속 보도가 나오면 해석이 달라질 수 있습니다.\n- 최신 맥락은 원문 기사와 후속 업데이트를 함께 확인하는 것을 권장합니다.",
       "tags": [
-        "자동브리핑",
         "시간당이슈",
         "AI",
         "Times of India"
@@ -3602,14 +3600,13 @@
     },
     {
       "id": 144,
-      "title": "[자동브리핑] 엔비디아 인공지능 반도체 경쟁 핵심 정리",
+      "title": "엔비디아 인공지능 반도체 경쟁 핵심 정리",
       "category": "tech",
       "date": "2026-02-14",
       "image": "images/generated/post-144-cover.svg",
       "excerpt": "[Yahoo Finance UK] NVIDIA Extends AI From Data Centers To Factories Labs And Grids",
       "content": "## 오늘의 핵심 이슈: 엔비디아 인공지능 반도체 경쟁 핵심 정리\n\n매시간 이슈 브리핑 업데이트입니다. 이 글은 2026-02-14 06:24 UTC 기준으로 최신 기술/산업 뉴스를 빠르게 파악할 수 있도록 정리한 콘텐츠입니다.\n\n### 한 줄 요약\n글로벌 기술 이슈 핵심 흐름 관련 주요 매체 보도를 중심으로 쟁점이 빠르게 확산되고 있습니다.\n\n### 왜 이 이슈가 중요한가\n지금 시장은 단순한 제품 경쟁을 넘어 **정책, 인프라, 운영 안정성**이 함께 맞물리는 구간에 들어왔습니다. 이 뉴스가 중요한 이유는 단기 헤드라인보다 중장기 의사결정에 영향을 주기 때문입니다.\n\n1. 기업 관점: 투자 우선순위와 로드맵이 달라집니다.\n2. 개발팀 관점: 어떤 기술 스택에 시간을 써야 할지 기준이 바뀝니다.\n3. 사용자 관점: 서비스 품질, 가격, 정책 경험에 직접 영향을 줍니다.\n\n### 실무 관점 체크포인트\n아래 항목을 기준으로 뉴스를 보면 정보가 바로 실행 계획으로 연결됩니다.\n\n- 이 변화가 **비용 구조**를 바꾸는가?\n- 이 변화가 **규제/정책 리스크**를 늘리거나 줄이는가?\n- 이 변화가 **공급망/인프라 가용성**에 영향을 주는가?\n- 우리 서비스에서 1~3개월 내 반영해야 할 항목은 무엇인가?\n\n### 바로 적용 가능한 액션 3가지\n1. 내부 노션/위키에 이슈 로그를 추가해 관련 팀이 같은 문맥을 공유합니다.\n2. 현재 운영 중인 기능 중 영향받을 수 있는 항목(비용, 정책, 성능)을 체크합니다.\n3. 대체 시나리오(모델/벤더/운영 정책)를 최소 1개 이상 준비합니다.\n\n### 에디터 메모\n이 페이지는 트래픽용 자극 제목보다 **실행 가능한 정보 밀도**를 우선합니다. 그래서 원문 출처를 명시하고, 팀/개인에게 바로 쓸 수 있는 체크리스트 형태로 정리합니다.\n\n### 원문 출처\n- 매체: Yahoo Finance UK\n- 기사 제목: NVIDIA Extends AI From Data Centers To Factories Labs And Grids\n- 링크: https://news.google.com/rss/articles/CBMihgFBVV95cUxPQk5lZDIwRWZKRGJrTWtkMW9hTGFFa056UHM2ckYtZ1hHVmY5YzNjT2p3ZnJwVXE0eXlmN3l2VHBJZWIzNEhKMFM4ZVNydDJRRGxWNFgyWG80LXlmcVJSRGFlcGxCcE83aFdGemlQVThONncteUhfOVZQazU2c0EzLVZGYWRKUQ?oc=5\n\n### 참고\n- 본 글은 시점형 브리핑이며, 후속 보도가 나오면 해석이 달라질 수 있습니다.\n- 최신 맥락은 원문 기사와 후속 업데이트를 함께 확인하는 것을 권장합니다.",
       "tags": [
-        "자동브리핑",
         "시간당이슈",
         "AI",
         "반도체",
@@ -3706,14 +3703,13 @@
     },
     {
       "id": 146,
-      "title": "[자동브리핑] 엔비디아 인공지능 반도체 경쟁 핵심 정리",
+      "title": "엔비디아 인공지능 반도체 경쟁 핵심 정리",
       "category": "tech",
       "date": "2026-02-14",
       "image": "images/generated/post-146-cover.svg",
       "excerpt": "[Yahoo Finance] NVIDIA Extends AI From Data Centers To Factories Labs And Grids",
       "content": "## 오늘의 핵심 이슈: 엔비디아 인공지능 반도체 경쟁 핵심 정리\n\n매시간 이슈 브리핑 업데이트입니다. 이 글은 2026-02-14 06:56 UTC 기준으로 최신 기술/산업 뉴스를 빠르게 파악할 수 있도록 정리한 콘텐츠입니다.\n\n### 한 줄 요약\n글로벌 기술 이슈 핵심 흐름 관련 주요 매체 보도를 중심으로 쟁점이 빠르게 확산되고 있습니다.\n\n### 왜 이 이슈가 중요한가\n지금 시장은 단순한 제품 경쟁을 넘어 **정책, 인프라, 운영 안정성**이 함께 맞물리는 구간에 들어왔습니다. 이 뉴스가 중요한 이유는 단기 헤드라인보다 중장기 의사결정에 영향을 주기 때문입니다.\n\n1. 기업 관점: 투자 우선순위와 로드맵이 달라집니다.\n2. 개발팀 관점: 어떤 기술 스택에 시간을 써야 할지 기준이 바뀝니다.\n3. 사용자 관점: 서비스 품질, 가격, 정책 경험에 직접 영향을 줍니다.\n\n### 실무 관점 체크포인트\n아래 항목을 기준으로 뉴스를 보면 정보가 바로 실행 계획으로 연결됩니다.\n\n- 이 변화가 **비용 구조**를 바꾸는가?\n- 이 변화가 **규제/정책 리스크**를 늘리거나 줄이는가?\n- 이 변화가 **공급망/인프라 가용성**에 영향을 주는가?\n- 우리 서비스에서 1~3개월 내 반영해야 할 항목은 무엇인가?\n\n### 바로 적용 가능한 액션 3가지\n1. 내부 노션/위키에 이슈 로그를 추가해 관련 팀이 같은 문맥을 공유합니다.\n2. 현재 운영 중인 기능 중 영향받을 수 있는 항목(비용, 정책, 성능)을 체크합니다.\n3. 대체 시나리오(모델/벤더/운영 정책)를 최소 1개 이상 준비합니다.\n\n### 에디터 메모\n이 페이지는 트래픽용 자극 제목보다 **실행 가능한 정보 밀도**를 우선합니다. 그래서 원문 출처를 명시하고, 팀/개인에게 바로 쓸 수 있는 체크리스트 형태로 정리합니다.\n\n### 원문 출처\n- 매체: Yahoo Finance\n- 기사 제목: NVIDIA Extends AI From Data Centers To Factories Labs And Grids\n- 링크: https://news.google.com/rss/articles/CBMiggFBVV95cUxNMjBQWklWaEVkQ0VtOGpuV2R5X0RoaE5sQVBZalVhNnRLVU5qaEF5aHNSV3p5aFRDdkZxOEw3di1Uc2tXMFUxNEpBd29RdzhwcjVvQzRUS0pJY0FQVzA4U1NWWDFER296SUNJc0U4OTVTOEl5NVZRV0VIMTJ5a21BRGF3?oc=5\n\n### 참고\n- 본 글은 시점형 브리핑이며, 후속 보도가 나오면 해석이 달라질 수 있습니다.\n- 최신 맥락은 원문 기사와 후속 업데이트를 함께 확인하는 것을 권장합니다.",
       "tags": [
-        "자동브리핑",
         "시간당이슈",
         "AI",
         "반도체",
@@ -3732,14 +3728,13 @@
     },
     {
       "id": 147,
-      "title": "[자동브리핑] 엔비디아 인공지능 반도체 경쟁 핵심 정리",
+      "title": "엔비디아 인공지능 반도체 경쟁 핵심 정리",
       "category": "tech",
       "date": "2026-02-14",
       "image": "images/generated/post-147-cover.svg",
       "excerpt": "[Times of India] After CEO Jensen Huang said he wants employees to stop coding, Nvidia give all its 30,000 engineers acces",
       "content": "## 오늘의 핵심 이슈: 엔비디아 인공지능 반도체 경쟁 핵심 정리\n\n매시간 이슈 브리핑 업데이트입니다. 이 글은 2026-02-14 07:21 UTC 기준으로 최신 기술/산업 뉴스를 빠르게 파악할 수 있도록 정리한 콘텐츠입니다.\n\n### 한 줄 요약\n글로벌 기술 이슈 핵심 흐름 관련 주요 매체 보도를 중심으로 쟁점이 빠르게 확산되고 있습니다.\n\n### 왜 이 이슈가 중요한가\n지금 시장은 단순한 제품 경쟁을 넘어 **정책, 인프라, 운영 안정성**이 함께 맞물리는 구간에 들어왔습니다. 이 뉴스가 중요한 이유는 단기 헤드라인보다 중장기 의사결정에 영향을 주기 때문입니다.\n\n1. 기업 관점: 투자 우선순위와 로드맵이 달라집니다.\n2. 개발팀 관점: 어떤 기술 스택에 시간을 써야 할지 기준이 바뀝니다.\n3. 사용자 관점: 서비스 품질, 가격, 정책 경험에 직접 영향을 줍니다.\n\n### 실무 관점 체크포인트\n아래 항목을 기준으로 뉴스를 보면 정보가 바로 실행 계획으로 연결됩니다.\n\n- 이 변화가 **비용 구조**를 바꾸는가?\n- 이 변화가 **규제/정책 리스크**를 늘리거나 줄이는가?\n- 이 변화가 **공급망/인프라 가용성**에 영향을 주는가?\n- 우리 서비스에서 1~3개월 내 반영해야 할 항목은 무엇인가?\n\n### 바로 적용 가능한 액션 3가지\n1. 내부 노션/위키에 이슈 로그를 추가해 관련 팀이 같은 문맥을 공유합니다.\n2. 현재 운영 중인 기능 중 영향받을 수 있는 항목(비용, 정책, 성능)을 체크합니다.\n3. 대체 시나리오(모델/벤더/운영 정책)를 최소 1개 이상 준비합니다.\n\n### 에디터 메모\n이 페이지는 트래픽용 자극 제목보다 **실행 가능한 정보 밀도**를 우선합니다. 그래서 원문 출처를 명시하고, 팀/개인에게 바로 쓸 수 있는 체크리스트 형태로 정리합니다.\n\n### 원문 출처\n- 매체: Times of India\n- 기사 제목: After CEO Jensen Huang said he wants employees to stop coding, Nvidia give all its 30,000 engineers acces\n- 링크: https://news.google.com/rss/articles/CBMimgJBVV95cUxQRS1hZU1lMXZQNmlSSmZkZGhWTXlOV09veEpRaVdiOG5udll1QkdJWlVpUUlHT0hNUGdCbjByVjZZZUlSSWlpOTNDYnFNLUlIbTN3RzhGOUdoQ3pZLXZ3bVF1M2M3VUxyTVI4ajFsZFp3d0prNTItMV8xTWhKZXJ4OEs1aVA4ZVRaRTBCTnBUdkQ4U0FCRlduZzFlSEsxeUJUcm9HTTZmdEVIVW1BYktxTUIzMXktR3JMZ1Q1YWl6UTM3eUpGQlI4YXFQOEI3aWRYU3ZtaFE5NVI4ZEdDb0w4WlhmVkU5WWhaM1N6Zjg2S2FUcHQ5V09Lb3Z4dExlOGlsYVNLMDBEYnRLc3lPMmJCNG4zc01XZkJTM1HSAZ8CQVVfeXFMT1RZd0lBOVhneFRkeExnREJxMlpBMmU1T2JYX0ZXZTY1NDBIRGpZc20yZkUxMnRBUVlGWjNrVUY5MEVLX0pvZHJ2bWwyYjFHS2xQX2xvbEllLWU4cFJZN0ZUdnhmbnllemRrQUE0bVJ5cW9sRFBrOWhKLTRBSjhtQkhab3JWTnk4SFFBYmZ4b3BieHVfU3ZCbDkwN0NwS01SaVd2Zk9sNkxuLWFDMjJnTGRrZGtIT1Q4aDJ2MjEta052Wm40cDF0TU1UZXRiTGtKanQ2T19iNTNWOVBlYl9pZ0J3a2tIWFptd3lIRGFqTlBZU1VGaFNnQzF6bEVjVmdsRVU1OXloZTBNSG5GWW1GODJHX1cxVDZDQy1pREJLWUk?oc=5\n\n### 참고\n- 본 글은 시점형 브리핑이며, 후속 보도가 나오면 해석이 달라질 수 있습니다.\n- 최신 맥락은 원문 기사와 후속 업데이트를 함께 확인하는 것을 권장합니다.",
       "tags": [
-        "자동브리핑",
         "시간당이슈",
         "AI",
         "반도체",
