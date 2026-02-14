@@ -925,7 +925,7 @@ window.ISSUE_THREADS = window.ISSUE_THREADS || [
       "AI 출력은 이해하고 재작성하는 과정을 거쳐야 실제 학습과 몰입이 발생한다."
     ],
     curator_insight: "AI 시대에 개발자의 진짜 경쟁력은 '코드를 빨리 치는 것'이 아니라 '무엇을 만들지 결정하고 설계하는 능력'으로 옮겨가고 있습니다. AI 도구에 의존하면서도 사고의 주도권을 놓지 않는 균형감각이 핵심입니다.",
-    visual_suggestion: "묣료 스톡 키워드: developer focused coding, deep work environment, AI assistant interface, flow state concept, modern workspace. 생성형 프롬프트: "developer in deep focus at minimal workspace with soft natural lighting, laptop screen showing code editor, calm productive atmosphere, documentary style, no logos, no identifiable faces"",
+    visual_suggestion: "무료 스톡 키워드: developer focused coding, deep work environment, AI assistant interface, flow state concept, modern workspace. 생성형 프롬프트: \"developer in deep focus at minimal workspace with soft natural lighting, laptop screen showing code editor, calm productive atmosphere, documentary style, no logos, no identifiable faces\"",
     tags: ["AI", "개발자생산성", "플로우상태", "딥워크", "GitHubCopilot", "개발자성장"],
     comments: [
       {
@@ -975,6 +975,77 @@ window.ISSUE_THREADS = window.ISSUE_THREADS || [
         author: "주니어개발",
         text: "신입은 기본기 다지는 게 더 중요해진 느낌",
         time: "오전 6:47"
+      }
+    ]
+  },
+  {
+    id: "issue-20260215-ai-code-review-paradigm",
+    title: "AI 코딩 시대 개발자 역할 변화: 코드 작성에서 코드 리뷰로",
+    description: "<p>AI가 구현 속도를 끌어올리면서 개발자의 핵심 업무는 직접 작성보다 검토와 판단으로 빠르게 이동하고 있습니다.</p><p>이 글은 AI 슬롭을 줄이고 리뷰 피로를 관리하기 위한 실무 체크리스트와 팀 운영 기준을 정리합니다.</p>",
+    date: "2026-02-15",
+    catchy_title: "AI가 코드를 쓰는 시대, 개발자는 무엇으로 실력을 증명할까",
+    source_name: "개발자 커뮤니티 논의 기반 오리지널 콘텐츠",
+    source_url: "",
+    published_at: "2026-02-15T07:09:00+09:00",
+    image: "images/issue-fallback.svg",
+    image_variants: [],
+    rewritten_body: "AI 코딩 도구가 확산되면서 개발자의 가치는 '타이핑 속도'보다 '품질 판단력'에서 더 크게 갈리기 시작했습니다. 반복 구현은 AI가 빠르게 처리할 수 있지만, 요구사항 해석의 정확도, 보안과 성능 리스크 점검, 기존 아키텍처와의 정합성은 여전히 사람이 책임져야 합니다. 그래서 팀의 실제 병목도 구현 단계보다 리뷰와 검증 단계로 이동하고 있습니다. 핵심은 AI를 배제하는 것이 아니라, 어디까지 자동화하고 어디서 사람의 결정을 강제할지 운영 기준을 명확히 두는 것입니다.",
+    summary_lines: [
+      "AI 도구 도입 이후 개발자의 주 업무는 코드 작성보다 리뷰, 검증, 품질 판단으로 이동하고 있다.",
+      "AI 슬롭을 줄이려면 프롬프트 품질, 변경 범위 제한, 테스트 기준을 함께 설계해야 한다.",
+      "리뷰 피로를 줄이려면 PR 크기 상한, 체크리스트 기반 승인, 역할 분리가 필수다."
+    ],
+    curator_insight: "생산성 도구가 강해질수록 팀의 경쟁력은 '얼마나 많이 생성했는가'가 아니라 '얼마나 안전하게 운영에 올렸는가'로 평가됩니다. AI 시대의 시니어 역량은 작성보다 검증 체계를 설계하는 능력에 가깝습니다.",
+    visual_suggestion: "무료 스톡 키워드: software code review, engineering team meeting, AI assistant screen, quality checklist, modern office. 생성형 프롬프트: \"engineering team reviewing AI-generated pull requests on large screens, checklist and architecture notes visible, realistic documentary photography, neutral lighting, no logos, no readable proprietary text\"",
+    tags: ["AI코딩", "코드리뷰", "개발자생산성", "엔지니어링", "번아웃관리"],
+    comments: [
+      {
+        side: "left",
+        author: "리뷰집중",
+        text: "요즘은 구현보다 PR 리뷰 시간이 더 길어짐",
+        time: "오전 7:10"
+      },
+      {
+        side: "right",
+        author: "실무백엔드",
+        text: "AI가 짜준 코드도 테스트 없으면 바로 불안함",
+        time: "오전 7:11"
+      },
+      {
+        side: "left",
+        author: "프롬프트파",
+        text: "맥락 잘 주면 슬롭 확실히 줄긴 하더라",
+        time: "오전 7:12"
+      },
+      {
+        side: "right",
+        author: "아키텍처우선",
+        text: "문제는 코드량보다 시스템 경계 맞추는 거임",
+        time: "오전 7:13"
+      },
+      {
+        side: "left",
+        author: "품질관리",
+        text: "PR 크기 제한 걸었더니 리뷰 피로가 줄었음",
+        time: "오전 7:14"
+      },
+      {
+        side: "right",
+        author: "주니어시점",
+        text: "신입은 오히려 리뷰 피드백에서 많이 배우는 듯",
+        time: "오전 7:15"
+      },
+      {
+        side: "left",
+        author: "보안체크",
+        text: "AI 코드일수록 입력 검증 누락을 먼저 봐야 함",
+        time: "오전 7:16"
+      },
+      {
+        side: "right",
+        author: "운영관점",
+        text: "결국 배포 후 장애가 없으면 그게 진짜 생산성",
+        time: "오전 7:17"
       }
     ]
   }
