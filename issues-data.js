@@ -213,5 +213,74 @@ window.ISSUE_THREADS = window.ISSUE_THREADS || [
         time: "오후 9:15"
       }
     ]
+  },
+  {
+    id: "issue-20260215-ai-dev-productivity-shift",
+    title: "AI 코딩 도구와 개발자 생산성 재정의",
+    catchy_title: "코드를 덜 치는데 산출은 더 빨라졌다: 개발자의 일은 어디로 이동하나",
+    source_name: "해외 테크 리더 발언 종합",
+    source_url: "",
+    published_at: "2026-02-15T00:41:00+09:00",
+    image: "images/generated/post-9004-cover.svg",
+    image_variants: ["images/generated/post-9004-v1.svg", "images/generated/post-9004-v2.svg", "images/generated/post-9004-v3.svg"],
+    rewritten_body: "일부 기술 조직에서는 시니어 엔지니어가 직접 타이핑하는 시간을 줄이고, AI가 만든 초안을 검증하고 구조화하는 방식으로 개발 흐름을 바꾸고 있습니다. 그 결과 생산성의 기준이 '얼마나 빨리 코드를 작성하느냐'에서 '문제를 정확히 정의하고 안전하게 배포하느냐'로 이동하는 분위기입니다. 다만 AI 산출물의 품질 편차가 크기 때문에 리뷰 강도, 테스트 설계, 보안 점검은 이전보다 더 중요해졌습니다.",
+    summary_lines: [
+      "반복 구현은 AI가 맡고 개발자는 요구사항 해석, 시스템 연결, 품질 검증에 시간을 더 쓰는 팀이 늘고 있다.",
+      "프로토타입 속도는 빨라졌지만 운영 환경에서의 안정성을 확보하려면 리뷰와 테스트 기준을 더 엄격하게 설계해야 한다.",
+      "향후 개발자 경쟁력은 타이핑 속도보다 아키텍처 판단력, 도메인 이해, 리스크 관리 능력에서 갈릴 가능성이 크다."
+    ],
+    curator_insight: "핵심은 '개발자가 사라진다'가 아니라 '책임 구간이 위로 올라간다'는 변화입니다. AI는 작성 비용을 낮춰주지만, 잘못된 가정과 숨은 결함을 걸러내는 최종 책임은 결국 사람의 설계력과 검증력에 남습니다.",
+    visual_suggestion: "무료 스톡 키워드: ai pair programming, code review monitor, software architecture board, engineering standup, debugging workflow. 생성형 프롬프트: \"software team reviewing AI-generated code on large monitors, architecture diagrams on glass wall, collaborative engineering environment, realistic documentary photo, neutral tone, no logos, no readable text\"",
+    tags: ["AI", "개발자생산성", "코딩도구", "아키텍처", "엔지니어링트렌드"],
+    comments: [
+      {
+        side: "left",
+        author: "속도중시",
+        text: "보일러플레이트 줄어든 건 체감됨 ㅋㅋ",
+        time: "오전 12:42"
+      },
+      {
+        side: "right",
+        author: "품질파",
+        text: "초안 빨라도 검증 시간 안 줄면 의미 없음",
+        time: "오전 12:43"
+      },
+      {
+        side: "left",
+        author: "현업백엔드",
+        text: "요즘은 구현보다 요구사항 정리가 더 빡셈",
+        time: "오전 12:44"
+      },
+      {
+        side: "right",
+        author: "보안체크",
+        text: "AI 코드 그대로 넣으면 취약점 터질 수 있음",
+        time: "오전 12:45"
+      },
+      {
+        side: "left",
+        author: "리드개발자",
+        text: "결국 아키텍처 보는 사람이 생산성 끌어올림",
+        time: "오전 12:46"
+      },
+      {
+        side: "right",
+        author: "주니어시점",
+        text: "코드 리뷰 피드백 받는 속도는 확실히 빨라짐",
+        time: "오전 12:47"
+      },
+      {
+        side: "left",
+        author: "현실주의",
+        text: "프롬프트보다 도메인 이해가 더 중요해진 듯",
+        time: "오전 12:48"
+      },
+      {
+        side: "right",
+        author: "정리충",
+        text: "AI는 가속기고 책임은 여전히 사람 몫이네",
+        time: "오전 12:49"
+      }
+    ]
   }
 ];
