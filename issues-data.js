@@ -835,5 +835,76 @@ window.ISSUE_THREADS = window.ISSUE_THREADS || [
         time: "오전 5:47"
       }
     ]
+  },
+  {
+    id: "issue-20260215-java-classloader-contention",
+    title: "Java 고성능 서비스에서 클래스로더 경합 줄이는 실전 패턴",
+    description: "<p>초당 수백~수천 요청 환경에서는 팩토리 생성 한 줄이 잠재적인 락 병목이 될 수 있습니다.</p><p>이 글은 ServiceLoader 기반 팩토리 호출로 생기는 클래스로더 경합을 진단하고, 정적 초기화·리소스 캐싱·측정 지표로 지연을 안정화하는 방법을 정리합니다.</p>",
+    date: "2026-02-15",
+    catchy_title: "보이지 않는 락이 지연을 만든다: Java 클래스로더 경합을 끊는 운영 체크리스트",
+    source_name: "운영 장애 사례 기반 오리지널 콘텐츠",
+    source_url: "",
+    published_at: "2026-02-15T06:09:00+09:00",
+    image: "images/issue-fallback.svg",
+    image_variants: [],
+    rewritten_body: "고동시성 Java 서비스에서 간헐적인 지연이 반복될 때, 원인이 비즈니스 로직이 아니라 클래스패스 스캐닝 경합인 경우가 적지 않습니다. 특히 DatatypeFactory 같은 ServiceLoader 기반 팩토리를 요청마다 새로 생성하면 클래스 로더 내부 락을 다수 스레드가 동시에 기다리게 됩니다. 해결의 핵심은 생성 비용이 큰 팩토리와 정적 리소스를 요청 경로에서 분리하고, 시작 시점에 한 번 준비해 재사용하는 것입니다. 여기에 스레드 덤프와 JFR 지표를 함께 보며 개선 전후를 검증하면 p95, p99 지연의 흔들림을 안정적으로 줄일 수 있습니다.",
+    summary_lines: [
+      "ServiceLoader 기반 팩토리 생성 호출을 요청마다 반복하면 클래스 로더 락 경합이 늘어 BLOCKED 스레드가 급증할 수 있다.",
+      "무거운 팩토리는 정적 초기화로 1회 생성하고 재사용하며, 자주 읽는 리소스는 캐시해 런타임 I/O를 줄여야 한다.",
+      "스레드 덤프, JFR 락 이벤트, p95/p99 지연, 캐시 히트율을 함께 추적해야 개선 효과를 신뢰할 수 있다."
+    ],
+    curator_insight: "성능 문제는 대부분 '느린 코드 한 줄'보다 '숨은 공유 자원'에서 시작됩니다. AI 코드 생성이 빨라질수록 이런 런타임 병목은 더 자주 묻히기 때문에, 병목 후보 API를 사전에 분류하고 생성 비용이 큰 객체를 요청 경로에서 제거하는 설계 기준이 팀 단위로 필요합니다.",
+    visual_suggestion: "무료 스톡 키워드: java backend monitoring, thread dump analysis, server latency dashboard, code profiling, performance tuning. 생성형 프롬프트: \"backend engineer analyzing thread contention dashboard in a modern operations room, realistic documentary style, neutral professional tone, no logos, no readable customer data\"",
+    tags: ["Java", "성능최적화", "클래스로더", "ServiceLoader", "백엔드운영"],
+    comments: [
+      {
+        side: "left",
+        author: "백엔드실무",
+        text: "newInstance 반복 호출이 이렇게 비싼 줄 몰랐네",
+        time: "오전 6:10"
+      },
+      {
+        side: "right",
+        author: "성능분석가",
+        text: "CPU 낮은데 p99 튀면 락 경합부터 보는 게 맞음",
+        time: "오전 6:11"
+      },
+      {
+        side: "left",
+        author: "운영팀장",
+        text: "JFR 락 이벤트랑 스레드 덤프 같이 보니까 원인이 보이더라",
+        time: "오전 6:12"
+      },
+      {
+        side: "right",
+        author: "주니어질문",
+        text: "정적 캐싱하면 스레드 안전성은 어떻게 보장함?",
+        time: "오전 6:13"
+      },
+      {
+        side: "left",
+        author: "리드개발",
+        text: "불변 객체 기준 먼저 세우면 캐싱 도입이 쉬워짐",
+        time: "오전 6:14"
+      },
+      {
+        side: "right",
+        author: "신중론",
+        text: "캐시 넣기 전에 만료 전략이랑 메모리 예산부터 정해야 함",
+        time: "오전 6:15"
+      },
+      {
+        side: "left",
+        author: "장애회고",
+        text: "요청 경로에서 클래스패스 접근 줄였더니 지연이 확 내려감",
+        time: "오전 6:16"
+      },
+      {
+        side: "right",
+        author: "정리봇",
+        text: "핵심은 생성 비용 큰 객체를 런타임 핫패스에서 빼는 것",
+        time: "오전 6:17"
+      }
+    ]
   }
 ];

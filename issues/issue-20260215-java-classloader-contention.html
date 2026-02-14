@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java 고성능 서비스에서 클래스로더 경합 줄이는 실전 패턴 | 릴황 이슈</title>
+    <meta name="description" content="초당 수백~수천 요청 환경에서 ServiceLoader 기반 팩토리 호출로 생기는 클래스로더 경합을 진단하고 해결하는 방법을 정리합니다.">
+    <meta name="keywords" content="Java, 성능최적화, 클래스로더, ServiceLoader, 백엔드운영, JVM, 스레드락">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+    <link rel="canonical" href="https://lilhwang.com/issues/issue-20260215-java-classloader-contention.html">
+
+    <meta property="og:title" content="Java 고성능 서비스에서 클래스로더 경합 줄이는 실전 패턴 | 릴황 이슈">
+    <meta property="og:description" content="보이지 않는 락이 지연을 만든다: Java 클래스로더 경합을 끊는 운영 체크리스트">
+    <meta property="og:image" content="https://lilhwang.com/images/issue-fallback.svg">
+    <meta property="og:url" content="https://lilhwang.com/issues/issue-20260215-java-classloader-contention.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="릴황">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Java 고성능 서비스에서 클래스로더 경합 줄이는 실전 패턴 | 릴황 이슈">
+    <meta name="twitter:description" content="보이지 않는 락이 지연을 만든다: Java 클래스로더 경합을 끊는 운영 체크리스트">
+    <meta name="twitter:image" content="https://lilhwang.com/images/issue-fallback.svg">
+
+    <link rel="stylesheet" href="../styles.css">
+    <script>
+        (function () {
+            try {
+                document.documentElement.setAttribute('data-theme', localStorage.getItem('theme-preference') || 'light');
+            } catch (e) {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        })();
+    </script>
+</head>
+<body>
+    <nav class="nav-bar" aria-label="주 메뉴">
+        <div class="nav-content">
+            <a href="/" class="nav-logo">
+                <img src="/images/logo.webp" alt="릴황" class="logo-img" loading="eager" width="100" height="40">
+            </a>
+            <div class="nav-links">
+                <a href="/blog/">블로그</a>
+                <a href="/issues.html">이슈</a>
+                <a href="/about.html">소개</a>
+            </div>
+            <button class="theme-toggle" id="themeToggle" aria-label="테마 전환">🌓</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <article class="issue-detail">
+            <header class="issue-header">
+                <div class="issue-breadcrumb">
+                    <a href="/issues.html">이슈</a> > <span>기술</span>
+                </div>
+                <h1>보이지 않는 락이 지연을 만든다: Java 클래스로더 경합을 끊는 운영 체크리스트</h1>
+                <div class="issue-meta">
+                    <span>2026년 2월 15일</span>
+                    <span class="separator">·</span>
+                    <span>5분 읽기</span>
+                </div>
+                <div class="issue-tags">
+                    <span class="tag">Java</span>
+                    <span class="tag">성능최적화</span>
+                    <span class="tag">클스로더</span>
+                    <span class="tag">백엔드운영</span>
+                </div>
+            </header>
+
+            <div class="issue-content">
+                <section class="lead">
+                    <p>고동시성 Java 서비스에서 간헐적인 지연이 반복될 때, 원인이 비즈니스 로직이 아니라 클래스패스 스캐닝 경합인 경우가 적지 않습니다. 특히 <code>DatatypeFactory</code> 같은 ServiceLoader 기반 팩토리를 요청마다 새로 생성하면 클래스 로더 남부 락을 다수 스레드가 동시에 기다리게 됩니다.</p>
+                </section>
+
+                <h2>문제 상황</h2>
+                <p>초당 800개 요청을 처리하는 리포팅 서비스를 운영 중이었습니다. 서비스는 SLA 기준을 충족하고 있었고, 알림도 발생하지 않았습니다. 그러나 가끔씩 응답 지연이 발생한다는 사용자 피드백이 있었습니다.</p>
+                
+                <p>스레드 덤프를 분석한 결과, 102개의 스레드가 동시에 하나의 락을 기다리고 있었습니다. 문제의 원인은 매우 단순해 보이는 한 줄의 코드였습니다.</p>
+
+                <h2>원인 분석</h2>
+                <h3>Factory 메서드의 숨겨진 비용</h3>
+                <p>자바에서 XML 관련 작업을 할 때 자주 사용하는 DatatypeFactory는 생성 시 복잡한 낮은 수준의 작업을 수행합니다:</p>
+                
+                <ul>
+                    <li><strong>ServiceLoader 스캐닝</strong>: META-INF/services 디렉토리를 검색</li>
+                    <li><strong>클스패스 순회</strong>: 모든 JAR 파일을 확인</li>
+                    <li><strong>동기화된 리소스 로딩</strong>: URLClassPath의 synchronized 메서드 호출</li>
+                </ul>
+
+                <p>이 모든 과정이 스레드 안전을 위해 동기화되어 있어, 동시에 여러 스레드가 접근하면 경합이 발생합니다.</p>
+
+                <h3>JVM 낮은 수준의 락</h3>
+                <p>JVM은 클래스로더 리소스 접근을 관리하기 위해 낮은 수준의 락을 사용합니다. ServiceLoader를 통해 팩토리를 생성할 때마다 이 락을 획득하려고 시도하며, 이것이 병목 현상을 만듭니다.</p>
+
+                <h2>해결 방법</h2>
+                <h3>1. 팩토리 인스턴스 캐싱</h3>
+                <p>가장 효과적인 해결책은 팩토리 인스턴스를 한 번만 생성하고 재사용하는 것입니다:</p>
+
+                <pre><code>private static final DatatypeFactory DATATYPE_FACTORY;
+
+static {
+    try {
+        DATATYPE_FACTORY = DatatypeFactory.newInstance();
+    } catch (DatatypeConfigurationException e) {
+        throw new RuntimeException("팩토리 초기화 실패", e);
+    }
+}</code></pre>
+
+                <p>이 방식은 클래스 로딩 시 단 한 번만 ServiceLoader 작업을 수행하므로, 런타임 중에는 락 경합이 완전히 사라집니다.</p>
+
+                <h3>2. 정적 리소스 캐싱</h3>
+                <p>애플리케이션에 포함된 파일 리소스를 반복적으로 읽는 경우, Caffeine과 같은 고성능 캐시 라이브러리를 활용합니다:</p>
+
+                <pre><code>private final Cache&lt;String, String&gt; resourceCache = Caffeine.newBuilder()
+    .maximumSize(100)
+    .expireAfterWrite(60, TimeUnit.MINUTES)
+    .build();</code></pre>
+
+                <h2>적용 결과</h2>
+                <table class="result-table">
+                    <tr>
+                        <th>지표</th>
+                        <th>개선 전</th>
+                        <th>개선 후</th>
+                    </tr>
+                    <tr>
+                        <td>블록된 스레드 (최대)</td>
+                        <td>102개</td>
+                        <td>0-2개</td>
+                    </tr>
+                    <tr>
+                        <td>클스로더 락 경합</td>
+                        <td>높음</td>
+                        <td>무시할 수준</td>
+                    </tr>
+                    <tr>
+                        <td>파일 읽기 (12시간)</td>
+                        <td>3400만 회</td>
+                        <td>약 100회</td>
+                    </tr>
+                    <tr>
+                        <td>팩토리 인스턴스 생성</td>
+                        <td>수백만 회</td>
+                        <td>1회</td>
+                    </tr>
+                </table>
+
+                <h2>핵심 교훈</h2>
+                <ol>
+                    <li><strong>팩토리 메서드는 묶은 것이 아닙니다</strong>: DatatypeFactory, DocumentBuilderFactory 등은 유연성을 위해 설계되었지 성능을 위해 설계되지 않았습니다.</li>
+                    <li><strong>클스로더 작업은 동기화됩니다</strong>: getResource(), loadClass() 등의 작업은 잠재적으로 락 경합을 일으킬 수 있습니다.</li>
+                    <li><strong>스레드 덤프는 이야기를 말해줍니다</strong>: 정기적인 스레드 덤프 분석은 예상치 못한 병목 현상을 발견하는 데 필수적입니다.</li>
+                    <li><strong>정적 리소스는 캐싱하세요</strong>: 런타임에 변경되지 않는 리소스는 한 번만 읽어 재사용하는 것이 좋습니다.</li>
+                </ol>
+
+                <h2>검출 방법</h2>
+                <h3>스레드 덤프 분석</h3>
+                <p>다음 패턴을 찾으세요:</p>
+                <ul>
+                    <li>BLOCKED 상태의 다수 스레드</li>
+                    <li>URLClassPath, ServiceLoader, ClassLoader가 포함된 스택 트레이스</li>
+                    <li>동일한 락 객체를 기다리는 스레드들</li>
+                </ul>
+
+                <h3>Java Flight Recorder</h3>
+                <p>JFR을 활성화하여 락 경합 이벤트와 클래스로더 활동을 모니터링하세요:</p>
+                <pre><code>java -XX:StartFlightRecording=duration=60s,filename=recording.jfr ...</code></pre>
+
+                <section class="curator-insight">
+                    <h2>큐레이터 인사이트</h2>
+                    <p>성능 문제는 대부분 '느린 코드 한 줄'보다 '숨은 공유 자원'에서 시작됩니다. AI 코드 생성이 빨라질수록 이런 런타임 병목은 더 자주 묻히기 때문에, 병목 후보 API를 사전에 분류하고 생성 비용이 큰 객체를 요청 경로에서 제거하는 설계 기준이 팀 단위로 필요합니다.</p>
+                </section>
+            </div>
+
+            <section class="community-reactions">
+                <h2>커뮤니티 반응</h2>
+                <div class="comments">
+                    <div class="comment left">
+                        <div class="comment-author">백엔드실무</div>
+                        <div class="comment-text">newInstance 반복 호출이 이렇게 비싼 줄 몰랐네</div>
+                        <div class="comment-time">오전 6:10</div>
+                    </div>
+                    <div class="comment right">
+                        <div class="comment-author">성능분석가</div>
+                        <div class="comment-text">CPU 낮은데 p99 튀면 락 경합부터 보는 게 맞음</div>
+                        <div class="comment-time">오전 6:11</div>
+                    </div>
+                    <div class="comment left">
+                        <div class="comment-author">운영팀장</div>
+                        <div class="comment-text">JFR 락 이벤트랑 스레드 덤프 같이 보니까 원인이 보이더라</div>
+                        <div class="comment-time">오전 6:12</div>
+                    </div>
+                    <div class="comment right">
+                        <div class="comment-author">주니어질문</div>
+                        <div class="comment-text">정적 캐싱하면 스레드 안전성은 어떻게 보장함?</div>
+                        <div class="comment-time">오전 6:13</div>
+                    </div>
+                    <div class="comment left">
+                        <div class="comment-author">리드개발</div>
+                        <div class="comment-text">불변 객체 기준 먼저 세우면 캐싱 도입이 쉬워짐</div>
+                        <div class="comment-time">오전 6:14</div>
+                    </div>
+                    <div class="comment right">
+                        <div class="comment-author">신중론</div>
+                        <div class="comment-text">캐시 넣기 전에 만료 전략이랑 메모리 예산부터 정해야 함</div>
+                        <div class="comment-time">오전 6:15</div>
+                    </div>
+                    <div class="comment left">
+                        <div class="comment-author">장애회고</div>
+                        <div class="comment-text">요청 경로에서 클래스패스 접근 줄였더니 지연이 확 낮아감</div>
+                        <div class="comment-time">오전 6:16</div>
+                    </div>
+                    <div class="comment right">
+                        <div class="comment-author">정리봇</div>
+                        <div class="comment-text">핵심은 생성 비용 큰 객체를 런타임 핫패스에서 빼는 것</div>
+                        <div class="comment-time">오전 6:17</div>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="issue-footer">
+                <div class="issue-share">
+                    <h3>공유하기</h3>
+                    <div class="share-buttons">
+                        <button class="share-btn twitter" data-platform="twitter">Twitter</button>
+                        <button class="share-btn facebook" data-platform="facebook">Facebook</button>
+                        <button class="share-btn linkedin" data-platform="linkedin">LinkedIn</button>
+                    </div>
+                </div>
+                <div class="issue-related">
+                    <h3>관련 이슈</h3>
+                    <div class="related-list">
+                        <a href="issue-20260215-json-visualization-guide.html" class="related-item">
+                            <span class="related-title">JSON 데이터 시각화와 디버깅 가이드</span>
+                            <span class="related-date">2026.02.15</span>
+                        </a>
+                        <a href="issue-20260215-ai-coding-revolution.html" class="related-item">
+                            <span class="related-title">AI가 개발자의 일을 완전히 바꾸고 있다</span>
+                            <span class="related-date">2026.02.15</span>
+                        </a>
+                    </div>
+                </div>
+            </footer>
+        </article>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p>&copy; 2026 릴황. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../app.js"></script>
+</body>
+</html>
