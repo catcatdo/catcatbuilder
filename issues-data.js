@@ -420,5 +420,75 @@ window.ISSUE_THREADS = window.ISSUE_THREADS || [
         time: "오전 1:53"
       }
     ]
+  },
+  {
+    id: "issue-20260215-ai-dev-difficulty-polarization",
+    title: "AI 도입 뒤 개발 난이도 양극화",
+    description: "AI가 반복 코딩을 빠르게 처리하면서 기본 구현 속도는 올라갔지만, 실제 서비스 품질을 지키는 설계·검증·디버깅 부담은 더 커졌다는 현장 평가가 나오고 있다.",
+    catchy_title: "쉽게 만든 코드, 더 어렵게 운영한다: AI 시대 개발자의 진짜 난이도",
+    source_name: "커뮤니티 이슈 요약",
+    source_url: "",
+    published_at: "2026-02-15",
+    image: "images/issue-fallback.svg",
+    image_variants: [],
+    rewritten_body: "AI 도구가 보일러플레이트와 초안 생성을 빠르게 처리하면서 개발 속도는 눈에 띄게 올라갔습니다. 대신 병목은 구현 단계에서 운영 단계로 옮겨가고 있습니다. 팀은 이제 대량으로 만들어진 코드를 검토하고, 아키텍처 일관성과 보안·테스트 기준을 맞추는 데 더 많은 시간을 씁니다. 결과적으로 개발자의 핵심 역량은 타이핑 속도보다 문제 정의, 맥락 이해, 품질 통제 능력으로 재편되는 분위기입니다.",
+    summary_lines: [
+      "반복 구현은 빨라졌지만 실제 난이도는 설계 판단과 통합 검증 구간에 집중되고 있다.",
+      "AI가 만든 코드의 품질 편차를 줄이기 위해 리뷰 규칙, 테스트 자동화, 보안 점검 체계가 더 중요해졌다.",
+      "주니어는 이해 없는 사용 리스크를, 시니어는 아키텍처와 품질 책임 증가를 동시에 마주하고 있다."
+    ],
+    curator_insight: "생산성 숫자만 보면 분명 좋아졌지만, 조직이 체감하는 진짜 성과는 '얼마나 빨리 만들었는가'보다 '얼마나 안전하게 오래 운영되는가'에서 갈립니다. AI 활용의 승부처는 작성 속도가 아니라 검증 프로세스 설계입니다.",
+    visual_suggestion: "무료 스톡 키워드: software code review, debugging session, system architecture board, engineering team collaboration, test automation dashboard. 생성형 프롬프트: \"software engineers reviewing generated code and architecture diagrams in a modern office, realistic documentary photography, neutral lighting, no logo, no readable screen text\"",
+    tags: ["AI", "개발생산성", "디버깅", "아키텍처", "품질관리"],
+    comments: [
+      {
+        side: "left",
+        author: "현업개발",
+        text: "코드는 빨리 나오는데 검증 시간이 더 길어짐",
+        time: "오전 2:10"
+      },
+      {
+        side: "right",
+        author: "리드엔지니어",
+        text: "결국 설계 기준 없는 팀은 더 힘들어질 듯",
+        time: "오전 2:11"
+      },
+      {
+        side: "left",
+        author: "주니어시점",
+        text: "왜 되는지 모르고 붙이는 순간부터 위험함 ㅠ",
+        time: "오전 2:12"
+      },
+      {
+        side: "right",
+        author: "자동화파",
+        text: "테스트 파이프라인 없으면 AI 속도 이점이 사라짐",
+        time: "오전 2:13"
+      },
+      {
+        side: "left",
+        author: "백엔드팀",
+        text: "요즘 구현보다 리뷰 코멘트가 더 길다 ㅋㅋ",
+        time: "오전 2:14"
+      },
+      {
+        side: "right",
+        author: "보안우선",
+        text: "생산성보다 취약점 한 번이 더 치명적임",
+        time: "오전 2:15"
+      },
+      {
+        side: "left",
+        author: "PM관점",
+        text: "일정은 빨라졌는데 품질 기준은 더 명확해야 함",
+        time: "오전 2:16"
+      },
+      {
+        side: "right",
+        author: "정리봇",
+        text: "AI 시대엔 코딩보다 검증력이 실력이라는 말 공감",
+        time: "오전 2:17"
+      }
+    ]
   }
 ];
