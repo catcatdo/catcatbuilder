@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="Rainy mood abstract frame">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#d6deec"/>
+      <stop offset="100%" stop-color="#7f94ba"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg2)"/>
+  <rect x="120" y="90" width="1040" height="540" rx="30" fill="#f9fbff" opacity="0.88"/>
+  <rect x="200" y="160" width="460" height="390" rx="20" fill="#d6e2f6"/>
+  <g stroke="#9db0d2" stroke-width="4" stroke-linecap="round" opacity="0.65">
+    <line x1="280" y1="180" x2="250" y2="260"/>
+    <line x1="360" y1="180" x2="330" y2="260"/>
+    <line x1="440" y1="180" x2="410" y2="260"/>
+    <line x1="520" y1="180" x2="490" y2="260"/>
+    <line x1="600" y1="180" x2="570" y2="260"/>
+  </g>
+  <rect x="720" y="210" width="350" height="24" rx="12" fill="#ccd7eb"/>
+  <rect x="720" y="258" width="320" height="18" rx="9" fill="#ccd7eb"/>
+  <rect x="720" y="296" width="300" height="18" rx="9" fill="#ccd7eb"/>
+  <rect x="720" y="344" width="280" height="18" rx="9" fill="#ccd7eb"/>
+  <rect x="720" y="410" width="200" height="34" rx="17" fill="#7388b1"/>
+</svg>

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="Calm cafe window scene">
+  <defs>
+    <linearGradient id="bg1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffe5c6"/>
+      <stop offset="100%" stop-color="#c8dff6"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg1)"/>
+  <rect x="140" y="100" width="1000" height="520" rx="24" fill="#ffffff" opacity="0.9"/>
+  <rect x="220" y="180" width="360" height="340" rx="14" fill="#dde9fa"/>
+  <rect x="620" y="210" width="420" height="26" rx="13" fill="#d6deed"/>
+  <rect x="620" y="258" width="390" height="18" rx="9" fill="#d6deed"/>
+  <rect x="620" y="296" width="330" height="18" rx="9" fill="#d6deed"/>
+  <rect x="620" y="344" width="270" height="18" rx="9" fill="#d6deed"/>
+  <circle cx="320" cy="360" r="65" fill="#a8bbdc"/>
+  <rect x="290" y="425" width="60" height="75" rx="20" fill="#93a8cf"/>
+  <rect x="820" y="420" width="170" height="36" rx="18" fill="#7995c7"/>
+</svg>
