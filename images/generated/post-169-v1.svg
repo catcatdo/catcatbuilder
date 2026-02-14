@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">홈카페 선반 구성</title>
+  <desc id="desc">홈카페 장비와 선반을 정리한 장면</desc>
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f6efe7"/>
+      <stop offset="100%" stop-color="#e7d8c9"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#g1)"/>
+  <rect x="140" y="120" width="220" height="430" rx="12" fill="#8c6a50"/>
+  <rect x="410" y="120" width="220" height="430" rx="12" fill="#8c6a50"/>
+  <rect x="680" y="120" width="220" height="430" rx="12" fill="#8c6a50"/>
+  <rect x="150" y="140" width="200" height="120" rx="10" fill="#f4efe8"/>
+  <rect x="150" y="275" width="200" height="120" rx="10" fill="#f4efe8"/>
+  <rect x="150" y="410" width="200" height="120" rx="10" fill="#f4efe8"/>
+  <rect x="420" y="140" width="200" height="120" rx="10" fill="#f4efe8"/>
+  <rect x="420" y="275" width="200" height="120" rx="10" fill="#f4efe8"/>
+  <rect x="420" y="410" width="200" height="120" rx="10" fill="#f4efe8"/>
+  <rect x="690" y="140" width="200" height="120" rx="10" fill="#f4efe8"/>
+  <rect x="690" y="275" width="200" height="120" rx="10" fill="#f4efe8"/>
+  <rect x="690" y="410" width="200" height="120" rx="10" fill="#f4efe8"/>
+  <rect x="960" y="150" width="160" height="320" rx="16" fill="#d4b79b"/>
+  <circle cx="1038" cy="238" r="34" fill="#423229"/>
+  <rect x="992" y="288" width="92" height="48" rx="12" fill="#423229"/>
+  <rect x="992" y="352" width="92" height="48" rx="12" fill="#614533"/>
+</svg>

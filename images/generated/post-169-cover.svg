@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">홈카페 꾸미기 도전기 커버</title>
+  <desc id="desc">원룸 창가 홈카페 무드를 표현한 일러스트 배경</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f9efe3"/>
+      <stop offset="55%" stop-color="#efe2d2"/>
+      <stop offset="100%" stop-color="#ddcab4"/>
+    </linearGradient>
+    <linearGradient id="window" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#d2e9f6"/>
+      <stop offset="100%" stop-color="#c0dced"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect x="92" y="74" width="420" height="322" rx="16" fill="url(#window)" opacity="0.8"/>
+  <line x1="302" y1="74" x2="302" y2="396" stroke="#9bb8c8" stroke-width="8"/>
+  <line x1="92" y1="235" x2="512" y2="235" stroke="#9bb8c8" stroke-width="8"/>
+  <rect x="92" y="400" width="1016" height="158" rx="14" fill="#7e5e45"/>
+  <rect x="140" y="438" width="300" height="82" rx="12" fill="#caa583"/>
+  <rect x="170" y="452" width="108" height="56" rx="8" fill="#3b2e2a"/>
+  <circle cx="208" cy="480" r="20" fill="#d4c3ad"/>
+  <rect x="560" y="430" width="142" height="108" rx="16" fill="#efe9df"/>
+  <rect x="582" y="448" width="44" height="66" rx="8" fill="#2f2d2b"/>
+  <rect x="636" y="448" width="44" height="66" rx="8" fill="#2f2d2b"/>
+  <rect x="742" y="448" width="120" height="74" rx="14" fill="#f4efe7"/>
+  <rect x="770" y="466" width="64" height="26" rx="10" fill="#d5b18f"/>
+  <rect x="888" y="428" width="170" height="110" rx="18" fill="#f8f5ef"/>
+  <circle cx="944" cy="478" r="28" fill="#3a2d25"/>
+  <rect x="990" y="458" width="44" height="40" rx="10" fill="#3a2d25"/>
+  <text x="92" y="570" fill="#f8f4ee" font-size="44" font-family="'Noto Sans KR', sans-serif" font-weight="700">Home Cafe Challenge</text>
+</svg>
