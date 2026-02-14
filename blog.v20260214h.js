@@ -1013,6 +1013,7 @@ function getCategoryName(category) {
         'tech': '기술',
         'dev': '개발',
         'life': '일상',
+        'travel': '여행',
         'issue': '이슈',
         'template': '템플릿'
     };
