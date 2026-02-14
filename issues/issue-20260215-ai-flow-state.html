@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 코딩 시대, 개발자의 플로우 상태 지키는 법 | 릴황 이슈</title>
+    <meta name="description" content="AI 코딩 도구는 생산성을 높여주지만 개발자의 몰입을 방해하기도 합니다. AI 도구를 효과적으로 활용하면서도 플로우 상태(Flow State)를 유지하는 실전 전략을 살펴 봅니다.">
+    <meta name="keywords" content="AI, 개발자생산성, 플로우상태, 딥워크, GitHubCopilot, 개발자성장, AI코딩, 몰입, 코딩도구">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+    <link rel="canonical" href="https://lilhwang.com/issues/issue-20260215-ai-flow-state.html">
+
+    <meta property="og:title" content="AI 코딩 시대, 개발자의 플로우 상태 지키는 법 | 릴황 이슈">
+    <meta property="og:description" content="AI가 코드 짜주는데 왜 더 피곤하지? 개발자 몰입 회복 전략">
+    <meta property="og:image" content="https://lilhwang.com/images/issue-fallback.svg">
+    <meta property="og:url" content="https://lilhwang.com/issues/issue-20260215-ai-flow-state.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="릴황">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AI 코딩 시대, 개발자의 플로우 상태 지키는 법 | 릴황 이슈">
+    <meta name="twitter:description" content="AI가 코드 짜주는데 왜 더 피곤하지? 개발자 몰입 회복 전략">
+    <meta name="twitter:image" content="https://lilhwang.com/images/issue-fallback.svg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #f8f9fa;
+            --text-color: #333;
+            --card-bg: #fff;
+            --border-color: #e9ecef;
+            --accent-color: #4361ee;
+            --accent-hover: #3651d4;
+            --muted-text: #6c757d;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #1a1a2e;
+                --text-color: #eaeaea;
+                --card-bg: #16213e;
+                --border-color: #2d3748;
+                --accent-color: #4cc9f0;
+                --accent-hover: #4895ef;
+                --muted-text: #a0aec0;
+                --shadow: 0 4px 6px -1px rgba(0,0,0,0.3);
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 40px 0;
+            border-bottom: 2px solid var(--border-color);
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .meta {
+            color: var(--muted-text);
+            font-size: 0.9rem;
+        }
+
+        .content {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+
+        .content h2 {
+            font-size: 1.5rem;
+            margin: 30px 0 15px;
+            color: var(--accent-color);
+        }
+
+        .content h3 {
+            font-size: 1.2rem;
+            margin: 25px 0 12px;
+            color: var(--text-color);
+        }
+
+        .content p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .content ul, .content ol {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+
+        .content li {
+            margin-bottom: 8px;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, var(--accent-color)20, var(--accent-color)10);
+            border-left: 4px solid var(--accent-color);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+
+        .code-block {
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+
+        .code-block pre {
+            margin: 0;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .tag-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 20px 0;
+        }
+
+        .tag {
+            background: var(--accent-color)20;
+            color: var(--accent-color);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 24px;
+            background: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-hover);
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>AI 코딩 시대, 개발자의 플로우 상태 지키는 법</h1>
+            <div class="meta">2026년 2월 15일 | 개발자 생산성</div>
+        </header>
+
+        <article class="content">
+            <div class="highlight-box">
+                <strong>핵심 요약:</strong> AI 코딩 도구는 생산성을 높여주지만 동시에 개발자의 몰입을 방해하기도 합니다. 이 글에서는 AI 도구를 효과적으로 활용하면서도 플로우 상태(Flow State)를 유지하는 실전 전략을 살펴 봅니다.
+            </div>
+
+            <h2>AI 코딩의 보이지 않는 비용</h2>
+
+            <p>AI 코드 생성 도구는 생산성을 높여주지만, 동시에 몰입을 방해하는 요소들도 있습니다:</p>
+            
+            <h3>1. 문맥 전환 비용</h3>
+            <p>AI와 대화하며 코드를 생성하는 과정에서 생각의 흐름이 끊깁니다. 코드를 직접 치는 대신 AI에게 설명하고, 제안을 기다리고, 결과를 검토하는 과정은 예상보다 많은 인지 부하를 유발합니다.</p>
+
+            <h3>2. 과도한 의존</h3>
+            <p>AI 제안에 계속 신경 쓰다 본인의 문제 해결 능력이 퇴화될 수 있습니다. "이렇게 합니까?"라는 AI의 제안에 매번 반응하다 본래 하려던 작업의 맥락을 잃어버리게 됩니다.</p>
+
+            <h3>3. 불확실성 스트레스</h3>
+            <p>생성된 코드의 품질이나 보안성을 계속 검토해야 하는 부담이 생깁니다. "이 코드가 정말 맞을까?"라는 의심이 지속적인 불안감을 만듭니다.</p>
+
+            <h2>플로우 상태를 지키는 실천 방법</h2>
+
+            <h3>1. AI 사용 구간 명확히 정하기</h3>
+            <p>AI를 언제 사용할지 미리 정필두면 문맥 전환을 최소화할 수 있습니다:</p>
+            <ul>
+                <li><strong>코드 탐색 단계:</strong> AI에게 "이런 기능을 하는 함수가 있을까?" 질문</li>
+                <li><strong>초안 작성 단계:</strong> 반복적인 보일러플레이트 코드는 AI에 위임</li>
+                <li><strong>심화 구현 단계:</strong> 핵심 비즈니스 로직은 직접 작성하며 몰입 유지</li>
+            </ul>
+
+            <h3>2. "AI 톤" 시간과 "딥 워크" 시간 분리</h3>
+            <p>하루 중 특정 시간대는 AI 도구를 완전히 끄고 코딩하는 것이 효과적입니다:</p>
+            <ul>
+                <li>오전 2시간은 AI 없이 딥 워크 시간으로 지정</li>
+                <li>나머지 시간에는 AI를 활용해 생산성 극대화</li>
+                <li>뇌가 "AI 모드"와 "딥 워크 모드"를 구분할 수 있도록 습관화</li>
+            </ul>
+
+            <h3>3. AI 출력은 "시작점"으로만 사용</h3>
+            <p>AI가 생성한 코드를 그대로 복사-붙여넣기 하지 마세요:</p>
+            <ul>
+                <li>생성된 코드를 읽고, 이해하고, 자신의 스타일로 재작성하는 과정 거치기</li>
+                <li>이 과정에서 실제 학습과 몰입이 발생합니다</li>
+                <li>변수명, 함수명, 구조를 자신의 방식으로 변경하며 코드에 대한 주도권 유지</li>
+            </ul>
+
+            <h2>VS Code 설정으로 AI와 건강한 관계 만들기</h2>
+
+            <div class="code-block">
+                <pre>{
+  "github.copilot.enable": {
+    "*": true,
+    "markdown": false,
+    "plaintext": false
+  },
+  "github.copilot.inlineSuggest.enable": false
+}</pre>
+            </div>
+
+            <p>위 설정은 자동 제안을 끄고, 탭 키로만 AI 제안을 호출하는 방식입니다. 이렇게 하면 AI가 끊임없이 제안하지 않고, 필요할 때만 도움을 받을 수 있습니다.</p>
+
+            <h2>AI 시대의 새로운 개발자 역량</h2>
+
+            <h3>유지해야 할 역량</h3>
+            <ul>
+                <li><strong>문제 분해 능력:</strong> 큰 문제를 작은 단위로 쪼개는 능력 (AI에게 정확한 지시를 내리기 위해 필수)</li>
+                <li><strong>코드 리뷰 능력:</strong> AI 생성 코드의 품질을 판단하는 안목</li>
+                <li><strong>아키텍처 설계:</strong> 전체 시스템을 설계하는 고차원적 사고</li>
+            </ul>
+
+            <h3>새롭게 필요한 역량</h3>
+            <ul>
+                <li><strong>프롬프트 엔지니어링:</strong> AI에게 효과적으로 요구사항 전달하는 기술</li>
+                <li><strong>AI-휴리스틱 밸런싱:</strong> 언제 AI를 쓰고 언제 직접 코딩할지 판단하는 감각</li>
+            </ul>
+
+            <h2>마무리: AI는 도구일 뿐</h2>
+
+            <p>AI 코딩 도구는 마치 "자동변속기"와 같습니다. 편리하지만, 수동변속기(직접 코딩)를 완전히 대체할 수는 없습니다. 중요한 건 <strong>상황에 맞게 선택하는 지혜</strong>입니다.</p>
+
+            <p>플로우 상태를 유지하면서 AI의 도움을 받으려면:</p>
+            <ol>
+                <li>AI에게 "생각"을 맡기지 않고 "반복 작업"만 맡기기</li>
+                <li>매일 최소 1-2시간은 AI 없이 코딩하는 시간 가지기</li>
+                <li>AI가 생성한 코드는 반드시 이해하고 소화하기</li>
+            </ol>
+
+            <p>AI 시대에도 여전히 <strong>"생각하는 개발자"</strong>가 되는 것이 중요합니다.</p>
+
+            <div class="tag-container">
+                <span class="tag">AI</span>
+                <span class="tag">개발자생산성</span>
+                <span class="tag">플로우상태</span>
+                <span class="tag">딥워크</span>
+                <span class="tag">GitHubCopilot</span>
+                <span class="tag">개발자성장</span>
+            </div>
+
+            <a href="/issues.html" class="back-link">← 이슈 목록으로 돌아가기</a>
+        </article>
+    </div>
+</body>
+</html>

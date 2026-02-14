@@ -906,5 +906,76 @@ window.ISSUE_THREADS = window.ISSUE_THREADS || [
         time: "오전 6:17"
       }
     ]
+  },
+  {
+    id: "issue-20260215-ai-flow-state",
+    title: "AI 코딩 시대, 개발자의 플로우 상태 지키는 법",
+    description: "<p>AI 코딩 도구는 생산성을 높여주지만, 동시에 개발자의 몰입을 방해하기도 합니다.</p><p>이 글에서는 AI 도구를 효과적으로 활용하면서도 플로우 상태(Flow State)를 유지하는 실전 전략을 살펴 봅니다.</p>",
+    date: "2026-02-15",
+    catchy_title: "AI가 코드 짜주는데 왜 더 피곤하지? 개발자 몰입 회복 전략",
+    source_name: "Reddit r/programming 기반 오리지널 콘텐츠",
+    source_url: "",
+    published_at: "2026-02-15T06:39:00+09:00",
+    image: "images/issue-fallback.svg",
+    image_variants: [],
+    rewritten_body: "AI 코딩 도구가 개발자 업무 방식을 바꾸고 있지만, 많은 개발자들이 AI 사용으로 플로우 상태(Flow State)가 깨진다고 느끼고 있습니다. 문맥 전환 비용, 과도한 의존, 불확실성 스트레스가 주요 원인입니다. 효과적인 활용법은 AI 사용 구간을 명확히 정하고, AI 톤 시간과 딥 워크 시간을 분리하며, AI 출력을 시작점으로만 사용하는 것입니다. 핵심 비즈니스 로직은 직접 작성하며 몰입을 유지하고, 반복 작업만 AI에 위임하는 균형이 필요합니다.",
+    summary_lines: [
+      "AI 코딩 도구는 생산성을 높이지만 문맥 전환, 과도한 의존, 불확실성 스트레스로 플로우 상태를 방해할 수 있다.",
+      "AI 사용 구간을 명확히 정하고 딥 워크 시간을 분리하면 몰입과 생산성을 동시에 확보할 수 있다.",
+      "AI 출력은 이해하고 재작성하는 과정을 거쳐야 실제 학습과 몰입이 발생한다."
+    ],
+    curator_insight: "AI 시대에 개발자의 진짜 경쟁력은 '코드를 빨리 치는 것'이 아니라 '무엇을 만들지 결정하고 설계하는 능력'으로 옮겨가고 있습니다. AI 도구에 의존하면서도 사고의 주도권을 놓지 않는 균형감각이 핵심입니다.",
+    visual_suggestion: "묣료 스톡 키워드: developer focused coding, deep work environment, AI assistant interface, flow state concept, modern workspace. 생성형 프롬프트: "developer in deep focus at minimal workspace with soft natural lighting, laptop screen showing code editor, calm productive atmosphere, documentary style, no logos, no identifiable faces"",
+    tags: ["AI", "개발자생산성", "플로우상태", "딥워크", "GitHubCopilot", "개발자성장"],
+    comments: [
+      {
+        side: "left",
+        author: "몰입중시",
+        text: "AI 제안 뜨면 생각 흐름 끊겨서 짜증남 ㄹㅇ",
+        time: "오전 6:40"
+      },
+      {
+        side: "right",
+        author: "AI활용파",
+        text: "보일러플레이트는 AI한테 맡기고 로직에 집중함",
+        time: "오전 6:41"
+      },
+      {
+        side: "left",
+        author: "플로우중요",
+        text: "아침 2시간은 AI 끄고 코딩하는 게 훨씬 잘됨",
+        time: "오전 6:42"
+      },
+      {
+        side: "right",
+        author: "검증필수",
+        text: "AI가 짜준 코드 무조건 믿었다가 큰코다침",
+        time: "오전 6:43"
+      },
+      {
+        side: "left",
+        author: "시니어시점",
+        text: "리뷰 시간 늘어나는데 생산성은 오히려 떨어짐",
+        time: "오전 6:44"
+      },
+      {
+        side: "right",
+        author: "미래대비",
+        text: "AI 안 쓰면 5년 뒤 도태될 거 같긴 함",
+        time: "오전 6:45"
+      },
+      {
+        side: "left",
+        author: "적절활용",
+        text: "도구는 도구일 뿐, 생각하는 습관 유지가 중요",
+        time: "오전 6:46"
+      },
+      {
+        side: "right",
+        author: "주니어개발",
+        text: "신입은 기본기 다지는 게 더 중요해진 느낌",
+        time: "오전 6:47"
+      }
+    ]
   }
 ];
