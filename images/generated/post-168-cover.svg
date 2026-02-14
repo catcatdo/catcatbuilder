@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="Generated cover">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#111827"/>
+      <stop offset="58%" stop-color="#1d4ed8"/>
+      <stop offset="100%" stop-color="#2563eb"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg)"/>
+  
+  <circle cx="955" cy="236" r="108" fill="rgba(255,255,255,0.12)"/>
+  <circle cx="1083" cy="356" r="84" fill="rgba(255,255,255,0.10)"/>
+  <rect x="805" y="426" width="350" height="132" rx="20" fill="rgba(255,255,255,0.10)"/>
+
+  <rect x="56" y="56" width="1168" height="608" rx="24" fill="none" stroke="rgba(255,255,255,0.24)" stroke-width="2"/>
+  <text x="84" y="146" fill="#bfdbfe" font-size="30" font-family="Arial, sans-serif" font-weight="700">대표 이미지</text>
+  <text x="84" y="230" fill="#ffffff" font-size="54" font-family="Arial, sans-serif" font-weight="700">주말 아침 카페에서 처음 마신 핸드드립, 예가체프가 바꾼 루틴</text>
+  <text x="84" y="292" fill="#dbeafe" font-size="30" font-family="Arial, sans-serif">동네 신상 카페에서 직접 보고 배운 드립커피 기록과 홈카페 입문 메모</text>
+  <rect x="84" y="582" width="1110" height="62" rx="31" fill="rgba(255,255,255,0.16)"/>
+  <text x="116" y="622" fill="#ffffff" font-size="30" font-family="Arial, sans-serif">#주말루틴 #카페탐방 #핸드드립 #예가체프 #커피취향 #동네카페</text>
+</svg>
