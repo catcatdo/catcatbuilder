@@ -4237,6 +4237,33 @@
         "images/generated/post-162-v2.svg",
         "images/generated/post-162-v3.svg"
       ]
+    },
+    {
+      "id": 163,
+      "title": "글로벌 기술 이슈 핵심 정리",
+      "category": "tech",
+      "date": "2026-02-14",
+      "image": "images/generated/post-163-cover.svg",
+      "excerpt": "[Audacy] Radnor parents demand change to district policy following inappropriate AI-generated images of students",
+      "content": "## 오늘 가볍게 보는 이슈: 글로벌 기술 이슈 핵심 정리\n\n30분 자동 업데이트입니다. 이 글은 2026-02-14 14:15 UTC 기준으로 바쁜 날에도 2~3분 안에 읽히도록 핵심만 정리한 브리핑입니다.\n\n### 한 줄 요약\n글로벌 기술 이슈 핵심 흐름 관련 주요 매체 보도를 중심으로 쟁점이 빠르게 확산되고 있습니다.\n\n### 세줄요약\n1. 지금 화제가 된 핵심은 **글로벌 기술 이슈 핵심 정리** 입니다.\n2. 이 주제는 일상/업무 선택에 바로 영향을 줄 수 있어 빠르게 체크할 가치가 있습니다.\n3. 성급한 결론보다 공식 발표와 후속 보도를 함께 보는 것이 안전합니다.\n\n### 릴황생각\n기술 이슈도 결국 사용 경험과 비용, 시간에 닿을 때 의미가 커집니다. 어려운 용어보다 '지금 내 선택이 바뀌는지'만 먼저 보면 충분합니다.\n\n### 오늘 바로 해볼 것\n1. 내가 쓰는 서비스/기기에서 관련 설정이나 업데이트를 확인합니다.\n2. 새 기능을 바로 전환하기보다 체험 범위를 작게 정해 테스트합니다.\n3. 변화가 크면 다음 주까지 지켜보고 최종 판단합니다.\n\n### 원문 체크\n- 매체: Audacy\n- 링크: https://news.google.com/rss/articles/CBMitAFBVV95cUxOcktTRDFiMEFXSmdUSmFDeEFKMk1KMHJtb01ocXN5V2xweXNrZndFTm1NQ01ta2c4LW5aaW94MDg2V3gyNjBJRy1VZGl3U1BXVm5IR29SS3lMTEphMlNabnVhNmVkQkw1Q0l1OWVJUkp5LWpxaVUzRXk4SmlnOEZUY3cwSm5wS05WbDc3bE1TN1doQUY1cDNGRXdKemppY0tya0VVaXM2b2h4aGMwWHhkMDBwUWQ?oc=5\n\n### 메모\n- 이 글은 빠른 브리핑용 요약입니다.\n- 세부 맥락은 원문과 후속 기사로 업데이트해 확인하세요.",
+      "tags": [
+        "가벼운브리핑",
+        "30분업데이트",
+        "AI",
+        "규제",
+        "모바일",
+        "Audacy"
+      ],
+      "image_prompts": [
+        "editorial news photo, technology industry trend, Radnor parents demand change to district policy following inappropriate AI-generated images of students, Radnor parents demand change to district policy following inappropriate AI-generated images of students, documentary style, realistic lighting, no logo, no watermark, no visible text",
+        "conceptual illustration for news analysis, key topic: Radnor parents demand change to district policy following inappropriate AI-generated images of students, supporting context: Radnor parents demand change to district policy following inappropriate AI-generated images of students, clean composition, modern style, no text",
+        "magazine cover style visual, technology industry trend, Radnor parents demand change to district policy following inappropriate AI-generated images of students, high contrast, cinematic framing, no brand mark, no letters"
+      ],
+      "image_variants": [
+        "images/generated/post-163-v1.svg",
+        "images/generated/post-163-v2.svg",
+        "images/generated/post-163-v3.svg"
+      ]
     }
   ]
 }
