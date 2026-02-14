@@ -490,5 +490,74 @@ window.ISSUE_THREADS = window.ISSUE_THREADS || [
         time: "오전 2:17"
       }
     ]
+  },
+  {
+    id: "issue-20260215-fundamentals-vs-frameworks",
+    title: "개발자의 근본: 기본기 vs 프레임워크",
+    catchy_title: "5년 뒤에도 유효한 걸 배워라: 개발자 커리어의 진짜 자산",
+    source_name: "Reddit r/programming 기반 재구성",
+    source_url: "",
+    published_at: "2026-02-15T03:45:00+09:00",
+    image: "images/generated/post-9005-cover.svg",
+    image_variants: ["images/generated/post-9005-v1.svg", "images/generated/post-9005-v2.svg", "images/generated/post-9005-v3.svg"],
+    rewritten_body: "프론트엔드 프레임워크의 평균 수명은 18개월에서 3년. 과거 GWT, Backbone.js, Knockout.js는 이제 레거시가 됐습니다. 반면 프로그래밍 언어 선택은 10년 이상, 데이터베이스는 7~10년 지속됩니다. AI가 41%의 코드를 생성하는 지금, 개발자의 가치는 변화하는 프레임워크가 아닌 변하지 않는 기본기에 있습니다. 알고리즘, 자료구조, 디자인 패턴, 클린 아키텍처 원칙은 5년 뒤에도 여전히 유효할 겁니다.",
+    summary_lines: [
+      "프론트엔드 프레임워크의 수명은 평균 18개월~3년, 반면 기본기는 10년 이상 지속됨",
+      "AI가 41%의 코드를 생성하지만 AI 생성 코드의 48%는 보안 취약점 위험이 높음",
+      "학습 시간의 80%를 기본기에, 20%를 프레임워크에 투자하는 80/20 법칙 제안"
+    ],
+    curator_insight: "이 이슈는 '무엇을 배워야 할까'의 고민을 해결해줍니다. 새로운 프레임워크가 나올 때마다 불안감을 느끼는 개발자에게 '변하지 않는 것'에 집중하라는 명확한 기준이 됩니다. 특히 AI 시대에 기본기 없는 개발자가 취약할 수밖에 없는 이유를 설득력 있게 제시합니다.",
+    visual_suggestion: "묣료 스톡 키워드: foundation stone, building blocks, construction blueprint, ancient stone architecture, solid base. 생성형 프롬프트: 'solid stone foundation with modern glass building under construction, symbolic contrast between timeless base and changing structure, clean architectural photography, no text, no logos, warm morning light'",
+    tags: ["개발자성장", "기본기", "프레임워크", "AI시대", "커리어", "학습법", "프로그래밍"],
+    comments: [
+      {
+        side: "left",
+        author: "주니어개발",
+        text: "요즘 뭐부터 배워야 할지 몰라서 헤맸는데 방향 잡힘",
+        time: "오전 3:46"
+      },
+      {
+        side: "right",
+        author: "시니어조언",
+        text: "리액트 말고 자료구조 먼저 공부핼걸 후회함 ㄹㅇ",
+        time: "오전 3:47"
+      },
+      {
+        side: "left",
+        author: "현업백엔드",
+        text: "프레임워크 3년마다 바뀌는데 클린코드는 계속 씀",
+        time: "오전 3:48"
+      },
+      {
+        side: "right",
+        author: "취준생",
+        text: "채용공고에 리액트/vue만 적혀있어서 답답했는데",
+        time: "오전 3:49"
+      },
+      {
+        side: "left",
+        author: "아키텍처파",
+        text: "AI 코드 디버깅하려면 기본기 없으면 못 고침",
+        time: "오전 3:50"
+      },
+      {
+        side: "right",
+        author: "자기계발",
+        text: "80/20 법칙 실천핼게요 CS 기초부터 다시 시작",
+        time: "오전 3:51"
+      },
+      {
+        side: "left",
+        author: "입문자",
+        text: "무슨 책부터 봐야 할지 추천 좀 해주세요",
+        time: "오전 3:52"
+      },
+      {
+        side: "right",
+        author: "추천봇",
+        text: "Clean Code, Designing Data-Intensive Applications 추천",
+        time: "오전 3:53"
+      }
+    ]
   }
 ];
