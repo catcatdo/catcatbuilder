@@ -697,5 +697,74 @@ window.ISSUE_THREADS = window.ISSUE_THREADS || [
         time: "오전 4:48"
       }
     ]
+  },
+  {
+    id: "issue-20260215-json-visualization-guide",
+    title: "JSON 데이터 시각화와 디버깅 가이드",
+    catchy_title: "5000줄 JSON에서 살아남기: 개발자 생산성을 높이는 데이터 시각화",
+    source_name: "Reddit r/programming, r/webdev 기반 오리지널 콘텐츠",
+    source_url: "",
+    published_at: "2026-02-15T05:15:00+09:00",
+    image: "images/generated/post-9010-cover.svg",
+    image_variants: ["images/generated/post-9010-v1.svg", "images/generated/post-9010-v2.svg", "images/generated/post-9010-v3.svg"],
+    rewritten_body: "API 개발이나 웹 애플리케이션을 만들다 본 개발자라면 누구나 한 번쯤 수천 줄의 JSON 데이터를 텍스트 에디터에서 스크롤하며 고통받아본 경험이 있을 것이다. 복잡하게 중첩된 객체와 배열들 사이에서 필요한 값을 찾는 것은 시간 낭비일 뿐만 아니라, 실수로 중요한 데이터를 놓치게 만드는 주된 원인이 되기도 한다. 최근 개발자 커뮤니티에서는 이런 불편함을 해소하기 위해 JSON 데이터를 시각적으로 디버깅하는 다양한 도구와 워크플로우를 공유하는 논의가 활발하다. 트리 뷰, 그래프 시각화, 실시간 검증 도구들이 개발자들의 생산성을 크게 향상시키고 있다.",
+    summary_lines: [
+      "복잡하게 중첩된 JSON 구조는 트리 뷰와 노드 기반 시각화로 한눈에 파악할 수 있음",
+      "JSON Crack, JSON Hero 등 웹 기반 도구들은 마인드맵 형태와 경로 복사 기능을 제공",
+      "브라우저 개발자 도구의 Pretty Print, jq 명령어, VS Code 확장 프로그램으로 실무 효율 극대화"
+    ],
+    curator_insight: "이 이슈는 단순히 '보기 좋은 도구' 소개가 아닙니다. 데이터 구조를 정확히 이해하고 버그를 빠르게 찾는 것은 곧 개발 생산성으로 연결됩니다. 특히 마이크로서비스 아키텍처에서 API 응답을 파악하는 능력은 필수적인데, 시각화 도구는 이 과정에서 인지적 부하를 크게 줄여줍니다. 팀 전체가 같은 도구와 규칙을 사용하면 커뮤니케이션 비용도 절감됩니다.",
+    visual_suggestion: "묣료 스톡 키워드: json tree visualization, code debugging interface, api response structure, developer workflow, data hierarchy diagram. 생성형 프롬프트: 'developer workspace with dual monitors showing JSON tree visualization on one screen and code editor on other, modern office environment, soft natural lighting, clean minimal setup, realistic photo, no logos, no readable personal data'",
+    tags: ["JSON", "개발도구", "디버깅", "생산성", "API", "웹개발", "개발팁"],
+    comments: [
+      {
+        side: "left",
+        author: "프론트개발",
+        text: "JSON Crack 진짜 구조 파악하기 좋음 추천함",
+        time: "오전 5:16"
+      },
+      {
+        side: "right",
+        author: "백엔드엔지니어",
+        text: "jq 명령어 쓰면 터미널에서도 필터링 가능함",
+        time: "오전 5:17"
+      },
+      {
+        side: "left",
+        author: "풀스택",
+        text: "Chrome DevTools Preview 탭 사기임 ㅋㅋ",
+        time: "오전 5:18"
+      },
+      {
+        side: "right",
+        author: "주니어개발",
+        text: "5000줄 JSON 보다가 눈 빠지는 줄 알았음",
+        time: "오전 5:19"
+      },
+      {
+        side: "left",
+        author: "시니어시점",
+        text: "팀원들이 같은 포맷 쓰는 게 진짜 중요함",
+        time: "오전 5:20"
+      },
+      {
+        side: "right",
+        author: "DevOps",
+        text: "Kibana로 로그 시각화하면 디버깅 빨라짐",
+        time: "오전 5:21"
+      },
+      {
+        side: "left",
+        author: "API설계",
+        text: "JSON Schema로 검증 자동화하는 거 잊지 마셈",
+        time: "오전 5:22"
+      },
+      {
+        side: "right",
+        author: "VSCode팬",
+        text: "JSON Tree View 확장 프로그램 강추합니다",
+        time: "오전 5:23"
+      }
+    ]
   }
 ];

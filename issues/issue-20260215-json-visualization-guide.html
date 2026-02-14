@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON 데이터 시각화와 디버깅 가이드 | 릴황 이슈</title>
+    <meta name="description" content="수천 줄의 JSON 데이터를 효과적으로 시각화하고 디버깅하는 방법과 개발 생산성을 높이는 실용적인 팁들을 소개합니다.">
+    <meta name="keywords" content="JSON, 개발도구, 디버깅, 생산성, API, 웹개발, 개발팁">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+    <link rel="canonical" href="https://lilhwang.com/issues/issue-20260215-json-visualization-guide.html">
+
+    <meta property="og:title" content="JSON 데이터 시각화와 디버깅 가이드 | 릴황 이슈">
+    <meta property="og:description" content="5000줄 JSON에서 살아남기: 개발자 생산성을 높이는 데이터 시각화">
+    <meta property="og:image" content="https://lilhwang.com/images/generated/post-9010-cover.svg">
+    <meta property="og:url" content="https://lilhwang.com/issues/issue-20260215-json-visualization-guide.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="릴황">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="JSON 데이터 시각화와 디버깅 가이드 | 릴황 이슈">
+    <meta name="twitter:description" content="5000줄 JSON에서 살아남기: 개발자 생산성을 높이는 데이터 시각화">
+    <meta name="twitter:image" content="https://lilhwang.com/images/generated/post-9010-cover.svg">
+
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <div class="container">
+        <header class="site-header">
+            <nav class="main-nav">
+                <a href="../index.html" class="logo">릴황</a>
+                <ul class="nav-links">
+                    <li><a href="../index.html">홈</a></li>
+                    <li><a href="../blog.html">블로그</a></li>
+                    <li><a href="../issues.html">이슈</a></li>
+                    <li><a href="../about.html">소개</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main class="content">
+            <article class="issue-detail">
+                <header class="issue-header">
+                    <div class="issue-meta">
+                        <span class="issue-date">2026년 2월 15일</span>
+                        <span class="issue-source">Reddit r/programming, r/webdev 기반 오리지널 콘텐츠</span>
+                    </div>
+                    <h1 class="issue-title">JSON 데이터 시각화와 디버깅 가이드</h1>
+                    <p class="issue-catchy-title">5000줄 JSON에서 살아남기: 개발자 생산성을 높이는 데이터 시각화</p>
+                </header>
+
+                <div class="issue-image">
+                    <img src="../images/generated/post-9010-cover.svg" alt="JSON 데이터 시각화와 디버깅" loading="lazy">
+                </div>
+
+                <div class="issue-body">
+                    <p>API 개발이나 웹 애플리케이션을 만들다 본 개발자라면 누구나 한 번쯤 수천 줄의 JSON 데이터를 텍스트 에디터에서 스크롤하며 고통받아본 경험이 있을 것이다. 복잡하게 중첩된 객체와 배열들 사이에서 필요한 값을 찾는 것은 시간 낭비일 뿐만 아니라, 실수로 중요한 데이터를 놓치게 만드는 주된 원인이 되기도 한다.</p>
+
+                    <p>이 글에서는 JSON 데이터를 효과적으로 시각화하고 디버깅하는 다양한 방법과, 개발 워크플로우에 적용할 수 있는 실용적인 팁들을 소개한다.</p>
+
+                    <h2>왜 JSON 시각화가 중요한가?</h2>
+                    
+                    <h3>1. 데이터 구조 파악의 어려움</h3>
+                    <p>대규모 JSON 파일은 종종 10단계 이상의 중첩 깊이를 가지고 있다. 이런 데이터를 일반 텍스트로 볼 때는 전체 구조를 한눈에 파악하기 어렵다. 예를 들어, 사용자 정보를 담은 API 응답에서 프로필 이미지 URL을 찾아야 한다고 가정핸다. 다음과 같은 구조라면 어떨까?</p>
+
+                    <pre><code>{
+  "user": {
+    "profile": {
+      "media": {
+        "images": {
+          "avatar": {
+            "original": { "url": "..." },
+            "thumbnail": { "url": "..." }
+          }
+        }
+      }
+    }
+  }
+}</code></pre>
+
+                    <p>단순 텍스트에서는 각 중첩 레벨을 일일이 세어봐야 하지만, 트리 뷰로 본다면 한눈에 계층 구조를 이해할 수 있다.</p>
+
+                    <h3>2. 데이터 타입 오류 조기 발견</h3>
+                    <p>JSON은 문자열, 숫자, 불리언, null, 객체, 배열을 구분한다. 하지만 텍스트로만 볼 때는 <code>"123"</code>(문자열)과 <code>123</code>(숫자)의 차이를 놓치기 쉽다. 시각화 도구는 각 타입을 다른 색상이나 아이콘으로 표시하여 이런 실수를 방지해준다.</p>
+
+                    <h3>3. 팀 협업 효율성</h3>
+                    <p>API 문서를 공유할 때, 개발자뿐만 아니라 기획자나 디자이너도 데이터 구조를 이해해야 하는 경우가 있다. 시각화된 JSON은 비개발자도 쉽게 이해할 수 있어 커뮤니케이션 비용을 줄여준다.</p>
+
+                    <h2>추천하는 JSON 시각화 도구들</h2>
+
+                    <h3>웹 기반 도구</h3>
+                    <ul>
+                        <li><strong>JSON Crack</strong> - 데이터를 마인드맵 형태로 변환해준다. API 응답의 전체적인 흐름을 파악하기 좋다.</li>
+                        <li><strong>JSON Hero</strong> - 특정 값의 경로(path)를 쉽게 복사할 수 있다. 다양한 뷰 모드 제공 (Tree, Grid, JSON)</li>
+                        <li><strong>JSON Visio</strong> - 노드 기반 인터페이스로 데이터 흐름을 직관적으로 보여준다.</li>
+                    </ul>
+
+                    <h3>브라우저 개발자 도구 활용법</h3>
+                    <ul>
+                        <li><strong>Pretty Print</strong>: <code>{}</code> 아이콘을 클릭하면 minified JSON이 포맷팅된다</li>
+                        <li><strong>Preview 탭</strong>: JSON뿐만 아니라 이미지나 HTML 미리보기도 지원한다</li>
+                        <li><strong>Response 탭 검색</strong>: Ctrl+F로 특정 키나 값을 빠르게 찾을 수 있다</li>
+                        <li><strong>Copy as cURL</strong>: 재현이 필요한 요청을 터미널 명령어로 복사한다</li>
+                    </ul>
+
+                    <h3>VS Code 확장 프로그램</h3>
+                    <ul>
+                        <li><strong>JSON Tree View</strong> - 에디터 사이드바에 트리 구조로 JSON을 표시한다</li>
+                        <li><strong>JSON Lint</strong> - 문법 오류를 실시간으로 체크한다</li>
+                        <li><strong>Prettier</strong> - 저장 시 자동으로 JSON을 정렬해준다</li>
+                    </ul>
+
+                    <h2>고급 활용법: 커스텀 디버깅 워크플로우</h2>
+                    
+                    <h3>스키마 검증 자동화</h3>
+                    <p>큰 프로젝트에서는 API 응답의 구조가 자주 바뀐다. JSON Schema를 작성하면 데이터 구조 변경 시 자동으로 검증할 수 있다.</p>
+
+                    <h3>대용량 JSON 처리하기</h3>
+                    <p>수십 MB 이상의 JSON 파일은 브라우저에서 다루기 어렵다. 이럴 때는 <strong>jq</strong> 명령어 도구를 사용해 터미널에서 필터링한다:</p>
+
+                    <pre><code># jq로 특정 필드만 추출
+cat large-file.json | jq '.users[] | {name, email}'</code></pre>
+
+                    <h2>핵심 요약</h2>
+                    <ul class="summary-list">
+                        <li>복잡하게 중첩된 JSON 구조는 트리 뷰와 노드 기반 시각화로 한눈에 파악할 수 있음</li>
+                        <li>JSON Crack, JSON Hero 등 웹 기반 도구들은 마인드맵 형태와 경로 복사 기능을 제공</li>
+                        <li>브라우저 개발자 도구의 Pretty Print, jq 명령어, VS Code 확장 프로그램으로 실무 효율 극대화</li>
+                    </ul>
+
+                    <div class="curator-insight">
+                        <h3>큐레이터 인사이트</h3>
+                        <p>이 이슈는 단순히 '보기 좋은 도구' 소개가 아닙니다. 데이터 구조를 정확히 이해하고 버그를 빠르게 찾는 것은 곧 개발 생산성으로 연결됩니다. 특히 마이크로서비스 아키텍처에서 API 응답을 파악하는 능력은 필수적인데, 시각화 도구는 이 과정에서 인지적 부하를 크게 줄여줍니다. 팀 전체가 같은 도구와 규칙을 사용하면 커뮤니케이션 비용도 절감됩니다.</p>
+                    </div>
+
+                    <div class="tags">
+                        <span class="tag">JSON</span>
+                        <span class="tag">개발도구</span>
+                        <span class="tag">디버깅</span>
+                        <span class="tag">생산성</span>
+                        <span class="tag">API</span>
+                        <span class="tag">웹개발</span>
+                        <span class="tag">개발팁</span>
+                    </div>
+                </div>
+
+                <section class="comments-section">
+                    <h2>커뮤니티 반응</h2>
+                    <div class="comments-list">
+                        <div class="comment left">
+                            <span class="comment-author">프론트개발</span>
+                            <p class="comment-text">JSON Crack 진짜 구조 파악하기 좋음 추천함</p>
+                            <span class="comment-time">오전 5:16</span>
+                        </div>
+                        <div class="comment right">
+                            <span class="comment-author">백엔드엔지니어</span>
+                            <p class="comment-text">jq 명령어 쓰면 터미널에서도 필터링 가능함</p>
+                            <span class="comment-time">오전 5:17</span>
+                        </div>
+                        <div class="comment left">
+                            <span class="comment-author">풀스택</span>
+                            <p class="comment-text">Chrome DevTools Preview 탭 사기임 ㅋㅋ</p>
+                            <span class="comment-time">오전 5:18</span>
+                        </div>
+                        <div class="comment right">
+                            <span class="comment-author">주니어개발</span>
+                            <p class="comment-text">5000줄 JSON 보다가 눈 빠지는 줄 알았음</p>
+                            <span class="comment-time">오전 5:19</span>
+                        </div>
+                        <div class="comment left">
+                            <span class="comment-author">시니어시점</span>
+                            <p class="comment-text">팀원들이 같은 포맷 쓰는 게 진짜 중요함</p>
+                            <span class="comment-time">오전 5:20</span>
+                        </div>
+                        <div class="comment right">
+                            <span class="comment-author">DevOps</span>
+                            <p class="comment-text">Kibana로 로그 시각화하면 디버깅 빨라짐</p>
+                            <span class="comment-time">오전 5:21</span>
+                        </div>
+                        <div class="comment left">
+                            <span class="comment-author">API설계</span>
+                            <p class="comment-text">JSON Schema로 검증 자동화하는 거 잊지 마셈</p>
+                            <span class="comment-time">오전 5:22</span>
+                        </div>
+                        <div class="comment right">
+                            <span class="comment-author">VSCode팬</span>
+                            <p class="comment-text">JSON Tree View 확장 프로그램 강추합니다</p>
+                            <span class="comment-time">오전 5:23</span>
+                        </div>
+                    </div>
+                </section>
+            </article>
+        </main>
+
+        <footer class="site-footer">
+            <p>&copy; 2026 릴황. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>
