@@ -38,7 +38,7 @@ FALLBACK_TOPICS: List[Dict[str, Any]] = [
     {
         "title": "갑자기 색인이 줄어들 때 30분 안에 점검하는 체크리스트",
         "category": "dev",
-        "tags": ["SEO", "색인문제", "검색유입", "문제해결", "운영팁", "자동브리핑"],
+        "tags": ["SEO", "색인문제", "검색유입", "문제해결", "운영팁", "브리핑"],
         "problem": "Search Console에서 갑자기 '발견됨-현재 색인되지 않음'이 늘어나는 상황",
         "steps": [
             "robots/meta robots/noindex 여부를 먼저 확인합니다.",
@@ -50,7 +50,7 @@ FALLBACK_TOPICS: List[Dict[str, Any]] = [
     {
         "title": "블로그 조회수는 있는데 체류시간이 짧을 때 바로 고치는 방법",
         "category": "tech",
-        "tags": ["블로그운영", "체류시간", "콘텐츠전략", "문제해결", "유입개선", "자동브리핑"],
+        "tags": ["블로그운영", "체류시간", "콘텐츠전략", "문제해결", "유입개선", "브리핑"],
         "problem": "유입은 늘었지만 평균 체류시간이 짧고 이탈이 빠른 상황",
         "steps": [
             "첫 화면 3줄 안에 문제/해결/대상 독자를 명확히 선언합니다.",
@@ -62,7 +62,7 @@ FALLBACK_TOPICS: List[Dict[str, Any]] = [
     {
         "title": "애드센스 승인 전 마지막 1주 체크포인트",
         "category": "tech",
-        "tags": ["애드센스", "사이트운영", "정책", "문제해결", "승인준비", "자동브리핑"],
+        "tags": ["애드센스", "사이트운영", "정책", "문제해결", "승인준비", "브리핑"],
         "problem": "신청은 했는데 승인 지연이 길어지고 무엇을 고칠지 모르는 상황",
         "steps": [
             "정책/문의/소개/편집정책 페이지가 모든 주요 페이지에서 노출되는지 점검합니다.",
@@ -74,7 +74,7 @@ FALLBACK_TOPICS: List[Dict[str, Any]] = [
     {
         "title": "자동발행 콘텐츠 품질이 떨어질 때 개선하는 프롬프트 구조",
         "category": "dev",
-        "tags": ["자동발행", "프롬프트", "콘텐츠품질", "문제해결", "워크플로우", "자동브리핑"],
+        "tags": ["자동발행", "프롬프트", "콘텐츠품질", "문제해결", "워크플로우", "브리핑"],
         "problem": "자동 생성 글이 비슷해지고 정보 밀도가 낮아지는 상황",
         "steps": [
             "역할/독자/분량/포함항목/제외항목을 분리한 템플릿을 고정합니다.",
@@ -86,7 +86,7 @@ FALLBACK_TOPICS: List[Dict[str, Any]] = [
     {
         "title": "API 비용이 갑자기 오를 때 서비스를 지키는 운영 전략",
         "category": "dev",
-        "tags": ["API비용", "인프라", "운영전략", "문제해결", "SaaS", "자동브리핑"],
+        "tags": ["API비용", "인프라", "운영전략", "문제해결", "SaaS", "브리핑"],
         "problem": "모델/API 사용량 증가로 수익 대비 원가가 급격히 악화되는 상황",
         "steps": [
             "기능별 원가를 분리 계산해 고비용 기능부터 최적화 우선순위를 정합니다.",
@@ -98,7 +98,7 @@ FALLBACK_TOPICS: List[Dict[str, Any]] = [
     {
         "title": "검색 유입이 줄었을 때 콘텐츠를 살리는 내부 링크 재구성법",
         "category": "tech",
-        "tags": ["검색유입", "내부링크", "콘텐츠전략", "문제해결", "SEO", "자동브리핑"],
+        "tags": ["검색유입", "내부링크", "콘텐츠전략", "문제해결", "SEO", "브리핑"],
         "problem": "새 글을 올려도 검색 유입이 늘지 않는 정체 구간",
         "steps": [
             "허브 페이지를 기준으로 주제별 클러스터 링크를 재배치합니다.",
@@ -110,7 +110,7 @@ FALLBACK_TOPICS: List[Dict[str, Any]] = [
     {
         "title": "도구 페이지는 많은데 전환이 안 될 때 구조 개선 체크리스트",
         "category": "tech",
-        "tags": ["도구페이지", "전환율", "UX", "문제해결", "사이트개선", "자동브리핑"],
+        "tags": ["도구페이지", "전환율", "UX", "문제해결", "사이트개선", "브리핑"],
         "problem": "페이지 방문은 있지만 반복 방문/구독/문의 전환이 낮은 상황",
         "steps": [
             "각 도구에 '누구를 위한 기능인지'를 첫 문장에 명시합니다.",
@@ -122,7 +122,7 @@ FALLBACK_TOPICS: List[Dict[str, Any]] = [
     {
         "title": "모바일에서 이탈이 높은 사이트를 빠르게 개선하는 방법",
         "category": "dev",
-        "tags": ["모바일최적화", "이탈률", "웹성능", "문제해결", "UX", "자동브리핑"],
+        "tags": ["모바일최적화", "이탈률", "웹성능", "문제해결", "UX", "브리핑"],
         "problem": "데스크톱 대비 모바일 체류시간과 전환률이 낮은 상황",
         "steps": [
             "상단 네비 링크 수를 줄이고 핵심 CTA를 1개로 집중합니다.",
@@ -246,7 +246,7 @@ def choose_category(title: str, summary: str) -> str:
 
 def build_tags(title: str, summary: str, source: str) -> List[str]:
     text = (title + " " + summary).lower()
-    tags = ["자동브리핑", "시간당이슈"]
+    tags = ["브리핑", "시간당이슈"]
     mapping = [
         ("AI", ["ai", "artificial intelligence", "openai", "llm"]),
         ("반도체", ["chip", "semiconductor", "tsmc", "nvidia"]),
@@ -493,7 +493,7 @@ def main() -> int:
             if has_latin(chosen.title)
             else clean_text(chosen.title)
         )
-        post_title = f"[자동브리핑] {localized_headline}"
+        post_title = localized_headline
         image_prompts = build_feed_image_prompts(chosen, category)
         cover_image, image_variants = generate_covers_for_post(
             ROOT,

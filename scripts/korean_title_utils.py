@@ -227,7 +227,7 @@ def localize_post_title(title: str) -> str:
         return text
     if text.startswith("[자동브리핑]"):
         base = re.sub(r"^\[자동브리핑\]\s*", "", text)
-        return f"[자동브리핑] {summarize_auto_brief_title(base)}"
+        return summarize_auto_brief_title(base)
     return localize_mixed_title(text)
 
 

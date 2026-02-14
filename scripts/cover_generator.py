@@ -59,6 +59,9 @@ STOPWORDS = {
 
 LATIN_RE = re.compile(r"[A-Za-z]")
 KEEP_TOKEN_RE = re.compile(r"\b(?:M3|M4|M5|S26)\b", flags=re.IGNORECASE)
+SPELL_CHAIN_RE = re.compile(
+    r"(?:더블유|에이치|에프|제이|케이|브이|엑스|와이|에이|비|씨|디|이|지|아이|엘|엠|엔|오|피|큐|알|에스|티|유){4,}"
+)
 
 
 def _safe_text(text: str, max_len: int) -> str:
@@ -100,6 +103,9 @@ def _koreanize_cover_text(text: str, fallback: str, max_len: int) -> str:
 
     for key, token in keep_map.items():
         converted = converted.replace(key, token)
+
+    if SPELL_CHAIN_RE.search(converted):
+        return fallback
 
     if converted and not LATIN_RE.search(converted):
         return converted

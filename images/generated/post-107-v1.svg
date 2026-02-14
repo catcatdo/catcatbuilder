@@ -9,9 +9,9 @@
   <rect width="1280" height="720" fill="url(#bg)"/>
   
   
-  <ellipse cx="968" cy="410" rx="250" ry="170" fill="rgba(255,255,255,0.10)"/>
+  <ellipse cx="967" cy="410" rx="250" ry="170" fill="rgba(255,255,255,0.10)"/>
   <path d="M792 520 L968 318 L1144 520 L968 664 Z" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.35)" stroke-width="2"/>
-  <circle cx="1038" cy="220" r="82" fill="#ffffff" stroke="rgba(31,41,55,0.22)" stroke-width="2"/>
+  <circle cx="1037" cy="220" r="82" fill="#ffffff" stroke="rgba(31,41,55,0.22)" stroke-width="2"/>
   <path d="M990 178 Q1042 220 990 262" fill="none" stroke="#ef4444" stroke-width="6" stroke-linecap="round"/>
   <path d="M1086 178 Q1034 220 1086 262" fill="none" stroke="#ef4444" stroke-width="6" stroke-linecap="round"/>
 
@@ -22,8 +22,8 @@
 
   <rect x="56" y="56" width="1168" height="608" rx="24" fill="none" stroke="rgba(255,255,255,0.24)" stroke-width="2"/>
   <text x="84" y="146" fill="#bfdbfe" font-size="30" font-family="Arial, sans-serif" font-weight="700">본문 이미지 1</text>
-  <text x="84" y="230" fill="#ffffff" font-size="54" font-family="Arial, sans-serif" font-weight="700">[자동브리핑] 글로벌 기술 이슈 핵심 정리</text>
-  <text x="84" y="292" fill="#dbeafe" font-size="30" font-family="Arial, sans-serif">[에스이이케이아이엔지 에이엘피에이치에이] 핀터레스트 티오 에스티알유지지엘이 에프오알 광고 디오엘엘에이알에스 에이지인공지능엔에스티 인…</text>
+  <text x="84" y="230" fill="#ffffff" font-size="54" font-family="Arial, sans-serif" font-weight="700">글로벌 기술 이슈 핵심 정리</text>
+  <text x="84" y="292" fill="#dbeafe" font-size="30" font-family="Arial, sans-serif">핵심 포인트를 빠르게 정리한 콘텐츠</text>
   <rect x="84" y="582" width="1110" height="62" rx="31" fill="rgba(255,255,255,0.16)"/>
-  <text x="116" y="622" fill="#ffffff" font-size="30" font-family="Arial, sans-serif">#자동브리핑 #시간당이슈 #AI #플랫폼 #에스이이케이아이엔지에… #글로벌</text>
+  <text x="116" y="622" fill="#ffffff" font-size="30" font-family="Arial, sans-serif">#시간당이슈 #AI #플랫폼 #핵심 #글로벌 #기술</text>
 </svg>
