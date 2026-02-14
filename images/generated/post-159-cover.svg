@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="Generated cover">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="58%" stop-color="#1e3a8a"/>
+      <stop offset="100%" stop-color="#0b3b6a"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg)"/>
+  
+  <circle cx="937" cy="236" r="108" fill="rgba(255,255,255,0.12)"/>
+  <circle cx="1065" cy="356" r="84" fill="rgba(255,255,255,0.10)"/>
+  <rect x="787" y="426" width="350" height="132" rx="20" fill="rgba(255,255,255,0.10)"/>
+
+  <rect x="56" y="56" width="1168" height="608" rx="24" fill="none" stroke="rgba(255,255,255,0.24)" stroke-width="2"/>
+  <text x="84" y="146" fill="#bfdbfe" font-size="30" font-family="Arial, sans-serif" font-weight="700">대표 이미지</text>
+  <text x="84" y="230" fill="#ffffff" font-size="54" font-family="Arial, sans-serif" font-weight="700">임지연, 생활 운동으로 ‘이것’ 실천 중… “짧은 시간에 최대 운동 효과”: 지금 논…</text>
+  <text x="84" y="292" fill="#dbeafe" font-size="30" font-family="Arial, sans-serif">임지연, 생활 운동으로 ‘이것’ 실천 중… “짧은 시간에 최대 운동 효과”</text>
+  <rect x="84" y="582" width="1110" height="62" rx="31" fill="rgba(255,255,255,0.16)"/>
+  <text x="116" y="622" fill="#ffffff" font-size="30" font-family="Arial, sans-serif">#핫이슈 #자동이슈봇 #조선일보 #임지연 #생활 #운동으로</text>
+</svg>
