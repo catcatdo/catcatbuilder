@@ -1,8 +1,6 @@
 name: Auto Issue Bot Every 3 Hours
 
 on:
-  schedule:
-    - cron: '17 */3 * * *'
   workflow_dispatch:
 
 permissions:
