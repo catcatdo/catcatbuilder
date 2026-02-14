@@ -13,7 +13,7 @@
   <rect x="780" y="426" width="350" height="132" rx="20" fill="rgba(255,255,255,0.10)"/>
 
   <rect x="56" y="56" width="1168" height="608" rx="24" fill="none" stroke="rgba(255,255,255,0.24)" stroke-width="2"/>
-  <text x="84" y="146" fill="#bfdbfe" font-size="30" font-family="Arial, sans-serif" font-weight="700">ARTICLE IMAGE 1</text>
+  <text x="84" y="146" fill="#bfdbfe" font-size="30" font-family="Arial, sans-serif" font-weight="700">본문 이미지 1</text>
   <text x="84" y="230" fill="#ffffff" font-size="54" font-family="Arial, sans-serif" font-weight="700">재택근무 3년차가 알려주는 진짜 생산성 꿀팁 8가지</text>
   <text x="84" y="292" fill="#dbeafe" font-size="30" font-family="Arial, sans-serif">재택근무가 천국인 줄 알았는데, 현실은 좀 달랐습니다. 3년간 삽질하며 찾은 생산성 유지법을 공유합니다.</text>
   <rect x="84" y="582" width="1110" height="62" rx="31" fill="rgba(255,255,255,0.16)"/>

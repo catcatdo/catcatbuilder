@@ -1,21 +1,21 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="Generated cover">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#1f2937"/>
-      <stop offset="58%" stop-color="#065f46"/>
-      <stop offset="100%" stop-color="#0f766e"/>
+      <stop offset="0%" stop-color="#1e1b4b"/>
+      <stop offset="58%" stop-color="#4c1d95"/>
+      <stop offset="100%" stop-color="#6d28d9"/>
     </linearGradient>
   </defs>
   <rect width="1280" height="720" fill="url(#bg)"/>
   
-  <circle cx="957" cy="236" r="108" fill="rgba(255,255,255,0.12)"/>
-  <circle cx="1085" cy="356" r="84" fill="rgba(255,255,255,0.10)"/>
-  <rect x="807" y="426" width="350" height="132" rx="20" fill="rgba(255,255,255,0.10)"/>
+  <circle cx="922" cy="236" r="108" fill="rgba(255,255,255,0.12)"/>
+  <circle cx="1050" cy="356" r="84" fill="rgba(255,255,255,0.10)"/>
+  <rect x="772" y="426" width="350" height="132" rx="20" fill="rgba(255,255,255,0.10)"/>
 
   <rect x="56" y="56" width="1168" height="608" rx="24" fill="none" stroke="rgba(255,255,255,0.24)" stroke-width="2"/>
-  <text x="84" y="146" fill="#bfdbfe" font-size="30" font-family="Arial, sans-serif" font-weight="700">ARTICLE IMAGE 1</text>
-  <text x="84" y="230" fill="#ffffff" font-size="54" font-family="Arial, sans-serif" font-weight="700">Discord ByteString 오류 해결: UTF-8 인코딩 문제 한 번에 잡기</text>
-  <text x="84" y="292" fill="#dbeafe" font-size="30" font-family="Arial, sans-serif">Discord 연동 중 발생하는 ByteString/Unicode 오류를 UTF-8 기준으로 정리하고 재발 방지 체크포인트를 공유합…</text>
+  <text x="84" y="146" fill="#bfdbfe" font-size="30" font-family="Arial, sans-serif" font-weight="700">본문 이미지 1</text>
+  <text x="84" y="230" fill="#ffffff" font-size="54" font-family="Arial, sans-serif" font-weight="700">디스코드 바이트스트링 오류 해결: 유티에프팔 인코딩 문제 한 번에 잡기</text>
+  <text x="84" y="292" fill="#dbeafe" font-size="30" font-family="Arial, sans-serif">디스코드 연동 중 발생하는 바이트스트링/유엔아이씨오디이 오류를 유티에프팔 기준으로 정리하고 재발 방지 체크포인트를 공유합…</text>
   <rect x="84" y="582" width="1110" height="62" rx="31" fill="rgba(255,255,255,0.16)"/>
-  <text x="116" y="622" fill="#ffffff" font-size="30" font-family="Arial, sans-serif">#Discord #ByteString #UTF8 #인코딩 #Unicode #디버깅</text>
+  <text x="116" y="622" fill="#ffffff" font-size="30" font-family="Arial, sans-serif">#디스코드 #바이트스트링 #UTF8 #인코딩 #유엔아이씨오디이 #디버깅</text>
 </svg>

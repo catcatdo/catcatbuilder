@@ -8,15 +8,15 @@
   </defs>
   <rect width="1280" height="720" fill="url(#bg)"/>
   
-  <rect x="768" y="198" width="360" height="320" rx="28" fill="rgba(255,255,255,0.10)" stroke="rgba(255,255,255,0.30)" stroke-width="2"/>
-  <rect x="858" y="286" width="180" height="144" rx="18" fill="rgba(255,255,255,0.16)" stroke="rgba(255,255,255,0.35)" stroke-width="2"/>
+  <rect x="775" y="198" width="360" height="320" rx="28" fill="rgba(255,255,255,0.10)" stroke="rgba(255,255,255,0.30)" stroke-width="2"/>
+  <rect x="865" y="286" width="180" height="144" rx="18" fill="rgba(255,255,255,0.16)" stroke="rgba(255,255,255,0.35)" stroke-width="2"/>
   <path d="M866 254 L818 254 M866 350 L818 350 M866 446 L818 446 M1046 254 L1098 254 M1046 350 L1098 350 M1046 446 L1098 446" stroke="#93c5fd" stroke-width="5" stroke-linecap="round"/>
   <path d="M908 286 L908 238 M956 286 L956 238 M1004 286 L1004 238 M908 430 L908 478 M956 430 L956 478 M1004 430 L1004 478" stroke="#bfdbfe" stroke-width="5" stroke-linecap="round"/>
 
   <rect x="56" y="56" width="1168" height="608" rx="24" fill="none" stroke="rgba(255,255,255,0.24)" stroke-width="2"/>
-  <text x="84" y="146" fill="#bfdbfe" font-size="30" font-family="Arial, sans-serif" font-weight="700">MAIN COVER</text>
-  <text x="84" y="230" fill="#ffffff" font-size="54" font-family="Arial, sans-serif" font-weight="700">[홈서버 랩] NAS용 HDD 고르는 법: WD Red Plus vs Seagate …</text>
-  <text x="84" y="292" fill="#dbeafe" font-size="30" font-family="Arial, sans-serif">NAS HDD 선택의 핵심: CMR vs SMR, 진동 보정, TLER. WD Red Plus와 Seagate IronWolf의 속…</text>
+  <text x="84" y="146" fill="#bfdbfe" font-size="30" font-family="Arial, sans-serif" font-weight="700">대표 이미지</text>
+  <text x="84" y="230" fill="#ffffff" font-size="54" font-family="Arial, sans-serif" font-weight="700">[홈서버 랩] 나스용 하드디스크 고르는 법: 더블유디 알이디 피엘유에스 비교 에스이에…</text>
+  <text x="84" y="292" fill="#dbeafe" font-size="30" font-family="Arial, sans-serif">나스 하드디스크 선택의 핵심: 씨엠알 비교 에스엠알, 진동 보정, 티엘이알 더블유디 알이디 피엘유에스와 에스이에이지에이티이 아이알오…</text>
   <rect x="84" y="582" width="1110" height="62" rx="31" fill="rgba(255,255,255,0.16)"/>
-  <text x="116" y="622" fill="#ffffff" font-size="30" font-family="Arial, sans-serif">#NAS #HDD #WDRed #IronWolf #Synology #RAID</text>
+  <text x="116" y="622" fill="#ffffff" font-size="30" font-family="Arial, sans-serif">#NAS #HDD #더블유디알이디 #아이알오엔더블유오엘에프 #시놀로지 #RAID</text>
 </svg>

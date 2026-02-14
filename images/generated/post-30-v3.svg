@@ -13,7 +13,7 @@
   <rect x="775" y="426" width="350" height="132" rx="20" fill="rgba(255,255,255,0.10)"/>
 
   <rect x="56" y="56" width="1168" height="608" rx="24" fill="none" stroke="rgba(255,255,255,0.24)" stroke-width="2"/>
-  <text x="84" y="146" fill="#bfdbfe" font-size="30" font-family="Arial, sans-serif" font-weight="700">ARTICLE IMAGE 3</text>
+  <text x="84" y="146" fill="#bfdbfe" font-size="30" font-family="Arial, sans-serif" font-weight="700">본문 이미지 3</text>
   <text x="84" y="230" fill="#ffffff" font-size="54" font-family="Arial, sans-serif" font-weight="700">디지털 디톡스 30일 도전기: 스마트폰 사용 시간을 반으로 줄인 방법</text>
   <text x="84" y="292" fill="#dbeafe" font-size="30" font-family="Arial, sans-serif">하루 평균 스마트폰 사용 시간 6시간. 이대로는 안 되겠다 싶어서 30일 디지털 디톡스를 시작했습니다.</text>
   <rect x="84" y="582" width="1110" height="62" rx="31" fill="rgba(255,255,255,0.16)"/>

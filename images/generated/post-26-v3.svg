@@ -1,20 +1,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="Generated cover">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#111827"/>
-      <stop offset="58%" stop-color="#1d4ed8"/>
-      <stop offset="100%" stop-color="#2563eb"/>
+      <stop offset="0%" stop-color="#1f2937"/>
+      <stop offset="58%" stop-color="#7c2d12"/>
+      <stop offset="100%" stop-color="#b45309"/>
     </linearGradient>
   </defs>
   <rect width="1280" height="720" fill="url(#bg)"/>
   
-  <circle cx="953" cy="236" r="108" fill="rgba(255,255,255,0.12)"/>
-  <circle cx="1081" cy="356" r="84" fill="rgba(255,255,255,0.10)"/>
-  <rect x="803" y="426" width="350" height="132" rx="20" fill="rgba(255,255,255,0.10)"/>
+  <circle cx="938" cy="236" r="108" fill="rgba(255,255,255,0.12)"/>
+  <circle cx="1066" cy="356" r="84" fill="rgba(255,255,255,0.10)"/>
+  <rect x="788" y="426" width="350" height="132" rx="20" fill="rgba(255,255,255,0.10)"/>
 
   <rect x="56" y="56" width="1168" height="608" rx="24" fill="none" stroke="rgba(255,255,255,0.24)" stroke-width="2"/>
-  <text x="84" y="146" fill="#bfdbfe" font-size="30" font-family="Arial, sans-serif" font-weight="700">ARTICLE IMAGE 3</text>
-  <text x="84" y="230" fill="#ffffff" font-size="54" font-family="Arial, sans-serif" font-weight="700">서울에서 코딩하기 좋은 카페 BEST 7: 노마드 개발자 추천</text>
+  <text x="84" y="146" fill="#bfdbfe" font-size="30" font-family="Arial, sans-serif" font-weight="700">본문 이미지 3</text>
+  <text x="84" y="230" fill="#ffffff" font-size="54" font-family="Arial, sans-serif" font-weight="700">서울에서 코딩하기 좋은 카페 베스트 7: 노마드 개발자 추천</text>
   <text x="84" y="292" fill="#dbeafe" font-size="30" font-family="Arial, sans-serif">콘센트, 와이파이, 오래 앉아도 눈치 안 주는 카페. 서울에서 작업하기 좋은 카페 7곳을 직접 다녀보고 정리했습니다.</text>
   <rect x="84" y="582" width="1110" height="62" rx="31" fill="rgba(255,255,255,0.16)"/>
   <text x="116" y="622" fill="#ffffff" font-size="30" font-family="Arial, sans-serif">#카페 #서울 #코딩 #노마드 #재택근무 #추천</text>

@@ -1,21 +1,21 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="Generated cover">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#111827"/>
-      <stop offset="58%" stop-color="#1d4ed8"/>
-      <stop offset="100%" stop-color="#2563eb"/>
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="58%" stop-color="#1e3a8a"/>
+      <stop offset="100%" stop-color="#0b3b6a"/>
     </linearGradient>
   </defs>
   <rect width="1280" height="720" fill="url(#bg)"/>
   
-  <circle cx="957" cy="236" r="108" fill="rgba(255,255,255,0.12)"/>
-  <circle cx="1085" cy="356" r="84" fill="rgba(255,255,255,0.10)"/>
-  <rect x="807" y="426" width="350" height="132" rx="20" fill="rgba(255,255,255,0.10)"/>
+  <circle cx="950" cy="236" r="108" fill="rgba(255,255,255,0.12)"/>
+  <circle cx="1078" cy="356" r="84" fill="rgba(255,255,255,0.10)"/>
+  <rect x="800" y="426" width="350" height="132" rx="20" fill="rgba(255,255,255,0.10)"/>
 
   <rect x="56" y="56" width="1168" height="608" rx="24" fill="none" stroke="rgba(255,255,255,0.24)" stroke-width="2"/>
-  <text x="84" y="146" fill="#bfdbfe" font-size="30" font-family="Arial, sans-serif" font-weight="700">ARTICLE IMAGE 3</text>
-  <text x="84" y="230" fill="#ffffff" font-size="54" font-family="Arial, sans-serif" font-weight="700">[초보 입문] ESP32를 비에서 살리는 법: 방수 실패 3번, 성공 1번의 기록</text>
-  <text x="84" y="292" fill="#dbeafe" font-size="30" font-family="Arial, sans-serif">지퍼백, 다이소 밀폐용기, 방수 코팅 — 3가지 방수 방법을 시도하고 2번 실패한 이야기. 결국 성공한 IP65 방수 정션박스 설치…</text>
+  <text x="84" y="146" fill="#bfdbfe" font-size="30" font-family="Arial, sans-serif" font-weight="700">본문 이미지 3</text>
+  <text x="84" y="230" fill="#ffffff" font-size="54" font-family="Arial, sans-serif" font-weight="700">[초보 입문] 이에스피삼이를 비에서 살리는 법: 방수 실패 3번, 성공 1번의 기록</text>
+  <text x="84" y="292" fill="#dbeafe" font-size="30" font-family="Arial, sans-serif">지퍼백, 다이소 밀폐용기, 방수 코팅 — 3가지 방수 방법을 시도하고 2번 실패한 이야기. 결국 성공한 아이피65 방수 정션박스 설…</text>
   <rect x="84" y="582" width="1110" height="62" rx="31" fill="rgba(255,255,255,0.16)"/>
-  <text x="116" y="622" fill="#ffffff" font-size="30" font-family="Arial, sans-serif">#ESP32 #방수 #IP65 #정션박스 #야외 #스마트팜</text>
+  <text x="116" y="622" fill="#ffffff" font-size="30" font-family="Arial, sans-serif">#이에스피삼이 #방수 #IP65 #정션박스 #야외 #스마트팜</text>
 </svg>

@@ -8,15 +8,15 @@
   </defs>
   <rect width="1280" height="720" fill="url(#bg)"/>
   
-  <rect x="786" y="198" width="360" height="320" rx="28" fill="rgba(255,255,255,0.10)" stroke="rgba(255,255,255,0.30)" stroke-width="2"/>
-  <rect x="876" y="286" width="180" height="144" rx="18" fill="rgba(255,255,255,0.16)" stroke="rgba(255,255,255,0.35)" stroke-width="2"/>
+  <rect x="766" y="198" width="360" height="320" rx="28" fill="rgba(255,255,255,0.10)" stroke="rgba(255,255,255,0.30)" stroke-width="2"/>
+  <rect x="856" y="286" width="180" height="144" rx="18" fill="rgba(255,255,255,0.16)" stroke="rgba(255,255,255,0.35)" stroke-width="2"/>
   <path d="M866 254 L818 254 M866 350 L818 350 M866 446 L818 446 M1046 254 L1098 254 M1046 350 L1098 350 M1046 446 L1098 446" stroke="#93c5fd" stroke-width="5" stroke-linecap="round"/>
   <path d="M908 286 L908 238 M956 286 L956 238 M1004 286 L1004 238 M908 430 L908 478 M956 430 L956 478 M1004 430 L1004 478" stroke="#bfdbfe" stroke-width="5" stroke-linecap="round"/>
 
   <rect x="56" y="56" width="1168" height="608" rx="24" fill="none" stroke="rgba(255,255,255,0.24)" stroke-width="2"/>
-  <text x="84" y="146" fill="#bfdbfe" font-size="30" font-family="Arial, sans-serif" font-weight="700">ARTICLE IMAGE 1</text>
-  <text x="84" y="230" fill="#ffffff" font-size="54" font-family="Arial, sans-serif" font-weight="700">UN AI 과학 패널 승인: 성능 경쟁에서 책임 경쟁으로</text>
-  <text x="84" y="292" fill="#dbeafe" font-size="30" font-family="Arial, sans-serif">UN의 40인 AI 과학 패널 승인 소식이 왜 산업과 서비스 운영에 큰 의미인지 정리했습니다. 성능 경쟁에서 책임 경쟁으로 넘어가는…</text>
+  <text x="84" y="146" fill="#bfdbfe" font-size="30" font-family="Arial, sans-serif" font-weight="700">본문 이미지 1</text>
+  <text x="84" y="230" fill="#ffffff" font-size="54" font-family="Arial, sans-serif" font-weight="700">유엔 인공지능 과학 패널 승인: 성능 경쟁에서 책임 경쟁으로</text>
+  <text x="84" y="292" fill="#dbeafe" font-size="30" font-family="Arial, sans-serif">유엔의 40인 인공지능 과학 패널 승인 소식이 왜 산업과 서비스 운영에 큰 의미인지 정리했습니다. 성능 경쟁에서 책임 경쟁으로 넘어…</text>
   <rect x="84" y="582" width="1110" height="62" rx="31" fill="rgba(255,255,255,0.16)"/>
-  <text x="116" y="622" fill="#ffffff" font-size="30" font-family="Arial, sans-serif">#UN #AI거버넌스 #정책 #국제이슈 #기술트렌드 #산업분석</text>
+  <text x="116" y="622" fill="#ffffff" font-size="30" font-family="Arial, sans-serif">#UN #인공지능거버넌스 #정책 #국제이슈 #기술트렌드 #산업분석</text>
 </svg>

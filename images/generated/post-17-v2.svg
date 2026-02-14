@@ -13,9 +13,9 @@
   <rect x="784" y="426" width="350" height="132" rx="20" fill="rgba(255,255,255,0.10)"/>
 
   <rect x="56" y="56" width="1168" height="608" rx="24" fill="none" stroke="rgba(255,255,255,0.24)" stroke-width="2"/>
-  <text x="84" y="146" fill="#bfdbfe" font-size="30" font-family="Arial, sans-serif" font-weight="700">ARTICLE IMAGE 2</text>
+  <text x="84" y="146" fill="#bfdbfe" font-size="30" font-family="Arial, sans-serif" font-weight="700">본문 이미지 2</text>
   <text x="84" y="230" fill="#ffffff" font-size="54" font-family="Arial, sans-serif" font-weight="700">라즈베리파이 5로 홈 서버 구축하기: 단계별 완벽 가이드</text>
   <text x="84" y="292" fill="#dbeafe" font-size="30" font-family="Arial, sans-serif">월 전기료 1000원 이하로 24시간 돌아가는 나만의 홈 서버를 만드는 방법을 라즈베리파이 5 기준으로 단계별 정리했습니다.</text>
   <rect x="84" y="582" width="1110" height="62" rx="31" fill="rgba(255,255,255,0.16)"/>
-  <text x="116" y="622" fill="#ffffff" font-size="30" font-family="Arial, sans-serif">#라즈베리파이 #홈서버 #리눅스 #Nginx #서버구축 #셀프호스팅</text>
+  <text x="116" y="622" fill="#ffffff" font-size="30" font-family="Arial, sans-serif">#라즈베리파이 #홈서버 #리눅스 #엔지아이엔엑스 #서버구축 #셀프호스팅</text>
 </svg>

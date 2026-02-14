@@ -1,21 +1,21 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="Generated cover">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#1e1b4b"/>
-      <stop offset="58%" stop-color="#4c1d95"/>
-      <stop offset="100%" stop-color="#6d28d9"/>
+      <stop offset="0%" stop-color="#111827"/>
+      <stop offset="58%" stop-color="#1d4ed8"/>
+      <stop offset="100%" stop-color="#2563eb"/>
     </linearGradient>
   </defs>
   <rect width="1280" height="720" fill="url(#bg)"/>
   
-  <circle cx="951" cy="236" r="108" fill="rgba(255,255,255,0.12)"/>
-  <circle cx="1079" cy="356" r="84" fill="rgba(255,255,255,0.10)"/>
-  <rect x="801" y="426" width="350" height="132" rx="20" fill="rgba(255,255,255,0.10)"/>
+  <circle cx="942" cy="236" r="108" fill="rgba(255,255,255,0.12)"/>
+  <circle cx="1070" cy="356" r="84" fill="rgba(255,255,255,0.10)"/>
+  <rect x="792" y="426" width="350" height="132" rx="20" fill="rgba(255,255,255,0.10)"/>
 
   <rect x="56" y="56" width="1168" height="608" rx="24" fill="none" stroke="rgba(255,255,255,0.24)" stroke-width="2"/>
-  <text x="84" y="146" fill="#bfdbfe" font-size="30" font-family="Arial, sans-serif" font-weight="700">MAIN COVER</text>
-  <text x="84" y="230" fill="#ffffff" font-size="54" font-family="Arial, sans-serif" font-weight="700">Docker 입문 가이드: 컨테이너로 개발 환경 한 번에 통일하기</text>
-  <text x="84" y="292" fill="#dbeafe" font-size="30" font-family="Arial, sans-serif">&quot;내 컴퓨터에서는 되는데?&quot; 문제를 해결하는 Docker의 기본 개념부터 실전 사용법까지 초보자도 이해할 수 있게 정리했습니다.</text>
+  <text x="84" y="146" fill="#bfdbfe" font-size="30" font-family="Arial, sans-serif" font-weight="700">대표 이미지</text>
+  <text x="84" y="230" fill="#ffffff" font-size="54" font-family="Arial, sans-serif" font-weight="700">도커 입문 가이드: 컨테이너로 개발 환경 한 번에 통일하기</text>
+  <text x="84" y="292" fill="#dbeafe" font-size="30" font-family="Arial, sans-serif">&quot;내 컴퓨터에서는 되는데?&quot; 문제를 해결하는 도커의 기본 개념부터 실전 사용법까지 초보자도 이해할 수 있게 정리했습니다.</text>
   <rect x="84" y="582" width="1110" height="62" rx="31" fill="rgba(255,255,255,0.16)"/>
-  <text x="116" y="622" fill="#ffffff" font-size="30" font-family="Arial, sans-serif">#Docker #컨테이너 #개발환경 #DevOps #Dockerfile #배포</text>
+  <text x="116" y="622" fill="#ffffff" font-size="30" font-family="Arial, sans-serif">#도커 #컨테이너 #개발환경 #디이브이오피에스 #도커에프아이엘이 #배포</text>
 </svg>

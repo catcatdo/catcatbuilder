@@ -10,16 +10,16 @@
   
   <rect x="740" y="152" width="470" height="394" rx="22" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.28)" stroke-width="2"/>
   <path d="M772 498 L840 452 L898 468 L962 408 L1038 430 L1112 340 L1180 302" fill="none" stroke="#22c55e" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
-  <rect x="811" y="420" width="24" height="78" rx="4" fill="#60a5fa"/>
-  <rect x="861" y="382" width="24" height="116" rx="4" fill="#60a5fa"/>
-  <rect x="911" y="358" width="24" height="140" rx="4" fill="#34d399"/>
-  <rect x="961" y="326" width="24" height="172" rx="4" fill="#34d399"/>
-  <rect x="1011" y="294" width="24" height="204" rx="4" fill="#22c55e"/>
+  <rect x="816" y="420" width="24" height="78" rx="4" fill="#60a5fa"/>
+  <rect x="866" y="382" width="24" height="116" rx="4" fill="#60a5fa"/>
+  <rect x="916" y="358" width="24" height="140" rx="4" fill="#34d399"/>
+  <rect x="966" y="326" width="24" height="172" rx="4" fill="#34d399"/>
+  <rect x="1016" y="294" width="24" height="204" rx="4" fill="#22c55e"/>
 
   <rect x="56" y="56" width="1168" height="608" rx="24" fill="none" stroke="rgba(255,255,255,0.24)" stroke-width="2"/>
-  <text x="84" y="146" fill="#bfdbfe" font-size="30" font-family="Arial, sans-serif" font-weight="700">ARTICLE IMAGE 1</text>
-  <text x="84" y="230" fill="#ffffff" font-size="54" font-family="Arial, sans-serif" font-weight="700">[자동브리핑] Nvidia shares go cold even as Big Tech …</text>
-  <text x="84" y="292" fill="#dbeafe" font-size="30" font-family="Arial, sans-serif">[Yahoo Finance] Nvidia shares go cold even as Big Tech spending on AI bal…</text>
+  <text x="84" y="146" fill="#bfdbfe" font-size="30" font-family="Arial, sans-serif" font-weight="700">본문 이미지 1</text>
+  <text x="84" y="230" fill="#ffffff" font-size="54" font-family="Arial, sans-serif" font-weight="700">[자동브리핑] 엔비디아 인공지능 반도체 경쟁 핵심 정리</text>
+  <text x="84" y="292" fill="#dbeafe" font-size="30" font-family="Arial, sans-serif">[와이에이에이치오오 에프아이엔에이엔씨이] 엔비디아 에스에이치에이알이에스 지오 씨오엘디 이브이이엔 에이에스 비아이지 티이씨에이치 에스…</text>
   <rect x="84" y="582" width="1110" height="62" rx="31" fill="rgba(255,255,255,0.16)"/>
-  <text x="116" y="622" fill="#ffffff" font-size="30" font-family="Arial, sans-serif">#자동브리핑 #시간당이슈 #AI #반도체 #YahooFinance #Nvidia</text>
+  <text x="116" y="622" fill="#ffffff" font-size="30" font-family="Arial, sans-serif">#자동브리핑 #시간당이슈 #AI #반도체 #와이에이에이치오오에프… #엔비디아</text>
 </svg>

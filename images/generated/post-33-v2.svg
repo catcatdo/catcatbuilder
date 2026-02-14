@@ -8,15 +8,15 @@
   </defs>
   <rect width="1280" height="720" fill="url(#bg)"/>
   
-  <rect x="784" y="198" width="360" height="320" rx="28" fill="rgba(255,255,255,0.10)" stroke="rgba(255,255,255,0.30)" stroke-width="2"/>
-  <rect x="874" y="286" width="180" height="144" rx="18" fill="rgba(255,255,255,0.16)" stroke="rgba(255,255,255,0.35)" stroke-width="2"/>
+  <rect x="768" y="198" width="360" height="320" rx="28" fill="rgba(255,255,255,0.10)" stroke="rgba(255,255,255,0.30)" stroke-width="2"/>
+  <rect x="858" y="286" width="180" height="144" rx="18" fill="rgba(255,255,255,0.16)" stroke="rgba(255,255,255,0.35)" stroke-width="2"/>
   <path d="M866 254 L818 254 M866 350 L818 350 M866 446 L818 446 M1046 254 L1098 254 M1046 350 L1098 350 M1046 446 L1098 446" stroke="#93c5fd" stroke-width="5" stroke-linecap="round"/>
   <path d="M908 286 L908 238 M956 286 L956 238 M1004 286 L1004 238 M908 430 L908 478 M956 430 L956 478 M1004 430 L1004 478" stroke="#bfdbfe" stroke-width="5" stroke-linecap="round"/>
 
   <rect x="56" y="56" width="1168" height="608" rx="24" fill="none" stroke="rgba(255,255,255,0.24)" stroke-width="2"/>
-  <text x="84" y="146" fill="#bfdbfe" font-size="30" font-family="Arial, sans-serif" font-weight="700">ARTICLE IMAGE 2</text>
-  <text x="84" y="230" fill="#ffffff" font-size="54" font-family="Arial, sans-serif" font-weight="700">AI가 개발자를 대체할까? 현직 5년차의 솔직한 생각</text>
-  <text x="84" y="292" fill="#dbeafe" font-size="30" font-family="Arial, sans-serif">GitHub Copilot, Claude Code, Cursor까지. AI 코딩 도구가 쏟아지는 지금, 개발자라는 직업의 미래에 대…</text>
+  <text x="84" y="146" fill="#bfdbfe" font-size="30" font-family="Arial, sans-serif" font-weight="700">본문 이미지 2</text>
+  <text x="84" y="230" fill="#ffffff" font-size="54" font-family="Arial, sans-serif" font-weight="700">인공지능가 개발자를 대체할까? 현직 5년차의 솔직한 생각</text>
+  <text x="84" y="292" fill="#dbeafe" font-size="30" font-family="Arial, sans-serif">지아이티에이치유비 씨오피아이엘오티, 씨엘에이유디이 씨오디이, 씨유알에스오알까지. 인공지능 코딩 도구가 쏟아지는 지금, 개발자라는 직…</text>
   <rect x="84" y="582" width="1110" height="62" rx="31" fill="rgba(255,255,255,0.16)"/>
-  <text x="116" y="622" fill="#ffffff" font-size="30" font-family="Arial, sans-serif">#AI #개발자 #미래 #직업 #ChatGPT #Copilot</text>
+  <text x="116" y="622" fill="#ffffff" font-size="30" font-family="Arial, sans-serif">#AI #개발자 #미래 #직업 #챗지피티 #씨오피아이엘오티</text>
 </svg>

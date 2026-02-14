@@ -8,15 +8,15 @@
   </defs>
   <rect width="1280" height="720" fill="url(#bg)"/>
   
-  <rect x="776" y="198" width="360" height="320" rx="28" fill="rgba(255,255,255,0.10)" stroke="rgba(255,255,255,0.30)" stroke-width="2"/>
-  <rect x="866" y="286" width="180" height="144" rx="18" fill="rgba(255,255,255,0.16)" stroke="rgba(255,255,255,0.35)" stroke-width="2"/>
+  <rect x="787" y="198" width="360" height="320" rx="28" fill="rgba(255,255,255,0.10)" stroke="rgba(255,255,255,0.30)" stroke-width="2"/>
+  <rect x="877" y="286" width="180" height="144" rx="18" fill="rgba(255,255,255,0.16)" stroke="rgba(255,255,255,0.35)" stroke-width="2"/>
   <path d="M866 254 L818 254 M866 350 L818 350 M866 446 L818 446 M1046 254 L1098 254 M1046 350 L1098 350 M1046 446 L1098 446" stroke="#93c5fd" stroke-width="5" stroke-linecap="round"/>
   <path d="M908 286 L908 238 M956 286 L956 238 M1004 286 L1004 238 M908 430 L908 478 M956 430 L956 478 M1004 430 L1004 478" stroke="#bfdbfe" stroke-width="5" stroke-linecap="round"/>
 
   <rect x="56" y="56" width="1168" height="608" rx="24" fill="none" stroke="rgba(255,255,255,0.24)" stroke-width="2"/>
-  <text x="84" y="146" fill="#bfdbfe" font-size="30" font-family="Arial, sans-serif" font-weight="700">ARTICLE IMAGE 3</text>
-  <text x="84" y="230" fill="#ffffff" font-size="54" font-family="Arial, sans-serif" font-weight="700">[템플릿] AI 이미지 생성 프롬프트 공식 — 원하는 그림 뽑는 법</text>
+  <text x="84" y="146" fill="#bfdbfe" font-size="30" font-family="Arial, sans-serif" font-weight="700">본문 이미지 3</text>
+  <text x="84" y="230" fill="#ffffff" font-size="54" font-family="Arial, sans-serif" font-weight="700">[템플릿] 인공지능 이미지 생성 프롬프트 공식 — 원하는 그림 뽑는 법</text>
   <text x="84" y="292" fill="#dbeafe" font-size="30" font-family="Arial, sans-serif">미드저니, 달리, 스테이블 디퓨전에서 원하는 이미지를 얻으려면? 복사해서 바로 쓸 수 있는 이미지 프롬프트 공식을 알려드려요.</text>
   <rect x="84" y="582" width="1110" height="62" rx="31" fill="rgba(255,255,255,0.16)"/>
-  <text x="116" y="622" fill="#ffffff" font-size="30" font-family="Arial, sans-serif">#AI이미지 #프롬프트 #미드저니 #DALLE #템플릿 #디자인</text>
+  <text x="116" y="622" fill="#ffffff" font-size="30" font-family="Arial, sans-serif">#인공지능이미지 #프롬프트 #미드저니 #디에이엘엘이 #템플릿 #디자인</text>
 </svg>

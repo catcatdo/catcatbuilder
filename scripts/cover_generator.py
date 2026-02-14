@@ -11,6 +11,8 @@ import re
 from pathlib import Path
 from typing import Dict, Iterable, List, Tuple
 
+from korean_title_utils import localize_mixed_title
+
 
 PALETTES = [
     ("#0f172a", "#1e3a8a", "#0b3b6a"),
@@ -55,12 +57,53 @@ STOPWORDS = {
     "대한민국", "정리", "핵심", "이슈", "뉴스", "브리핑", "자동브리핑",
 }
 
+LATIN_RE = re.compile(r"[A-Za-z]")
+KEEP_TOKEN_RE = re.compile(r"\b(?:M3|M4|M5|S26)\b", flags=re.IGNORECASE)
+
 
 def _safe_text(text: str, max_len: int) -> str:
     text = re.sub(r"\s+", " ", str(text or "")).strip()
     if len(text) <= max_len:
         return text
     return text[: max(0, max_len - 1)] + "…"
+
+
+def _latin_ratio(text: str) -> float:
+    letters = [c for c in str(text or "") if c.isalpha()]
+    if not letters:
+        return 0.0
+    latin = sum(1 for c in letters if "a" <= c.lower() <= "z")
+    return latin / len(letters)
+
+
+def _koreanize_cover_text(text: str, fallback: str, max_len: int) -> str:
+    raw = _safe_text(text, max_len).strip()
+    if not raw:
+        return fallback
+
+    if not LATIN_RE.search(raw):
+        return raw
+
+    keep_map: Dict[str, str] = {}
+    keep_idx = 0
+
+    def protect(match: re.Match[str]) -> str:
+        nonlocal keep_idx
+        token = match.group(0).upper()
+        key = f"§{keep_idx}§"
+        keep_map[key] = token
+        keep_idx += 1
+        return key
+
+    protected = KEEP_TOKEN_RE.sub(protect, raw)
+    converted = _safe_text(localize_mixed_title(protected), max_len).strip()
+
+    for key, token in keep_map.items():
+        converted = converted.replace(key, token)
+
+    if converted and not LATIN_RE.search(converted):
+        return converted
+    return fallback
 
 
 def _esc(text: str) -> str:
@@ -247,7 +290,19 @@ def _svg(
     theme: str,
 ) -> str:
     c1, c2, c3 = _pick_theme_palette(seed, theme)
-    chips_text = " ".join(f"#{_safe_text(c, 12)}" for c in chips if c)[:96] or "#ARTICLE #INSIGHT"
+    disp_label = _koreanize_cover_text(label, "대표 이미지", 16)
+    disp_title = _koreanize_cover_text(title, "핵심 이슈 브리핑", 48)
+    disp_subtitle = _koreanize_cover_text(subtitle, "핵심 포인트를 빠르게 정리한 콘텐츠", 74)
+
+    chip_texts: List[str] = []
+    for chip in chips:
+        value = str(chip or "").strip()
+        if not value:
+            continue
+        if LATIN_RE.search(value) and len(value) > 4:
+            value = _koreanize_cover_text(value, "핵심", 12)
+        chip_texts.append(f"#{_safe_text(value, 12)}")
+    chips_text = " ".join(chip_texts)[:96] or "#핵심 #브리핑"
     scene = _render_scene(theme, seed)
     return f"""<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="Generated cover">
   <defs>
@@ -260,9 +315,9 @@ def _svg(
   <rect width="1280" height="720" fill="url(#bg)"/>
   {scene}
   <rect x="56" y="56" width="1168" height="608" rx="24" fill="none" stroke="rgba(255,255,255,0.24)" stroke-width="2"/>
-  <text x="84" y="146" fill="#bfdbfe" font-size="30" font-family="Arial, sans-serif" font-weight="700">{_esc(label)}</text>
-  <text x="84" y="230" fill="#ffffff" font-size="54" font-family="Arial, sans-serif" font-weight="700">{_esc(_safe_text(title, 48))}</text>
-  <text x="84" y="292" fill="#dbeafe" font-size="30" font-family="Arial, sans-serif">{_esc(_safe_text(subtitle, 74))}</text>
+  <text x="84" y="146" fill="#bfdbfe" font-size="30" font-family="Arial, sans-serif" font-weight="700">{_esc(disp_label)}</text>
+  <text x="84" y="230" fill="#ffffff" font-size="54" font-family="Arial, sans-serif" font-weight="700">{_esc(disp_title)}</text>
+  <text x="84" y="292" fill="#dbeafe" font-size="30" font-family="Arial, sans-serif">{_esc(disp_subtitle)}</text>
   <rect x="84" y="582" width="1110" height="62" rx="31" fill="rgba(255,255,255,0.16)"/>
   <text x="116" y="622" fill="#ffffff" font-size="30" font-family="Arial, sans-serif">{_esc(chips_text)}</text>
 </svg>
@@ -288,14 +343,14 @@ def generate_covers_for_post(
 
     cover_name = f"post-{post_id}-cover.svg"
     cover_path = gen_dir / cover_name
-    cover_svg = _svg(title, subtitle, chips, "MAIN COVER", f"{post_id}|cover|{title}", theme)
+    cover_svg = _svg(title, subtitle, chips, "대표 이미지", f"{post_id}|cover|{title}", theme)
     cover_path.write_text(cover_svg, encoding="utf-8")
 
     variant_paths: List[str] = []
     for i in range(1, max(1, variants) + 1):
         name = f"post-{post_id}-v{i}.svg"
         path = gen_dir / name
-        svg = _svg(title, subtitle, chips, f"ARTICLE IMAGE {i}", f"{post_id}|v{i}|{title}", theme)
+        svg = _svg(title, subtitle, chips, f"본문 이미지 {i}", f"{post_id}|v{i}|{title}", theme)
         path.write_text(svg, encoding="utf-8")
         variant_paths.append(f"images/generated/{name}")
 

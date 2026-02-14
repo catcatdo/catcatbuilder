@@ -1,21 +1,21 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="Generated cover">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#0f172a"/>
-      <stop offset="58%" stop-color="#1e3a8a"/>
-      <stop offset="100%" stop-color="#0b3b6a"/>
+      <stop offset="0%" stop-color="#111827"/>
+      <stop offset="58%" stop-color="#1d4ed8"/>
+      <stop offset="100%" stop-color="#2563eb"/>
     </linearGradient>
   </defs>
   <rect width="1280" height="720" fill="url(#bg)"/>
   
-  <circle cx="952" cy="236" r="108" fill="rgba(255,255,255,0.12)"/>
-  <circle cx="1080" cy="356" r="84" fill="rgba(255,255,255,0.10)"/>
-  <rect x="802" y="426" width="350" height="132" rx="20" fill="rgba(255,255,255,0.10)"/>
+  <circle cx="942" cy="236" r="108" fill="rgba(255,255,255,0.12)"/>
+  <circle cx="1070" cy="356" r="84" fill="rgba(255,255,255,0.10)"/>
+  <rect x="792" y="426" width="350" height="132" rx="20" fill="rgba(255,255,255,0.10)"/>
 
   <rect x="56" y="56" width="1168" height="608" rx="24" fill="none" stroke="rgba(255,255,255,0.24)" stroke-width="2"/>
-  <text x="84" y="146" fill="#bfdbfe" font-size="30" font-family="Arial, sans-serif" font-weight="700">ARTICLE IMAGE 2</text>
-  <text x="84" y="230" fill="#ffffff" font-size="54" font-family="Arial, sans-serif" font-weight="700">[오그랑지 스마트팜] 라즈베리파이 Zero 2W + ESP32로 웹 제어 관수 시스템…</text>
-  <text x="84" y="292" fill="#dbeafe" font-size="30" font-family="Arial, sans-serif">RPi Zero 2W를 서버로, ESP32를 현장 컨트롤러로 써서 웹 브라우저에서 밸브를 제어하는 스마트 관수 시스템을 15만원에 …</text>
+  <text x="84" y="146" fill="#bfdbfe" font-size="30" font-family="Arial, sans-serif" font-weight="700">본문 이미지 2</text>
+  <text x="84" y="230" fill="#ffffff" font-size="54" font-family="Arial, sans-serif" font-weight="700">[오그랑지 스마트팜] 라즈베리파이 지이알오 2더블유 + 이에스피삼이로 웹 제어 관수 …</text>
+  <text x="84" y="292" fill="#dbeafe" font-size="30" font-family="Arial, sans-serif">알피아이 지이알오 2더블유를 서버로, 이에스피삼이를 현장 컨트롤러로 써서 웹 브라우저에서 밸브를 제어하는 스마트 관수 시스템을 15…</text>
   <rect x="84" y="582" width="1110" height="62" rx="31" fill="rgba(255,255,255,0.16)"/>
-  <text x="116" y="622" fill="#ffffff" font-size="30" font-family="Arial, sans-serif">#스마트팜 #라즈베리파이 #ESP32 #FastAPI #IoT #Python</text>
+  <text x="116" y="622" fill="#ffffff" font-size="30" font-family="Arial, sans-serif">#스마트팜 #라즈베리파이 #이에스피삼이 #패스트에이피아이 #IoT #파이썬</text>
 </svg>

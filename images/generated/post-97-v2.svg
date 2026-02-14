@@ -1,21 +1,21 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="Generated cover">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#111827"/>
-      <stop offset="58%" stop-color="#1d4ed8"/>
-      <stop offset="100%" stop-color="#2563eb"/>
+      <stop offset="0%" stop-color="#1f2937"/>
+      <stop offset="58%" stop-color="#7c2d12"/>
+      <stop offset="100%" stop-color="#b45309"/>
     </linearGradient>
   </defs>
   <rect width="1280" height="720" fill="url(#bg)"/>
   
-  <circle cx="934" cy="236" r="108" fill="rgba(255,255,255,0.12)"/>
-  <circle cx="1062" cy="356" r="84" fill="rgba(255,255,255,0.10)"/>
-  <rect x="784" y="426" width="350" height="132" rx="20" fill="rgba(255,255,255,0.10)"/>
+  <circle cx="954" cy="236" r="108" fill="rgba(255,255,255,0.12)"/>
+  <circle cx="1082" cy="356" r="84" fill="rgba(255,255,255,0.10)"/>
+  <rect x="804" y="426" width="350" height="132" rx="20" fill="rgba(255,255,255,0.10)"/>
 
   <rect x="56" y="56" width="1168" height="608" rx="24" fill="none" stroke="rgba(255,255,255,0.24)" stroke-width="2"/>
-  <text x="84" y="146" fill="#bfdbfe" font-size="30" font-family="Arial, sans-serif" font-weight="700">ARTICLE IMAGE 2</text>
-  <text x="84" y="230" fill="#ffffff" font-size="54" font-family="Arial, sans-serif" font-weight="700">EU의 TikTok 중독성 설계 지적이 바꾸는 플랫폼의 미래</text>
-  <text x="84" y="292" fill="#dbeafe" font-size="30" font-family="Arial, sans-serif">EU의 TikTok 중독성 설계 지적을 계기로 플랫폼 KPI와 제품 설계 기준이 어떻게 바뀌는지 실무 관점에서 정리했습니다.</text>
+  <text x="84" y="146" fill="#bfdbfe" font-size="30" font-family="Arial, sans-serif" font-weight="700">본문 이미지 2</text>
+  <text x="84" y="230" fill="#ffffff" font-size="54" font-family="Arial, sans-serif" font-weight="700">유럽연합의 틱톡 중독성 설계 지적이 바꾸는 플랫폼의 미래</text>
+  <text x="84" y="292" fill="#dbeafe" font-size="30" font-family="Arial, sans-serif">유럽연합의 틱톡 중독성 설계 지적을 계기로 플랫폼 케이피아이와 제품 설계 기준이 어떻게 바뀌는지 실무 관점에서 정리했습니다.</text>
   <rect x="84" y="582" width="1110" height="62" rx="31" fill="rgba(255,255,255,0.16)"/>
-  <text x="116" y="622" fill="#ffffff" font-size="30" font-family="Arial, sans-serif">#TikTok #EU #디지털서비스법 #플랫폼 #UX #규제</text>
+  <text x="116" y="622" fill="#ffffff" font-size="30" font-family="Arial, sans-serif">#틱톡 #EU #디지털서비스법 #플랫폼 #UX #규제</text>
 </svg>
