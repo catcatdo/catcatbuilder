@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="Generated cover">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#111827"/>
+      <stop offset="58%" stop-color="#4c1d95"/>
+      <stop offset="100%" stop-color="#2563eb"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg)"/>
+  
+  <ellipse cx="967" cy="500" rx="220" ry="88" fill="rgba(255,255,255,0.14)"/>
+  <rect x="843" y="374" width="82" height="130" rx="14" fill="rgba(255,255,255,0.26)"/>
+  <rect x="937" y="332" width="82" height="172" rx="14" fill="rgba(255,255,255,0.34)"/>
+  <rect x="1031" y="390" width="82" height="114" rx="14" fill="rgba(255,255,255,0.22)"/>
+  <circle cx="977" cy="284" r="36" fill="#fde68a"/>
+
+  <rect x="56" y="56" width="1168" height="608" rx="24" fill="none" stroke="rgba(255,255,255,0.24)" stroke-width="2"/>
+  <text x="84" y="146" fill="#bfdbfe" font-size="30" font-family="Arial, sans-serif" font-weight="700">ARTICLE IMAGE 1</text>
+  <text x="84" y="230" fill="#ffffff" font-size="54" font-family="Arial, sans-serif" font-weight="700">알프스 코르티나 70년간 3.6도↑…기후 위기 시대 겨울올림픽 계속될까: 지금 논쟁의…</text>
+  <text x="84" y="292" fill="#dbeafe" font-size="30" font-family="Arial, sans-serif">알프스 코르티나 70년간 3.6도↑…기후 위기 시대 겨울올림픽 계속될까 한겨레 피겨스케이팅, 우아한 아름다움을 만드는 생체역학 사이…</text>
+  <rect x="84" y="582" width="1110" height="62" rx="31" fill="rgba(255,255,255,0.16)"/>
+  <text x="116" y="622" fill="#ffffff" font-size="30" font-family="Arial, sans-serif">#핫이슈 #자동이슈봇 #정책 #스포츠 #한겨레 #알프스</text>
+</svg>
