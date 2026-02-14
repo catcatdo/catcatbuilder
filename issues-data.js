@@ -282,5 +282,143 @@ window.ISSUE_THREADS = window.ISSUE_THREADS || [
         time: "오전 12:49"
       }
     ]
+  },
+  {
+    id: "issue-20260215-ai-trust-verification-gap",
+    title: "AI 출력 신뢰와 검증의 괴리",
+    catchy_title: "96%가 의심하는데 48%만 확인한다: 개발자의 AI 신뢰 딜레마",
+    source_name: "해외 개발자 설문 조사",
+    source_url: "",
+    published_at: "2026-02-15T01:41:00+09:00",
+    image: "images/generated/post-9005-cover.svg",
+    image_variants: ["images/generated/post-9005-v1.svg", "images/generated/post-9005-v2.svg", "images/generated/post-9005-v3.svg"],
+    rewritten_body: "최근 개발자 커뮤니티를 대상으로 한 설문에서 흥미로운 결과가 나왔습니다. 대다수의 소프트웨어 엔지니어가 AI가 생성한 코드나 콘텐츠를 완전히 신뢰하지 않는다고 답변했지만, 실제로 그 출력물을 직접 검증하는 개발자는 절반에도 미치지 못하는 것으로 나타났습니다. 이는 AI 도구 사용이 일상화되면서도 검증 문화는 아직 뒤따라가지 못하고 있음을 보여줍니다.",
+    summary_lines: [
+      "엔지니어 대다수가 AI 출력물을 의심하면서도 시간 부족과 업무 과중으로 실제 검증률은 낮은 상황",
+      "AI 코드 검증 부족은 보안 취약점이나 버그 발생 가능성을 높일 수 있는 잠재적 리스크",
+      "효율적인 AI 활용을 위해서는 '신뢰하지만 검증하라(Trust but Verify)' 철학의 정착이 필요"
+    ],
+    curator_insight: "숫자가 보여주는 것은 단순한 불일치가 아니라 '시간 압박'입니다. 개발자들은 AI를 쓰지 않으면 뒤처진다고 느끼지만, AI 산출물을 꼼꼼히 검증할 시간은 주어지지 않습니다. 도구의 속도와 품질 관리 사이의 균형을 맞추는 워크플로우 설계가 필요합니다.",
+    visual_suggestion: "묣료 스톡 키워드: code verification checklist, AI assistant interface, security scan, developer thinking, bug alert. 생성형 프롬프트: \"developer workstation with dual monitors showing code and AI chat interface, verification checklist on desk, thoughtful expression, realistic documentary style, neutral lighting, no logos\"",
+    tags: ["AI", "코드검증", "개발자도구", "보안", "품질관리"],
+    comments: [
+      {
+        side: "left",
+        author: "바쁜개발자",
+        text: "체크할 시간이 없음 ㅠ 마감이 먼저야",
+        time: "오전 1:42"
+      },
+      {
+        side: "right",
+        author: "꼼꼼파",
+        text: "그러다가 프로덕션에서 버그 터지면 더 큰일",
+        time: "오전 1:43"
+      },
+      {
+        side: "left",
+        author: "리드시점",
+        text: "팀 차원에서 검증 체크리스트 정립해야 함",
+        time: "오전 1:44"
+      },
+      {
+        side: "right",
+        author: "신규입사",
+        text: "AI가 잘못 알려주는 것도 많아서 두렵긴 함",
+        time: "오전 1:45"
+      },
+      {
+        side: "left",
+        author: "현업시니어",
+        text: "핵심 로직은 무조건 직접 봐야 함 인정?",
+        time: "오전 1:46"
+      },
+      {
+        side: "right",
+        author: "자동화충",
+        text: "린터랑 테스트 자동화로 커버 가능한 부분도 있음",
+        time: "오전 1:47"
+      },
+      {
+        side: "left",
+        author: "리스크관리",
+        text: "AI 쓰되 리뷰 프로세스는 더 엄격하게",
+        time: "오전 1:48"
+      },
+      {
+        side: "right",
+        author: "결론내기",
+        text: "속도와 품질 사이에서 줄타기 중이네 ㅋㅋ",
+        time: "오전 1:49"
+      }
+    ]
+  },
+  {
+    id: "issue-20260215-spotify-ai-dev-evolution",
+    title: "Spotify의 AI 활용과 개발자 역할 변화",
+    catchy_title: "코드 안 치는 개발자: Spotify가 보여준 AI 시대 역할 재정의",
+    source_name: "해외 테크 미디어 복합 본문",
+    source_url: "",
+    published_at: "2026-02-15T01:45:00+09:00",
+    image: "images/generated/post-9006-cover.svg",
+    image_variants: ["images/generated/post-9006-v1.svg", "images/generated/post-9006-v2.svg", "images/generated/post-9006-v3.svg"],
+    rewritten_body: "글로벌 스트리밍 서비스 기업에서 흥미로운 변화가 일어나고 있습니다. 회사 내 우수한 개발자들이 직접 코드를 작성하지 않고도 효율적으로 작업하고 있다는 소식입니다. AI 보조 도구의 발달로 개발자들이 더 전략적이고 창의적인 업무에 집중할 수 있게 되면서, 개발자의 역할이 '코드 작성자'에서 'AI 협업자'로 변화하고 있습니다.",
+    summary_lines: [
+      "AI 코딩 어시스턴트의 능력 향상으로 반복적 코딩 작업을 AI에 위임하고 개발자는 설계와 아키텍처에 집중하는 추세",
+      "코드 리뷰와 디버깅도 AI의 도움을 받아 효율적으로 진행하며 개발 프로세스 전반이 변화 중",
+      "미래 개발자의 핵심 역량은 프롬프트 엔지니어링, AI 감독 능력, 고수준 설계력으로 이동할 것"
+    ],
+    curator_insight: "이 변화의 핵심은 '코딩을 안 한다'가 아니라 '코딩을 시킨다'는 점입니다. 개발자의 가치가 구현 능력에서 문제 정의와 해결 방향 설계로 옮겨가고 있습니다. 이는 주니어 개발자에게는 새로운 진입 장벽이 될 수도, 시니어에게는 더 큰 영향력의 기회가 될 수도 있습니다.",
+    visual_suggestion: "묣료 스톡 키워드: software architect planning, AI collaboration, strategic thinking, tech leadership, modern office. 생성형 프롬프트: \"software architect at whiteboard with system diagrams, AI interface on tablet, strategic planning session, modern tech office, documentary photography style, neutral professional tone, no logos\"",
+    tags: ["AI", "개발자역할", "Spotify", "미래개발", "소프트웨어설계"],
+    comments: [
+      {
+        side: "left",
+        author: "기대됨",
+        text: "드디어 창의적인 일에 집중할 수 있게 되나",
+        time: "오전 1:46"
+      },
+      {
+        side: "right",
+        author: "걱정파",
+        text: "주니어는 어떻게 성장하라는 거지..",
+        time: "오전 1:47"
+      },
+      {
+        side: "left",
+        author: "시니어개발",
+        text: "아키텍처 보는 눈이 더 중요해지는 거 같음",
+        time: "오전 1:48"
+      },
+      {
+        side: "right",
+        author: "현실시점",
+        text: "결국 AI가 못하는 판단은 사람이 해야 함",
+        time: "오전 1:49"
+      },
+      {
+        side: "left",
+        author: "커리어고민",
+        text: "프롬프트 잘 쓰는 것도 실력이긴 함 ㅋㅋ",
+        time: "오전 1:50"
+      },
+      {
+        side: "right",
+        author: "기술윤리",
+        text: "AI가 만든 코드 책임은 여전히 사람에게",
+        time: "오전 1:51"
+      },
+      {
+        side: "left",
+        author: "변화적응",
+        text: "개발자 정의가 바뀌는 시점인 듯",
+        time: "오전 1:52"
+      },
+      {
+        side: "right",
+        author: "미래예측",
+        text: "5년 후 개발자 JD가 완전 달라질 것 같음",
+        time: "오전 1:53"
+      }
+    ]
   }
 ];
