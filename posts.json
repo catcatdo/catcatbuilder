@@ -4264,6 +4264,32 @@
         "images/generated/post-163-v2.svg",
         "images/generated/post-163-v3.svg"
       ]
+    },
+    {
+      "id": 164,
+      "title": "월말마다 돈이 부족할 때 고정비 줄이는 순서",
+      "category": "life",
+      "date": "2026-02-14",
+      "image": "images/generated/post-164-cover.svg",
+      "excerpt": "수입은 비슷한데 월말마다 생활비가 빠듯해지는 상황 상황에서 오늘 바로 따라할 수 있는 가벼운 실전 팁을 정리했습니다.",
+      "content": "## 월말마다 돈이 부족할 때 고정비 줄이는 순서\n\n실시간 큰 이슈가 잠잠한 시간대에도, 사람들이 실제로 자주 겪는 생활 문제는 계속 생깁니다.  \n이 글은 **2026-02-14 14:33 UTC** 기준 자동 발행된 가벼운 실전 가이드입니다.\n\n### 문제 상황\n수입은 비슷한데 월말마다 생활비가 빠듯해지는 상황\n\n### 세줄요약\n1. 지금 문제는 누구나 반복적으로 겪는 일상형 이슈입니다.\n2. 복잡한 이론보다 바로 실행할 수 있는 순서가 효과를 만듭니다.\n3. 작은 변화 1개라도 꾸준히 유지하면 체감이 확실히 좋아집니다.\n\n### 바로 해보기\n1. 통신비·구독·보험처럼 매달 자동 결제되는 항목을 먼저 한 번에 모읍니다.\n2. 최근 3개월 사용량이 낮은 항목부터 해지 또는 하위 요금제로 변경합니다.\n3. 카드 혜택과 실제 사용 패턴이 맞지 않으면 주카드 1장만 남겨 단순화합니다.\n4. 남은 예산은 식비·교통비처럼 변동 지출 상한을 정해 관리합니다.\n\n### 5분 체크리스트\n- [ ] 오늘 바로 적용할 항목 1개 선택\n- [ ] 이번 주에 유지할 습관 1개 확정\n- [ ] 효과 확인을 위한 메모 1줄 남기기\n\n### 릴황생각\n하루를 바꾸는 건 거창한 계획보다 작은 실행입니다. 오늘 한 번 해보고, 맞으면 내 루틴으로 고정하면 됩니다.",
+      "tags": [
+        "생활비",
+        "절약",
+        "고정비",
+        "가계관리",
+        "실전팁"
+      ],
+      "image_prompts": [
+        "editorial problem-solving image, life, 월말마다 돈이 부족할 때 고정비 줄이는 순서, 수입은 비슷한데 월말마다 생활비가 빠듯해지는 상황, keywords: 생활비, 절약, 고정비, 가계관리, realistic style, no logo, no text",
+        "workflow checklist concept visual, 월말마다 돈이 부족할 때 고정비 줄이는 순서, 수입은 비슷한데 월말마다 생활비가 빠듯해지는 상황, clean desk, notebook, dashboard mood, documentary photo style, no text",
+        "strategy meeting concept, life operations planning, 월말마다 돈이 부족할 때 고정비 줄이는 순서, minimal modern composition, realistic lighting, no letters"
+      ],
+      "image_variants": [
+        "images/generated/post-164-v1.svg",
+        "images/generated/post-164-v2.svg",
+        "images/generated/post-164-v3.svg"
+      ]
     }
   ]
 }
