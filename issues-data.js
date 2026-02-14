@@ -628,5 +628,74 @@ window.ISSUE_THREADS = window.ISSUE_THREADS || [
         time: "오전 4:17"
       }
     ]
+  },
+  {
+    id: "issue-20260215-ai-developer-role-shift",
+    title: "AI 시대 개발자 역할의 변화",
+    catchy_title: "코드 안 짜도 되는 개발자? AI가 바꾸는 개발자의 미래",
+    source_name: "Reddit r/programming, r/webdev 기반 재구성",
+    source_url: "",
+    published_at: "2026-02-15T04:40:00+09:00",
+    image: "images/generated/post-9009-cover.svg",
+    image_variants: ["images/generated/post-9009-v1.svg", "images/generated/post-9009-v2.svg", "images/generated/post-9009-v3.svg"],
+    rewritten_body: "AI 도구가 개발자의 업무 방식에 미치는 영향이 커지고 있습니다. 최근 설문조사 결과를 볼 때, 대다수 엔지니어(96%에 달함)가 AI가 생성한 결과물을 완전히 신뢰하지 않는 것으로 나타났습니다. 흥미로운 점은 실제로 그 결과를 검증하는 사람은 절반에도 미치지 않는다는 사실입니다. 일부 기업에서는 숙련된 개발자들이 직접 코드를 작성하는 대신 AI 도구를 활용하는 방식으로 업무 방식이 전환되고 있으며, 이는 개발자의 역할이 코드 작성자에서 AI 출력물 검토자와 통합자로 변화하고 있음을 시사합니다. 오픈소스 생태계에서도 AI가 자동으로 이슈를 해결하고 PR을 생성하는 사례가 늘어나고 있지만, 이러한 AI 기여가 거부당했을 때 발생하는 갈등도 새로운 문제로 떠오르고 있습니다.",
+    summary_lines: [
+      "96%의 엔지니어가 AI 출력물을 완전히 신뢰하지 않지만, 실제 검증하는 사람은 48%에 불과함",
+      "일부 기업에서 개발자의 역할이 코드 작성자에서 AI 출력물 검토자로 전환되는 추세",
+      "오픈소스 생태계에서 AI 봇의 자동 기여와 관련된 새로운 갈등과 정책 수립 필요성 대두"
+    ],
+    curator_insight: "이 이슈의 핵심은 '개발자가 사라진다'가 아니라 '책임 구간이 위로 올라간다'는 변화입니다. AI는 작성 비용을 낮춰주지만, 잘못된 가정과 숨은 결함을 걸러내는 최종 책임은 결국 사람의 설계력과 검증력에 남습니다. 개발자의 가치는 타이핑 속도보다 아키텍처 판단력, 도메인 이해, 리스크 관리 능력에서 갈릴 것입니다.",
+    visual_suggestion: "묣료 스톡 키워드: ai pair programming, code review monitor, software architecture board, engineering standup, debugging workflow. 생성형 프롬프트: 'software team reviewing AI-generated code on large monitors, architecture diagrams on glass wall, collaborative engineering environment, realistic documentary photo, neutral tone, no logos, no readable text'",
+    tags: ["AI", "개발자", "개발트렌드", "오픈소스", "코딩", "기술변화"],
+    comments: [
+      {
+        side: "left",
+        author: "AI낙관론",
+        text: "보일러플레이트 코드 안 짜도 되는 건 환영임 ㅋㅋ",
+        time: "오전 4:41"
+      },
+      {
+        side: "right",
+        author: "검증파",
+        text: "AI가 짜준 코드 무조건 믿었다가 큰코다침 ㄹㅇ",
+        time: "오전 4:42"
+      },
+      {
+        side: "left",
+        author: "시니어개발",
+        text: "리뷰 시간은 늘어나는데 생산성은 오히려 떨어짐",
+        time: "오전 4:43"
+      },
+      {
+        side: "right",
+        author: "미래준비",
+        text: "프롬프트 잘 쓰는 게 새로운 코딩 실력이 될 듯",
+        time: "오전 4:44"
+      },
+      {
+        side: "left",
+        author: "오픈소스기여",
+        text: "AI 봇이 PR 날리는 거 거부하는 게 맞는 거 같음",
+        time: "오전 4:45"
+      },
+      {
+        side: "right",
+        author: "기업현실",
+        text: "회사에서 AI 안 쓰면 뒤처진다는 압박 심함",
+        time: "오전 4:46"
+      },
+      {
+        side: "left",
+        author: "주니어고민",
+        text: "AI 때문에 신입 개발자 취업 더 어려워질 듯",
+        time: "오전 4:47"
+      },
+      {
+        side: "right",
+        author: "아키텍처중시",
+        text: "코딩보다 시스템 설계 능력이 진짜 경쟁력이 될 거임",
+        time: "오전 4:48"
+      }
+    ]
   }
 ];
