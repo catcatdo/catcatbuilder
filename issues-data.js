@@ -1474,5 +1474,76 @@ window.ISSUE_THREADS = window.ISSUE_THREADS || [
         time: "오전 11:17"
       }
     ]
+  },
+  {
+    id: "issue-20260215-git-workflow-productivity-system",
+    title: "개발자 생산성을 높이는 Git 워크플로우 설계: 도구보다 운영 기준이 먼저다",
+    description: "<p>Git 생산성은 명령어 숙련도보다 브랜치 수명, PR 크기, 자동 검증 같은 운영 기준에서 갈립니다.</p><p>이 글은 트렁크 기반 개발, 커밋 규칙, 코드 리뷰 최적화, AI 보조 도구 활용까지 팀이 바로 적용할 수 있는 실행 체크리스트를 정리합니다.</p>",
+    date: "2026-02-15",
+    catchy_title: "커밋은 늘었는데 배포는 왜 느릴까: 팀 생산성을 올리는 Git 운영 시스템",
+    source_name: "auto_content/hourly_issue_2026-02-15_1139.txt 기반 오리지널 가이드",
+    source_url: "",
+    published_at: "2026-02-15T11:39:00+09:00",
+    image: "images/issue-fallback.svg",
+    image_variants: [],
+    rewritten_body: "Git을 오래 써도 팀 생산성이 오르지 않는 이유는 도구가 아니라 운영 기준이 분산돼 있기 때문입니다. 브랜치가 길어지고 PR이 커지면 충돌과 리뷰 지연이 누적되고, 결국 배포 리듬이 끊깁니다. 해결의 핵심은 트렁크 기반 병합 주기, 커밋 메시지 규칙, 자동 검증 게이트, AI 보조 도구의 사용 경계를 하나의 팀 표준으로 묶는 것입니다. 이 기준을 문서화하고 지표로 점검하면 같은 인력으로도 더 안정적인 배포 사이클을 만들 수 있습니다.",
+    summary_lines: [
+      "생산성 저하는 Git 명령 숙련도보다 브랜치 수명, PR 크기, 리뷰 대기 시간 같은 운영 지표에서 먼저 드러난다.",
+      "트렁크 기반 개발과 작은 PR 운영을 결합하면 충돌 비용을 줄이고 배포 빈도를 높이기 쉽다.",
+      "AI 보조 도구는 구현 속도를 높이지만 최종 품질은 테스트·리뷰·릴리스 규칙으로 관리해야 효과가 지속된다."
+    ],
+    curator_insight: "Git 전략의 본질은 '어떤 브랜치를 쓰느냐'보다 '어떤 속도로 검증하고 병합하느냐'입니다. 팀이 지킬 수 있는 최소 규칙을 자동화로 고정하는 순간 생산성은 개인 역량보다 시스템 품질에 의해 결정됩니다.",
+    visual_suggestion: "무료 스톡 키워드: git workflow board, developer team standup, code review monitor, ci pipeline dashboard, agile engineering. 생성형 프롬프트: \"software team planning git workflow and release cadence in front of CI dashboard, modern office, realistic editorial photo, clean composition, no logos, no readable proprietary text\"",
+    tags: ["Git", "개발생산성", "트렁크기반개발", "코드리뷰", "CI/CD", "AI도구"],
+    comments: [
+      {
+        side: "left",
+        author: "플랫폼개발",
+        text: "브랜치 오래 끌수록 리뷰 비용이 눈덩이처럼 커지는 건 공감함",
+        time: "오전 11:40"
+      },
+      {
+        side: "right",
+        author: "백엔드리드",
+        text: "트렁크 기반으로 바꾸고 feature flag 붙이니 릴리스가 훨씬 안정적이었음",
+        time: "오전 11:41"
+      },
+      {
+        side: "left",
+        author: "프론트실무",
+        text: "PR 크기 상한을 정해두니까 리뷰 리드타임이 확 줄더라",
+        time: "오전 11:42"
+      },
+      {
+        side: "right",
+        author: "DevOps담당",
+        text: "결국 자동 테스트 통과 없이는 어떤 전략도 오래 못 감",
+        time: "오전 11:43"
+      },
+      {
+        side: "left",
+        author: "주니어개발",
+        text: "커밋 메시지에 왜를 쓰라는 규칙이 디버깅할 때 진짜 도움 됨",
+        time: "오전 11:44"
+      },
+      {
+        side: "right",
+        author: "AI활용팀",
+        text: "AI가 초안은 빨리 주는데 최종 병합 기준은 사람이 더 엄격해야 하더라",
+        time: "오전 11:45"
+      },
+      {
+        side: "left",
+        author: "아키텍트",
+        text: "도구 선택보다 운영 기준 문서가 먼저라는 말이 핵심인 듯",
+        time: "오전 11:46"
+      },
+      {
+        side: "right",
+        author: "정리메모",
+        text: "작은 PR, 짧은 브랜치, 강한 자동화 이 세 개가 실무에서 제일 효과적",
+        time: "오전 11:47"
+      }
+    ]
   }
 ];

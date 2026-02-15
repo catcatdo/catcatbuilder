@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>개발자 생산성을 높이는 Git 워크플로우 설계: 도구보다 운영 기준이 먼저다 | 릴황 이슈</title>
+    <meta name="description" content="Git 생산성은 명령어가 아니라 운영 기준에서 결정됩니다. 트렁크 기반 개발, PR 규칙, 코드 리뷰 최적화, AI 보조 도구 경계 설정까지 실무 적용 기준을 정리했습니다.">
+    <meta name="keywords" content="Git, 개발생산성, 트렁크기반개발, 코드리뷰, CI/CD, AI도구">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+    <link rel="canonical" href="https://lilhwang.com/issue/issue-20260215-git-workflow-productivity-system.html">
+
+    <meta property="og:title" content="개발자 생산성을 높이는 Git 워크플로우 설계: 도구보다 운영 기준이 먼저다 | 릴황 이슈">
+    <meta property="og:description" content="작은 PR, 짧은 브랜치, 강한 자동화로 배포 리듬을 회복하는 Git 운영 시스템을 제시합니다.">
+    <meta property="og:image" content="https://lilhwang.com/images/issue-fallback.svg">
+    <meta property="og:url" content="https://lilhwang.com/issue/issue-20260215-git-workflow-productivity-system.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="릴황">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="개발자 생산성을 높이는 Git 워크플로우 설계: 도구보다 운영 기준이 먼저다 | 릴황 이슈">
+    <meta name="twitter:description" content="트렁크 기반 병합 주기와 리뷰 자동화로 팀 생산성을 높이는 실전 가이드입니다.">
+    <meta name="twitter:image" content="https://lilhwang.com/images/issue-fallback.svg">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      "headline": "개발자 생산성을 높이는 Git 워크플로우 설계: 도구보다 운영 기준이 먼저다",
+      "description": "트렁크 기반 개발, PR 규칙, 리뷰 최적화, AI 보조 도구 경계 설정을 포함한 Git 운영 가이드",
+      "datePublished": "2026-02-15T11:39:00+09:00",
+      "dateModified": "2026-02-15T11:39:00+09:00",
+      "author": {
+        "@type": "Organization",
+        "name": "릴황"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "릴황",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://lilhwang.com/images/logo.svg"
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://lilhwang.com/issue/issue-20260215-git-workflow-productivity-system.html"
+      }
+    }
+    </script>
+
+    <style>
+        :root {
+            --bg: #f2f7f5;
+            --paper: #ffffff;
+            --text: #18302a;
+            --muted: #5c756d;
+            --line: #d1e1db;
+            --accent: #0d6b58;
+            --accent-soft: #e8f5f1;
+            --ok: #1d7a45;
+            --warn: #a86a00;
+            --shadow: 0 16px 34px rgba(18, 42, 36, 0.10);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Noto Sans KR", "Apple SD Gothic Neo", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            line-height: 1.72;
+            color: var(--text);
+            background:
+                radial-gradient(circle at 2% 2%, #e4f1ed 0%, transparent 35%),
+                radial-gradient(circle at 98% 8%, #e7f0fb 0%, transparent 32%),
+                var(--bg);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 940px;
+            margin: 0 auto;
+            padding: 28px 18px 52px;
+        }
+
+        .hero {
+            background: linear-gradient(145deg, #ffffff 0%, #f2faf7 100%);
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            padding: 34px 30px;
+            margin-bottom: 20px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            border: 1px solid #bad7cf;
+            border-radius: 999px;
+            background: var(--accent-soft);
+            color: var(--accent);
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 6px 12px;
+            margin-bottom: 12px;
+        }
+
+        h1 {
+            font-size: clamp(1.78rem, 4.1vw, 2.32rem);
+            line-height: 1.3;
+            letter-spacing: -0.02em;
+            margin-bottom: 12px;
+        }
+
+        .meta {
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .article {
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            padding: 30px;
+        }
+
+        .lead {
+            border: 1px solid #cbe4dc;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #ecf8f4 0%, #f7fcfa 100%);
+            padding: 18px;
+            color: #1a5a4d;
+            margin-bottom: 24px;
+        }
+
+        h2 {
+            font-size: 1.34rem;
+            line-height: 1.38;
+            letter-spacing: -0.01em;
+            margin: 30px 0 12px;
+        }
+
+        h3 {
+            font-size: 1.04rem;
+            margin: 18px 0 8px;
+        }
+
+        p {
+            margin: 0 0 14px;
+        }
+
+        ul,
+        ol {
+            margin: 0 0 15px 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px;
+            margin: 12px 0 16px;
+        }
+
+        .card {
+            border: 1px solid var(--line);
+            background: #fff;
+            border-radius: 12px;
+            padding: 14px;
+        }
+
+        .card strong {
+            display: block;
+            margin-bottom: 6px;
+            color: #1a5a4d;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 14px 0 10px;
+            font-size: 0.95rem;
+        }
+
+        .table th,
+        .table td {
+            border: 1px solid var(--line);
+            text-align: left;
+            vertical-align: top;
+            padding: 10px;
+        }
+
+        .table thead th {
+            background: #edf7f3;
+            font-weight: 700;
+        }
+
+        .note {
+            border: 1px solid var(--line);
+            border-left: 4px solid var(--accent);
+            background: #f4fbf8;
+            border-radius: 10px;
+            padding: 14px;
+            margin: 18px 0;
+        }
+
+        .ok {
+            color: var(--ok);
+            font-weight: 700;
+        }
+
+        .warn {
+            color: var(--warn);
+            font-weight: 700;
+        }
+
+        .tag-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 26px 0 10px;
+        }
+
+        .tag {
+            display: inline-flex;
+            border: 1px solid #bcd8cf;
+            background: var(--accent-soft);
+            color: var(--accent);
+            border-radius: 999px;
+            padding: 6px 12px;
+            font-size: 0.84rem;
+            font-weight: 600;
+        }
+
+        .back-link {
+            display: inline-flex;
+            text-decoration: none;
+            color: #fff;
+            background: var(--accent);
+            border-radius: 10px;
+            padding: 10px 16px;
+            font-weight: 600;
+            margin-top: 8px;
+        }
+
+        .back-link:hover {
+            background: #0a5848;
+        }
+
+        @media (max-width: 760px) {
+            .hero,
+            .article {
+                padding: 24px 18px;
+                border-radius: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="hero">
+            <span class="eyebrow">Engineering Productivity</span>
+            <h1>커밋은 늘었는데 배포는 왜 느릴까: 팀 생산성을 올리는 Git 운영 시스템</h1>
+            <p class="meta">릴황 테크 이슈 · 2026년 2월 15일 · 협업 워크플로우 가이드</p>
+        </header>
+
+        <article class="article">
+            <p class="lead">Git으로 코드 관리는 하고 있는데 배포가 느려진다면, 문제는 보통 명령어가 아니라 운영 기준입니다. 브랜치 수명, PR 크기, 리뷰 대기 시간, 자동 검증 규칙을 한 시스템으로 맞출 때 생산성이 안정적으로 올라갑니다.</p>
+
+            <h2>1. 생산성이 떨어지는 팀의 공통 신호</h2>
+            <p>생산성이 낮은 팀은 대개 기술력이 부족해서가 아니라 협업 리듬이 불안정해서 느려집니다. 특히 장기 브랜치와 큰 PR이 반복되면 충돌 처리와 리뷰 피로가 누적돼 실제 개발 시간이 줄어듭니다.</p>
+            <ul>
+                <li>브랜치 평균 수명이 3일을 넘고, 머지 직전에 충돌이 자주 발생한다.</li>
+                <li>PR 하나에 변경 파일이 과도하게 많아 리뷰가 지연된다.</li>
+                <li>CI 실패 원인이 규칙 불일치(포맷, 린트, 테스트 누락)에서 반복된다.</li>
+            </ul>
+
+            <h2>2. 먼저 맞춰야 할 운영 지표 4개</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>지표</th>
+                        <th>권장 기준</th>
+                        <th>운영 포인트</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>브랜치 수명</td>
+                        <td class="ok">24~48시간</td>
+                        <td>짧은 병합 주기를 고정하고 feature flag로 미완성 기능을 숨긴다.</td>
+                    </tr>
+                    <tr>
+                        <td>PR 크기</td>
+                        <td class="ok">작고 목적이 명확한 단위</td>
+                        <td>기능 구현, 리팩터링, 설정 변경을 분리해 리뷰 부담을 줄인다.</td>
+                    </tr>
+                    <tr>
+                        <td>리뷰 대기 시간</td>
+                        <td class="ok">근무일 기준 당일 처리</td>
+                        <td>리뷰어 로테이션과 우선순위 규칙을 문서화한다.</td>
+                    </tr>
+                    <tr>
+                        <td>CI 실패율</td>
+                        <td class="warn">반복 실패 원인 제거</td>
+                        <td>사전 훅(pre-commit)과 템플릿으로 기본 실수를 병합 전 차단한다.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>3. 실무에서 잘 작동하는 Git 기본 구조</h2>
+            <div class="cards">
+                <section class="card">
+                    <strong>Trunk + 짧은 feature 브랜치</strong>
+                    <p>장기 브랜치를 줄이고 자주 병합해 충돌 비용을 낮춥니다.</p>
+                </section>
+                <section class="card">
+                    <strong>Feature Flag 운영</strong>
+                    <p>미완성 기능을 안전하게 숨겨 배포 주기와 개발 속도를 분리합니다.</p>
+                </section>
+                <section class="card">
+                    <strong>필수 CI 게이트</strong>
+                    <p>테스트, 린트, 보안 스캔 통과 없이 main 병합을 막아 품질을 표준화합니다.</p>
+                </section>
+            </div>
+            <div class="note">핵심은 복잡한 브랜치 모델이 아닙니다. 팀이 매일 지킬 수 있는 단순 규칙을 정하고 자동화로 강제하는 것이 장기적으로 가장 안정적입니다.</div>
+
+            <h2>4. 커밋과 리뷰 품질을 올리는 운영 규칙</h2>
+            <h3>커밋 메시지</h3>
+            <ul>
+                <li>무엇을 바꿨는지와 함께 <strong>왜 바꿨는지</strong>를 남깁니다.</li>
+                <li>이슈 번호, 영향 범위, 롤백 힌트를 포함하면 장애 대응이 빨라집니다.</li>
+            </ul>
+            <h3>PR 템플릿</h3>
+            <ul>
+                <li>변경 목적, 테스트 결과, 위험 포인트, 배포 체크를 고정 섹션으로 둡니다.</li>
+                <li>리뷰어가 바로 판단할 수 있도록 화면 변경이나 로그 샘플을 첨부합니다.</li>
+            </ul>
+
+            <h2>5. AI 보조 도구는 어디까지 맡겨야 하나</h2>
+            <p>AI 도구는 반복 구현 속도를 높이는 데 매우 유용하지만, 설계 판단과 배포 책임까지 대체하지는 못합니다. 역할 경계를 분명히 해야 생산성이 장기적으로 유지됩니다.</p>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>구간</th>
+                        <th>AI 활용 권장</th>
+                        <th>사람이 반드시 담당</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>반복 코드 작성</td>
+                        <td class="ok">보일러플레이트, 테스트 초안 생성</td>
+                        <td>도메인 규칙 검증, 예외 케이스 보완</td>
+                    </tr>
+                    <tr>
+                        <td>코드 리뷰</td>
+                        <td class="ok">표면적 패턴 점검 보조</td>
+                        <td>아키텍처 적합성, 보안 영향 판단</td>
+                    </tr>
+                    <tr>
+                        <td>배포 준비</td>
+                        <td class="warn">체크리스트 초안 생성</td>
+                        <td>릴리스 승인, 롤백 계획 최종 결정</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>6. 2주 도입 플랜</h2>
+            <ol>
+                <li>1~3일: 현재 브랜치 수명, PR 크기, 리뷰 리드타임을 수집해 기준선을 만든다.</li>
+                <li>4~7일: Trunk 중심 규칙, 커밋 메시지 포맷, PR 템플릿을 저장소에 반영한다.</li>
+                <li>8~11일: CI 필수 체크와 main 보호 규칙을 적용하고 예외 절차를 문서화한다.</li>
+                <li>12~14일: 지표를 재측정해 병목 구간을 수정하고 팀 회고에서 규칙을 단순화한다.</li>
+            </ol>
+
+            <h2>결론</h2>
+            <p>Git 생산성은 개인의 명령어 숙련도보다 팀 운영 시스템의 품질에 좌우됩니다. 작은 PR, 짧은 브랜치, 강한 자동화, 명확한 책임 분리를 갖추면 같은 인력으로도 배포 안정성과 속도를 함께 끌어올릴 수 있습니다.</p>
+            <p>지금 필요한 것은 새 도구 추가보다 기준 정렬입니다. 팀이 실제로 지킬 수 있는 규칙을 정하고, 지표로 점검하며, 자동화로 반복 가능하게 만드세요.</p>
+
+            <div class="tag-row">
+                <span class="tag">#Git</span>
+                <span class="tag">#개발생산성</span>
+                <span class="tag">#트렁크기반개발</span>
+                <span class="tag">#코드리뷰</span>
+                <span class="tag">#CI/CD</span>
+                <span class="tag">#AI도구</span>
+            </div>
+
+            <a class="back-link" href="../issues.html">이슈 목록으로 돌아가기</a>
+        </article>
+    </div>
+</body>
+</html>
