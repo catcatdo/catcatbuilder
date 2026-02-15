@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026년 웹 개발자 로드맵: 6개월 안에 포트폴리오 완성하기 | 릴황 이슈</title>
+    <meta name="description" content="웹 개발 입문자를 위한 6개월 실전 로드맵입니다. 기초 학습, 프레임워크, API, 배포, 포트폴리오, 취업 준비까지 월별 실행 기준으로 정리했습니다.">
+    <meta name="keywords" content="웹개발, 개발자로드맵, 프론트엔드, 백엔드, 포트폴리오, 취업준비, JavaScript, React">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+    <link rel="canonical" href="https://lilhwang.com/issue/issue-20260215-web-developer-roadmap-6months.html">
+
+    <meta property="og:title" content="2026년 웹 개발자 로드맵: 6개월 안에 포트폴리오 완성하기 | 릴황 이슈">
+    <meta property="og:description" content="튜토리얼 반복을 끝내고 실제 배포 가능한 프로젝트를 만드는 6개월 실행 계획을 제공합니다.">
+    <meta property="og:image" content="https://lilhwang.com/images/issue-fallback.svg">
+    <meta property="og:url" content="https://lilhwang.com/issue/issue-20260215-web-developer-roadmap-6months.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="릴황">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="2026년 웹 개발자 로드맵: 6개월 안에 포트폴리오 완성하기 | 릴황 이슈">
+    <meta name="twitter:description" content="입문자가 6개월 안에 실무형 포트폴리오를 만드는 월별 체크리스트와 루틴을 정리했습니다.">
+    <meta name="twitter:image" content="https://lilhwang.com/images/issue-fallback.svg">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "2026년 웹 개발자 로드맵: 6개월 안에 포트폴리오 완성하기",
+      "description": "웹 개발 입문자를 위한 6개월 실전 로드맵입니다. 기초 학습, 프레임워크, API, 배포, 포트폴리오, 취업 준비까지 월별 실행 기준으로 정리했습니다.",
+      "datePublished": "2026-02-15T09:40:00+09:00",
+      "dateModified": "2026-02-15T09:40:00+09:00",
+      "author": {
+        "@type": "Organization",
+        "name": "릴황"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "릴황",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://lilhwang.com/images/logo.webp"
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://lilhwang.com/issue/issue-20260215-web-developer-roadmap-6months.html"
+      }
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #f5f9f7;
+            --text: #1f2b2a;
+            --muted: #5e7470;
+            --card: #ffffff;
+            --line: #d5e4de;
+            --accent: #146553;
+            --accent-soft: #e8f5f1;
+            --ok: #1f7a43;
+            --warn: #a55c00;
+            --shadow: 0 14px 34px rgba(15, 23, 42, 0.09);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.72;
+            color: var(--text);
+            background:
+                radial-gradient(circle at 4% 4%, #e8f6f2 0%, transparent 33%),
+                radial-gradient(circle at 95% 10%, #ecf7ff 0%, transparent 28%),
+                var(--bg);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 930px;
+            margin: 0 auto;
+            padding: 28px 18px 52px;
+        }
+
+        .hero {
+            background: linear-gradient(140deg, #ffffff 0%, #f3fbf8 100%);
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            padding: 34px 30px;
+            margin-bottom: 20px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            border: 1px solid #b8d9cf;
+            border-radius: 999px;
+            background: var(--accent-soft);
+            color: var(--accent);
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 6px 12px;
+            margin-bottom: 12px;
+        }
+
+        h1 {
+            font-size: clamp(1.8rem, 4.2vw, 2.35rem);
+            line-height: 1.3;
+            letter-spacing: -0.02em;
+            margin-bottom: 12px;
+        }
+
+        .meta {
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .article {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            padding: 30px;
+        }
+
+        .lead {
+            border: 1px solid #cfe5dd;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #ecf8f4 0%, #f8fcfa 100%);
+            padding: 18px;
+            color: #174e43;
+            margin-bottom: 24px;
+        }
+
+        h2 {
+            font-size: 1.36rem;
+            line-height: 1.36;
+            letter-spacing: -0.01em;
+            margin: 30px 0 12px;
+        }
+
+        h3 {
+            font-size: 1.06rem;
+            margin: 18px 0 8px;
+        }
+
+        p {
+            margin: 0 0 14px;
+        }
+
+        ul,
+        ol {
+            margin: 0 0 15px 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .note {
+            border: 1px solid var(--line);
+            border-left: 4px solid var(--accent);
+            background: #f7fcfa;
+            border-radius: 10px;
+            padding: 14px;
+            margin: 18px 0;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            margin: 12px 0 16px;
+        }
+
+        .card {
+            border: 1px solid var(--line);
+            background: #fff;
+            border-radius: 12px;
+            padding: 14px;
+        }
+
+        .card strong {
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 14px 0 10px;
+            font-size: 0.95rem;
+        }
+
+        .table th,
+        .table td {
+            border: 1px solid var(--line);
+            text-align: left;
+            vertical-align: top;
+            padding: 10px;
+        }
+
+        .table thead th {
+            background: #eff8f4;
+            font-weight: 700;
+        }
+
+        .ok {
+            color: var(--ok);
+            font-weight: 600;
+        }
+
+        .warn {
+            color: var(--warn);
+            font-weight: 600;
+        }
+
+        .tag-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 26px 0 10px;
+        }
+
+        .tag {
+            display: inline-flex;
+            border: 1px solid #b9ddd2;
+            background: var(--accent-soft);
+            color: var(--accent);
+            border-radius: 999px;
+            padding: 6px 12px;
+            font-size: 0.84rem;
+            font-weight: 600;
+        }
+
+        .back-link {
+            display: inline-flex;
+            text-decoration: none;
+            color: #fff;
+            background: var(--accent);
+            border-radius: 10px;
+            padding: 10px 16px;
+            font-weight: 600;
+            margin-top: 8px;
+        }
+
+        .back-link:hover {
+            background: #0f4f42;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 18px 14px 40px;
+            }
+
+            .hero,
+            .article {
+                padding: 22px;
+                border-radius: 16px;
+            }
+
+            h2 {
+                font-size: 1.22rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="hero">
+            <span class="eyebrow">Career Blueprint</span>
+            <h1>2026년 웹 개발자 로드맵: 6개월 안에 포트폴리오 완성하기</h1>
+            <p class="meta">2026년 2월 15일 · 입문자 실행 가이드 · 약 8분 읽기</p>
+        </header>
+
+        <article class="article">
+            <section class="lead">
+                <p><strong>핵심 요약</strong> 웹 개발 입문자의 성과는 학습량보다 학습 순서에서 갈립니다. 기초를 프로젝트로 고정하고, 프레임워크와 API를 연결한 뒤, 배포와 포트폴리오까지 이어야 6개월 안에 채용 가능한 결과물을 만들 수 있습니다.</p>
+            </section>
+
+            <h2>왜 6개월 로드맵이 효과적인가</h2>
+            <p>입문자가 자주 실패하는 이유는 기술이 어렵기 때문보다, 너무 많은 선택지에서 방향을 잃기 때문입니다. 6개월 로드맵의 장점은 학습 범위를 줄이고 <strong>월별 산출물</strong>을 강제한다는 점입니다. 지식이 아닌 결과물 중심으로 운영하면 중도 포기율이 크게 낮아집니다.</p>
+            <ul>
+                <li>매달 최소 1개 공개 가능한 결과물을 만든다.</li>
+                <li>문법 학습과 실습 비율을 3:7로 유지한다.</li>
+                <li>튜토리얼 완료보다 배포 완료를 우선한다.</li>
+            </ul>
+
+            <h2>1~2개월차: 기초를 프로젝트로 고정하기</h2>
+            <div class="cards">
+                <div class="card">
+                    <strong>HTML/CSS</strong>
+                    <p>시맨틱 태그, 레이아웃(Flexbox/Grid), 반응형 기본을 익히고 랜딩 페이지 2개를 직접 제작합니다.</p>
+                </div>
+                <div class="card">
+                    <strong>JavaScript</strong>
+                    <p>DOM 조작, 비동기 처리, 배열/객체 활용을 중심으로 인터랙션이 있는 작은 앱(Todo, 계산기, 필터 UI)을 만듭니다.</p>
+                </div>
+                <div class="card">
+                    <strong>Git/GitHub</strong>
+                    <p>커밋 메시지 규칙, 브랜치 기반 작업, PR 작성 습관을 초반부터 적용합니다. 협업 경험이 없어도 히스토리 품질을 보여줄 수 있습니다.</p>
+                </div>
+                <div class="card">
+                    <strong>초기 산출물</strong>
+                    <p>정적 사이트 2개 + JS 미니 앱 2개를 배포해 포트폴리오 뼈대를 확보합니다.</p>
+                </div>
+            </div>
+
+            <div class="note">
+                <p><strong>실무 팁:</strong> 다른 서비스 UI를 그대로 베끼는 클론 코딩은 시작점으로만 쓰고, 반드시 기능이나 구조를 하나 이상 바꿔서 본인 판단이 들어간 결과물로 남기세요.</p>
+            </div>
+
+            <h2>3~4개월차: 프레임워크와 API를 연결하기</h2>
+            <p>이 단계의 목표는 프론트와 백을 분리해도 흐름을 이해하는 수준에 도달하는 것입니다. 특정 스택의 유행보다 데이터 흐름과 상태 관리 원리를 이해하는 데 집중해야 이후 전환 비용이 낮습니다.</p>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>영역</th>
+                        <th>권장 작업</th>
+                        <th>완료 기준</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>프론트엔드</td>
+                        <td class="ok">React/Vue/Svelte 중 1개를 선택해 라우팅, 상태 관리, 폼 처리 구현</td>
+                        <td class="warn">공식 문서 예제 복붙 수준에 머물지 않고 기능 수정 가능해야 함</td>
+                    </tr>
+                    <tr>
+                        <td>백엔드/API</td>
+                        <td class="ok">Node.js 또는 Flask로 CRUD API 1개 구축</td>
+                        <td class="warn">HTTP 상태 코드, 예외 처리, 입력 검증이 빠지면 실무 신뢰도 하락</td>
+                    </tr>
+                    <tr>
+                        <td>데이터/인증</td>
+                        <td class="ok">로그인 흐름, 권한 분기, 기본 DB 모델 설계</td>
+                        <td class="warn">인증은 동작만 확인하고 보안 고려가 없으면 면접에서 취약점 지적 가능</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>5개월차: 배포와 품질 운영 능력 만들기</h2>
+            <p>취업 준비에서 차이를 만드는 구간입니다. 많은 입문자가 "코드는 됐다" 단계에서 멈추지만, 실제 평가 포인트는 운영 품질입니다.</p>
+            <ul>
+                <li>Vercel/Netlify/Cloudflare Pages 중 하나로 자동 배포 구성</li>
+                <li>GitHub Actions로 린트+테스트 자동 실행</li>
+                <li>접근성 점검(키보드 이동, 대체 텍스트, 명도 대비)</li>
+                <li>성능 점검(Core Web Vitals, 이미지 최적화, 코드 분할)</li>
+            </ul>
+
+            <h2>6개월차: 포트폴리오와 채용 대응</h2>
+            <p>포트폴리오는 기술 나열 문서가 아니라 문제 해결 기록입니다. 프로젝트 수보다 각 프로젝트의 의사결정 근거를 보여주는 것이 중요합니다.</p>
+            <ol>
+                <li>프로젝트 3~4개를 선정하고 각 프로젝트의 문제 정의, 사용자 시나리오, 기술 선택 이유를 문서화합니다.</li>
+                <li>README에 실행 방법, 아키텍처 다이어그램, 개선 계획을 포함합니다.</li>
+                <li>면접 대비용으로 "실패 경험과 수정 과정"을 2개 이상 정리합니다.</li>
+                <li>기술 블로그에 구현 과정과 트러블슈팅을 주 1회 기록합니다.</li>
+            </ol>
+
+            <h2>주간 학습 루틴 예시 (주 12시간 기준)</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>요일</th>
+                        <th>학습 블록</th>
+                        <th>목표</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>평일 3일</td>
+                        <td>이론 1시간 + 실습 1시간</td>
+                        <td>핵심 개념 이해 후 바로 코드 적용</td>
+                    </tr>
+                    <tr>
+                        <td>주말 1일</td>
+                        <td>프로젝트 집중 4시간</td>
+                        <td>기능 완성 또는 리팩터링 1단계 완료</td>
+                    </tr>
+                    <tr>
+                        <td>주말 1일</td>
+                        <td>회고/문서화 2시간</td>
+                        <td>README 업데이트, 다음 주 목표 고정</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>입문자가 자주 빠지는 4가지 함정</h2>
+            <ol>
+                <li><strong>튜토리얼 반복:</strong> 완강은 늘어나는데 배포 URL이 없다면 학습 전략을 즉시 수정해야 합니다.</li>
+                <li><strong>완벽주의:</strong> 100점 결과물을 기다리면 공개가 늦어집니다. 70점에서 먼저 배포하고 개선하세요.</li>
+                <li><strong>프레임워크 과몰입:</strong> 도구보다 문제 정의 능력이 더 오래 갑니다. 기본기를 먼저 고정하세요.</li>
+                <li><strong>기록 부재:</strong> 해결 과정을 남기지 않으면 면접에서 실력을 설명하기 어렵습니다.</li>
+            </ol>
+
+            <h2>14일 스타트 체크리스트</h2>
+            <ol>
+                <li>학습 스택을 1개만 선택하고 6개월 목표를 문장으로 작성합니다.</li>
+                <li>GitHub 저장소를 만들고 커밋 메시지 규칙을 정합니다.</li>
+                <li>첫 번째 정적 페이지를 제작해 즉시 배포합니다.</li>
+                <li>JS 미니 기능 1개를 붙여 사용자 입력 흐름을 완성합니다.</li>
+                <li>README에 사용 기술, 구현 범위, 다음 개선 항목을 작성합니다.</li>
+                <li>주간 루틴을 캘린더에 고정하고 실행 여부를 기록합니다.</li>
+            </ol>
+
+            <p>6개월은 충분히 짧지만, 제대로 설계하면 커리어를 바꾸기에 충분한 기간입니다. 핵심은 더 많이 배우는 것이 아니라 더 자주 완성하는 것입니다. 매달 배포 결과물을 쌓으면 기술 스택보다 설득력 있는 성장 증거가 만들어집니다.</p>
+
+            <div class="tag-row">
+                <span class="tag">웹개발</span>
+                <span class="tag">개발자커리어</span>
+                <span class="tag">학습로드맵</span>
+                <span class="tag">포트폴리오</span>
+                <span class="tag">프론트엔드</span>
+                <span class="tag">백엔드</span>
+            </div>
+
+            <a href="/issues.html" class="back-link">이슈 목록으로 돌아가기</a>
+        </article>
+    </div>
+</body>
+</html>

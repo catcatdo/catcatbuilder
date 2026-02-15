@@ -1190,5 +1190,76 @@ window.ISSUE_THREADS = window.ISSUE_THREADS || [
         time: "오전 9:17"
       }
     ]
+  },
+  {
+    id: "issue-20260215-web-developer-roadmap-6months",
+    title: "2026년 웹 개발자 로드맵: 6개월 안에 포트폴리오 완성하기",
+    description: "<p>웹 개발 입문자는 무엇을 얼마나 배우느냐보다 어떤 순서로 실습하느냐에서 성과가 갈립니다.</p><p>이 글은 HTML·CSS·JavaScript 기초부터 프레임워크, API, 배포, 포트폴리오까지 6개월 실행 계획을 현실적으로 정리합니다.</p>",
+    date: "2026-02-15",
+    catchy_title: "튜토리얼 지옥 탈출: 6개월 만에 실무형 웹 개발자로 가는 학습 순서",
+    source_name: "자동 생성 요약 초안 기반 오리지널 가이드",
+    source_url: "",
+    published_at: "2026-02-15T09:40:00+09:00",
+    image: "images/issue-fallback.svg",
+    image_variants: [],
+    rewritten_body: "웹 개발 학습에서 가장 큰 실패 원인은 의지가 부족해서가 아니라, 학습 순서가 실무 흐름과 맞지 않기 때문입니다. 2026년 기준으로도 핵심은 동일합니다. 먼저 HTML·CSS·JavaScript와 Git을 프로젝트 중심으로 익히고, 이후 프레임워크와 API 설계로 확장한 뒤, 배포와 품질 관리까지 연결해야 취업 가능한 포트폴리오가 됩니다. 특히 AI 도구를 쓰는 시대일수록 구현 속도보다 요구사항 해석, 구조 설계, 검증 능력이 더 큰 차이를 만듭니다.",
+    summary_lines: [
+      "초반 2개월은 문법 암기보다 클론 코딩과 작은 배포 프로젝트로 기초를 고정하는 것이 효율적이다.",
+      "중반 2개월은 프레임워크 1개와 CRUD API 1개를 완성해 프론트-백 연결 경험을 확보해야 한다.",
+      "마지막 2개월은 배포 자동화, 성능·접근성 점검, 3~4개 포트폴리오 정리로 채용 경쟁력을 만든다."
+    ],
+    curator_insight: "입문자의 성패는 '무엇을 아는가'보다 '끝까지 배포한 경험이 몇 번 있는가'에서 갈립니다. 이론 학습 시간을 줄이고, 매달 최소 1회 공개 가능한 결과물을 만드는 운영 습관이 가장 강력한 가속기입니다.",
+    visual_suggestion: "무료 스톡 키워드: web developer roadmap, coding bootcamp desk, laptop code editor, project planning board, software portfolio. 생성형 프롬프트: \"clean desk with laptop showing web development workflow, roadmap notes and kanban board in background, realistic documentary photo, bright natural light, no logos, no readable proprietary text\"",
+    tags: ["웹개발", "개발자커리어", "학습로드맵", "포트폴리오", "프론트엔드", "백엔드"],
+    comments: [
+      {
+        side: "left",
+        author: "전직준비중",
+        text: "순서대로 하니까 뭘 버려야 할지 명확해져서 좋네",
+        time: "오전 9:41"
+      },
+      {
+        side: "right",
+        author: "현업프론트",
+        text: "기초+배포를 초반에 넣은 건 진짜 실무적임",
+        time: "오전 9:42"
+      },
+      {
+        side: "left",
+        author: "주니어개발",
+        text: "프레임워크 전에 JS를 끝까지 잡으라는 말 공감",
+        time: "오전 9:43"
+      },
+      {
+        side: "right",
+        author: "백엔드시점",
+        text: "CRUD API 한 번 직접 만들면 시야가 확 넓어짐",
+        time: "오전 9:44"
+      },
+      {
+        side: "left",
+        author: "취준생A",
+        text: "튜토리얼만 따라가다 막혔는데 체크리스트가 도움됨",
+        time: "오전 9:45"
+      },
+      {
+        side: "right",
+        author: "리드엔지니어",
+        text: "포트폴리오에서 중요한 건 기술 스택보다 문제 해결 스토리",
+        time: "오전 9:46"
+      },
+      {
+        side: "left",
+        author: "학습관리",
+        text: "주간 루틴 표처럼 시간 배분해두면 포기율이 줄더라",
+        time: "오전 9:47"
+      },
+      {
+        side: "right",
+        author: "채용담당경험",
+        text: "완성도보다 배포 경험과 개선 로그를 더 깊게 본다",
+        time: "오전 9:48"
+      }
+    ]
   }
 ];
