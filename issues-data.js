@@ -1545,5 +1545,76 @@ window.ISSUE_THREADS = window.ISSUE_THREADS || [
         time: "오전 11:47"
       }
     ]
+  },
+  {
+    id: "issue-20260215-procrastination-creative-thinking-guide",
+    title: "미루기의 생산적 활용법: 창의적 사고를 살리는 지연 전략",
+    description: "<p>미루기는 항상 나쁜 습관이 아니라, 복잡한 문제를 더 깊게 소화하는 인지 전략이 될 수 있습니다.</p><p>이 글은 해로운 미루기와 생산적 미루기를 구분하고, 마감은 지키면서 창의성을 높이는 실전 적용법을 정리합니다.</p>",
+    date: "2026-02-15",
+    catchy_title: "무조건 빨리보다 더 잘: 미루기를 창의성으로 바꾸는 실전 프레임",
+    source_name: "auto_content/hourly_issue_20260215_1209.txt 기반 오리지널 가이드",
+    source_url: "",
+    published_at: "2026-02-15T12:09:00+09:00",
+    image: "images/issue-fallback.svg",
+    image_variants: [],
+    rewritten_body: "중요한 일을 미루는 행동은 보통 비효율로 분류되지만, 모든 지연이 같은 결과를 만들지는 않습니다. 목표를 포기하지 않은 채 의도적으로 시간을 벌면 뇌는 백그라운드에서 정보를 재조합하고, 처음에는 보이지 않던 대안을 발견하기도 합니다. 핵심은 '회피성 미루기'를 줄이고 '전략적 미루기'를 설계하는 것입니다. 결정이 필요한 문제를 바로 결론 내리지 말고 숙성 시간을 확보한 뒤, 그 사이 작은 탐색 과제를 수행하면 품질과 속도를 함께 챙길 수 있습니다.",
+    summary_lines: [
+      "미루기가 항상 해로운 것은 아니며, 의도적으로 설계하면 복잡한 문제의 해결 품질을 높일 수 있다.",
+      "핵심은 목표를 피하는 회피성 미루기와 아이디어를 숙성하는 전략적 미루기를 구분하는 것이다.",
+      "마감 쪼개기, 중간 점검, 메모 습관을 결합하면 창의성과 실행력을 동시에 확보할 수 있다."
+    ],
+    curator_insight: "속도가 중요한 시대일수록 모든 결정을 즉시 끝내려는 압박이 커집니다. 하지만 고난도 문제는 빠른 반응보다 좋은 판단이 더 큰 가치를 만들기 때문에, 팀과 개인 모두 '생각할 시간'을 운영 규칙으로 확보할 필요가 있습니다.",
+    visual_suggestion: "무료 스톡 키워드: deep thinking desk, creative planning notebook, productivity workflow, focused professional, time management concept. 생성형 프롬프트: \"professional editorial photo of a person organizing ideas on desk with notebook and calendar, calm daylight, productivity and creativity concept, realistic style, no logos, no readable personal data\"",
+    tags: ["미루기", "창의성", "시간관리", "자기계발", "생산성", "집중력"],
+    comments: [
+      {
+        side: "left",
+        author: "기획실무",
+        text: "급하게 결론 내린 안건보다 하루 숙성한 안건이 확실히 완성도 높더라",
+        time: "오후 12:10"
+      },
+      {
+        side: "right",
+        author: "실행중심",
+        text: "미루기 미화는 위험하고, 마감 쪼개기랑 같이 써야 의미 있음",
+        time: "오후 12:11"
+      },
+      {
+        side: "left",
+        author: "디자이너",
+        text: "산책하고 돌아오면 막혔던 화면 구조가 갑자기 풀리는 경우 많음",
+        time: "오후 12:12"
+      },
+      {
+        side: "right",
+        author: "프로젝트리드",
+        text: "중간 체크포인트 없으면 전략적 미루기랑 회피를 구분하기 어렵지",
+        time: "오후 12:13"
+      },
+      {
+        side: "left",
+        author: "개발자A",
+        text: "아이디어 메모 습관 하나로 재작업이 줄어든 건 공감됨",
+        time: "오후 12:14"
+      },
+      {
+        side: "right",
+        author: "HR관점",
+        text: "집중 시간 보호를 제도로 넣어야 개인 의지만 탓하지 않게 됨",
+        time: "오후 12:15"
+      },
+      {
+        side: "left",
+        author: "학생독자",
+        text: "시험 공부도 무작정 오래보다 간격 두고 반복할 때 기억이 더 남았음",
+        time: "오후 12:16"
+      },
+      {
+        side: "right",
+        author: "정리노트",
+        text: "결국 포인트는 늦추기가 아니라 더 나은 판단을 위한 설계된 여유네",
+        time: "오후 12:17"
+      }
+    ]
   }
 ];
