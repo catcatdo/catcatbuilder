@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>페이지를 찾을 수 없습니다 | lilhwang.com</title>
+    <meta name="description" content="요청하신 페이지를 찾을 수 없습니다. lilhwang.com의 다른 콘텐츠를 둘러보세요.">
+    <meta name="robots" content="noindex, follow">
+    <link rel="canonical" href="https://lilhwang.com/404.html">
+    <script>
+        (function () {
+            try {
+                var theme = localStorage.getItem('theme-preference') || 'light';
+                document.documentElement.setAttribute('data-theme', theme);
+            } catch (e) {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        })();
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .error-container {
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        .error-code {
+            font-size: 120px;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1;
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+        .error-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+        .error-message {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            max-width: 500px;
+            line-height: 1.6;
+        }
+        .error-actions {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .error-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 15px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+        .error-btn.primary {
+            background: var(--primary);
+            color: white;
+        }
+        .error-btn.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+        }
+        .error-btn.secondary {
+            background: var(--surface);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+        .error-btn.secondary:hover {
+            background: var(--surface-hover);
+        }
+        .suggestions {
+            margin-top: 48px;
+            padding: 24px;
+            background: var(--surface);
+            border-radius: 16px;
+            max-width: 600px;
+            width: 100%;
+        }
+        .suggestions h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+        .suggestions ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .suggestions li a {
+            display: inline-block;
+            padding: 8px 16px;
+            background: var(--background);
+            border-radius: 20px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .suggestions li a:hover {
+            background: var(--primary);
+            color: white;
+        }
+        @media (max-width: 480px) {
+            .error-code {
+                font-size: 80px;
+            }
+            .error-title {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="logo"><a href="index.html" style="text-decoration:none;color:inherit;">lilhwang<span class="logo-dot">.</span>com</a></h1>
+            <nav class="nav">
+                <a href="index.html">도구</a>
+                <a href="blog.html">블로그</a>
+                <a href="issues.html">이슈</a>
+                <a href="resource-center.html">정보허브</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-container">
+        <div class="error-container">
+            <div class="error-code">404</div>
+            <h1 class="error-title">페이지를 찾을 수 없습니다</h1>
+            <p class="error-message">
+                요청하신 페이지가 삭제되었거나 주소가 변경되었을 수 있어요.<br>
+                아래 링크에서 다른 콘텐츠를 둘러보세요!
+            </p>
+            <div class="error-actions">
+                <a href="index.html" class="error-btn primary">🏠 홈으로 가기</a>
+                <a href="blog.html" class="error-btn secondary">📝 블로그 보기</a>
+                <a href="issues.html" class="error-btn secondary">📰 이슈 보기</a>
+            </div>
+            
+            <div class="suggestions">
+                <h3>🔍 인기 콘텐츠</h3>
+                <ul>
+                    <li><a href="blog.html">최신 블로그</a></li>
+                    <li><a href="issues.html">트렌딩 이슈</a></li>
+                    <li><a href="resource-center.html">정보 허브</a></li>
+                    <li><a href="mbti.html">MBTI 테스트</a></li>
+                    <li><a href="index.html">온라인 도구</a></li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 lilhwang.com. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // 자동 리디렉션 (5초 후 홈으로)
+        setTimeout(function() {
+            if (confirm('홈페이지로 이동할까요?')) {
+                window.location.href = 'index.html';
+            }
+        }, 5000);
+    </script>
+</body>
+</html>

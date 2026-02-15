@@ -1,6 +1,9 @@
 (function () {
     var IMAGE_PROXY_ENDPOINT = 'https://catcatbuilder-admin.catcatdo-bc9.workers.dev/image-proxy?url=';
     var ISSUE_FALLBACK_IMAGE = 'images/issue-fallback.svg';
+    var ISSUES_PER_PAGE = 10;
+    var allIssues = [];
+    var currentPage = 1;
 
     function escapeHtml(value) {
         return String(value)
@@ -419,6 +422,80 @@
         return isNaN(t) ? 0 : t;
     }
 
+    function sanitizeIssueIdToken(value) {
+        return String(value || '')
+            .trim()
+            .replace(/[^a-zA-Z0-9\-_.:]/g, '-');
+    }
+
+    function getIssueElementId(issue) {
+        var baseToken = sanitizeIssueIdToken(issue && issue.id);
+        if (!baseToken) {
+            baseToken = 'item-' + String(simpleHash(resolveCatchyTitle(issue) || 'issue'));
+        }
+        return 'issue-' + baseToken;
+    }
+
+    function getRequestedIssueId() {
+        var params = new URLSearchParams(window.location.search);
+        var fromQuery = String(params.get('issue') || '').trim();
+        if (fromQuery) {
+            return fromQuery;
+        }
+
+        var hash = String(window.location.hash || '');
+        if (hash.indexOf('#issue-') === 0) {
+            return decodeURIComponent(hash.slice(7));
+        }
+
+        return '';
+    }
+
+    function findIssueIndexById(issueId) {
+        var target = String(issueId || '').trim();
+        if (!target) {
+            return -1;
+        }
+        for (var i = 0; i < allIssues.length; i += 1) {
+            if (String(allIssues[i].id || '').trim() === target) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    function focusIssueCard(issueId) {
+        var targetId = String(issueId || '').trim();
+        if (!targetId) {
+            return;
+        }
+
+        var issue = allIssues.find(function (item) {
+            return String(item.id || '').trim() === targetId;
+        });
+        if (!issue) {
+            return;
+        }
+
+        var el = document.getElementById(getIssueElementId(issue));
+        if (!el) {
+            return;
+        }
+
+        var reduceMotion = false;
+        try {
+            reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        } catch (error) {
+            reduceMotion = false;
+        }
+
+        el.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+        el.classList.add('issue-focus');
+        setTimeout(function () {
+            el.classList.remove('issue-focus');
+        }, 1800);
+    }
+
     function toIssueFromPost(post) {
         return {
             id: 'post-' + String(post.id || ''),
@@ -534,8 +611,10 @@
             }).join('')
             : '<div class="small-note">커뮤 반응이 아직 없습니다.</div>';
 
+        var issueElementId = getIssueElementId(issue);
+
         return '' +
-            '<article class="issue-card" id="issue-' + escapeHtml(issue.id || '') + '">' +
+            '<article class="issue-card" id="' + escapeHtml(issueElementId) + '" data-issue-id="' + escapeHtml(issue.id || '') + '">' +
                 '<div class="issue-meta">' +
                     '<span>작성일: ' + escapeHtml(issue.published_at || '') + '</span>' +
                 '</div>' +
@@ -550,6 +629,94 @@
                     '<div class="reaction-wrap">' + commentsHtml + '</div>' +
                 '</div>' +
             '</article>';
+    }
+
+    function renderIssuePagination(totalPages) {
+        var container = document.getElementById('issues-pagination');
+        if (!container) {
+            return;
+        }
+
+        if (totalPages <= 1) {
+            container.innerHTML = '';
+            return;
+        }
+
+        var html = '';
+
+        html += '<button class="issues-page-btn" ' +
+            (currentPage === 1 ? 'disabled ' : '') +
+            'data-page="' + String(currentPage - 1) + '">이전</button>';
+
+        for (var i = 1; i <= totalPages; i += 1) {
+            if (i === 1 || i === totalPages || (i >= currentPage - 1 && i <= currentPage + 1)) {
+                html += '<button class="issues-page-btn ' +
+                    (i === currentPage ? 'active' : '') +
+                    '" data-page="' + String(i) + '">' + String(i) + '</button>';
+            } else if (i === currentPage - 2 || i === currentPage + 2) {
+                html += '<span class="issues-page-gap">...</span>';
+            }
+        }
+
+        html += '<button class="issues-page-btn" ' +
+            (currentPage === totalPages ? 'disabled ' : '') +
+            'data-page="' + String(currentPage + 1) + '">다음</button>';
+
+        container.innerHTML = html;
+
+        var buttons = container.querySelectorAll('.issues-page-btn');
+        for (var idx = 0; idx < buttons.length; idx += 1) {
+            buttons[idx].addEventListener('click', function () {
+                if (this.disabled) {
+                    return;
+                }
+                var nextPage = parseInt(this.getAttribute('data-page') || '', 10);
+                if (isNaN(nextPage) || nextPage < 1 || nextPage === currentPage) {
+                    return;
+                }
+                currentPage = nextPage;
+                renderIssuesPage('');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+    }
+
+    function renderIssuesPage(focusIssueId) {
+        var container = document.getElementById('issues-container');
+        if (!container) {
+            return;
+        }
+
+        if (!allIssues.length) {
+            container.innerHTML = '<div class="empty-issues">이슈 데이터가 아직 없습니다. 커뮤니티 원문/댓글을 보내주시면 즉시 반영할 수 있습니다.</div>';
+            var emptyPagination = document.getElementById('issues-pagination');
+            if (emptyPagination) {
+                emptyPagination.innerHTML = '';
+            }
+            return;
+        }
+
+        var totalPages = Math.max(1, Math.ceil(allIssues.length / ISSUES_PER_PAGE));
+        if (currentPage > totalPages) {
+            currentPage = totalPages;
+        }
+        if (currentPage < 1) {
+            currentPage = 1;
+        }
+
+        var startIndex = (currentPage - 1) * ISSUES_PER_PAGE;
+        var endIndex = startIndex + ISSUES_PER_PAGE;
+        var issuesToRender = allIssues.slice(startIndex, endIndex);
+
+        container.innerHTML = issuesToRender.map(renderIssue).join('');
+        enhanceIssueImages(container);
+        renderIssuePagination(totalPages);
+
+        if (focusIssueId) {
+            setTimeout(function () {
+                focusIssueCard(focusIssueId);
+            }, 120);
+        }
     }
 
     async function renderIssues() {
@@ -573,13 +740,17 @@
                 return bId - aId;
             });
 
-        if (!issues.length) {
-            container.innerHTML = '<div class="empty-issues">이슈 데이터가 아직 없습니다. 커뮤니티 원문/댓글을 보내주시면 즉시 반영할 수 있습니다.</div>';
-            return;
+        allIssues = issues;
+
+        var requestedIssueId = getRequestedIssueId();
+        if (requestedIssueId) {
+            var issueIndex = findIssueIndexById(requestedIssueId);
+            if (issueIndex >= 0) {
+                currentPage = Math.floor(issueIndex / ISSUES_PER_PAGE) + 1;
+            }
         }
 
-        container.innerHTML = issues.map(renderIssue).join('');
-        enhanceIssueImages(container);
+        renderIssuesPage(requestedIssueId);
     }
 
     document.addEventListener('DOMContentLoaded', renderIssues);

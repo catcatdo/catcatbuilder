@@ -616,7 +616,7 @@ function getPostMeta(post, postId) {
         title: `${post.title} | 릴황 블로그`,
         description,
         image: imageUrl,
-        url: `https://lilhwang.com/blog.html#post-${postId}`,
+        url: `https://lilhwang.com/blog.html?post=${postId}`,
         type: 'article'
     };
 }
@@ -735,7 +735,7 @@ function injectJsonLd(data) {
 }
 
 function setBlogPostSchema(post, postId) {
-    const url = `https://lilhwang.com/blog.html#post-${postId}`;
+    const url = `https://lilhwang.com/blog.html?post=${postId}`;
     const imageUrl = post.image && post.image.trim()
         ? new URL(post.image, window.location.origin + '/').href
         : 'https://lilhwang.com/images/og-default.jpg';
@@ -841,8 +841,8 @@ function showPostDetail(postId) {
     // Scroll to top
     window.scrollTo(0, 0);
 
-    // Update URL hash
-    window.location.hash = `post-${postId}`;
+    // Keep a crawlable URL while preserving hash-based in-page navigation.
+    updatePostRoute(postId);
 
     // Update meta tags for sharing
     updateBlogMeta(getPostMeta(post, postId));
@@ -862,7 +862,7 @@ document.getElementById('back-to-list')?.addEventListener('click', () => {
     const relatedList = document.getElementById('related-posts-list');
     if (relatedSection) relatedSection.style.display = 'none';
     if (relatedList) relatedList.innerHTML = '';
-    window.location.hash = '';
+    updatePostRoute(null);
     updateBlogMeta(blogListMeta);
     removeBlogPostSchema();
     window.scrollTo(0, 0);
@@ -1021,17 +1021,42 @@ function getCategoryName(category) {
 }
 
 // ========================================
-// Handle URL Hash on Load
+// URL Route Handling
 // ========================================
 
-function handleInitialHash() {
+function updatePostRoute(postId) {
+    const url = new URL(window.location.href);
+    if (Number.isFinite(postId) && postId > 0) {
+        url.searchParams.set('post', String(postId));
+        url.hash = `post-${postId}`;
+    } else {
+        url.searchParams.delete('post');
+        url.hash = '';
+    }
+    window.history.replaceState({}, '', `${url.pathname}${url.search}${url.hash}`);
+}
+
+function getInitialPostId() {
+    const params = new URLSearchParams(window.location.search);
+    const queryPost = parseInt(params.get('post') || '', 10);
+    if (!isNaN(queryPost) && queryPost > 0) {
+        return queryPost;
+    }
+
     const hash = window.location.hash;
     if (hash.startsWith('#post-')) {
         const postId = parseInt(hash.replace('#post-', ''));
-        if (!isNaN(postId)) {
-            setTimeout(() => showPostDetail(postId), 100);
+        if (!isNaN(postId) && postId > 0) {
+            return postId;
         }
     }
+    return null;
+}
+
+function handleInitialRoute() {
+    const postId = getInitialPostId();
+    if (!postId) return;
+    setTimeout(() => showPostDetail(postId), 100);
 }
 
 // ========================================
@@ -1042,6 +1067,6 @@ document.addEventListener('DOMContentLoaded', () => {
     updateBlogMeta(blogListMeta);
 
     loadPosts().then(() => {
-        handleInitialHash();
+        handleInitialRoute();
     });
 });
