@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M5 Mac Studio, 로컬 AI의 새로운 표준을 세우다 | 릴황 이슈</title>
+    <meta name="description" content="M5 Mac Studio 공개로 로컬 AI 추론이 실용 단계에 진입했습니다. 성능, 전력 효율, 비용 관점에서 개인·소규모 팀의 AI 인프라 전략을 정리합니다.">
+    <meta name="keywords" content="M5 Mac Studio, Local AI, Apple Silicon, AI추론, 맥스튜디오, 기술 트렌드">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+    <link rel="canonical" href="https://lilhwang.com/issues/issue-20260215-m5-mac-studio-local-ai-game-changer.html">
+
+    <meta property="og:title" content="M5 Mac Studio, 로컬 AI의 새로운 표준을 세우다 | 릴황 이슈">
+    <meta property="og:description" content="클라우드 없이도 120B 추론: M5 Mac Studio가 연 로컬 AI 새 기준">
+    <meta property="og:image" content="https://lilhwang.com/images/issue-fallback.svg">
+    <meta property="og:url" content="https://lilhwang.com/issues/issue-20260215-m5-mac-studio-local-ai-game-changer.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="릴황">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="M5 Mac Studio, 로컬 AI의 새로운 표준을 세우다 | 릴황 이슈">
+    <meta name="twitter:description" content="클라우드 없이도 120B 추론: M5 Mac Studio가 연 로컬 AI 새 기준">
+    <meta name="twitter:image" content="https://lilhwang.com/images/issue-fallback.svg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #f8f9fa;
+            --text-color: #333;
+            --card-bg: #fff;
+            --border-color: #e9ecef;
+            --accent-color: #4361ee;
+            --accent-hover: #3651d4;
+            --muted-text: #6c757d;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #1a1a2e;
+                --text-color: #eaeaea;
+                --card-bg: #16213e;
+                --border-color: #2d3748;
+                --accent-color: #4cc9f0;
+                --accent-hover: #4895ef;
+                --muted-text: #a0aec0;
+                --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 26px;
+        }
+
+        .brand-link {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 14px;
+        }
+
+        .nav-links a {
+            color: var(--muted-text);
+            text-decoration: none;
+            font-size: 0.92rem;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .header {
+            text-align: center;
+            padding: 20px 0 34px;
+            border-bottom: 2px solid var(--border-color);
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .meta {
+            color: var(--muted-text);
+            font-size: 0.9rem;
+        }
+
+        .content {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+
+        .content h2 {
+            font-size: 1.4rem;
+            margin: 28px 0 14px;
+            color: var(--accent-color);
+        }
+
+        .content p {
+            margin-bottom: 14px;
+            text-align: justify;
+        }
+
+        .content ul {
+            margin: 14px 0;
+            padding-left: 22px;
+        }
+
+        .content li {
+            margin-bottom: 8px;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.13), rgba(67, 97, 238, 0.07));
+            border-left: 4px solid var(--accent-color);
+            padding: 18px;
+            margin: 0 0 24px;
+            border-radius: 8px;
+        }
+
+        .tag-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 24px 0 10px;
+        }
+
+        .tag {
+            background: rgba(67, 97, 238, 0.13);
+            color: var(--accent-color);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .navigation-links {
+            display: flex;
+            gap: 10px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav-button {
+            display: inline-block;
+            padding: 11px 18px;
+            background: var(--accent-color);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: background 0.25s;
+        }
+
+        .nav-button:hover {
+            background: var(--accent-hover);
+        }
+
+        .nav-button.secondary {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+        }
+
+        .nav-button.secondary:hover {
+            background: rgba(67, 97, 238, 0.08);
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 14px;
+            }
+
+            .header h1 {
+                font-size: 1.55rem;
+            }
+
+            .content {
+                padding: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="top-nav" aria-label="사이트 탐색">
+            <a href="/" class="brand-link">릴황</a>
+            <div class="nav-links">
+                <a href="/index.html">홈</a>
+                <a href="/blog.html">블로그</a>
+                <a href="/issues.html">이슈</a>
+                <a href="/about.html">소개</a>
+            </div>
+        </nav>
+
+        <header class="header">
+            <h1>M5 Mac Studio, 로컬 AI의 새로운 표준을 세우다</h1>
+            <div class="meta">2026년 2월 15일 | 기술(Tech)</div>
+        </header>
+
+        <article class="content">
+            <div class="highlight-box">
+                <strong>핵심 요약:</strong> M5 Mac Studio는 대형 LLM 추론을 로컬에서 실용 속도로 처리하며, 전력 효율과 데이터 통제 측면에서 개인·소규모 팀의 AI 인프라 선택지를 크게 넓혔습니다.
+            </div>
+
+            <p>애플이 M5 Mac Studio를 공개하면서 개인용 AI 컴퓨팅의 판도가 완전히 바뀌고 있습니다. 단순한 성능 업그레이드를 넘어, 이제 우리의 책상 위에서 대규모 언어모델(LLM)을 구동할 수 있는 시대가 열렸습니다.</p>
+
+            <p>M5 Max 칩의 Neural Engine은 16코어 구성으로, 초당 38조 개의 연산을 처리합니다. 특히 메모리 대역폭이 800GB/s에 달해 GPU와 Neural Engine 간 데이터 이동이 병목 없이 이루어집니다.</p>
+
+            <h2>실사용 성능이 증명한 변화</h2>
+            <p>실제 테스트에서 M5 Mac Studio는 Qwen 3 120B 모델을 4-bit 양자화 기준으로 초당 15~20 토큰 수준으로 생성했습니다. 이 정도면 대화형 AI를 충분히 실무에 투입할 수 있는 속도입니다. 32B급 모델에서는 초당 50토큰 이상까지 도달해 체감상 거의 실시간 반응에 가깝습니다.</p>
+
+            <h2>전력 효율과 비용 구조</h2>
+            <p>동일 성능의 x86 기반 워크스테이션이 평균 300~400W를 소모하는 반면, M5 Mac Studio는 60~80W 수준에서 유사한 AI 추론 작업을 수행할 수 있다는 점이 가장 큰 차이입니다. 24시간 서버 형태로 운영할 경우 월 전기료 차이만으로도 장기 비용 구조가 크게 달라집니다.</p>
+
+            <ul>
+                <li>120B 추론: 4-bit 기준 실용 속도 확보</li>
+                <li>메모리 대역폭: 800GB/s급 고속 데이터 처리</li>
+                <li>전력 소모: 고성능 x86 대비 대폭 절감</li>
+                <li>운영 모델: 클라우드 API 의존도 축소 가능</li>
+            </ul>
+
+            <h2>왜 지금 로컬 AI인가</h2>
+            <p>로컬 AI의 장점은 명확합니다. 민감한 데이터가 외부 서버로 나가지 않는 프라이버시, 인터넷 연결 없이 동작하는 오프라인 운영성, 그리고 API 비용의 구조적 절감입니다. 특히 데이터 거버넌스와 컴플라이언스가 중요한 팀에서는 로컬 운영이 점점 기본값이 되고 있습니다.</p>
+
+            <p>애플의 통합 생태계도 전환 속도를 높이고 있습니다. MLX 프레임워크는 파이썬 기반 워크플로우를 빠르게 구성할 수 있고, Core ML 변환 도구는 기존 PyTorch 모델을 애플 실리콘 환경에 최적화해 옮기는 과정을 단순화합니다.</p>
+
+            <h2>현실적 한계와 선택 기준</h2>
+            <p>물론 120B를 넘는 초대형 모델이나 대규모 파인튜닝 영역에서는 여전히 고사양 GPU 클러스터가 강점을 가집니다. 다만 대부분의 실무가 요구하는 것은 학습보다 추론이며, 이 기준에서는 M5 Mac Studio가 충분히 프로덕션급 선택지로 올라왔습니다.</p>
+
+            <p>클라우드 API 비용이 매달 누적되는 팀이라면, 하드웨어 투자비 회수 시점까지 포함해 총소유비용(TCO)을 다시 계산할 필요가 있습니다. 2026년 로컬 AI 전략의 핵심은 더 큰 모델보다 더 유연한 운영 위치입니다.</p>
+
+            <div class="tag-container">
+                <span class="tag">M5MacStudio</span>
+                <span class="tag">LocalAI</span>
+                <span class="tag">AppleSilicon</span>
+                <span class="tag">AI추론</span>
+                <span class="tag">맥스튜디오</span>
+            </div>
+
+            <div class="navigation-links">
+                <a href="/issues.html" class="nav-button">이슈 목록으로 돌아가기</a>
+                <a href="/" class="nav-button secondary">홈으로 이동</a>
+            </div>
+        </article>
+    </div>
+</body>
+</html>

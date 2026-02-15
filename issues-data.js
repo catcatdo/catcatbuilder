@@ -1760,6 +1760,77 @@ window.ISSUE_THREADS = window.ISSUE_THREADS || [
     ]
   },
   {
+    id: "issue-20260215-m5-mac-studio-local-ai-game-changer",
+    title: "M5 Mac Studio, 로컬 AI의 새로운 표준을 세우다",
+    description: "<p>M5 Mac Studio 공개로 개인과 소규모 팀도 대형 언어모델을 로컬에서 실용 속도로 돌릴 수 있는 환경이 현실화되고 있습니다.</p><p>이 글은 성능, 전력 효율, 비용 회수 관점에서 왜 M5 Mac Studio가 2026년 로컬 AI 인프라의 기준점이 되는지 정리합니다.</p>",
+    date: "2026-02-15",
+    catchy_title: "클라우드 없이도 120B 추론: M5 Mac Studio가 연 로컬 AI 새 기준",
+    source_name: "auto_content/issue_20260215_2340.txt 기반 오리지널 가이드",
+    source_url: "",
+    published_at: "2026-02-15T23:40:00+09:00",
+    image: "images/issue-fallback.svg",
+    image_variants: [],
+    rewritten_body: "M5 Mac Studio는 개인용 장비로는 어려웠던 대형 AI 추론을 실무 가능한 수준으로 끌어올렸습니다. 높은 메모리 대역폭과 통합된 애플 실리콘 아키텍처 덕분에 120B급 모델도 4-bit 양자화 기준으로 실용 속도를 확보할 수 있고, 같은 급의 x86 워크스테이션 대비 전력 소모를 크게 낮출 수 있습니다. 여기에 MLX와 Core ML 기반 개발 경험이 맞물리면서, 클라우드 API 비용과 데이터 외부 반출 부담을 줄이려는 팀에게 로컬 AI 운영의 현실적 대안으로 자리 잡고 있습니다.",
+    summary_lines: [
+      "M5 Mac Studio는 120B급 모델 추론을 개인·소규모 팀도 다룰 수 있는 실용 구간으로 당겼다.",
+      "고성능 x86 대비 전력 효율이 높아 24시간 운영 비용과 API 의존도를 함께 줄일 수 있다.",
+      "학습보다 추론 중심 워크로드에서는 MLX·Core ML 생태계와 결합해 로컬 AI 전환 속도를 높인다."
+    ],
+    curator_insight: "이 이슈의 핵심은 단순 벤치마크 수치가 아니라 '소유 가능한 AI 인프라'의 등장입니다. 클라우드 비용이 빠르게 누적되는 팀일수록, 추론 워크로드를 로컬로 가져오는 순간 비용 구조와 데이터 통제권이 동시에 바뀝니다. 2026년의 경쟁력은 모델 크기 자체보다 운영 위치를 얼마나 유연하게 설계하느냐에서 갈릴 가능성이 큽니다.",
+    visual_suggestion: "무료 스톡 키워드: desktop ai workstation, apple silicon chip closeup, local llm setup, developer desk with monitor, energy efficient computing. 생성형 프롬프트: \"modern desktop AI workstation with compact studio computer, code and model dashboard on screen, clean professional desk, realistic editorial photography, soft daylight, no logos, no readable personal data\"",
+    tags: ["M5MacStudio", "LocalAI", "AppleSilicon", "AI추론", "맥스튜디오", "tech"],
+    comments: [
+      {
+        side: "left",
+        author: "로컬AI입문",
+        text: "120B를 책상 위에서 돌린다는 문장 자체가 이제 현실이네",
+        time: "오후 11:41"
+      },
+      {
+        side: "right",
+        author: "클라우드절감",
+        text: "월 API 요금 큰 팀이면 진짜 투자 회수 계산해볼 만함",
+        time: "오후 11:42"
+      },
+      {
+        side: "left",
+        author: "전력체감",
+        text: "전기료 차이가 누적되면 하드웨어 가격 차이도 금방 좁혀짐",
+        time: "오후 11:43"
+      },
+      {
+        side: "right",
+        author: "GPU현실",
+        text: "학습은 아직 GPU 클러스터가 강하지만 추론은 판이 달라졌지",
+        time: "오후 11:44"
+      },
+      {
+        side: "left",
+        author: "보안중시",
+        text: "민감 데이터 외부 반출 안 해도 되는 게 제일 큰 장점 같음",
+        time: "오후 11:45"
+      },
+      {
+        side: "right",
+        author: "개발생태계",
+        text: "MLX 경험 좋아지면 맥 기반 로컬 배포가 훨씬 늘어날 듯",
+        time: "오후 11:46"
+      },
+      {
+        side: "left",
+        author: "스타트업관점",
+        text: "추론 트래픽 안정적이면 온프렘 전환 시나리오가 더 명확해짐",
+        time: "오후 11:47"
+      },
+      {
+        side: "right",
+        author: "정리메모",
+        text: "요지는 성능보다 소유권과 운영비 구조를 바꾸는 장비라는 거네",
+        time: "오후 11:48"
+      }
+    ]
+  },
+  {
     id: "issue-20250215-burnout-prevention-7-habits",
     title: "번아웃 예방을 위한 7가지 생활 습관: 지치기 전에 회복 루틴 만들기",
     description: "<p>번아웃은 갑자기 생기는 문제가 아니라 경계 붕괴, 수면 저하, 과도한 비교가 누적될 때 서서히 커집니다.</p><p>이 글은 업무 경계 설정부터 디지털 디톡스, 도움 요청 타이밍까지 일상에서 바로 적용할 수 있는 7단계 회복 습관을 정리합니다.</p>",
