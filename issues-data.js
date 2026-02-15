@@ -1403,5 +1403,76 @@ window.ISSUE_THREADS = window.ISSUE_THREADS || [
         time: "오전 10:47"
       }
     ]
+  },
+  {
+    id: "issue-20260215-git-evolution-sha256-reftable-guide",
+    title: "Git 3.0 준비 가이드: SHA-256·Reftable·대용량 저장소 대응 전략",
+    description: "<p>Git은 보안 해시 전환, 레퍼런스 저장 구조 개선, 대용량 객체 처리 고도화로 핵심 기반이 바뀌는 구간에 들어왔습니다.</p><p>이 글은 팀이 지금 점검해야 할 호환성 체크포인트와 단계별 전환 계획을 실무 중심으로 정리합니다.</p>",
+    date: "2026-02-15",
+    catchy_title: "20년 된 Git, 왜 지금 다시 배워야 할까: SHA-256과 Reftable 전환 체크리스트",
+    source_name: "auto_content/hourly_issue_2025-02-15-11-09.txt 기반 오리지널 가이드",
+    source_url: "",
+    published_at: "2026-02-15T11:09:00+09:00",
+    image: "images/issue-fallback.svg",
+    image_variants: [],
+    rewritten_body: "Git 생태계는 오랫동안 안정적으로 유지됐지만, 최근에는 보안·성능·저장 구조 세 축에서 큰 전환이 진행되고 있습니다. SHA-256 도입은 무결성 강화의 핵심이고, Reftable은 대규모 브랜치 환경에서 파일 시스템 병목을 줄이는 대안으로 주목받습니다. 여기에 대용량 객체를 별도 저장소와 연계하는 흐름까지 더해지면서, 팀 단위로는 단순 업그레이드보다 호환성 점검과 운영 규칙 재정의가 더 중요한 과제가 되고 있습니다.",
+    summary_lines: [
+      "SHA-256 전환은 보안 강화를 위한 필수 흐름이지만, 호스팅 플랫폼·CI·훅 스크립트의 호환성 확인이 선행되어야 한다.",
+      "Reftable은 브랜치/태그가 많은 저장소에서 refs 관리 비용과 동시성 문제를 줄여 대규모 협업에 유리하다.",
+      "대용량 바이너리 운영은 Git 내부에 모두 담기보다 LFS·오브젝트 스토리지·부분 클론을 조합해 비용과 복구 시간을 관리해야 한다."
+    ],
+    curator_insight: "이번 변화는 'Git 명령어를 더 외우는 문제'가 아니라 저장소 운영 체계를 다시 설계하는 문제에 가깝습니다. 특히 모노레포를 쓰는 팀일수록 해시 체계, refs 저장 방식, 아티팩트 보관 정책을 분리해 관리해야 배포 속도와 안정성을 동시에 지킬 수 있습니다.",
+    visual_suggestion: "무료 스톡 키워드: git repository dashboard, software version control team, code review workflow, developer terminal, monorepo architecture. 생성형 프롬프트: \"software engineering team reviewing version control migration plan on large dashboard, git workflow diagrams, clean office environment, realistic editorial photography, no logos, no readable proprietary text\"",
+    tags: ["Git", "버전관리", "SHA-256", "Reftable", "모노레포", "개발도구"],
+    comments: [
+      {
+        side: "left",
+        author: "플랫폼리드",
+        text: "해시 전환은 툴 하나가 아니라 생태계 전체 체크가 핵심이네",
+        time: "오전 11:10"
+      },
+      {
+        side: "right",
+        author: "백엔드팀장",
+        text: "브랜치 많은 저장소에서 refs 병목 줄어드는 건 확실히 매력적",
+        time: "오전 11:11"
+      },
+      {
+        side: "left",
+        author: "DevOps엔지니어",
+        text: "CI 캐시 키나 릴리스 스크립트부터 먼저 점검해야 할 듯",
+        time: "오전 11:12"
+      },
+      {
+        side: "right",
+        author: "모노레포운영",
+        text: "Reftable이 들어오면 브랜치 정리 자동화도 같이 손봐야겠다",
+        time: "오전 11:13"
+      },
+      {
+        side: "left",
+        author: "주니어개발",
+        text: "결국 명령어보다 팀 규칙 문서화가 먼저라는 말이 와닿음",
+        time: "오전 11:14"
+      },
+      {
+        side: "right",
+        author: "보안담당",
+        text: "SHA-1 이슈 이후라 해시 전략 업데이트는 미루기 어렵지",
+        time: "오전 11:15"
+      },
+      {
+        side: "left",
+        author: "인프라운영",
+        text: "대용량 파일은 Git에 다 넣기보다 오브젝트 스토리지 연계가 현실적",
+        time: "오전 11:16"
+      },
+      {
+        side: "right",
+        author: "정리메모",
+        text: "지금은 업그레이드보다 전환 준비 체크리스트를 먼저 만드는 단계",
+        time: "오전 11:17"
+      }
+    ]
   }
 ];

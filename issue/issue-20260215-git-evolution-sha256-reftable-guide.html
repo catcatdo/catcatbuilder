@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Git 3.0 준비 가이드: SHA-256·Reftable·대용량 저장소 대응 전략 | 릴황 이슈</title>
+    <meta name="description" content="Git 전환 포인트를 실무 관점으로 정리했습니다. SHA-256 호환성 점검, Reftable 적용 판단 기준, 대용량 저장소 운영 전략, 30-60-90일 도입 플랜까지 제공합니다.">
+    <meta name="keywords" content="Git, SHA-256, Reftable, 버전관리, 모노레포, 대용량파일, DevOps">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+    <link rel="canonical" href="https://lilhwang.com/issue/issue-20260215-git-evolution-sha256-reftable-guide.html">
+
+    <meta property="og:title" content="Git 3.0 준비 가이드: SHA-256·Reftable·대용량 저장소 대응 전략 | 릴황 이슈">
+    <meta property="og:description" content="해시 전환부터 refs 성능 개선, 대용량 객체 운영까지 Git 변화 대응법을 한 번에 정리합니다.">
+    <meta property="og:image" content="https://lilhwang.com/images/issue-fallback.svg">
+    <meta property="og:url" content="https://lilhwang.com/issue/issue-20260215-git-evolution-sha256-reftable-guide.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="릴황">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Git 3.0 준비 가이드: SHA-256·Reftable·대용량 저장소 대응 전략 | 릴황 이슈">
+    <meta name="twitter:description" content="팀 단위로 바로 적용 가능한 Git 전환 체크리스트와 실행 순서를 제공합니다.">
+    <meta name="twitter:image" content="https://lilhwang.com/images/issue-fallback.svg">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      "headline": "Git 3.0 준비 가이드: SHA-256·Reftable·대용량 저장소 대응 전략",
+      "description": "SHA-256 호환성 점검, Reftable 적용 판단 기준, 대용량 저장소 운영 전략을 실무 중심으로 정리한 가이드",
+      "datePublished": "2026-02-15T11:09:00+09:00",
+      "dateModified": "2026-02-15T11:09:00+09:00",
+      "author": {
+        "@type": "Organization",
+        "name": "릴황"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "릴황",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://lilhwang.com/images/logo.svg"
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://lilhwang.com/issue/issue-20260215-git-evolution-sha256-reftable-guide.html"
+      }
+    }
+    </script>
+
+    <style>
+        :root {
+            --bg: #eff4f8;
+            --paper: #ffffff;
+            --text: #1d2b37;
+            --muted: #5f7285;
+            --line: #d7e0e8;
+            --accent: #0e6a78;
+            --accent-soft: #e8f6f8;
+            --ok: #1b7f46;
+            --warn: #a26400;
+            --shadow: 0 16px 36px rgba(17, 38, 56, 0.10);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Noto Sans KR", "Apple SD Gothic Neo", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            line-height: 1.74;
+            color: var(--text);
+            background:
+                radial-gradient(circle at 0% 0%, #e5f3f7 0%, transparent 35%),
+                radial-gradient(circle at 100% 10%, #e9eefb 0%, transparent 34%),
+                var(--bg);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 930px;
+            margin: 0 auto;
+            padding: 28px 18px 52px;
+        }
+
+        .hero {
+            background: linear-gradient(140deg, #ffffff 0%, #f3fafc 100%);
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            padding: 34px 30px;
+            margin-bottom: 20px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            border: 1px solid #bfdae0;
+            border-radius: 999px;
+            background: var(--accent-soft);
+            color: var(--accent);
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 6px 12px;
+            margin-bottom: 12px;
+        }
+
+        h1 {
+            font-size: clamp(1.75rem, 4.3vw, 2.3rem);
+            line-height: 1.3;
+            letter-spacing: -0.02em;
+            margin-bottom: 12px;
+        }
+
+        .meta {
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .article {
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            padding: 30px;
+        }
+
+        .lead {
+            border: 1px solid #cae6eb;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #eaf7fa 0%, #f5fbfd 100%);
+            padding: 18px;
+            color: #164f59;
+            margin-bottom: 24px;
+        }
+
+        h2 {
+            font-size: 1.34rem;
+            line-height: 1.38;
+            letter-spacing: -0.01em;
+            margin: 30px 0 12px;
+        }
+
+        h3 {
+            font-size: 1.04rem;
+            margin: 18px 0 8px;
+        }
+
+        p {
+            margin: 0 0 14px;
+        }
+
+        ul,
+        ol {
+            margin: 0 0 15px 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .note {
+            border: 1px solid var(--line);
+            border-left: 4px solid var(--accent);
+            background: #f6fbfd;
+            border-radius: 10px;
+            padding: 14px;
+            margin: 18px 0;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 14px 0 10px;
+            font-size: 0.95rem;
+        }
+
+        .table th,
+        .table td {
+            border: 1px solid var(--line);
+            text-align: left;
+            vertical-align: top;
+            padding: 10px;
+        }
+
+        .table thead th {
+            background: #edf6f8;
+            font-weight: 700;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px;
+            margin: 12px 0 16px;
+        }
+
+        .card {
+            border: 1px solid var(--line);
+            background: #fff;
+            border-radius: 12px;
+            padding: 14px;
+        }
+
+        .card strong {
+            display: block;
+            margin-bottom: 6px;
+            color: #164f59;
+        }
+
+        .code {
+            background: #1e2a35;
+            color: #e7eff5;
+            border-radius: 12px;
+            padding: 14px;
+            margin: 14px 0;
+            overflow-x: auto;
+            font-size: 0.9rem;
+            line-height: 1.55;
+        }
+
+        .ok {
+            color: var(--ok);
+            font-weight: 700;
+        }
+
+        .warn {
+            color: var(--warn);
+            font-weight: 700;
+        }
+
+        .tag-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 26px 0 10px;
+        }
+
+        .tag {
+            display: inline-flex;
+            border: 1px solid #bcd8de;
+            background: var(--accent-soft);
+            color: var(--accent);
+            border-radius: 999px;
+            padding: 6px 12px;
+            font-size: 0.84rem;
+            font-weight: 600;
+        }
+
+        .back-link {
+            display: inline-flex;
+            text-decoration: none;
+            color: #fff;
+            background: var(--accent);
+            border-radius: 10px;
+            padding: 10px 16px;
+            font-weight: 600;
+            margin-top: 8px;
+        }
+
+        .back-link:hover {
+            background: #0b5561;
+        }
+
+        @media (max-width: 760px) {
+            .hero,
+            .article {
+                padding: 24px 18px;
+                border-radius: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="hero">
+            <span class="eyebrow">Tech Issue Brief</span>
+            <h1>20년 된 Git, 왜 지금 다시 배워야 할까: SHA-256과 Reftable 전환 체크리스트</h1>
+            <p class="meta">릴황 테크 이슈 · 2026년 2월 15일 · 버전관리 운영 가이드</p>
+        </header>
+
+        <article class="article">
+            <p class="lead">Git은 당장 명령어가 바뀌는 도구라기보다 저장소 내부 구조가 서서히 바뀌는 인프라에 가깝습니다. 그래서 핵심은 "언제 업그레이드하느냐"보다 "무엇부터 호환성 점검하느냐"입니다.</p>
+
+            <h2>1. 지금 Git 변화가 중요한 이유</h2>
+            <p>팀의 저장소 규모가 커질수록 성능 문제는 코드 품질이 아니라 운영 구조에서 생깁니다. 브랜치·태그가 급증하고, CI 잡이 늘고, 바이너리 아티팩트가 섞이기 시작하면 기존 기본값만으로는 속도와 안정성을 동시에 유지하기 어렵습니다.</p>
+            <p>최근 논의되는 변화의 핵심은 세 가지입니다. 해시 체계를 강화해 무결성을 높이고, 레퍼런스 저장 구조를 개선해 대형 저장소의 병목을 줄이며, 대용량 객체 처리 전략을 분리해 운영비와 복구 시간을 제어하는 것입니다.</p>
+
+            <h2>2. SHA-256 전환: 먼저 확인할 5가지</h2>
+            <p>보안 전환은 저장소만 바꾼다고 끝나지 않습니다. CI/CD, 코드 스캔, 릴리스 스크립트, 내부 툴링이 모두 커밋/오브젝트 ID 형식에 의존할 수 있기 때문입니다.</p>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>점검 항목</th>
+                        <th>왜 중요한가</th>
+                        <th>실무 기준</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>호스팅 플랫폼 지원 여부</td>
+                        <td>원격 저장소가 미지원이면 전환 테스트가 중단됨</td>
+                        <td class="warn">플랫폼 릴리스 노트 기준으로 지원 범위를 먼저 확정</td>
+                    </tr>
+                    <tr>
+                        <td>CI 스크립트의 해시 길이 가정</td>
+                        <td>고정 길이 파싱 로직이 배포 파이프라인을 깨뜨릴 수 있음</td>
+                        <td>정규식/파서가 알고리즘 종속인지 코드 검색으로 확인</td>
+                    </tr>
+                    <tr>
+                        <td>웹훅·봇 연동</td>
+                        <td>커밋 ID 전달 포맷이 바뀌면 알림/자동화 누락 가능</td>
+                        <td>샌드박스 저장소에서 이벤트 왕복 테스트 수행</td>
+                    </tr>
+                    <tr>
+                        <td>백업/복구 정책</td>
+                        <td>복구 시점에 해시 체계 혼재가 있으면 복원 절차가 복잡해짐</td>
+                        <td>백업 메타데이터에 object format 정보를 명시</td>
+                    </tr>
+                    <tr>
+                        <td>팀 문서와 리뷰 가이드</td>
+                        <td>운영 지식이 코드보다 늦게 갱신되면 실수가 반복됨</td>
+                        <td class="ok">운영 문서에 전환 상태/제약/롤백 절차를 고정</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="code"><code>git rev-parse --show-object-format
+git fsck --full
+git count-objects -vH</code></div>
+
+            <h2>3. Reftable은 어떤 팀에 유리한가</h2>
+            <p>Reftable은 refs 파일 구조를 재정리해 대규모 브랜치 환경에서 비용을 줄이는 접근입니다. 모든 팀에 즉시 필요하진 않지만, 아래 조건이 많을수록 체감 효과가 큽니다.</p>
+            <div class="cards">
+                <section class="card">
+                    <strong>브랜치 수가 많은 조직</strong>
+                    <p>릴리스/핫픽스/실험 브랜치가 동시 운영되며 refs 관리 작업이 빈번한 팀.</p>
+                </section>
+                <section class="card">
+                    <strong>모노레포 + 대형 CI</strong>
+                    <p>하루 수백~수천 파이프라인이 돌고 브랜치 생성·삭제가 자동화된 환경.</p>
+                </section>
+                <section class="card">
+                    <strong>서버 저장소 운영 비중이 높은 팀</strong>
+                    <p>개발자 로컬보다 중앙 저장소 운영 안정성이 SLA에 직접 연결되는 구조.</p>
+                </section>
+            </div>
+            <div class="note">성능 개선은 저장소 내부 구조만으로 끝나지 않습니다. 브랜치 수명 정책(자동 삭제, 보호 브랜치 최소화, 릴리스 태깅 기준)을 함께 정리해야 효과가 유지됩니다.</div>
+
+            <h2>4. 대용량 파일은 Git에 "다" 넣지 않는다</h2>
+            <p>영상, 모델 파일, 데이터 덤프 같은 대용량 바이너리는 텍스트 중심 버전관리 철학과 충돌하기 쉽습니다. 핵심은 코드 이력과 아티팩트 보관을 분리하는 운영 방식입니다.</p>
+            <ul>
+                <li><strong>코드/메타데이터:</strong> Git 본체에 유지</li>
+                <li><strong>대형 바이너리:</strong> LFS 또는 오브젝트 스토리지로 분리</li>
+                <li><strong>클론 전략:</strong> 부분 클론/얕은 클론으로 온보딩 시간 단축</li>
+                <li><strong>복구 전략:</strong> 코드 복구와 바이너리 복구 경로를 별도로 문서화</li>
+            </ul>
+            <p>이렇게 분리하면 저장소 크기 폭증, 긴 클론 시간, 네트워크 비용 급등을 동시에 완화할 수 있습니다.</p>
+
+            <h2>5. 30-60-90일 전환 플랜</h2>
+            <ol>
+                <li><strong>30일:</strong> 현재 Git 사용 실태 진단 (훅, CI, 릴리스 스크립트, 대용량 파일 현황)</li>
+                <li><strong>60일:</strong> 샌드박스 저장소에서 해시/refs/클론 전략 A/B 테스트</li>
+                <li><strong>90일:</strong> 팀 문서 업데이트, 점진 배포, 롤백 기준 확정 후 단계적 전환</li>
+            </ol>
+            <p>포인트는 "빅뱅 교체"가 아니라 "업무 중단 없이 부분 전환"입니다. 전환 성공률은 기술 난이도보다 실행 순서에서 갈립니다.</p>
+
+            <h2>결론</h2>
+            <p>Git 변화의 본질은 새로운 명령어가 아니라 운영 기준의 업그레이드입니다. SHA-256, Reftable, 대용량 객체 전략을 각각 따로 보지 말고, 저장소 신뢰성·성능·비용의 균형 관점에서 한 번에 설계해야 합니다.</p>
+            <p>팀이 지금 해야 할 일은 간단합니다. 호환성 체크리스트를 만들고, 작은 저장소에서 먼저 검증하고, 운영 문서와 자동화를 같은 속도로 업데이트하는 것입니다.</p>
+
+            <div class="tag-row">
+                <span class="tag">#Git</span>
+                <span class="tag">#버전관리</span>
+                <span class="tag">#SHA256</span>
+                <span class="tag">#Reftable</span>
+                <span class="tag">#모노레포</span>
+                <span class="tag">#개발도구</span>
+            </div>
+
+            <a class="back-link" href="../issues.html">이슈 목록으로 돌아가기</a>
+        </article>
+    </div>
+</body>
+</html>
