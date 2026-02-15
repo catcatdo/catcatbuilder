@@ -1,0 +1,111 @@
+# 고성능 Java 서비스에서 찾아낸 숨은 병목: Factory 메서드의 함정
+
+## 요약
+고성능 Java 애플리케이션을 운영하면서 겪었던 실제 성능 이슈와 해결 과정을 공유합니다. 동시성 환경에서 흔히 사용하는 Factory 패턴의 숨은 비용과, 이를 효과적으로 해결하는 방법을 알아봅니다.
+
+## 배경
+초당 수천 건의 요청을 처리하는 대규모 서비스를 운영하다 별다른 이유 없이 간헐적인 응답 지연이 발생하는 현상을 발견했습니다. 모니터링 대시보드에서는 모든 지표가 정상이었고, 경고 알림도 없었지만 사용자들은 느린 응답을 경험하고 있었죠.
+
+## 문제 발견
+스레드 덤프 분석을 통해 놀라운 사실을 확인했습니다. 100개 이상의 스레드가 동시에 하나의 락을 기다리며 BLOCKED 상태로 멈춰있었던 것입니다. 원인은 XML 처리를 위해 사용하던 Factory 메서드에 있었습니다.
+
+### Factory 메서드의 숨은 동작
+개발자들이 자주 사용하는 Factory 메서드들은 겉보기에는 무해해 보이지만, 남용하면 심각한 성능 저하를 일으킬 수 있습니다. 특히 XML 관련 Factory들은 ServiceLoader 메커니즘을 통해 구현체를 동적으로 탐색하는데, 이 과정에서 ClassLoader 수준의 동기화가 발생합니다.
+
+ServiceLoader가 작동하는 방식을 이해하면 문제가 명확해집니다:
+1. 호출 시마다 클래스패스의 모든 JAR 파일을 순회하며 구현체를 검색
+2. 이 과정에서 URLClassPath의 동기화된 메서드 접근
+3. 고동시성 환경에서 수백 개의 스레드가 하나의 락을 경쟁
+
+## 핵심 해결 전략
+
+### 1. Factory 인스턴스 재사용
+Factory 인스턴스는 한 번 생성하면 스레드 세이프하게 재사용할 수 있습니다. 정적 초기화 블록에서 한 번만 생성하고 전역적으로 활용하는 방식으로 변경했습니다.
+
+```java
+// 개선 전: 매 요청마다 새로 생성
+public XMLGregorianCalendar convert(Date date) {
+    DatatypeFactory factory = DatatypeFactory.newInstance(); // 느림!
+    return factory.newXMLGregorianCalendar(convertToCalendar(date));
+}
+
+// 개선 후: 정적으로 한 번만 초기화
+private static final DatatypeFactory FACTORY;
+static {
+    try {
+        FACTORY = DatatypeFactory.newInstance();
+    } catch (Exception e) {
+        throw new RuntimeException("초기화 실패", e);
+    }
+}
+
+public XMLGregorianCalendar convert(Date date) {
+    return FACTORY.newXMLGregorianCalendar(convertToCalendar(date));
+}
+```
+
+### 2. 정적 리소스 캐싱
+런타임에 변경되지 않는 설정 파일이나 리소스를 매번 ClassLoader를 통해 읽는 것은 비효율적입니다. 애플리케이션 시작 시 한 번만 로드하여 메모리에 캐싱하는 방식으로 전환했습니다.
+
+```java
+@Component
+public class ResourceCache {
+    private final Cache<String, String> cache = Caffeine.newBuilder()
+        .maximumSize(100)
+        .expireAfterWrite(1, TimeUnit.HOURS)
+        .build();
+    
+    public String readConfigFile(String filename) {
+        return cache.get(filename, this::loadFromClasspath);
+    }
+    
+    private String loadFromClasspath(String filename) {
+        // ClassLoader 접근 최소화
+        try (InputStream is = getClass().getResourceAsStream(filename)) {
+            return IOUtils.toString(is, StandardCharsets.UTF_8);
+        }
+    }
+}
+```
+
+### 3. 스레드 덤프 정기 분석
+성능 문제는 항상 경고와 함께 찾아오지 않습니다. 정기적인 스레드 덤프 수집과 분석을 통해 잠재적인 병목을 미리 파악하는 습관을 들이는 것이 중요합니다.
+
+## 적용 결과
+위 개선사항을 적용한 후 성능 지표는 다음과 같이 개선되었습니다:
+
+- **BLOCKED 스레드 수**: 102개 → 0~2개 (99% 감소)
+- **평균 응답 시간**: 45ms → 12ms
+- **P99 지연 시간**: 850ms → 45ms
+- **ClassLoader 경쟁**: 사실상 제거
+
+## 교훈과 모범 사례
+
+### Factory 메서드 사용 시 주의사항
+다음 Factory 메서드들은 ServiceLoader를 남용하는 대표적인 예입니다:
+- DocumentBuilderFactory.newInstance()
+- SAXParserFactory.newInstance()
+- XPathFactory.newInstance()
+- SchemaFactory.newInstance()
+
+이들은 유연성을 위해 설계되었지, 고성능을 위한 것이 아닙니다. 핫 패스에서 반복 호출한다면 반드시 캐싱을 고려하세요.
+
+### ClassLoader 작업 최소화
+ClassLoader의 getResource(), getResourceAsStream(), loadClass() 등의 메서드는 남부 동기화를 포함하고 있을 수 있습니다. 요청 처리 경로에서 이러한 호출을 최소화하는 것이 바람직합니다.
+
+### 성능 모니터링의 중요성
+"정상 작동 중"이라는 인상과 실제 사용자 경험은 다를 수 있습니다. JVM의 Flight Recorder나 async-profiler 같은 도구를 활용하여 실제 런타임 동작을 지속적으로 모니터링하는 문화를 구축하세요.
+
+## 결론
+단순해 보이는 한 줄의 코드가 전체 시스템의 성능을 저하시킬 수 있습니다. Java 생태계에서 제공하는 편의성 기능들이 항상 고성능을 보장하는 것은 아니며, 실제 동작 원리를 이해하고 적절히 최적화하는 노력이 필요합니다.
+
+특히 마이크로서비스 아키텍처에서는 작은 성능 저하가 전체 체인의 병목이 될 수 있습니다. 개발자로서 코드의 동작을 단순히 신뢰하기보다, 실제로 어떤 일이 일어나는지 의심하고 검증하는 자세가 중요합니다.
+
+## 참고 자료
+- Java ServiceLoader 공식 문서
+- JVM Performance 튜닝 가이드
+- Effective Java (Joshua Bloch)
+
+---
+
+*이 글은 실제 운영 환경에서의 경험을 바탕으로 작성되었습니다. 여러분의 환경에서는 다른 결과가 나올 수 있으니, 항상 직접 테스트 후 적용하시기 바랍니다.*

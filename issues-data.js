@@ -1332,5 +1332,76 @@ window.ISSUE_THREADS = window.ISSUE_THREADS || [
         time: "오전 10:17"
       }
     ]
+  },
+  {
+    id: "issue-20260215-java-factory-method-bottleneck",
+    title: "고성능 Java 서비스 병목 진단: Factory 메서드 남용을 줄이는 방법",
+    description: "<p>고동시성 Java 환경에서 `Factory.newInstance()`를 요청마다 호출하면 ServiceLoader 탐색과 ClassLoader 잠금 경쟁이 반복되어 지연이 급증할 수 있습니다.</p><p>이 글은 스레드 덤프 기반 진단법, 팩토리 재사용 패턴, 정적 리소스 캐싱, 개선 검증 지표를 실무 관점으로 정리합니다.</p>",
+    date: "2026-02-15",
+    catchy_title: "정상 지표인데 왜 느릴까: Java Factory 한 줄이 만든 숨은 락 병목",
+    source_name: "auto_content/hourly_issue_20250215_1039.txt 기반 오리지널 가이드",
+    source_url: "",
+    published_at: "2026-02-15T10:39:00+09:00",
+    image: "images/issue-fallback.svg",
+    image_variants: [],
+    rewritten_body: "트래픽이 높은 Java 서비스에서 평균 지표는 멀쩡한데 특정 구간만 느려지는 경우, 원인은 종종 비즈니스 로직이 아니라 런타임 초기화 경로에 숨어 있습니다. 특히 XML/검증 관련 Factory를 요청마다 생성하면 ServiceLoader 탐색이 반복되면서 ClassLoader 잠금 대기가 급증할 수 있습니다. 해결은 복잡하지 않습니다. 생성 비용이 큰 객체를 핫패스에서 빼고 애플리케이션 시작 시점에 준비하며, 자주 읽는 정적 리소스를 캐시로 전환하고, 스레드 덤프와 p99 지연을 함께 추적하면 재발 가능성을 크게 줄일 수 있습니다.",
+    summary_lines: [
+      "ServiceLoader 기반 Factory 생성 호출을 요청 경로에서 반복하면 ClassLoader 경합으로 BLOCKED 스레드가 늘어날 수 있다.",
+      "무거운 팩토리와 정적 리소스는 시작 시점에 초기화해 재사용하고, 런타임의 클래스패스 접근을 최소화해야 한다.",
+      "평균 응답시간보다 p95·p99, BLOCKED 스레드 수, 락 대기 시간을 함께 봐야 개선 효과를 정확히 판단할 수 있다."
+    ],
+    curator_insight: "장애는 대개 복잡한 알고리즘이 아니라 무심코 반복한 '편의 API 호출'에서 시작됩니다. 운영 환경에서는 객체 생성 위치 자체가 아키텍처 결정이므로, 핫패스에서 실행되는 newInstance 계열 API를 코드 리뷰 체크리스트에 포함하는 것이 재발 방지에 효과적입니다.",
+    visual_suggestion: "무료 스톡 키워드: java performance tuning, thread dump analysis, server latency dashboard, backend monitoring, jvm profiling. 생성형 프롬프트: \"backend engineer reviewing Java thread contention and latency metrics on monitoring dashboard, clean operations room, realistic documentary style, no logos, no readable sensitive text\"",
+    tags: ["Java", "성능최적화", "ServiceLoader", "ClassLoader", "Factory패턴"],
+    comments: [
+      {
+        side: "left",
+        author: "운영백엔드",
+        text: "평균은 정상인데 p99만 튀는 케이스 딱 이거였음",
+        time: "오전 10:40"
+      },
+      {
+        side: "right",
+        author: "성능분석",
+        text: "스레드 덤프에서 BLOCKED 몰려 있으면 락 경합 먼저 의심해야 함",
+        time: "오전 10:41"
+      },
+      {
+        side: "left",
+        author: "자바리드",
+        text: "팩토리 재사용 하나로 지연 분산이 확 줄더라",
+        time: "오전 10:42"
+      },
+      {
+        side: "right",
+        author: "신중파",
+        text: "재사용 전에는 구현체별 스레드 안전성 꼭 확인해야 함",
+        time: "오전 10:43"
+      },
+      {
+        side: "left",
+        author: "SRE관점",
+        text: "CPU 멀쩡한데 느리면 락/IO 대기를 같이 봐야 정확함",
+        time: "오전 10:44"
+      },
+      {
+        side: "right",
+        author: "플랫폼엔지니어",
+        text: "정적 리소스 캐싱하고 클래스패스 접근 줄이니 안정화됨",
+        time: "오전 10:45"
+      },
+      {
+        side: "left",
+        author: "주니어질문",
+        text: "ThreadLocal이 나은지 싱글톤이 나은지 상황 구분이 필요하네",
+        time: "오전 10:46"
+      },
+      {
+        side: "right",
+        author: "정리봇",
+        text: "핫패스에서 무거운 초기화를 제거하는 게 핵심 요약",
+        time: "오전 10:47"
+      }
+    ]
   }
 ];

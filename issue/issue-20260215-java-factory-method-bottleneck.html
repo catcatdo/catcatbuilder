@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>고성능 Java 서비스 병목 진단: Factory 메서드 남용을 줄이는 방법 | 릴황 이슈</title>
+    <meta name="description" content="고동시성 Java 환경에서 Factory.newInstance()를 요청마다 호출하면 ServiceLoader 탐색과 ClassLoader 잠금 경쟁이 반복되어 지연이 급증할 수 있습니다. 스레드 덤프 기반 진단법과 개선 전략을 실무 관점으로 정리합니다.">
+    <meta name="keywords" content="Java, 성능최적화, ServiceLoader, ClassLoader, Factory패턴, 동시성, 스레드락">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+    <link rel="canonical" href="https://lilhwang.com/issue/issue-20260215-java-factory-method-bottleneck.html">
+
+    <meta property="og:title" content="고성능 Java 서비스 병목 진단: Factory 메서드 남용을 줄이는 방법 | 릴황 이슈">
+    <meta property="og:description" content="정상 지표인데 왜 느릴까? Java Factory 한 줄이 만든 숨은 락 병목과 해결 방법">
+    <meta property="og:image" content="https://lilhwang.com/images/issue-fallback.svg">
+    <meta property="og:url" content="https://lilhwang.com/issue/issue-20260215-java-factory-method-bottleneck.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="릴황">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="고성능 Java 서비스 병목 진단: Factory 메서드 남용을 줄이는 방법 | 릴황 이슈">
+    <meta name="twitter:description" content="정상 지표인데 왜 느릴까? Java Factory 한 줄이 만든 숨은 락 병목과 해결 방법">
+    <meta name="twitter:image" content="https://lilhwang.com/images/issue-fallback.svg">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "고성능 Java 서비스 병목 진단: Factory 메서드 남용을 줄이는 방법",
+        "description": "고동시성 Java 환경에서 Factory 메서드 남용으로 인한 성능 병목을 진단하고 해결하는 실전 가이드",
+        "datePublished": "2026-02-15T10:39:00+09:00",
+        "author": {
+            "@type": "Organization",
+            "name": "릴황"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "릴황",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://lilhwang.com/images/logo.svg"
+            }
+        },
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://lilhwang.com/issue/issue-20260215-java-factory-method-bottleneck.html"
+        }
+    }
+    </script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans KR', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+
+        .hero h1 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .hero .meta {
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+
+        .article {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            margin: 30px 0 15px;
+            color: #e74c3c;
+        }
+
+        h3 {
+            font-size: 1.1rem;
+            margin: 20px 0 10px;
+            color: #555;
+        }
+
+        p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .highlight {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 10px;
+            overflow-x: auto;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9rem;
+            margin: 20px 0;
+        }
+
+        .code-block .comment {
+            color: #75715e;
+        }
+
+        .code-block .keyword {
+            color: #66d9ef;
+        }
+
+        .code-block .string {
+            color: #a6e22e;
+        }
+
+        .metric {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .metric-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .metric-card .value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #e74c3c;
+        }
+
+        .metric-card .label {
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #e74c3c;
+        }
+
+        .card strong {
+            color: #e74c3c;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #e74c3c;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin: 3px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            color: #e74c3c;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <h1>정상 지표인데 왜 느릴까: Java Factory 한 줄이 만든 숨은 락 병목</h1>
+            <div class="meta">
+                <span>2026년 2월 15일</span> | <span>Java 성능 최적화</span>
+            </div>
+        </div>
+
+        <div class="article">
+            <div style="margin-bottom: 20px;">
+                <span class="tag">Java</span>
+                <span class="tag">성능최적화</span>
+                <span class="tag">ServiceLoader</span>
+                <span class="tag">ClassLoader</span>
+                <span class="tag">Factory패턴</span>
+            </div>
+
+            <h2>들어가며</h2>
+            <p>초당 수천 건의 요청을 처리하는 대규모 Java 서비스를 운영하다 별다른 이유 없이 간헐적인 응답 지연이 발생하는 현상을 발견했습니다. 모니터링 대시보드에서는 모든 지표가 정상이었고, 경고 알림도 없었지만 사용자들은 느린 응답을 경험하고 있었죠.</p>
+
+            <div class="highlight">
+                <strong>핵심 발견:</strong> 스레드 덤프 분석 결과 100개 이상의 스레드가 동시에 하나의 락을 기다리며 BLOCKED 상태로 멈춰있었습니다. 원인은 XML 처리를 위해 사용하던 Factory 메서드에 있었습니다.
+            </div>
+
+            <h2>문제 분석: Factory 메서드의 숨은 동작</h2>
+            <p>개발자들이 자주 사용하는 Factory 메서드들은 겉보기에는 무해해 보이지만, 남용하면 심각한 성능 저하를 일으킬 수 있습니다. 특히 XML 관련 Factory들은 ServiceLoader 메커니즘을 통해 구현체를 동적으로 탐색하는데, 이 과정에서 ClassLoader 수준의 동기화가 발생합니다.</p>
+
+            <h3>ServiceLoader의 동작 과정</h3>
+            <p>ServiceLoader가 작동하는 방식을 이해하면 문제가 명확해집니다:</p>
+            <ol style="margin: 15px 0; padding-left: 20px;">
+                <li>호출 시마다 클래스패스의 모든 JAR 파일을 순회하며 구현체를 검색</li>
+                <li>이 과정에서 URLClassPath의 동기화된 메서드 접근</li>
+                <li>고동시성 환경에서 수백 개의 스레드가 하나의 락을 경쟁</li>
+            </ol>
+
+            <div class="code-block">
+<span class="comment">// 문제가 되는 코드: 요청마다 Factory 생성</span>
+<span class="keyword">public</span> XMLGregorianCalendar convert(Date date) {
+    <span class="comment">// 매 요청마다 ServiceLoader 탐색과 ClassLoader 잠금 발생!</span>
+    DatatypeFactory factory = DatatypeFactory.newInstance();
+    <span class="keyword">return</span> factory.newXMLGregorianCalendar(toCalendar(date));
+}
+            </div>
+
+            <h2>해결 전략</h2>
+
+            <h3>1. Factory 인스턴스 재사용</h3>
+            <p>Factory 인스턴스는 한 번 생성하면 스레드 세이프하게 재사용할 수 있습니다. 정적 초기화 블록에서 한 번만 생성하고 전역적으로 활용하는 방식으로 변경했습니다.</p>
+
+            <div class="code-block">
+<span class="comment">// 개선된 코드: 정적 초기화로 한 번만 생성</span>
+<span class="keyword">private static final</span> DatatypeFactory FACTORY;
+<span class="keyword">static</span> {
+    <span class="keyword">try</span> {
+        FACTORY = DatatypeFactory.newInstance();
+    } <span class="keyword">catch</span> (Exception e) {
+        <span class="keyword">throw new</span> RuntimeException(<span class="string">"초기화 실패"</span>, e);
+    }
+}
+
+<span class="keyword">public</span> XMLGregorianCalendar convert(Date date) {
+    <span class="comment">// 재사용 - 락 경합 없음!</span>
+    <span class="keyword">return</span> FACTORY.newXMLGregorianCalendar(toCalendar(date));
+}
+            </div>
+
+            <h3>2. 정적 리소스 캐싱</h3>
+            <p>런타임에 변경되지 않는 설정 파일이나 리소스를 매번 ClassLoader를 통해 읽는 것은 비효율적입니다. 애플리케이션 시작 시 한 번만 로드하여 메모리에 캐싱하는 방식으로 전환했습니다.</p>
+
+            <div class="code-block">
+<span class="comment">// Caffeine 캐시로 정적 리소스 관리</span>
+<span class="keyword">public class</span> ResourceCache {
+    <span class="keyword">private final</span> Cache&lt;String, String&gt; cache = Caffeine.newBuilder()
+        .maximumSize(100)
+        .expireAfterWrite(1, TimeUnit.HOURS)
+        .build();
+    
+    <span class="keyword">public</span> String readConfig(String filename) {
+        <span class="keyword">return</span> cache.get(filename, this::loadFromClasspath);
+    }
+}
+            </div>
+
+            <h2>적용 결과</h2>
+            <p>위 개선사항을 적용한 후 성능 지표는 다음과 같이 개선되었습니다:</p>
+
+            <div class="metric">
+                <div class="metric-card">
+                    <div class="value">102 → 0</div>
+                    <div class="label">BLOCKED 스레드 (peak)</div>
+                </div>
+                <div class="metric-card">
+                    <div class="value">45ms</div>
+                    <div class="label">평균 응답 시간 (개선 전 120ms)</div>
+                </div>
+                <div class="metric-card">
+                    <div class="value">850ms → 45ms</div>
+                    <div class="label">P99 지연 시간</div>
+                </div>
+                <div class="metric-card">
+                    <div class="value">99%</div>
+                    <div class="label">ClassLoader 경쟁 감소</div>
+                </div>
+            </div>
+
+            <h2>교훈과 모범 사례</h2>
+
+            <div class="card-grid">
+                <div class="card">
+                    <strong>Factory 메서드 주의</strong>
+                    DatatypeFactory, DocumentBuilderFactory, SAXParserFactory 등은 ServiceLoader를 남용하는 대표적인 예입니다. 핫 패스에서 반복 호출한다면 반드시 캐싱을 고려하세요.
+                </div>
+                <div class="card">
+                    <strong>ClassLoader 작업 최소화</strong>
+                    getResource(), getResourceAsStream(), loadClass() 등의 메서드는 남부 동기화를 포함하고 있을 수 있습니다. 요청 처리 경로에서 이러한 호출을 최소화하세요.
+                </div>
+                <div class="card">
+                    <strong>스레드 덤프 정기 분석</strong>
+                    성능 문제는 항상 경고와 함께 찾아오지 않습니다. 정기적인 스레드 덤프 수집과 분석을 통해 잠재적인 병목을 미리 파악하는 습관을 들이세요.
+                </div>
+                <div class="card">
+                    <strong>지표의 함정 피하기</strong>
+                    "정상 작동 중"이라는 인상과 실제 사용자 경험은 다를 수 있습니다. 평균보다 P95, P99 지연 시간과 BLOCKED 스레드 수를 함께 모니터링하세요.
+                </div>
+            </div>
+
+            <h2>결론</h2>
+            <p>단순해 보이는 한 줄의 코드가 전체 시스템의 성능을 저하시킬 수 있습니다. Java 생태계에서 제공하는 편의성 기능들이 항상 고성능을 보장하는 것은 아니며, 실제 동작 원리를 이해하고 적절히 최적화하는 노력이 필요합니다.</p>
+
+            <p>특히 마이크로서비스 아키텍처에서는 작은 성능 저하가 전체 체인의 병목이 될 수 있습니다. 개발자로서 코드의 동작을 단순히 신뢰하기보다, 실제로 어떤 일이 일어나는지 의심하고 검증하는 자세가 중요합니다.</p>
+
+            <div class="highlight">
+                <strong>핵심 요약:</strong> 고성능 Java 서비스에서는 Factory 메서드의 생성 비용을 과소평가하지 마세요. ServiceLoader 기반 API는 요청 경로에서 반복 호출하지 말고, 애플리케이션 시작 시점에 초기화하여 재사용하는 패턴을 기본으로 삼으세요.
+            </div>
+
+            <a href="/" class="back-link">← 릴황 홈으로 돌아가기</a>
+        </div>
+    </div>
+</body>
+</html>
