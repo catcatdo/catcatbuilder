@@ -1690,8 +1690,8 @@ window.ISSUE_THREADS = window.ISSUE_THREADS || [
   },
   {
     id: "issue-20260215-single-household-housing-strategy",
-    title: "1인가구 주거비 절약 가이드: 월세·전세·매매 비교 전략",
-    description: "<p>1인가구의 주거 선택은 집 형태보다 현금흐름, 거주 기간, 리스크 관리 순서로 판단할 때 실패 확률이 낮아집니다.</p><p>이 글은 월세·전세·매매의 총비용 구조와 단계별 의사결정 체크리스트를 통해 지금 상황에 맞는 선택 기준을 제시합니다.</p>",
+    title: "1인가구 주거비 절약 가이드: 월세 vs 전세 vs 매매 완벽 비교",
+    description: "<p>월세, 전세, 매매는 초기자금과 월 현금흐름 구조가 달라 같은 예산에서도 체감 부담이 크게 달라집니다.</p><p>이 글은 1인가구가 바로 적용할 수 있는 비교표와 안전 체크리스트를 통해 상황별 최적 선택 기준을 제시합니다.</p>",
     date: "2026-02-15",
     catchy_title: "월세로 버틸까, 전세로 갈아탈까, 매매를 준비할까: 1인가구 주거비 의사결정 가이드",
     source_name: "auto_content/hourly_issue_20250215_1309.txt 기반 오리지널 가이드",
@@ -1756,6 +1756,77 @@ window.ISSUE_THREADS = window.ISSUE_THREADS || [
         author: "정리메모",
         text: "결국 나한테 맞는 선택은 집 종류보다 숫자 점검 순서에서 나오네",
         time: "오후 1:17"
+      }
+    ]
+  },
+  {
+    id: "issue-20250215-burnout-prevention-7-habits",
+    title: "번아웃 예방을 위한 7가지 생활 습관: 지치기 전에 회복 루틴 만들기",
+    description: "<p>번아웃은 갑자기 생기는 문제가 아니라 경계 붕괴, 수면 저하, 과도한 비교가 누적될 때 서서히 커집니다.</p><p>이 글은 업무 경계 설정부터 디지털 디톡스, 도움 요청 타이밍까지 일상에서 바로 적용할 수 있는 7단계 회복 습관을 정리합니다.</p>",
+    date: "2025-02-15",
+    catchy_title: "퇴근 후에도 머리가 쉬지 않는다면: 번아웃을 막는 7가지 회복 습관",
+    source_name: "auto_content/hourly_issue_2025-02-15-1340.txt 기반 오리지널 가이드",
+    source_url: "",
+    published_at: "2025-02-15T13:40:00+09:00",
+    image: "images/issue-fallback.svg",
+    image_variants: [],
+    rewritten_body: "번아웃은 의지 부족이 아니라 회복 없는 긴장이 오래 누적될 때 발생합니다. 업무와 휴식의 경계를 분리하고, 수면·운동·소셜 미디어 사용을 조정하면 에너지 누수를 크게 줄일 수 있습니다. 여기에 작은 성취 기록과 주기적 디지털 디톡스를 결합하면 스트레스가 고착되기 전에 회복 주기를 되살릴 수 있습니다. 이미 무기력, 짜증 증가, 수면 붕괴가 반복된다면 혼자 버티기보다 전문가 상담을 빠르게 연결하는 편이 장기 손실을 줄이는 현실적인 선택입니다.",
+    summary_lines: [
+      "번아웃 예방의 핵심은 더 버티는 것이 아니라 긴장과 회복의 리듬을 일상에 설계하는 데 있다.",
+      "업무 경계, 규칙적 수면, 가벼운 운동, 소셜 미디어 절제가 에너지 고갈을 줄이는 기본 축이다.",
+      "증상이 누적되기 시작하면 조기 상담과 휴식 계획을 함께 실행해야 회복 속도를 높일 수 있다."
+    ],
+    curator_insight: "생산성 문제로 보이는 번아웃의 상당수는 사실 운영 규칙 부재에서 시작됩니다. 특히 지식노동자는 업무 시간이 아니라 '인지 점유 시간'이 길어지기 때문에, 퇴근 후 알림 차단, 주간 회복 슬롯, 주말 디지털 오프라인 시간을 제도처럼 고정하는 접근이 효과적입니다.",
+    visual_suggestion: "무료 스톡 키워드: burnout recovery routine, calm morning stretch, digital detox weekend, mental wellness journal, work life balance planning. 생성형 프롬프트: \"professional lifestyle editorial photo of a person planning a healthy weekly routine with notebook, water, and phone turned face down, soft daylight, calm and realistic mood, no logos, no readable personal data\"",
+    tags: ["번아웃예방", "스트레스관리", "멘탈헬스", "수면관리", "디지털디톡스", "자기관리"],
+    comments: [
+      {
+        side: "left",
+        author: "직장인리얼",
+        text: "퇴근 후 알림 끄기만 해도 다음날 피로감이 확 줄더라",
+        time: "오후 1:41"
+      },
+      {
+        side: "right",
+        author: "실행주의",
+        text: "운동은 길게 못 해도 15분 산책은 진짜 꾸준히 가능함",
+        time: "오후 1:42"
+      },
+      {
+        side: "left",
+        author: "완벽주의탈출",
+        text: "작은 성취 기록하는 습관이 생각보다 자존감 회복에 도움 됨",
+        time: "오후 1:43"
+      },
+      {
+        side: "right",
+        author: "현실관찰",
+        text: "SNS 줄이니까 비교 스트레스가 눈에 띄게 줄었음",
+        time: "오후 1:44"
+      },
+      {
+        side: "left",
+        author: "팀리드A",
+        text: "개인 노력도 중요하지만 팀 차원에서 야간 메시지 규칙이 있어야 함",
+        time: "오후 1:45"
+      },
+      {
+        side: "right",
+        author: "상담경험자",
+        text: "초기에 상담받는 게 오래 끌다 무너지는 것보다 훨씬 나았음",
+        time: "오후 1:46"
+      },
+      {
+        side: "left",
+        author: "학생독자",
+        text: "잠들기 전 1시간 폰 안 보기만으로 수면 질이 달라짐",
+        time: "오후 1:47"
+      },
+      {
+        side: "right",
+        author: "정리메모",
+        text: "핵심은 의지가 아니라 반복 가능한 회복 루틴을 설계하는 거네",
+        time: "오후 1:48"
       }
     ]
   }
