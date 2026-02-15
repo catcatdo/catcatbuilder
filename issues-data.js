@@ -1261,5 +1261,76 @@ window.ISSUE_THREADS = window.ISSUE_THREADS || [
         time: "오전 9:48"
       }
     ]
+  },
+  {
+    id: "issue-20260215-cloud-cost-optimization-practical-guide",
+    title: "클우드 비용 최적화 실전 가이드: 작은 스타트업도 80% 이상 절약하는 방법",
+    description: "<p>클라우드 비용은 트래픽 양보다 아키텍처 선택과 운영 정책에서 더 빠르게 커집니다.</p><p>이 글은 Kafka/MSK 파티션 설계, VPC 전송 비용, S3 하이브리드 저장, 캐싱, 오토스케일링까지 실전 절감 포인트를 한 번에 정리합니다.</p>",
+    date: "2026-02-15",
+    catchy_title: "MSK·네트워크·오토스케일링까지: 스타트업 클라우드 비용 84% 절감 플레이북",
+    source_name: "auto_content/hourly_issue_20260215_1009.txt 기반 오리지널 가이드",
+    source_url: "",
+    published_at: "2026-02-15T10:09:00+09:00",
+    image: "images/issue-fallback.svg",
+    image_variants: [],
+    rewritten_body: "클라우드 비용은 서버 한두 대를 줄여서는 크게 내려가지 않습니다. 실제 절감은 Kafka 파티션 설계, AZ/리전 간 트래픽 경로, 데이터 보관 정책, 캐시 계층, 오토스케일링 규칙을 함께 손볼 때 발생합니다. 특히 스타트업은 초기에 단순한 구조를 택하더라도 비용 지표를 월 단위로 점검하면서 메시지 브로커와 네트워크 비용을 분리해 관리해야 예산이 급격히 늘어나는 구간을 피할 수 있습니다.",
+    summary_lines: [
+      "Kafka/MSK는 처리량뿐 아니라 토픽·파티션 수가 인스턴스 크기와 운영비를 크게 좌우하므로 파티션 전략을 먼저 최적화해야 한다.",
+      "멀티 VPC 환경에서는 AZ 간 전송과 컨슈머 read amplification 때문에 네트워크 비용이 스토리지 비용보다 더 커질 수 있다.",
+      "S3 하이브리드 저장, 캐싱 3계층, 혼합 인스턴스 오토스케일링을 함께 적용하면 스타트업도 연간 총비용을 80% 이상 낮출 수 있다."
+    ],
+    curator_insight: "비용 최적화는 '싼 리소스 찾기'보다 '비싼 데이터 흐름 끊기'에 가깝습니다. 특히 이벤트 기반 시스템은 메시지 저장비보다 전송비와 운영 복잡도에서 손실이 커지기 때문에, 아키텍처 단계에서 비용 경로를 설계해야 장기적으로 유리합니다.",
+    visual_suggestion: "무료 스톡 키워드: cloud cost dashboard, aws architecture diagram, kafka cluster monitoring, startup engineering team, serverless storage. 생성형 프롬프트: \"engineering team reviewing cloud cost optimization dashboard with kafka and aws architecture on large screen, clean office, realistic documentary photography, no logos, no readable proprietary text\"",
+    tags: ["cloud", "aws", "cost-optimization", "kafka"],
+    comments: [
+      {
+        side: "left",
+        author: "스타트업CTO",
+        text: "우리도 네트워크 비용이 스토리지보다 더 크던데 정확히 찔렸음",
+        time: "오전 10:10"
+      },
+      {
+        side: "right",
+        author: "데이터엔지니어",
+        text: "파티션 수부터 줄였더니 MSK 스펙 다운이 가능했음",
+        time: "오전 10:11"
+      },
+      {
+        side: "left",
+        author: "클라우드운영",
+        text: "AZ 트래픽 요금은 진짜 월말에 보고서 볼 때 체감됨",
+        time: "오전 10:12"
+      },
+      {
+        side: "right",
+        author: "백엔드리드",
+        text: "Hot/Cold 분리해서 S3로 넘긴 전략이 가장 현실적이네",
+        time: "오전 10:13"
+      },
+      {
+        side: "left",
+        author: "인프라담당",
+        text: "오토스케일링 쿨다운 길게 잡는 거 진짜 중요함",
+        time: "오전 10:14"
+      },
+      {
+        side: "right",
+        author: "프로덕트엔지니어",
+        text: "캐시 키 설계 잘못하면 비용 아끼려다 데이터 꼬일 수 있음",
+        time: "오전 10:15"
+      },
+      {
+        side: "left",
+        author: "FinOps관점",
+        text: "결국 월 단위 비용 리뷰 루틴이 있느냐가 승부처 같음",
+        time: "오전 10:16"
+      },
+      {
+        side: "right",
+        author: "결론요약",
+        text: "리소스 다운사이징보다 아키텍처 경로 최적화가 먼저다",
+        time: "오전 10:17"
+      }
+    ]
   }
 ];
