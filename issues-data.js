@@ -1687,5 +1687,76 @@ window.ISSUE_THREADS = window.ISSUE_THREADS || [
         time: "오후 12:47"
       }
     ]
+  },
+  {
+    id: "issue-20260215-single-household-housing-strategy",
+    title: "1인가구 주거비 절약 가이드: 월세·전세·매매 비교 전략",
+    description: "<p>1인가구의 주거 선택은 집 형태보다 현금흐름, 거주 기간, 리스크 관리 순서로 판단할 때 실패 확률이 낮아집니다.</p><p>이 글은 월세·전세·매매의 총비용 구조와 단계별 의사결정 체크리스트를 통해 지금 상황에 맞는 선택 기준을 제시합니다.</p>",
+    date: "2026-02-15",
+    catchy_title: "월세로 버틸까, 전세로 갈아탈까, 매매를 준비할까: 1인가구 주거비 의사결정 가이드",
+    source_name: "auto_content/hourly_issue_20250215_1309.txt 기반 오리지널 가이드",
+    source_url: "",
+    published_at: "2026-02-15T13:09:00+09:00",
+    image: "images/issue-fallback.svg",
+    image_variants: [],
+    rewritten_body: "1인가구 주거 선택의 핵심은 '어떤 집이 좋아 보이느냐'가 아니라 '현재 현금흐름과 향후 3~7년 계획을 감당할 수 있느냐'입니다. 월세는 유연성이 높은 대신 장기 누적 비용이 커지고, 전세는 월 부담이 낮지만 계약·보증 리스크 관리가 필수이며, 매매는 자산 축적 가능성이 있지만 대출과 유지비에 대한 체력 검증이 선행돼야 합니다. 따라서 주거 형태를 고를 때는 감정적 선호보다 보증금 조달 계획, 월 지출 상한선, 긴급자금 보유 수준을 먼저 숫자로 점검하는 접근이 가장 안전합니다.",
+    summary_lines: [
+      "주거 의사결정은 월 부담, 초기자금, 계약 리스크를 함께 계산할 때 실패 확률을 줄일 수 있다.",
+      "월세는 이동성과 유연성이 강점이고, 전세는 현금흐름 효율이 높지만 안전장치 점검이 필수다.",
+      "매매는 장기 거주와 대출 상환 여력이 확인된 경우에만 자산 전략으로 접근하는 것이 현실적이다."
+    ],
+    curator_insight: "주거비 문제는 '집값 전망'보다 개인의 현금흐름 운영 능력에서 먼저 승부가 납니다. 특히 1인가구는 소득 변동을 혼자 감당해야 하므로, 월 지출 상한과 비상자금을 고정한 뒤 주거 형태를 선택하는 순서가 장기 안정성에 결정적입니다.",
+    visual_suggestion: "무료 스톡 키워드: single person apartment planning, housing budget calculator, real estate contract consultation, financial checklist desk, urban studio lifestyle. 생성형 프롬프트: \"single household planning housing budget at a clean desk with calculator, contract documents and city apartment background, professional editorial photography, realistic daylight, no logos, no readable personal data\"",
+    tags: ["1인가구", "주거비", "월세", "전세", "매매", "재무관리"],
+    comments: [
+      {
+        side: "left",
+        author: "직장인A",
+        text: "월세 싸다고 갔다가 관리비까지 더하니 생각보다 차이 작았음",
+        time: "오후 1:10"
+      },
+      {
+        side: "right",
+        author: "현실계산러",
+        text: "전세 대출 이자까지 넣어서 비교하라는 포인트가 제일 실용적",
+        time: "오후 1:11"
+      },
+      {
+        side: "left",
+        author: "이직준비생",
+        text: "이직 가능성 높으면 유연성 때문에 아직 월세가 맞는 듯",
+        time: "오후 1:12"
+      },
+      {
+        side: "right",
+        author: "재테크초보",
+        text: "매매는 진짜 비상자금 먼저 만들고 보는 게 맞네",
+        time: "오후 1:13"
+      },
+      {
+        side: "left",
+        author: "전세경험자",
+        text: "보증보험 가입 여부가 마음 편함에서 차이가 큼",
+        time: "오후 1:14"
+      },
+      {
+        side: "right",
+        author: "집찾는중",
+        text: "역세권 고집 조금만 낮추니 선택지가 훨씬 넓어졌음",
+        time: "오후 1:15"
+      },
+      {
+        side: "left",
+        author: "가계부러",
+        text: "주거비 상한선을 먼저 정해두니 소비 통제가 쉬워지더라",
+        time: "오후 1:16"
+      },
+      {
+        side: "right",
+        author: "정리메모",
+        text: "결국 나한테 맞는 선택은 집 종류보다 숫자 점검 순서에서 나오네",
+        time: "오후 1:17"
+      }
+    ]
   }
 ];
