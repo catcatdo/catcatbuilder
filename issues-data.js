@@ -1616,5 +1616,76 @@ window.ISSUE_THREADS = window.ISSUE_THREADS || [
         time: "오후 12:17"
       }
     ]
+  },
+  {
+    id: "issue-20260215-small-task-completion-criteria",
+    title: "작은 일도 끝나는 기준이 필요한 이유: 하루를 지키는 마이크로 완료 전략",
+    description: "<p>작은 업무가 하루를 잠식하는 핵심 원인은 일을 시작할 때 종료 기준을 정하지 않는 데 있습니다.</p><p>이 글은 이메일, 정리, 학습 같은 반복 업무에 명확한 끝점을 설정해 집중력과 지속성을 함께 높이는 실전 방법을 제시합니다.</p>",
+    date: "2026-02-15",
+    catchy_title: "잠깐 하려다 2시간? 작은 일에 종료선을 긋는 순간 생산성이 살아난다",
+    source_name: "auto_content/hourly_issue_20260215_1239.txt 기반 오리지널 가이드",
+    source_url: "",
+    published_at: "2026-02-15T12:39:00+09:00",
+    image: "images/issue-fallback.svg",
+    image_variants: [],
+    rewritten_body: "작은 일은 부담이 낮아 보이지만 끝나는 기준이 없으면 가장 먼저 시간을 잡아먹는 영역이 됩니다. 이메일 확인, 간단한 정리, 짧은 학습처럼 출발이 쉬운 작업일수록 '언제 멈출지'를 미리 정해야 하루의 핵심 업무가 보호됩니다. 핵심은 완벽주의가 아니라 라운드 방식입니다. 예를 들어 10분 정리, 5개 답장, 20분 학습처럼 작업 단위를 작게 자르고, 에너지가 남을 때만 다음 라운드를 여는 방식이 꾸준함과 성과를 동시에 만듭니다.",
+    summary_lines: [
+      "작은 업무가 길어지는 이유는 작업 난이도보다 종료 조건 부재에 가깝다.",
+      "시작 전 '시간·수량·결과물' 중 하나라도 종료 기준으로 고정하면 집중력이 올라간다.",
+      "짧은 라운드로 완료 경험을 쌓으면 번아웃 없이 일상 생산성을 안정적으로 높일 수 있다."
+    ],
+    curator_insight: "생산성은 의지보다 설계의 영향을 더 크게 받습니다. 특히 작은 일에 종료 기준을 붙이는 습관은 우선순위가 높은 작업 시간을 지키는 가장 저비용의 운영 규칙입니다. 조직에서도 이 원칙을 적용하면 메신저 응답, 반복 보고, 정리성 업무가 핵심 프로젝트를 침식하는 문제를 줄일 수 있습니다.",
+    visual_suggestion: "무료 스톡 키워드: productivity planner, desk timer, focused work session, task checklist, daily routine management. 생성형 프롬프트: \"professional desk setup with timer, notebook checklist, and laptop showing focused work session, clean natural lighting, productivity editorial style, realistic photography, no logos, no readable personal data\"",
+    tags: ["생산성", "시간관리", "습관형성", "자기계발", "집중력관리"],
+    comments: [
+      {
+        side: "left",
+        author: "업무관리자",
+        text: "이메일 5개만 처리 규칙 쓰고 나서 오전 집중 시간이 살아났음",
+        time: "오후 12:40"
+      },
+      {
+        side: "right",
+        author: "실행파",
+        text: "작게 끊으니까 시작 장벽이 확 내려가더라",
+        time: "오후 12:41"
+      },
+      {
+        side: "left",
+        author: "완벽주의탈출",
+        text: "전부 끝내려다 지치던 패턴에서 벗어나는 데 도움 됐음",
+        time: "오후 12:42"
+      },
+      {
+        side: "right",
+        author: "팀리드",
+        text: "종료 기준 없으면 슬랙 답장만 하다 하루 끝나는 거 공감",
+        time: "오후 12:43"
+      },
+      {
+        side: "left",
+        author: "스터디러",
+        text: "20분 학습 + 3줄 요약 규칙이 복습까지 이어져서 좋았음",
+        time: "오후 12:44"
+      },
+      {
+        side: "right",
+        author: "현실주의",
+        text: "에너지 남으면 다음 라운드, 없으면 종료가 제일 현실적이네",
+        time: "오후 12:45"
+      },
+      {
+        side: "left",
+        author: "디자이너B",
+        text: "타이머 기반으로 작업 단위 나누니까 창의 작업도 덜 지침",
+        time: "오후 12:46"
+      },
+      {
+        side: "right",
+        author: "정리메모",
+        text: "핵심은 오래 하는 게 아니라 끝나는 기준을 먼저 정하는 거네",
+        time: "오후 12:47"
+      }
+    ]
   }
 ];

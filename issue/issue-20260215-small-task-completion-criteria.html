@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>작은 일도 끝나는 기준이 필요한 이유: 하루를 지키는 마이크로 완료 전략 | 릴황 이슈</title>
+    <meta name="description" content="작은 업무가 길어지는 이유는 의지 부족이 아니라 종료 조건 부재에 있습니다. 이메일, 정리, 학습에 바로 적용할 수 있는 마이크로 완료 전략으로 집중력과 생산성을 안정적으로 높여보세요.">
+    <meta name="keywords" content="생산성, 시간관리, 습관형성, 집중력관리, 업무관리, 자기계발, 마이크로완료전략">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+    <link rel="canonical" href="https://lilhwang.com/issue/issue-20260215-small-task-completion-criteria.html">
+
+    <meta property="og:title" content="작은 일도 끝나는 기준이 필요한 이유: 하루를 지키는 마이크로 완료 전략 | 릴황 이슈">
+    <meta property="og:description" content="잠깐 하려던 일이 하루를 잡아먹지 않게 만드는 종료 기준 설계법을 정리했습니다.">
+    <meta property="og:image" content="https://lilhwang.com/images/issue-fallback.svg">
+    <meta property="og:url" content="https://lilhwang.com/issue/issue-20260215-small-task-completion-criteria.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="릴황">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="작은 일도 끝나는 기준이 필요한 이유: 하루를 지키는 마이크로 완료 전략 | 릴황 이슈">
+    <meta name="twitter:description" content="작은 일에 종료선을 긋는 순간 생산성이 살아납니다.">
+    <meta name="twitter:image" content="https://lilhwang.com/images/issue-fallback.svg">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "작은 일도 끝나는 기준이 필요한 이유: 하루를 지키는 마이크로 완료 전략",
+      "description": "작은 업무에 명확한 종료 기준을 설계해 집중력과 지속성을 동시에 높이는 실전 생산성 가이드",
+      "datePublished": "2026-02-15T12:39:00+09:00",
+      "dateModified": "2026-02-15T12:39:00+09:00",
+      "author": {
+        "@type": "Organization",
+        "name": "릴황"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "릴황",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://lilhwang.com/images/logo.svg"
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://lilhwang.com/issue/issue-20260215-small-task-completion-criteria.html"
+      }
+    }
+    </script>
+
+    <style>
+        :root {
+            --bg: #f4f8fb;
+            --paper: #ffffff;
+            --text: #172534;
+            --muted: #526579;
+            --line: #d3deea;
+            --accent: #0c5aa6;
+            --accent-soft: #eaf3ff;
+            --ok: #16734a;
+            --warn: #9b5f00;
+            --shadow: 0 18px 36px rgba(19, 39, 60, 0.10);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Noto Sans KR", "Apple SD Gothic Neo", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            line-height: 1.72;
+            color: var(--text);
+            background:
+                radial-gradient(circle at 4% 4%, #dfeefe 0%, transparent 34%),
+                radial-gradient(circle at 98% 12%, #e9f7f2 0%, transparent 30%),
+                var(--bg);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 28px 18px 54px;
+        }
+
+        .hero {
+            background: linear-gradient(140deg, #ffffff 0%, #f0f7ff 100%);
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            padding: 34px 30px;
+            margin-bottom: 20px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            border: 1px solid #bad1eb;
+            border-radius: 999px;
+            background: var(--accent-soft);
+            color: var(--accent);
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            padding: 6px 12px;
+            margin-bottom: 12px;
+        }
+
+        h1 {
+            font-size: clamp(1.78rem, 4.1vw, 2.3rem);
+            line-height: 1.3;
+            letter-spacing: -0.02em;
+            margin-bottom: 12px;
+        }
+
+        .meta {
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .article {
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            padding: 30px;
+        }
+
+        .lead {
+            border: 1px solid #c8ddf6;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #edf5ff 0%, #f8fbff 100%);
+            padding: 18px;
+            color: #1b4670;
+            margin-bottom: 24px;
+        }
+
+        h2 {
+            font-size: 1.34rem;
+            line-height: 1.38;
+            letter-spacing: -0.01em;
+            margin: 30px 0 12px;
+        }
+
+        h3 {
+            font-size: 1.04rem;
+            margin: 18px 0 8px;
+            color: #204566;
+        }
+
+        p {
+            margin: 0 0 14px;
+        }
+
+        ul,
+        ol {
+            margin: 0 0 15px 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 14px 0 10px;
+            font-size: 0.95rem;
+        }
+
+        .table th,
+        .table td {
+            border: 1px solid var(--line);
+            text-align: left;
+            vertical-align: top;
+            padding: 10px;
+        }
+
+        .table thead th {
+            background: #edf5ff;
+            font-weight: 700;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px;
+            margin: 12px 0 16px;
+        }
+
+        .card {
+            border: 1px solid var(--line);
+            background: #fff;
+            border-radius: 12px;
+            padding: 14px;
+        }
+
+        .card strong {
+            display: block;
+            margin-bottom: 6px;
+            color: #1b4670;
+        }
+
+        .note {
+            border: 1px solid var(--line);
+            border-left: 4px solid var(--accent);
+            background: #f3f8ff;
+            border-radius: 10px;
+            padding: 14px;
+            margin: 18px 0;
+        }
+
+        .ok {
+            color: var(--ok);
+            font-weight: 700;
+        }
+
+        .warn {
+            color: var(--warn);
+            font-weight: 700;
+        }
+
+        .checklist {
+            border: 1px dashed #b8cbe0;
+            border-radius: 12px;
+            padding: 14px;
+            margin: 14px 0;
+            background: #f9fcff;
+        }
+
+        .tag-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 26px 0 10px;
+        }
+
+        .tag {
+            display: inline-flex;
+            border: 1px solid #bfd2e8;
+            background: var(--accent-soft);
+            color: var(--accent);
+            border-radius: 999px;
+            padding: 6px 12px;
+            font-size: 0.84rem;
+            font-weight: 600;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #fff;
+            background: var(--accent);
+            text-decoration: none;
+            border-radius: 10px;
+            padding: 10px 15px;
+            font-weight: 700;
+            margin-top: 18px;
+        }
+
+        .back-link:hover {
+            background: #0a4a88;
+        }
+
+        @media (max-width: 760px) {
+            .hero,
+            .article {
+                padding: 24px 18px;
+                border-radius: 16px;
+            }
+
+            .table {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="hero">
+            <span class="eyebrow">Productivity System</span>
+            <h1>잠깐 하려다 2시간? 작은 일에 종료선을 긋는 순간 생산성이 살아난다</h1>
+            <p class="meta">릴황 라이프 이슈 · 2026년 2월 15일 · 생산성 · 시간관리 · 습관형성</p>
+        </header>
+
+        <article class="article">
+            <p class="lead">작은 일은 쉽기 때문에 시작은 빠르지만, 끝이 없으면 하루를 가장 크게 잠식한다. 핵심은 의지나 근성이 아니라 설계다. 시작 전에 종료 기준을 하나만 정하면 집중력, 만족감, 지속성이 동시에 올라간다.</p>
+
+            <h2>1. 왜 작은 일이 하루를 잡아먹을까</h2>
+            <p>이메일 확인, 책상 정리, 메신저 답장 같은 업무는 부담이 낮아 쉽게 시작된다. 문제는 대부분의 사람이 이 작업을 "언제 멈출지" 정하지 않은 채 시작한다는 점이다. 그러면 작업은 자동으로 확장되고, 정작 중요한 핵심 업무는 뒤로 밀린다.</p>
+            <p>작은 일은 시간이 적게 걸리는 일이 아니라, <strong>끝점을 먼저 정해야 작게 유지되는 일</strong>이다.</p>
+
+            <h2>2. 시작 전 15초: 종료 기준 3가지 중 하나만 고정하기</h2>
+            <p>작업마다 아래 셋 중 한 가지 기준만 먼저 고르면 된다.</p>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>기준</th>
+                        <th>정의</th>
+                        <th>적용 예시</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>시간 기준</td>
+                        <td>정해진 시간까지만 실행</td>
+                        <td>"10분 청소 후 종료"</td>
+                    </tr>
+                    <tr>
+                        <td>수량 기준</td>
+                        <td>정해진 개수까지만 처리</td>
+                        <td>"이메일 5개 답장 후 종료"</td>
+                    </tr>
+                    <tr>
+                        <td>결과물 기준</td>
+                        <td>작은 산출물 1개를 완료</td>
+                        <td>"20분 읽고 3줄 요약 작성"</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="note">
+                <p><span class="ok">실전 원칙:</span> 기준은 1개만 선택한다. 기준이 많아질수록 시작이 늦어지고, 유지가 어렵다.</p>
+            </div>
+
+            <h2>3. 마이크로 완료 전략: 라운드 방식으로 운영하기</h2>
+            <p>작은 일은 한 번에 끝내려는 접근보다 라운드 방식이 안정적이다. 1라운드를 완료한 뒤, 에너지가 남아 있을 때만 2라운드를 연다.</p>
+
+            <div class="cards">
+                <div class="card">
+                    <strong>라운드 1 (필수)</strong>
+                    오늘의 최소 기준을 달성한다. 예: 메일 5개, 정리 10분.
+                </div>
+                <div class="card">
+                    <strong>라운드 2 (선택)</strong>
+                    에너지가 남으면 같은 기준으로 한 번 더 진행한다.
+                </div>
+                <div class="card">
+                    <strong>라운드 종료</strong>
+                    피로가 높으면 즉시 종료하고 다음 핵심 작업으로 이동한다.
+                </div>
+            </div>
+
+            <p>이 방식의 장점은 명확하다. <strong>조금이라도 완료한 날</strong>이 늘어나며, "올오어낫싱" 사고를 줄여 장기적으로 더 큰 성과를 만든다.</p>
+
+            <h2>4. 상황별 종료 기준 템플릿</h2>
+            <h3>업무(이메일/메신저)</h3>
+            <ul>
+                <li>"중요도 높은 상위 5건만 답장하고 종료"</li>
+                <li>"15분 타이머 종료 시 다음 업무로 전환"</li>
+            </ul>
+
+            <h3>집안일</h3>
+            <ul>
+                <li>"욕실은 세면대만 정리하고 종료"</li>
+                <li>"거실 정리 10분 후 즉시 멈춤"</li>
+            </ul>
+
+            <h3>학습</h3>
+            <ul>
+                <li>"20분 학습 + 핵심 3줄 요약 완료 시 종료"</li>
+                <li>"문제 3개 풀이 후 오답 체크만 하고 종료"</li>
+            </ul>
+
+            <div class="checklist">
+                <h3>오늘 바로 쓰는 1문장 포맷</h3>
+                <p>"<strong>[작업명]</strong>을(를) <strong>[시간/수량/결과물]</strong> 기준으로 완료하면 종료한다."</p>
+                <p>예: "자료 정리를 12분간 진행하고 표 1개 완성하면 종료한다."</p>
+            </div>
+
+            <h2>5. 실패를 줄이는 운영 팁</h2>
+            <ol>
+                <li><strong>타이머를 눈에 보이게 두기:</strong> 종료 신호를 외부화하면 의지 소모가 줄어든다.</li>
+                <li><strong>완료 로그 남기기:</strong> 체크 표시 하나가 다음 실행 확률을 높인다.</li>
+                <li><strong>재개 트리거 정하기:</strong> "점심 후 1라운드"처럼 시작 시점을 고정한다.</li>
+            </ol>
+
+            <p><span class="warn">주의:</span> "조금 남았으니 끝까지"라는 생각이 누적되면 작은 일이 다시 대형 작업으로 커진다. 종료 기준을 지키는 것이 핵심 규칙이다.</p>
+
+            <h2>6. 7일 적용 플랜</h2>
+            <ul>
+                <li><strong>1~2일차:</strong> 하루 1개 작업에만 종료 기준 적용</li>
+                <li><strong>3~4일차:</strong> 업무 + 생활 영역으로 2개 작업 확대</li>
+                <li><strong>5~7일차:</strong> 라운드 2를 선택적으로 추가하며 에너지 패턴 기록</li>
+            </ul>
+
+            <p>7일 후에는 자신에게 맞는 기준이 보인다. 어떤 작업은 시간 기준이, 어떤 작업은 수량 기준이 더 잘 맞는다. 이 개인화된 기준이 습관의 핵심 자산이 된다.</p>
+
+            <h2>결론: 생산성은 오래 하는 힘보다 끝내는 설계에서 나온다</h2>
+            <p>완벽하게 하려다 지치는 것보다, 작게 끝내는 경험을 매일 쌓는 편이 훨씬 강력하다. 작은 일에 종료선을 긋는 순간, 하루의 우선순위와 집중력이 함께 회복된다.</p>
+
+            <div class="tag-row">
+                <span class="tag">#생산성</span>
+                <span class="tag">#시간관리</span>
+                <span class="tag">#습관형성</span>
+                <span class="tag">#자기계발</span>
+                <span class="tag">#집중력관리</span>
+            </div>
+
+            <a href="../index.html" class="back-link">← 릴황 홈으로</a>
+        </article>
+    </div>
+</body>
+</html>
