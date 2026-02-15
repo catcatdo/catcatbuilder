@@ -1119,5 +1119,76 @@ window.ISSUE_THREADS = window.ISSUE_THREADS || [
         time: "오전 8:47"
       }
     ]
+  },
+  {
+    id: "issue-20260215-ai-problem-solving-leverage",
+    title: "AI 코딩 시대, 개발자는 무엇을 직접 해야 하는가",
+    description: "<p>AI가 구현 속도를 끌어올린 지금, 개발자의 핵심 가치는 타이핑이 아니라 문제 정의·설계·검증 역량으로 이동하고 있습니다.</p><p>이 글은 실무 팀이 바로 적용할 수 있는 책임 분리 기준, 품질 게이트, 2주 실행 체크리스트를 정리해 AI 도입 효과를 안정적으로 만드는 방법을 제시합니다.</p>",
+    date: "2026-02-15",
+    catchy_title: "코드를 덜 써도 성과는 더 커진다: AI 시대 개발자 역할 재설계",
+    source_name: "2026년 2월 기술 트렌드 요약 기반 오리지널 콘텐츠",
+    source_url: "",
+    published_at: "2026-02-15T09:09:00+09:00",
+    image: "images/issue-fallback.svg",
+    image_variants: [],
+    rewritten_body: "일부 선도 조직은 AI를 활용해 구현 속도를 크게 끌어올리고 있지만, 성과가 지속되는 팀은 공통적으로 사람의 책임 구간을 더 명확히 운영합니다. 핵심은 개발자를 '코드 작성자'로만 보지 않고, 문제를 정의하고 시스템 경계를 설계하며 운영 리스크를 검증하는 역할로 재설계하는 것입니다. AI는 초안을 빠르게 만들지만, 비즈니스 맥락 해석과 품질 보증은 자동화하기 어렵기 때문에 오히려 더 엄격한 리뷰 기준이 필요합니다. 결국 경쟁력은 얼마나 많이 생성했는지가 아니라, 얼마나 안정적으로 배포하고 학습 루프를 돌렸는지에서 갈립니다.",
+    summary_lines: [
+      "AI 코딩 도입 이후 개발자의 핵심 업무는 타이핑보다 문제 정의, 아키텍처 판단, 품질 검증으로 이동하고 있다.",
+      "반복 구현은 자동화하되 요구사항 해석, 보안·성능 리스크 점검, 배포 승인 기준은 사람이 명확히 소유해야 한다.",
+      "팀 성과를 유지하려면 프롬프트 규격, PR 크기 상한, 테스트 게이트, 장애 회고를 하나의 운영 체계로 묶어야 한다."
+    ],
+    curator_insight: "AI 시대의 생산성은 '작성 속도'가 아니라 '신뢰 가능한 출시 속도'로 측정해야 합니다. 코드 생성 비용이 낮아질수록 잘못된 가정이 더 빠르게 퍼질 수 있기 때문에, 개발자 개인 역량보다 팀 단위의 검증 프로세스 설계가 성패를 좌우합니다.",
+    visual_suggestion: "무료 스톡 키워드: software architecture workshop, ai coding assistant, engineering review board, release checklist, product team collaboration. 생성형 프롬프트: \"engineering team defining architecture and quality gates while using AI coding assistant, modern office, realistic documentary style, neutral color tone, no logos, no readable proprietary text\"",
+    tags: ["AI코딩", "개발자역할", "문제해결", "아키텍처", "품질관리"],
+    comments: [
+      {
+        side: "left",
+        author: "실무리드",
+        text: "요즘은 구현보다 요구사항 해석 정확도가 진짜 중요함",
+        time: "오전 9:10"
+      },
+      {
+        side: "right",
+        author: "AI활용팀",
+        text: "반복 코드는 확실히 빨라졌는데 리뷰 기준이 더 빡세짐",
+        time: "오전 9:11"
+      },
+      {
+        side: "left",
+        author: "백엔드개발",
+        text: "테스트 게이트 없이 AI 코드 머지하면 결국 장애로 돌아옴",
+        time: "오전 9:12"
+      },
+      {
+        side: "right",
+        author: "아키텍처중시",
+        text: "코드량보다 경계 설계가 성능과 운영비를 결정함",
+        time: "오전 9:13"
+      },
+      {
+        side: "left",
+        author: "주니어시점",
+        text: "AI 쓰더라도 로직 설명 가능해야 실력으로 인정받는 듯",
+        time: "오전 9:14"
+      },
+      {
+        side: "right",
+        author: "품질담당",
+        text: "PR 크기 제한 하나만 지켜도 리뷰 피로가 많이 줄더라",
+        time: "오전 9:15"
+      },
+      {
+        side: "left",
+        author: "프로덕트개발",
+        text: "비즈니스 맥락 모르면 AI 출력이 빨라도 방향이 틀어짐",
+        time: "오전 9:16"
+      },
+      {
+        side: "right",
+        author: "운영관점",
+        text: "결국 핵심은 장애 줄이면서 배포 빈도 지키는 거임",
+        time: "오전 9:17"
+      }
+    ]
   }
 ];

@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 코딩 시대, 개발자는 무엇을 직접 해야 하는가 | 릴황 이슈</title>
+    <meta name="description" content="AI가 코드를 빠르게 만들어도 제품 성과는 문제 정의, 설계, 검증에서 갈립니다. AI 시대 개발자 역할 재설계를 위한 실무 운영 가이드를 정리했습니다.">
+    <meta name="keywords" content="AI코딩, 개발자역할, 문제정의, 아키텍처, 코드리뷰, 품질관리, 소프트웨어개발">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+    <link rel="canonical" href="https://lilhwang.com/issue/issue-20260215-ai-problem-solving-leverage.html">
+
+    <meta property="og:title" content="AI 코딩 시대, 개발자는 무엇을 직접 해야 하는가 | 릴황 이슈">
+    <meta property="og:description" content="코드를 덜 쓰는 시대일수록 개발자의 가치는 문제 정의와 품질 검증에서 커집니다.">
+    <meta property="og:image" content="https://lilhwang.com/images/issue-fallback.svg">
+    <meta property="og:url" content="https://lilhwang.com/issue/issue-20260215-ai-problem-solving-leverage.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="릴황">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AI 코딩 시대, 개발자는 무엇을 직접 해야 하는가 | 릴황 이슈">
+    <meta name="twitter:description" content="AI 시대 개발자 역할을 문제정의·설계·검증 관점에서 실무적으로 정리했습니다.">
+    <meta name="twitter:image" content="https://lilhwang.com/images/issue-fallback.svg">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "AI 코딩 시대, 개발자는 무엇을 직접 해야 하는가",
+      "description": "AI가 코드를 빠르게 만들어도 제품 성과는 문제 정의, 설계, 검증에서 갈립니다.",
+      "datePublished": "2026-02-15T09:09:00+09:00",
+      "dateModified": "2026-02-15T09:09:00+09:00",
+      "author": {
+        "@type": "Organization",
+        "name": "릴황"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "릴황",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://lilhwang.com/images/logo.webp"
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://lilhwang.com/issue/issue-20260215-ai-problem-solving-leverage.html"
+      }
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #f5f8fc;
+            --text: #1f2937;
+            --muted: #637588;
+            --card: #ffffff;
+            --line: #d9e3ef;
+            --accent: #0f5a9b;
+            --accent-soft: #eaf3ff;
+            --ok: #157347;
+            --warn: #ad6200;
+            --shadow: 0 14px 34px rgba(15, 23, 42, 0.09);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.72;
+            color: var(--text);
+            background:
+                radial-gradient(circle at 6% 4%, #ebf3ff 0%, transparent 34%),
+                radial-gradient(circle at 95% 10%, #ecf8ff 0%, transparent 30%),
+                var(--bg);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 930px;
+            margin: 0 auto;
+            padding: 28px 18px 52px;
+        }
+
+        .hero {
+            background: linear-gradient(140deg, #ffffff 0%, #f6fbff 100%);
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            padding: 34px 30px;
+            margin-bottom: 20px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            border: 1px solid #c9dcf1;
+            border-radius: 999px;
+            background: var(--accent-soft);
+            color: var(--accent);
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 6px 12px;
+            margin-bottom: 12px;
+        }
+
+        h1 {
+            font-size: clamp(1.8rem, 4.2vw, 2.35rem);
+            line-height: 1.3;
+            letter-spacing: -0.02em;
+            margin-bottom: 12px;
+        }
+
+        .meta {
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .article {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            padding: 30px;
+        }
+
+        .lead {
+            border: 1px solid #d7e7f8;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #eef6ff 0%, #f7fbff 100%);
+            padding: 18px;
+            color: #17426f;
+            margin-bottom: 24px;
+        }
+
+        h2 {
+            font-size: 1.36rem;
+            line-height: 1.36;
+            letter-spacing: -0.01em;
+            margin: 30px 0 12px;
+        }
+
+        h3 {
+            font-size: 1.06rem;
+            margin: 18px 0 8px;
+        }
+
+        p {
+            margin: 0 0 14px;
+        }
+
+        ul,
+        ol {
+            margin: 0 0 15px 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .note {
+            border: 1px solid var(--line);
+            border-left: 4px solid var(--accent);
+            background: #f8fbff;
+            border-radius: 10px;
+            padding: 14px;
+            margin: 18px 0;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            margin: 12px 0 16px;
+        }
+
+        .card {
+            border: 1px solid var(--line);
+            background: #fff;
+            border-radius: 12px;
+            padding: 14px;
+        }
+
+        .card strong {
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 14px 0 10px;
+            font-size: 0.95rem;
+        }
+
+        .table th,
+        .table td {
+            border: 1px solid var(--line);
+            text-align: left;
+            vertical-align: top;
+            padding: 10px;
+        }
+
+        .table thead th {
+            background: #f1f7ff;
+            font-weight: 700;
+        }
+
+        .ok {
+            color: var(--ok);
+            font-weight: 600;
+        }
+
+        .warn {
+            color: var(--warn);
+            font-weight: 600;
+        }
+
+        .tag-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 26px 0 10px;
+        }
+
+        .tag {
+            display: inline-flex;
+            border: 1px solid #c3d8ef;
+            background: var(--accent-soft);
+            color: var(--accent);
+            border-radius: 999px;
+            padding: 6px 12px;
+            font-size: 0.84rem;
+            font-weight: 600;
+        }
+
+        .back-link {
+            display: inline-flex;
+            text-decoration: none;
+            color: #fff;
+            background: var(--accent);
+            border-radius: 10px;
+            padding: 10px 16px;
+            font-weight: 600;
+            margin-top: 8px;
+        }
+
+        .back-link:hover {
+            background: #0b4277;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 18px 14px 40px;
+            }
+
+            .hero,
+            .article {
+                padding: 22px;
+                border-radius: 16px;
+            }
+
+            h2 {
+                font-size: 1.22rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="hero">
+            <span class="eyebrow">Engineering Leadership</span>
+            <h1>AI 코딩 시대, 개발자는 무엇을 직접 해야 하는가</h1>
+            <p class="meta">2026년 2월 15일 · 실무 운영 가이드 · 약 7분 읽기</p>
+        </header>
+
+        <article class="article">
+            <section class="lead">
+                <p><strong>핵심 요약</strong> AI가 코드를 더 빨리 생성할수록 개발자의 가치는 타이핑이 아니라 문제 정의, 설계 판단, 품질 검증에서 드러납니다. 성과를 내는 팀은 생성량보다 배포 신뢰도를 관리합니다.</p>
+            </section>
+
+            <h2>왜 역할 재설계가 필요한가</h2>
+            <p>최근 여러 기술 조직이 AI 기반 개발 자동화를 빠르게 확대하면서, 구현 속도 자체는 확실히 빨라졌습니다. 하지만 사용자 문제를 잘못 정의하면 생성 속도가 빠를수록 잘못된 기능도 더 빨리 배포됩니다. 그래서 지금 필요한 변화는 도구 선택이 아니라 <strong>개발자의 책임 구간 재정의</strong>입니다.</p>
+            <ul>
+                <li>AI는 구현 초안을 빠르게 만든다.</li>
+                <li>사람은 요구사항 해석, 경계 설계, 운영 리스크 판단을 담당한다.</li>
+                <li>팀은 승인 기준과 검증 프로세스로 품질을 보증한다.</li>
+            </ul>
+
+            <h2>개발자가 직접 소유해야 할 4가지 영역</h2>
+            <div class="cards">
+                <div class="card">
+                    <strong>1) 문제 정의</strong>
+                    <p>기능 요청을 그대로 코드로 옮기기보다 사용자 행동, 비즈니스 지표, 실패 조건을 먼저 문서화합니다. AI에 맡기기 전 정의 정확도가 결과 품질을 결정합니다.</p>
+                </div>
+                <div class="card">
+                    <strong>2) 시스템 경계 설계</strong>
+                    <p>도메인 모델, 책임 분리, 데이터 흐름은 자동 생성으로 대체하기 어렵습니다. 이 경계를 잘못 잡으면 코드가 맞아도 운영비와 장애 확률이 커집니다.</p>
+                </div>
+                <div class="card">
+                    <strong>3) 품질 게이트 운영</strong>
+                    <p>입력 검증, 권한 처리, 예외 경로, 롤백 전략은 기본적으로 사람의 승인 항목이어야 합니다. AI 출력은 초안이며 승인 근거가 될 수 없습니다.</p>
+                </div>
+                <div class="card">
+                    <strong>4) 배포 후 학습 루프</strong>
+                    <p>장애 원인, 리뷰 누락 패턴, 테스트 공백을 회고해 프롬프트 템플릿과 체크리스트에 반영해야 생산성이 누적됩니다.</p>
+                </div>
+            </div>
+
+            <div class="note">
+                <p><strong>실무 팁:</strong> 팀 목표를 "코드 작성량" 대신 "변경 실패율, 복구 시간, 결함 재발률"로 옮기면 AI 도입 효과를 더 정확히 측정할 수 있습니다.</p>
+            </div>
+
+            <h2>운영 지표 전환표: 속도 중심에서 신뢰 중심으로</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>지표 영역</th>
+                        <th>권장 기준</th>
+                        <th>주의 신호</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>PR 품질</td>
+                        <td class="ok">기능 단위로 작고 설명이 명확함</td>
+                        <td class="warn">한 PR에 여러 기능이 섞이고 검증 근거가 부족함</td>
+                    </tr>
+                    <tr>
+                        <td>테스트 전략</td>
+                        <td class="ok">핵심 시나리오와 실패 경로를 자동 검증</td>
+                        <td class="warn">통과만 위한 형식적 테스트 비중이 높음</td>
+                    </tr>
+                    <tr>
+                        <td>배포 안정성</td>
+                        <td class="ok">릴리스 빈도와 장애율이 함께 개선됨</td>
+                        <td class="warn">배포는 잦아졌지만 핫픽스와 롤백이 증가함</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>2주 실행 체크리스트</h2>
+            <ol>
+                <li>AI 생성 코드용 PR 템플릿을 만들고, 필수 검토 항목 6개를 고정합니다.</li>
+                <li>요구사항 문서에 "성공 조건/실패 조건/보안 제약" 섹션을 추가합니다.</li>
+                <li>PR 라인 수 상한과 예외 승인 규칙을 도입합니다.</li>
+                <li>배포 후 1회 이상 "AI 생성 코드 결함"만 별도 회고합니다.</li>
+            </ol>
+
+            <h2>결론</h2>
+            <p>AI 시대의 개발자는 코드를 덜 쓰는 대신 더 중요한 결정을 더 자주 하게 됩니다. 문제를 정의하고 경계를 설계하며 품질을 검증하는 능력이 곧 경쟁력이 됩니다. 결국 성과를 만드는 팀은 가장 많은 코드를 만든 팀이 아니라, 가장 예측 가능한 품질로 제품을 개선하는 팀입니다.</p>
+
+            <div class="tag-row">
+                <span class="tag">AI코딩</span>
+                <span class="tag">개발자역할</span>
+                <span class="tag">문제해결</span>
+                <span class="tag">아키텍처</span>
+                <span class="tag">품질관리</span>
+            </div>
+
+            <a href="/issues.html" class="back-link">이슈 목록으로 돌아가기</a>
+        </article>
+    </div>
+</body>
+</html>
