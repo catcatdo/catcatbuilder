@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">주말 아침 혼카페 기록 커버</title>
+  <desc id="desc">창가 카페와 라떼, 메모장을 그린 일러스트형 커버</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fff3e8"/>
+      <stop offset="55%" stop-color="#f8e3cf"/>
+      <stop offset="100%" stop-color="#f2c9a3"/>
+    </linearGradient>
+    <linearGradient id="window" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#d5ecfb"/>
+      <stop offset="100%" stop-color="#b8d7ec"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect x="90" y="70" width="460" height="310" rx="20" fill="url(#window)" opacity="0.85"/>
+  <line x1="320" y1="70" x2="320" y2="380" stroke="#97b5c7" stroke-width="8"/>
+  <line x1="90" y1="225" x2="550" y2="225" stroke="#97b5c7" stroke-width="8"/>
+  <rect x="60" y="395" width="1080" height="170" rx="18" fill="#7f5a43"/>
+  <rect x="130" y="438" width="340" height="90" rx="14" fill="#d7b395"/>
+  <rect x="165" y="455" width="122" height="58" rx="10" fill="#2f2724"/>
+  <circle cx="210" cy="483" r="20" fill="#d7c1a9"/>
+  <rect x="530" y="432" width="220" height="118" rx="16" fill="#f6efe6"/>
+  <line x1="560" y1="462" x2="720" y2="462" stroke="#c8bbb0" stroke-width="6"/>
+  <line x1="560" y1="492" x2="700" y2="492" stroke="#c8bbb0" stroke-width="6"/>
+  <line x1="560" y1="522" x2="690" y2="522" stroke="#c8bbb0" stroke-width="6"/>
+  <rect x="790" y="430" width="190" height="116" rx="20" fill="#fff7ed"/>
+  <circle cx="858" cy="484" r="34" fill="#4a352b"/>
+  <rect x="906" y="468" width="52" height="34" rx="10" fill="#4a352b"/>
+  <text x="90" y="586" fill="#fff7ef" font-size="44" font-family="'Noto Sans KR', sans-serif" font-weight="700">Weekend Morning Cafe Journal</text>
+</svg>

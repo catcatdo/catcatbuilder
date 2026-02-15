@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">주말 아침 혼카페 기록 v2</title>
+  <desc id="desc">라떼 컵과 창가 구도를 강조한 커버</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fdeedd"/>
+      <stop offset="100%" stop-color="#efc69b"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect x="84" y="88" width="560" height="292" rx="18" fill="#cde4f3" opacity="0.86"/>
+  <line x1="364" y1="88" x2="364" y2="380" stroke="#9ab9cd" stroke-width="8"/>
+  <line x1="84" y1="234" x2="644" y2="234" stroke="#9ab9cd" stroke-width="8"/>
+  <rect x="70" y="400" width="1060" height="150" rx="20" fill="#78533d"/>
+  <rect x="690" y="144" width="420" height="220" rx="22" fill="#fff7ed"/>
+  <rect x="734" y="188" width="332" height="132" rx="14" fill="#f6ecdf"/>
+  <line x1="770" y1="228" x2="1028" y2="228" stroke="#c6b8a8" stroke-width="7"/>
+  <line x1="770" y1="264" x2="1006" y2="264" stroke="#c6b8a8" stroke-width="7"/>
+  <circle cx="255" cy="472" r="56" fill="#fff2e4"/>
+  <circle cx="255" cy="472" r="42" fill="#4a342a"/>
+  <rect x="312" y="452" width="74" height="40" rx="13" fill="#4a342a"/>
+  <text x="704" y="342" fill="#a36f49" font-size="30" font-family="'Noto Sans KR', sans-serif" font-weight="700">MEET MY OWN PACE</text>
+</svg>

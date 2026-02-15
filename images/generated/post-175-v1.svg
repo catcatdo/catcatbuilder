@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">주말 아침 혼카페 기록 v1</title>
+  <desc id="desc">부드러운 피치톤의 카페 데스크 일러스트</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fff5ea"/>
+      <stop offset="100%" stop-color="#f4cfab"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect x="86" y="84" width="1028" height="442" rx="28" fill="#fff9f2" opacity="0.78"/>
+  <rect x="130" y="142" width="350" height="220" rx="14" fill="#d2e7f7"/>
+  <rect x="550" y="160" width="240" height="160" rx="14" fill="#f8efe5"/>
+  <line x1="588" y1="205" x2="760" y2="205" stroke="#c9b9ab" stroke-width="6"/>
+  <line x1="588" y1="238" x2="738" y2="238" stroke="#c9b9ab" stroke-width="6"/>
+  <line x1="588" y1="271" x2="724" y2="271" stroke="#c9b9ab" stroke-width="6"/>
+  <rect x="830" y="150" width="210" height="170" rx="20" fill="#fff2e4"/>
+  <circle cx="910" cy="236" r="37" fill="#4d372b"/>
+  <rect x="955" y="216" width="58" height="35" rx="12" fill="#4d372b"/>
+  <rect x="110" y="392" width="980" height="110" rx="16" fill="#7a563f"/>
+  <text x="132" y="472" fill="#fff8f2" font-size="42" font-family="'Noto Sans KR', sans-serif" font-weight="700">Solo Cafe Morning</text>
+</svg>
