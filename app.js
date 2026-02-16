@@ -3,11 +3,13 @@
 // ========================================
 
 function showLoading() {
-    document.getElementById('loading-spinner').classList.add('active');
+    const spinner = document.getElementById('loading-spinner');
+    if (spinner) spinner.classList.add('active');
 }
 
 function hideLoading() {
-    document.getElementById('loading-spinner').classList.remove('active');
+    const spinner = document.getElementById('loading-spinner');
+    if (spinner) spinner.classList.remove('active');
 }
 
 function showError(element, message) {
@@ -65,6 +67,47 @@ function utf8ToBase64(text) {
 
 function base64ToUtf8(text) {
     return decodeURIComponent(escape(atob(text)));
+}
+
+function initThemeToggle() {
+    const toggleButton = document.getElementById('theme-toggle');
+    if (!toggleButton) return;
+
+    const icon = toggleButton.querySelector('.theme-icon');
+
+    function updateThemeUI(theme) {
+        const isDark = theme === 'dark';
+        if (icon) icon.textContent = isDark ? '☀️' : '🌙';
+        toggleButton.setAttribute('aria-label', isDark ? '라이트 모드 전환' : '다크 모드 전환');
+    }
+
+    function persistTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        try {
+            localStorage.setItem('theme-preference', theme);
+        } catch (error) {
+            // Ignore storage errors (private mode / quota) and keep runtime theme only.
+        }
+    }
+
+    let currentTheme = document.documentElement.getAttribute('data-theme');
+    if (!currentTheme) {
+        try {
+            currentTheme = localStorage.getItem('theme-preference') || 'light';
+        } catch (error) {
+            currentTheme = 'light';
+        }
+        document.documentElement.setAttribute('data-theme', currentTheme);
+    }
+
+    updateThemeUI(currentTheme);
+
+    toggleButton.addEventListener('click', () => {
+        const activeTheme = document.documentElement.getAttribute('data-theme') || 'light';
+        const nextTheme = activeTheme === 'dark' ? 'light' : 'dark';
+        persistTheme(nextTheme);
+        updateThemeUI(nextTheme);
+    });
 }
 
 // ========================================
@@ -683,24 +726,24 @@ function initDDayCounter() {
         if (diffDays > 0) {
             message = `
                 <div style="text-align:center;">
-                    <div style="font-size:14px;color:var(--color-text-secondary);">${eventName}까지</div>
-                    <div style="font-size:36px;font-weight:bold;color:var(--color-primary);margin:8px 0;">D-${diffDays}</div>
-                    <div style="font-size:13px;color:var(--color-text-secondary);">${target.toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' })}</div>
+                    <div style="font-size:14px;color:var(--text-secondary);">${eventName}까지</div>
+                    <div style="font-size:36px;font-weight:bold;color:var(--primary);margin:8px 0;">D-${diffDays}</div>
+                    <div style="font-size:13px;color:var(--text-secondary);">${target.toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' })}</div>
                 </div>
             `;
         } else if (diffDays === 0) {
             message = `
                 <div style="text-align:center;">
-                    <div style="font-size:36px;font-weight:bold;color:var(--color-primary);margin:8px 0;">D-Day!</div>
+                    <div style="font-size:36px;font-weight:bold;color:var(--primary);margin:8px 0;">D-Day!</div>
                     <div style="font-size:14px;">오늘이 바로 ${eventName}입니다!</div>
                 </div>
             `;
         } else {
             message = `
                 <div style="text-align:center;">
-                    <div style="font-size:14px;color:var(--color-text-secondary);">${eventName}로부터</div>
+                    <div style="font-size:14px;color:var(--text-secondary);">${eventName}로부터</div>
                     <div style="font-size:36px;font-weight:bold;color:var(--color-accent);margin:8px 0;">D+${Math.abs(diffDays)}</div>
-                    <div style="font-size:13px;color:var(--color-text-secondary);">${target.toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' })}</div>
+                    <div style="font-size:13px;color:var(--text-secondary);">${target.toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' })}</div>
                 </div>
             `;
         }
@@ -1938,6 +1981,7 @@ async function initRelatedPosts() {
 // ========================================
 
 document.addEventListener('DOMContentLoaded', () => {
+    initThemeToggle();
     initTabs();
     initToolSearch();
     initBMICalculator();
