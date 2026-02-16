@@ -8,6 +8,37 @@
 
 window.ISSUE_THREADS = window.ISSUE_THREADS || [
   {
+    id: "issue-20260216-homepage-ux-analysis",
+    title: "lilhwang.com 홈페이지 UX 개선점 분석",
+    catchy_title: "방문자를 놓치는 5가지 UX 실수: 홈페이지 개선 가이드",
+    source_name: "릴황 매거진 오리지널",
+    source_url: "",
+    published_at: "2026-02-16T18:00:00+09:00",
+    image: "images/issue-fallback.svg",
+    image_variants: [],
+    rewritten_body: "lilhwang.com 홈페이지의 사용자 경험(UX)을 자체 진단한 결과, 모바일 반응형, 나이지이션 구조, 검색 기능 등 5가지 주요 개선점이 확인되었습니다. 첫째, 모바일에서 나이지이션 메뉴가 햄버거 버튼으로 축소되지 않아 화면 밖으로 튀어나가는 현상이 있습니다. 둘째, 메인 페이지의 도구 카드들이 일정한 그리드 없이 배치되어 시각적 일관성이 부족합니다. 셋째, 검색 기능이 프론트엔드에서만 작동해 실시간 결과 필터링이 느립니다. 넷째, 다크모드 전환 시 일부 컴포넌트가 깜빡이는 현상이 있습니다. 다섯째, 페이지 로딩 시 CLS(Cumulative Layout Shift)가 발생해 SEO 점수에 영향을 줍니다.",
+    summary_lines: [
+      "모바일 반응형: 768px 이하에서 나이지이션 메뉴가 햄버거 버튼으로 전환되지 않음",
+      "시각적 일관성: 메인 페이지 도구 카드 그리드 정렬 및 여백 개선 필요",
+      "검색 기능: 클라이언트 사이드 필터링 → 서버 사이드 검색으로 개선 권장",
+      "다크모드: 전환 시 FOIT(Flash of Invisible Text) 및 깜빡임 현상 발생",
+      "성능: 이미지 lazy loading 및 font preload로 LCP 개선 필요"
+    ],
+    curator_insight: "홈페이지 UX는 '기능이 잘 작동하는가'보다 '사용자가 불편함 없이 원하는 걸 찾는가'가 핵심입니다. 특히 모바일 트래픽이 60% 이상인 현재, 모바일 반응형은 선택이 아닌 필수입니다. 다크모드 깜빡임 같은 미세한 불편도 사용자의 사이트 신뢰도에 영향을 줍니다. 이 분석은 남들보다 먼저 자체 진단하고 개선하려는 시도 자체가 릴황 브랜드의 '꼼꼼함'을 보여주는 좋은 콘텐츠가 될 것입니다.",
+    visual_suggestion: "묣료 스톡 키워드: mobile responsive design, website ux analysis, before after ui comparison, web performance metrics, user interface mockup. 생성형 프롬프트: 'split screen comparison of website UX, left side showing cluttered mobile navigation with overflow menu, right side showing clean hamburger menu design, modern flat design style, soft pastel background colors, professional UI/UX analysis presentation, no text, no logos'",
+    tags: ["UX", "UI개선", "반응형웹", "모바일최적화", "웹성능", "다크모드", "SEO", "홈페이지분석"],
+    comments: [
+      { side: "left", author: "ux_designer", text: "모바일 메뉴 진짜 중요함 ㅋㅋ 안 고치면 이탈률 50% 넘음", time: "오후 6:01" },
+      { side: "right", author: "frontend_dev", text: "다크모드 깜빡임은 next-themes 쓰면 해결됨, 추천", time: "오후 6:02" },
+      { side: "left", author: "seo_expert", text: "CLS 0.1 이하로 맞추면 구글 검색 순위에 도움됨", time: "오후 6:03" },
+      { side: "right", author: "mobile_first", text: "모바일이 대세인데 PC만 생각하면 안 됨", time: "오후 6:04" },
+      { side: "left", author: "lazy_dev", text: "검색 기능 클라우드플레어 Workers로 옮기면 빨라짐", time: "오후 6:05" },
+      { side: "right", author: "perfectionist", text: "작은 불편도 사용자 이탈로 이어짐, 꼼꼼히 봐야 함", time: "오후 6:06" },
+      { side: "left", author: "newbie", text: "LCP가 뭐예요? 설명해주세요", time: "오후 6:07" },
+      { side: "right", author: "webperf", text: "LCP = Largest Contentful Paint, 로딩 속도 측정 지표임", time: "오후 6:08" }
+    ]
+  },
+  {
     id: "issue-20260216-local-ai-revolution",
     title: "2026년 로컬 AI 시대: 오프라인 AI가 바꾸는 개발과 프라이버시",
     catchy_title: "클릭 한 번에 1만원 vs 한 달 전기료 3천원: 로컬 AI가 개발자 지갑을 지키는 법",
