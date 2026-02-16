@@ -8,6 +8,37 @@
 
 window.ISSUE_THREADS = window.ISSUE_THREADS || [
   {
+    id: "issue-20260216-local-ai-revolution",
+    title: "2026년 로컬 AI 시대: 오프라인 AI가 바꾸는 개발과 프라이버시",
+    catchy_title: "클릭 한 번에 1만원 vs 한 달 전기료 3천원: 로컬 AI가 개발자 지갑을 지키는 법",
+    source_name: "릴황 매거진 오리지널",
+    source_url: "",
+    published_at: "2026-02-16T15:40:00+09:00",
+    image: "images/issue-fallback.svg",
+    image_variants: [],
+    rewritten_body: "2025년부터 가속화된 로컬 AI 열풍이 2026년에도 거세지고 있습니다. ChatGPT, Claude 같은 클라우드 AI 서비스는 강력하지만 API 호출 비용이 만만치 않습니다. GPT-4o로 하루 1000회 API 호출하면 월 30~50만 원이 훌씬 넘습니다. 반면 최신 Apple Silicon Mac에 Qwen 3 120B급 모델을 로컬로 구동하면 초당 20~30 토큰 생성이 가능하며, 한 달 전기료가 3,000원을 넘기 어렵습니다. 로컬 AI의 매력은 비용 절감만이 아닙니다. 오프라인 환경, 데이터 프라이버시 보호, 무제한 사용이 핵심 장점입니다.",
+    summary_lines: [
+      "클우드 AI API 비용(월 30~50만 원) vs 로컬 AI 전기료(월 3천 원) 비교",
+      "오프라인 환경, 데이터 프라이버시, 무제한 사용이 로컬 AI의 3대 강점",
+      "Ollama, LM Studio 등으로 Mac/Linux에서 70B~120B 모델 구동 가능",
+      "개발자들이 클라우드(복잡한 추론) + 로컬(루틴 작업) 하이브리드 전략 채택",
+      "2026년 기준 오픈소스 모델(Qwen 3, Llama 3.3, DeepSeek-R1) 성능 급상승"
+    ],
+    curator_insight: "이 이슈는 단순한 '비용 비교'를 넘어서 개발 환경의 패러다임 전환을 보여줍니다. AI가 인프라에서 '온프레미스'로 회귀하는 현상은 클라우드 중심의 지난 10년과 대조적입니다. 기업들이 다시 '데이터 주권'을 고민하게 만드는 계기이며, 개인 개발자에게는 진입 장벽을 낮추는 민주화 요소가 됩니다. 2026년은 로컬 AI가 '대안'에서 '기본'으로 자리잡는 해가 될 것입니다.",
+    visual_suggestion: "묣료 스톡 키워드: mac studio desktop, ai neural network visualization, offline coding workspace, home server setup, developer desk night. 생성형 프롬프트: 'modern developer workspace with Mac Studio, code editor on monitor showing AI assistant interface, neural network visualization hologram, cozy home office with soft warm lighting, night scene through window, clean minimal aesthetic, realistic photography, no logos, no readable text on screen'",
+    tags: ["로컬AI", "오프라인AI", "Ollama", "개발생산성", "API비용절감", "프라이버시", "오픈소스AI", "Qwen3", "Llama3", "개발도구"],
+    comments: [
+      { side: "left", author: "frugal_dev", text: "한 달에 API 비용 50만 원 나가던게 3천원으로 줄면 진짜 삶의 질 달라짐 ㅋㅋ", time: "오후 3:41" },
+      { side: "right", author: "security_first", text: "회사 코드 클라우드에 올리는 거 찜찜했는데 로컬로 해결하니까 속이 시원함", time: "오후 3:42" },
+      { side: "left", author: "mac_user", text: "M4 Max에 64GB면 70B 모델 충분히 돌아감, 추천", time: "오후 3:43" },
+      { side: "right", author: "linux_fan", text: "Ollama + OpenWebUI 조합이 진짜 편함, 월급루팡 각", time: "오후 3:44" },
+      { side: "left", author: "skeptic", text: "근데 한국어 성능은 아직 GPT-4랑 차이 큼 ㅠ", time: "오후 3:45" },
+      { side: "right", author: "hybrid_user", text: "나는 복잡한 건 GPT-4, 단순 건 로컬 쓰는데 딱 좋음", time: "오후 3:46" },
+      { side: "left", author: "beginner", text: "어떤 모델 추천하나요? 8GB RAM 노트북인데...", time: "오후 3:47" },
+      { side: "right", author: "model_expert", text: "8GB면 3B~7B 양자화 모델 추천, DeepSeek-R1 7B 괜찮음", time: "오후 3:48" }
+    ]
+  },
+  {
     id: "issue-20260213-drunk-driving-appeal",
     title: "음주·무면허·역주행 사망사고 항소심",
     catchy_title: "두 명 숨진 사고, 왜 형량이 줄었나: 감형 판결이 남긴 질문",
