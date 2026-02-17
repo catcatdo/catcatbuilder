@@ -8,6 +8,76 @@
 
 window.ISSUE_THREADS = window.ISSUE_THREADS || [
   {
+    id: "issue-20260217-local-llm-rise",
+    title: "로컬 LLM의 부상과 온디바이스 AI의 미래",
+    catchy_title: "인터넷 없이 ChatGPT급 AI를 돌린다: 로컬 LLM이 바꾸는 개발자의 자세",
+    source_name: "해외 테크 커뮤니티 및 로컬 AI 동향 종합",
+    source_url: "",
+    published_at: "2026-02-17T23:40:00+09:00",
+    image: "images/issue-fallback.svg",
+    image_variants: [],
+    rewritten_body: "최근 개발자 커뮤니티에서는 클라우드 기반 AI API 사용에서 벗어나, 로컬 머신에서 대형 언어 모델을 직접 운영하는 흐름이 빠르게 확산되고 있습니다. 특히 Apple Silicon Mac이나 고성능 워크스테이션을 보유한 개발자들 사이에서는 70B급 이상 모델도 로컬에서 실사용 가능한 수준으로 자리잡으며 오프라인 AI에 대한 관심이 크게 높아졌습니다. 이 변화의 핵심은 단순한 API 비용 절감이 아니라, 민감한 코드와 데이터의 외부 전송을 줄이는 데이터 주권, 네트워크 지연 없이 바로 반응하는 작업 흐름, 인터넷 불안정 환경에서도 유지되는 안정성입니다. Ollama, LM Studio, llama.cpp 같은 도구와 양자화 기술 발전이 진입장벽을 낮췄지만, 복잡한 추론 품질 격차와 하드웨어·전력 비용은 여전히 현실적인 고려사항으로 남아 있습니다.",
+    summary_lines: [
+      "Apple Silicon Mac과 고성능 GPU 워크스테이션에서 70B+ 파라미터 모델 로컬 구동이 실용화되고 있다.",
+      "데이터 주권, 낮은 지연, 오프라인 작업 안정성은 API 중심 방식 대비 뚜렷한 강점으로 평가된다.",
+      "Ollama, LM Studio, llama.cpp를 중심으로 로컬 LLM 도구 생태계가 빠르게 성숙하고 있다.",
+      "하드웨어 요구사항, 전력 소모, 추론 품질 한계는 도입 전 반드시 검토해야 할 변수다."
+    ],
+    curator_insight: "로컬 LLM의 확산은 'AI를 어디서 쓰는가'의 문제를 'AI를 어떻게 통제할 것인가'로 이동시키고 있습니다. 클라우드 API가 최신 모델 접근성과 편의성을 제공하는 반면, 데이터 프라이버시와 비용 구조에 대한 불안도 함께 커졌습니다. 로컬 AI는 이 통제권을 회복하려는 선택지로 자리잡고 있으며, 향후 기업 내부 정책에서도 중요한 대안이 될 가능성이 큽니다. 다만 로컬이 항상 정답은 아니며, 작업 목적과 데이터 민감도에 따른 하이브리드 전략이 가장 현실적입니다.",
+    visual_suggestion: "무료 스톡 키워드: local server room, edge computing, Apple Silicon chip, offline workspace, developer workstation. 생성형 프롬프트: \"modern developer workstation with multiple monitors showing local LLM interface and code editor, Apple Mac Studio visible, warm ambient lighting, clean minimal setup, realistic documentary photography style, no logos, no readable personal data\"",
+    tags: ["로컬LLM", "온디바이스AI", "개발생산성", "데이터프라이버시", "오프라인AI", "Ollama", "AppleSilicon"],
+    comments: [
+      {
+        side: "left",
+        author: "로컬파",
+        text: "데이터가 밖으로 안 나가는 게 최대 장점임 ㄹㅇ",
+        time: "오후 11:41"
+      },
+      {
+        side: "right",
+        author: "실험러",
+        text: "API 비용 걱정 없이 마음껏 테스트 가능한 게 큼",
+        time: "오후 11:42"
+      },
+      {
+        side: "left",
+        author: "오프라인유저",
+        text: "인터넷 끊겨도 계속 작업되는 게 생각보다 중요하더라",
+        time: "오후 11:43"
+      },
+      {
+        side: "right",
+        author: "하드웨어현실",
+        text: "70B 돌리면 팬 소음이랑 발열은 각오해야 함 ㅋㅋ",
+        time: "오후 11:44"
+      },
+      {
+        side: "left",
+        author: "비용체크",
+        text: "전기세랑 장비값까지 합치면 계산 복잡해지긴 함",
+        time: "오후 11:45"
+      },
+      {
+        side: "right",
+        author: "품질비교",
+        text: "복잡한 추론은 아직 상용 클라우드 모델이 더 안정적임",
+        time: "오후 11:46"
+      },
+      {
+        side: "left",
+        author: "균형론",
+        text: "민감한 작업은 로컬, 일반 작업은 API가 제일 현실적",
+        time: "오후 11:47"
+      },
+      {
+        side: "right",
+        author: "전망러",
+        text: "결국 하이브리드가 표준이 될 듯",
+        time: "오후 11:48"
+      }
+    ]
+  },
+  {
     id: "issue-20260213-drunk-driving-appeal",
     title: "음주·무면허·역주행 사망사고 항소심",
     catchy_title: "두 명 숨진 사고, 왜 형량이 줄었나: 감형 판결이 남긴 질문",
