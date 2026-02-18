@@ -8,6 +8,37 @@
 
 window.ISSUE_THREADS = window.ISSUE_THREADS || [
   {
+    id: "issue-20260219-ai-native-developer",
+    title: "AI 네이티브 개발자: 2026년 개발자의 새로운 워크플로우",
+    catchy_title: "코드 안 치고 개발하기: AI 네이티브 개발자가 온다",
+    source_name: "릴황 매거진 오리지널",
+    source_url: "",
+    published_at: "2026-02-19T07:40:00+09:00",
+    image: "images/issue-fallback.svg",
+    image_variants: [],
+    rewritten_body: "AI 도구가 개발자의 일상에 완전히 녹아든 2026년, 이제 'AI를 쓴다'는 표현 자체가 구식이 되어가고 있습니다. AI 네이티브 개발자(AI Native Developer)라는 새로운 개발자 유형이 등장하며, 이들은 AI 없이는 개발 상상조차 하지 않는 세대입니다. AI 네이티브 개발자란 AI 코딩 어시스턴트를 단순한 도구가 아닌 개발 파트너로 인식하고, 일상적인 개발 업무의 70% 이상을 AI와 협업하여 수행하는 개발자를 의미합니다. 이들은 코드를 처음부터 작성하는 것보다 AI가 생성한 코드를 검토하고 개선하는 방식에 더 익숙합니다. 전통적인 개발 워크플로우는 '요구사항 분석 → 설계 → 코딩 → 테스트 → 배포'의 순차적 과정이었습니다. 그러나 AI 네이티브 개발자의 워크플로우는 '프롬프트 엔지니어링 → AI 생성 → 검토/수정 → 테스트 → 배포'로 변화했습니다. 핵심 차이는 '코딩' 단계가 '프롬프트 작성과 검토'로 대첸되었다는 점입니다. AI 네이티브 개발자는 인간의 창의성과 AI의 처리 능력을 결합하는 하이브리드 사고방식을 갖추고 있습니다. 복잡한 아키텍처 결정이나 비즈니스 로직 설계는 인간이 담당하고, 반복적인 구현이나 패턴 적용은 AI에게 위임합니다. 이를 통해 개발자는 더 높은 수준의 추상화에서 문제를 바라볼 수 있게 되었습니다.",
+    summary_lines: [
+      "AI 네이티브 개발자는 AI를 도구가 아닌 개발 파트너로 인식하는 새로운 세대입니다",
+      "전통적 '코딩' 단계가 '프롬프트 작성과 검토'로 대첸되고 있습니다",
+      "인간의 창의성과 AI의 처리 능력을 결합하는 하이브리드 사고방식이 핵심입니다",
+      "지속적인 학습과 적응력이 AI 네이티브 개발자의 가장 중요한 특징입니다",
+      "개발자의 가치는 '구현 능력'에서 '문제 정의와 검증 능력'으로 이동하고 있습니다"
+    ],
+    curator_insight: "AI 네이티브 개발자의 등장은 개발자 커리어의 패러다임 전환을 의미합니다. 과거에는 특정 프로그래밍 언어나 프레임워크에 대한 숙련도가 경쟁력이었다면, 이제는 AI와의 협업 능력, 문제 정의 능력, 그리고 AI 생성 결과를 비판적으로 평가하는 능력이 핵심 역량이 되었습니다. 이 변화는 주니어 개발자에게는 새로운 기회이자 도전입니다. 전통적인 코딩 스킬을 충분히 쌓지 못한 채 AI에 의존하면 위험하지만, AI를 적극적으로 활용하여 빠르게 성장할 수 있는 길도 열린 것입니다. 중요한 것은 AI를 맹신하지 않고, 그 생성물을 비판적으로 검토할 수 있는 기본기를 갖추는 것입니다.",
+    visual_suggestion: "묣료 스톡 키워드: AI collaboration workspace, developer with AI assistant, futuristic coding environment, human AI pair programming, neural network visualization. 생성형 프롬프트: 'modern developer workspace with holographic AI assistant interface, split screen showing human on one side and AI visualization on the other, warm ambient lighting, futuristic but realistic, clean minimal design, no logos, no identifiable faces'",
+    tags: ["AINativeDeveloper", "AI네이티브", "개발워크플로우", "AI협업", "개발자성장", "미래개발", "AI시대", "하이브리드개발", "프롬프트엔지니어링", "개발트렌드"],
+    comments: [
+      { side: "left", author: "ai_enthusiast", text: "AI로 코드 생성하고 검토하는 게 훨씬 재밌음 ㅋㅋ 창의적인 일에 집중할 수 있어", time: "오전 7:41" },
+      { side: "right", author: "fundamentals_first", text: "근데 기본기 없이 AI만 쓰면 나중에 큰코 다칠 듯", time: "오전 7:42" },
+      { side: "left", author: "hybrid_dev", text: "나는 AI가 짠 코드 디버깅하면서 배우는 중, 생각보다 효율 좋음", time: "오전 7:43" },
+      { side: "right", author: "team_lead", text: "팀에서 AI 사용 규칙 정하는 게 중요함, 아묻따 쓰면 지옥됨", time: "오전 7:44" },
+      { side: "left", author: "speed_demon", text: "예전에는 구글링 1시간 했는데 이제는 AI한테 물어보고 5분이면 끝", time: "오전 7:45" },
+      { side: "right", author: "careful_coder", text: "AI가 잘못 알려주는 것도 많아서 검증 필수임", time: "오전 7:46" },
+      { side: "left", author: "prompt_master", text: "AI 네이티브가 되려면 프롬프트 잘 쓰는 게 진짜 중요한 듯", time: "오전 7:47" },
+      { side: "right", author: "architect", text: "결국 AI는 도구고 설계 능력은 사람한테 있음", time: "오전 7:48" }
+    ]
+  },
+  {
     id: "issue-20260218-vibe-coding",
     title: "Vibe Coding: AI와 함께하는 직관적 개발의 시대",
     catchy_title: "Vibe Coding: 설계서 없이 만드는 게 가능하다? AI 시대 개발자의 새로운 직관",
