@@ -8,10 +8,10 @@
 
 window.ISSUE_THREADS = window.ISSUE_THREADS || [
   {
-    id: "issue-20260218-ai-agent-development",
+    id: "issue-20260218-ai-agent-future",
     title: "2026년 AI 에이전트 자동화의 미래: 개발자 생산성 혁명이 시작되다",
     catchy_title: "코드를 치는 시간보다 생각하는 시간: AI 에이전트가 바꾸는 개발자의 하루",
-    source_name: "릴황 매거진 오리지널",
+    source_name: "auto_content/issue_20260218_1540.txt 기반 오리지널 가이드",
     source_url: "",
     published_at: "2026-02-18T15:40:00+09:00",
     image: "images/issue-fallback.svg",
