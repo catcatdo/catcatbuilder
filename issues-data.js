@@ -8,6 +8,37 @@
 
 window.ISSUE_THREADS = window.ISSUE_THREADS || [
   {
+    id: "issue-20260218-ai-agent-development",
+    title: "2026년 AI 에이전트 자동화의 미래: 개발자 생산성 혁명이 시작되다",
+    catchy_title: "코드를 치는 시간보다 생각하는 시간: AI 에이전트가 바꾸는 개발자의 하루",
+    source_name: "릴황 매거진 오리지널",
+    source_url: "",
+    published_at: "2026-02-18T15:40:00+09:00",
+    image: "images/issue-fallback.svg",
+    image_variants: [],
+    rewritten_body: "2026년, 개발자들의 작업 방식이 근본적으로 바뀌고 있습니다. 단순히 코드를 자동완성해주는 도구를 넘어, AI가 독립적으로 작업을 수행하는 'AI 에이전트' 시대가 본격화된 것입니다. 이 변화는 개발자의 역할을 '코드 작성자'에서 '문제 정의자'와 '결과 검증자'로 전환시키고 있습니다. AI 에이전트의 핵심은 '맥락 이해'와 '독립적 실행'입니다. 기존의 코드 자동완성은 개발자가 타이핑하는 순간 제안을 제공하는 수준에 머물렀습니다. 하지만 최신 AI 에이전트는 GitHub 저장소 전체를 분석하고, 관련 문서를 스캔하며, 심지어 터미널 명령어까지 직접 실행할 수 있습니다. 예를 들어 '이 버그를 수정해줘'라는 한 마디 명령으로, AI는 관련 파일을 찾아 분석하고 수정사항을 제안한 뒤 테스트까지 실행할 수 있습니다.",
+    summary_lines: [
+      "AI 에이전트는 코드 자동완성을 넘어 독립적 작업 수행이 가능해졌습니다",
+      "Cursor Composer, Claude Code 등이 전체 개발 워크플로우를 지원합니다",
+      "개발자의 역할이 '코드 작성자'에서 '문제 정의자'와 '검증자'로 전환됩니다",
+      "하이브리드 모델(인간+AI 협업)이 가장 효과적인 접근법입니다",
+      "2~3년 내 '에이전트 퍼스트' 개발 환경이 표준이 될 전망입니다"
+    ],
+    curator_insight: "코드를 치는 시간보다 코드를 생각하는 시간이 늘어나는 시대가 왔다. AI 에이전트 시대의 진정한 승자는 AI를 쓰는 사람이 아니라, AI를 '잘' 쓰는 사람입니다. '잘 쓴다'는 것은 AI가 생성한 결과를 비판적으로 검토하고, 프로젝트의 맥락에 맞게 조정하며, 장기적인 유지보수를 고려할 수 있는 능력을 의미합니다. 2026년은 AI가 개발을 민주화하는 한편, 진정한 전문성의 가치를 재평가하게 만드는 전환점이 될 것입니다.",
+    visual_suggestion: "묣료 스톡 키워드: ai pair programming, developer workspace future, human ai collaboration coding, software development automation, code editor ai assistant. 생성형 프롬프트: 'split screen showing human developer and AI agent working together, modern IDE interface with floating AI chat bubbles, code being written on both sides, futuristic but realistic tech workspace, soft blue and purple lighting, professional software development environment, no logos, no identifiable faces'",
+    tags: ["AI에이전트", "개발생산성", "Cursor", "ClaudeCode", "프롬프트엔지니어링", "AI코딩", "개발트렌드", "소프트웨어엔지니어링", "미래개발", "기술변화"],
+    comments: [
+      { side: "left", author: "ai_fan", text: "진짜 하루 종일 코드만 치던게 이제는 아키텍처 설계에 집중하게 됨 ㅋㅋ 좋은 변화임", time: "오후 3:41" },
+      { side: "right", author: "skeptic_dev", text: "근데 AI가 짠 코드 디버깅하는게 더 힘들 때도 있음, 블랙박스 문제", time: "오후 3:42" },
+      { side: "left", author: "productivity_guru", text: "주말에 MVP 만드는거 실제로 핵가능해짐, AI 없었으면 2주 걸릴거를 하루만에", time: "오후 3:43" },
+      { side: "right", author: "old_school", text: "기본기 없는 주니어들이 AI 의존해서 나중에 큰코 다칠듯", time: "오후 3:44" },
+      { side: "left", author: "startup_founder", text: "우리 팀도 AI 도입했는데 개발 속도 3배는 빨라짐, 투자 대비 효과 짱", time: "오후 3:45" },
+      { side: "right", author: "security_concern", text: "AI가 생성한 코드 보안 취약점 있는거 모르고 배포했다가 해킹당한 사례 봄", time: "오후 3:46" },
+      { side: "left", author: "fullstack_dev", text: "풀스택 진입장벽 진짜 낮아짐, 한 명이 프론트 백 다 AI 도움받아서 처리함", time: "오후 3:47" },
+      { side: "right", author: "senior_dev", text: "AI가 짠거 리뷰하는게 진짜 리뷰하는거보다 힘듦, 퀄리티 들쭉날쭉", time: "오후 3:48" }
+    ]
+  },
+  {
     id: "issue-20260216-mcp-protocol",
     title: "MCP(Model Context Protocol): AI 에이전트의 표준 인터페이스가 온다",
     catchy_title: "AI가 내 컴퓨터를 직접 쓴다: MCP가 바꾸는 개발자의 AI 활용법",
