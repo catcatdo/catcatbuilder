@@ -8,6 +8,37 @@
 
 window.ISSUE_THREADS = window.ISSUE_THREADS || [
   {
+    id: "issue-20260218-vibe-coding",
+    title: "Vibe Coding: AI와 함께하는 직관적 개발의 시대",
+    catchy_title: "Vibe Coding: 설계서 없이 만드는 게 가능하다? AI 시대 개발자의 새로운 직관",
+    source_name: "릴황 매거진 오리지널",
+    source_url: "",
+    published_at: "2026-02-18T23:40:00+09:00",
+    image: "images/issue-fallback.svg",
+    image_variants: [],
+    rewritten_body: "2026년, 개발자들 사이에서 새로운 용어가 빠르게 퍼지고 있습니다. 바로 'Vibe Coding'입니다. 이는 복잡한 설계 문서와 체계적인 계획 없이, AI와의 대화를 통해 직관적으로 코드를 만들어나가는 개발 방식을 의미합니다. 전통적인 개발은 '요구사항 분석 → 설계 → 구현 → 테스트'라는 순차적 단계를 따랐습니다. 하지만 Vibe Coding은 이 과정을 유기적 탐색으로 바꿉니다. 개발자는 AI에게 '이런 기능이 필요해'라고 말하고, AI가 생성한 초안을 즉시 실행핸볼며 피드백을 줍니다. 코드가 돌아가는 모습을 본 뒤 '여기를 조금 바꿔줘'라고 말하면 AI가 즉각 수정합니다. 이 방식의 핵심은 '빠른 실패'와 '빠른 학습'입니다. 완벽한 계획을 세우는 대신, 일단 만들어보고 안 되면 금방 다른 방향으로 전환합니다. 마치 재즈 음악가가 즉흥 연주를 하듯, 개발자는 코드의 '흐름(vibe)'을 따라가며 창조합니다.",
+    summary_lines: [
+      "Vibe Coding은 설계 문서 없이 AI와 대화하며 직관적으로 개발하는 새로운 방식입니다",
+      "전통적 '계획-구현' 순환 대신 '실행-피드백-수정'의 빠른 루프가 핵심입니다",
+      "Claude Code, Cursor Composer 등의 AI 도구 발전이 Vibe Coding을 가능하게 했습니다",
+      "프로토타이핑과 MVP 개발에서 기존 방식보다 10배 이상 빠른 속도를 보입니다",
+      "유지보수와 문서화 과제는 있지만, 새로운 창작 영역으로서 가치를 인정받고 있습니다"
+    ],
+    curator_insight: "이제 코드를 짜는 게 아니라, 코드의 흐름을 느끼는 시대가 왔다. 문서보다 대화가, 계획보다 탐험이 개발의 중심이 된다. Vibe Coding은 단순한 게으름이 아닌, 새로운 창작 패러다임입니다. 중요한 것은 '코드 없이 개발'이 아니라 '코드와의 대화'입니다. 개발자가 AI와 협업하며 아이디어를 빠르게 검증하고, 성공한 것은 남기고 실패한 것은 빠르게 버리는 능력이 핵심입니다. 이는 전통적 개발의 완벽주의에서 벗어나 실용주의로의 전환을 의미합니다.",
+    visual_suggestion: "묣료 스톡 키워드: jazz improvisation, developer flow state, creative coding, AI collaboration, rapid prototyping. 생성형 프롬프트: 'developer working with AI assistant in flow state, jazz musician energy, code flowing like music notes, creative sparks, modern IDE with chat bubbles, blue and purple ambient lighting, artistic tech workspace, no logos, no identifiable faces'",
+    tags: ["VibeCoding", "AI개발", "프로토타이핑", "ClaudeCode", "Cursor", "개발방법론", "애자일", "MVP개발", "AI시대", "개발트렌드"],
+    comments: [
+      { side: "left", author: "vibe_coder", text: "주말에 MVP 만드는거 실제로 핵가능해짐 ㅋㅋ 계획 없이 바로 시작", time: "오후 11:41" },
+      { side: "right", author: "skeptic_dev", text: "유지보수 지옥 오는거 안봐도 비디오임, 문서 없으면 미래의 내가 울어", time: "오후 11:42" },
+      { side: "left", author: "startup_founder", text: "아이디어 검증 속도가 달라짐, 안될거 빨리 버리고 다음거 가는게 핵심", time: "오후 11:43" },
+      { side: "right", author: "team_lead", text: "혼자할땐 좋은데 팀으로 하면 커뮤니케이션 지옥옴", time: "오후 11:44" },
+      { side: "left", author: "prototyper", text: "고객한테 빨리 보여주고 피드백 받는게 제일 중요함 인정?", time: "오후 11:45" },
+      { side: "right", author: "architect", text: "코어만 vibe로 짜고 나머진 정석대로 가는게 하이브리드 정답", time: "오후 11:46" },
+      { side: "left", author: "ai_fan", text: "AI랑 대화하면서 코드 만드는게 재밌음, 코딩이 게임 같아", time: "오후 11:47" },
+      { side: "right", author: "realist", text: "POC까진 좋은데 프로덕션에 올리려면 리팩토링 필수", time: "오후 11:48" }
+    ]
+  },
+  {
     id: "issue-20260218-ai-agent-future",
     title: "2026년 AI 에이전트 자동화의 미래: 개발자 생산성 혁명이 시작되다",
     catchy_title: "코드를 치는 시간보다 생각하는 시간: AI 에이전트가 바꾸는 개발자의 하루",
