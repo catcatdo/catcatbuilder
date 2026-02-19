@@ -8,6 +8,34 @@
 
 window.ISSUE_THREADS = window.ISSUE_THREADS || [
   {
+    id: "auto-20260219-1",
+    title: "당신의 인생을 '년'이 아닌 '주'로 계산핵보세요",
+    catchy_title: "30대에게 남은 여름은 40개뿐: 시간의 유한성을 직시하는 주 단위 사고법",
+    category: "Self-Improvement",
+    source_name: "Reddit r/LifeProTips",
+    source_url: "",
+    published_at: "2026-02-19",
+    image: "images/issue-fallback.jpg",
+    image_variants: [],
+    rewritten_body: "'난 아직 젊어, 시간은 충분해.' 우리는 이렇게 말하며 중요한 일들을 미루곤 합니다. 30살에 80세까지 산다고 가정하면 약 50년, 즉 2,600주가 남아있는 셈입니다. 2,600은 큰 숫자처럼 느껴지지만, 이미 30년(1,560주)을 사용했다는 점을 감안하면 결코 여유로운 시간이 아닙니다. 년(年)은 추상적입니다. '올해 안에 할게'라는 다짐은 12월 31일까지 미루기 쉽죠. 하지만 '이번 주에 할게'라고 말하면 당장 월요일부터 일요일까지의 7일만 생각하면 됩니다. 주 단위로 쪼개면 시간이 구체적이고 손에 잡히는 실체가 됩니다. '주 단위 계획'은 목표를 즉각 행동으로 연결합니다. '스페인어를 배우겠다'는 연간 목표는 '이번 주에는 스페인어 알파벳을 익히자'는 구체적인 행동으로 변환됩니다. 52주 중 첫 주를 어떻게 볂내느냐가 전체 성공의 분수령이 됩니다. 한국인의 평균 수명은 83세(2023년 기준). 30세라면 약 2,756주가 남았습니다. 숫자로 복면 놀랍도록 짧습니다.",
+    summary_lines: [
+      "30세 기준 남은 인생은 약 2,600주 - 추상적인 '년' 대신 구체적인 '주'로 계산하면 시간의 유한성이 명확해집니다.",
+      "주 단위 계획은 연간 목표를 즉각적인 행동으로 연결해 프로크라스티네이션을 방지합니다.",
+      "시간을 주 단위로 인식하면 우선순위가 명확해지고 의미 없는 소모를 줄일 수 있습니다."
+    ],
+    curator_insight: "'난 아직 젊어'라는 말은 추상적인 위안일 뿐입니다. 2,600주라는 구체적인 숫자를 마주할 때, 우리는 진정한 동기부여를 얻습니다. 이는 불안을 조장하는 게 아니라, 삶을 의도적으로 설계하도록 돕는 강력한 프레임워크입니다.",
+    visual_suggestion: "묣료 스톡 키워드: weekly planner, calendar grid, time management, life planning, hourglass. 생성형 프롬프트: 'modern minimalist weekly planner spread with clean typography, calendar grid showing 52 weeks, soft gradient background, professional productivity illustration, warm color scheme with blues and oranges, no text, no logos'",
+    tags: ["시간관리", "생산성", "자기계발", "목표설정", "주단위계획", "프로크라스티네이션", "인생계획", "습관형성"],
+    comments: [
+      { side: "left", author: "thirty_something", text: "와 2,600주라니... 갑자기 시간이 짧게 느껴짐", time: "오전 10:23" },
+      { side: "right", author: "planner_junkie", text: "주 단위 계획 세우기 시작한 뒤로 미루는 게 확실히 줄었음", time: "오전 10:24" },
+      { side: "left", author: "procrastinator", text: "남은 여름 40개는 좀 충격적이네...", time: "오전 10:25" },
+      { side: "right", author: "goal_setter", text: "년 계획 → 월 계획 → 주 계획으로 세분화하니 실천률 달라짐", time: "오전 10:26" },
+      { side: "left", author: "busy_bee", text: "오토파일럿 상태로 흘러가는 게 제일 무서움", time: "오전 10:27" },
+      { side: "right", author: "retire_early", text: "재무자유 목표도 주 단위로 쪼개면 덜 막연해짐", time: "오전 10:28" }
+    ]
+  },
+  {
     id: "issue-20250219-ai-productivity-reality-check",
     category: "테크",
     title: "AI 생산성 현실 점검: 투자 확대에도 성과가 안 보이는 이유",
