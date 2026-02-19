@@ -8,6 +8,38 @@
 
 window.ISSUE_THREADS = window.ISSUE_THREADS || [
   {
+    id: "issue-20250219-ai-productivity-reality-check",
+    category: "테크",
+    title: "AI 생산성 현실 점검: 투자 확대에도 성과가 안 보이는 이유",
+    catchy_title: "수천억 넣었는데 왜 그대로일까: AI 도입의 불편한 성적표",
+    source_name: "The Register, NBER 연구 보고서",
+    source_url: "",
+    published_at: "2026-02-19",
+    image: "images/issue-fallback.jpg",
+    image_variants: [],
+    rewritten_body: "기업들은 지난 2~3년 동안 AI를 가장 빠르게 도입한 기술로 밀어붙였습니다. 대규모 예산이 생성형 AI, 코파일럿, 자동화 플랫폼으로 이동했고, 경영진은 생산성 혁신을 핵심 목표로 내세웠습니다. 하지만 최근 공개된 해외 조사들은 기대와 다른 결과를 보여줍니다. 도입 자체는 빠른데, 수익성과 업무 효율 지표는 눈에 띄게 움직이지 않았다는 것입니다. 미국·영국·독일·호주의 기업 임원 6,000명을 대상으로 한 NBER 기반 조사에서는 다수의 응답자가 AI 도입 뒤 고용과 생산성 변화가 거의 없었다고 답했습니다. 기업 현장에서 체감되는 변화가 아직 '툴 사용' 수준에 머물러 있다는 해석이 나옵니다. 실제로 많은 조직이 메일 작성, 문서 초안, 회의 요약 같은 단위 작업에서는 효과를 봤지만, 전체 업무 프로세스와 의사결정 체계를 재설계하지는 못했습니다. 결국 AI를 붙였어도 기존 방식 그대로 일하는 경우가 많았고, 이 때문에 ROI가 분산되거나 측정조차 어려운 상황이 이어졌습니다. 문제의 핵심은 AI 모델 성능보다 조직 실행력입니다. 목표 KPI, 역할 재정의, 검증 루프, 직원 재교육이 함께 움직이지 않으면 AI 투자는 단기 이벤트로 끝날 가능성이 큽니다. 지금 필요한 건 'AI를 도입했는가'가 아니라 'AI를 기준으로 일을 다시 설계했는가'라는 질문입니다.",
+    summary_lines: [
+      "대규모 AI 투자에도 상당수 기업이 생산성과 고용 지표에서 뚜렷한 변화를 체감하지 못했습니다",
+      "도입 속도는 빠르지만 실제 활용은 메일·요약 등 부분 자동화에 머무는 사례가 많습니다",
+      "영국 정부 시범사업 등 일부 현장에서는 기대 대비 성과가 제한적이거나 역효과도 관찰됐습니다",
+      "핵심 병목은 모델 성능이 아니라 조직의 프로세스 재설계와 운영 방식 전환입니다",
+      "2026년 기업 과제는 'AI 도입'이 아니라 'AI 기반 업무 시스템 전환'으로 이동하고 있습니다"
+    ],
+    curator_insight: "이번 이슈는 AI 과열 기대를 식히는 동시에, 진짜 경쟁력이 어디서 나오는지 보여줍니다. 도구를 사는 것만으로는 생산성이 오르지 않고, 조직이 목표·역할·평가 체계를 함께 바꿀 때만 성과가 쌓입니다. 결국 승부처는 모델 스펙이 아니라 실행 설계입니다.",
+    visual_suggestion: "무료 스톡 키워드: corporate analytics dashboard, office productivity metrics, AI investment chart, executive meeting, digital transformation. 생성형 프롬프트: \"executive team reviewing AI productivity dashboard in modern boardroom, mixed signals on charts, realistic business documentary style, neutral color grading, no logos, no readable text\"",
+    tags: ["AI생산성", "기업DX", "AI투자", "업무혁신", "테크트렌드", "ROI", "조직변화", "디지털전환", "AI도입", "경영전략"],
+    comments: [
+      { side: "left", author: "ops_lead", text: "툴은 깔았는데 업무 방식은 그대로라 체감이 약한 게 맞음", time: "오전 9:41" },
+      { side: "right", author: "data_skeptic", text: "성과 안 나오는 이유는 AI가 아니라 KPI 설계 부실 아닌가", time: "오전 9:42" },
+      { side: "left", author: "finance_view", text: "ROI 측정 프레임부터 없으면 예산만 태우는 구조됨", time: "오전 9:43" },
+      { side: "right", author: "field_manager", text: "현장은 아직 메일 작성 보조 정도에서 못 벗어나는 팀 많음", time: "오전 9:44" },
+      { side: "left", author: "change_agent", text: "프로세스 리디자인 없이 도입만 하면 당연히 성과 안 나지", time: "오전 9:45" },
+      { side: "right", author: "hr_partner", text: "직원 교육 없이 툴만 배포하면 오히려 혼선이 더 커짐", time: "오전 9:46" },
+      { side: "left", author: "product_owner", text: "단위 작업 자동화는 됐는데 조직 전체 속도 개선은 별개 문제", time: "오전 9:47" },
+      { side: "right", author: "realist_cto", text: "2026년엔 도입률보다 전환률을 봐야 한다는 말에 동의", time: "오전 9:48" }
+    ]
+  },
+  {
     id: "issue-20260219-ai-native-developer",
     title: "AI 네이티브 개발자: 2026년 개발자의 새로운 워크플로우",
     catchy_title: "코드 안 치고 개발하기: AI 네이티브 개발자가 온다",
