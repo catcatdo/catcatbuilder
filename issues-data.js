@@ -14,7 +14,7 @@ window.ISSUE_THREADS = window.ISSUE_THREADS || [
     source_name: "릴황 매거진 오리지널",
     source_url: "",
     published_at: "2026-02-19T07:40:00+09:00",
-    image: "images/issue-fallback.svg",
+    image: "images/issue-fallback.jpg",
     image_variants: [],
     rewritten_body: "AI 도구가 개발자의 일상에 완전히 녹아든 2026년, 이제 'AI를 쓴다'는 표현 자체가 구식이 되어가고 있습니다. AI 네이티브 개발자(AI Native Developer)라는 새로운 개발자 유형이 등장하며, 이들은 AI 없이는 개발 상상조차 하지 않는 세대입니다. AI 네이티브 개발자란 AI 코딩 어시스턴트를 단순한 도구가 아닌 개발 파트너로 인식하고, 일상적인 개발 업무의 70% 이상을 AI와 협업하여 수행하는 개발자를 의미합니다. 이들은 코드를 처음부터 작성하는 것보다 AI가 생성한 코드를 검토하고 개선하는 방식에 더 익숙합니다. 전통적인 개발 워크플로우는 '요구사항 분석 → 설계 → 코딩 → 테스트 → 배포'의 순차적 과정이었습니다. 그러나 AI 네이티브 개발자의 워크플로우는 '프롬프트 엔지니어링 → AI 생성 → 검토/수정 → 테스트 → 배포'로 변화했습니다. 핵심 차이는 '코딩' 단계가 '프롬프트 작성과 검토'로 대첸되었다는 점입니다. AI 네이티브 개발자는 인간의 창의성과 AI의 처리 능력을 결합하는 하이브리드 사고방식을 갖추고 있습니다. 복잡한 아키텍처 결정이나 비즈니스 로직 설계는 인간이 담당하고, 반복적인 구현이나 패턴 적용은 AI에게 위임합니다. 이를 통해 개발자는 더 높은 수준의 추상화에서 문제를 바라볼 수 있게 되었습니다.",
     summary_lines: [
@@ -45,7 +45,7 @@ window.ISSUE_THREADS = window.ISSUE_THREADS || [
     source_name: "릴황 매거진 오리지널",
     source_url: "",
     published_at: "2026-02-18T23:40:00+09:00",
-    image: "images/issue-fallback.svg",
+    image: "images/issue-fallback.jpg",
     image_variants: [],
     rewritten_body: "2026년, 개발자들 사이에서 새로운 용어가 빠르게 퍼지고 있습니다. 바로 'Vibe Coding'입니다. 이는 복잡한 설계 문서와 체계적인 계획 없이, AI와의 대화를 통해 직관적으로 코드를 만들어나가는 개발 방식을 의미합니다. 전통적인 개발은 '요구사항 분석 → 설계 → 구현 → 테스트'라는 순차적 단계를 따랐습니다. 하지만 Vibe Coding은 이 과정을 유기적 탐색으로 바꿉니다. 개발자는 AI에게 '이런 기능이 필요해'라고 말하고, AI가 생성한 초안을 즉시 실행핸볼며 피드백을 줍니다. 코드가 돌아가는 모습을 본 뒤 '여기를 조금 바꿔줘'라고 말하면 AI가 즉각 수정합니다. 이 방식의 핵심은 '빠른 실패'와 '빠른 학습'입니다. 완벽한 계획을 세우는 대신, 일단 만들어보고 안 되면 금방 다른 방향으로 전환합니다. 마치 재즈 음악가가 즉흥 연주를 하듯, 개발자는 코드의 '흐름(vibe)'을 따라가며 창조합니다.",
     summary_lines: [
@@ -76,7 +76,7 @@ window.ISSUE_THREADS = window.ISSUE_THREADS || [
     source_name: "auto_content/issue_20260218_1540.txt 기반 오리지널 가이드",
     source_url: "",
     published_at: "2026-02-18T15:40:00+09:00",
-    image: "images/issue-fallback.svg",
+    image: "images/issue-fallback.jpg",
     image_variants: [],
     rewritten_body: "2026년, 개발자들의 작업 방식이 근본적으로 바뀌고 있습니다. 단순히 코드를 자동완성해주는 도구를 넘어, AI가 독립적으로 작업을 수행하는 'AI 에이전트' 시대가 본격화된 것입니다. 이 변화는 개발자의 역할을 '코드 작성자'에서 '문제 정의자'와 '결과 검증자'로 전환시키고 있습니다. AI 에이전트의 핵심은 '맥락 이해'와 '독립적 실행'입니다. 기존의 코드 자동완성은 개발자가 타이핑하는 순간 제안을 제공하는 수준에 머물렀습니다. 하지만 최신 AI 에이전트는 GitHub 저장소 전체를 분석하고, 관련 문서를 스캔하며, 심지어 터미널 명령어까지 직접 실행할 수 있습니다. 예를 들어 '이 버그를 수정해줘'라는 한 마디 명령으로, AI는 관련 파일을 찾아 분석하고 수정사항을 제안한 뒤 테스트까지 실행할 수 있습니다.",
     summary_lines: [
@@ -107,7 +107,7 @@ window.ISSUE_THREADS = window.ISSUE_THREADS || [
     source_name: "릴황 매거진 오리지널",
     source_url: "",
     published_at: "2026-02-16T23:40:00+09:00",
-    image: "images/issue-fallback.svg",
+    image: "images/issue-fallback.jpg",
     image_variants: [],
     rewritten_body: "2024년 말 Anthropic에서 공개한 MCP(Model Context Protocol)가 2026년 개발자 도구의 새로운 표준으로 자리잡아가고 있습니다. MCP는 AI 모델이 외부 도구, 데이터베이스, 파일 시스템, API와 직접 상호작용할 수 있게 하는 개방형 프로토콜입니다. 기존에는 개발자가 AI에게 명령하고 결과를 복사해 다른 도구에 붙여넣는 방식이었다면, MCP는 AI가 스스로 필요한 작업을 수행하는 'AI 에이전트' 시대를 열고 있습니다. Claude Desktop, Cursor, Cline 같은 MCP 클라이언트는 여러 MCP 서버에 연결되며, 각 서버는 파일 시스템 접근, GitHub API 호출, PostgreSQL 쿼리 실행 등 특정 기능을 제공합니다.",
     summary_lines: [
@@ -138,7 +138,7 @@ window.ISSUE_THREADS = window.ISSUE_THREADS || [
     source_name: "릴황 매거진 오리지널",
     source_url: "",
     published_at: "2026-02-16T18:00:00+09:00",
-    image: "images/issue-fallback.svg",
+    image: "images/issue-fallback.jpg",
     image_variants: [],
     rewritten_body: "lilhwang.com 홈페이지의 사용자 경험(UX)을 자체 진단한 결과, 모바일 반응형, 나이지이션 구조, 검색 기능 등 5가지 주요 개선점이 확인되었습니다. 첫째, 모바일에서 나이지이션 메뉴가 햄버거 버튼으로 축소되지 않아 화면 밖으로 튀어나가는 현상이 있습니다. 둘째, 메인 페이지의 도구 카드들이 일정한 그리드 없이 배치되어 시각적 일관성이 부족합니다. 셋째, 검색 기능이 프론트엔드에서만 작동해 실시간 결과 필터링이 느립니다. 넷째, 다크모드 전환 시 일부 컴포넌트가 깜빡이는 현상이 있습니다. 다섯째, 페이지 로딩 시 CLS(Cumulative Layout Shift)가 발생해 SEO 점수에 영향을 줍니다.",
     summary_lines: [
@@ -169,7 +169,7 @@ window.ISSUE_THREADS = window.ISSUE_THREADS || [
     source_name: "릴황 매거진 오리지널",
     source_url: "",
     published_at: "2026-02-16T15:40:00+09:00",
-    image: "images/issue-fallback.svg",
+    image: "images/issue-fallback.jpg",
     image_variants: [],
     rewritten_body: "2025년부터 가속화된 로컬 AI 열풍이 2026년에도 거세지고 있습니다. ChatGPT, Claude 같은 클라우드 AI 서비스는 강력하지만 API 호출 비용이 만만치 않습니다. GPT-4o로 하루 1000회 API 호출하면 월 30~50만 원이 훌씬 넘습니다. 반면 최신 Apple Silicon Mac에 Qwen 3 120B급 모델을 로컬로 구동하면 초당 20~30 토큰 생성이 가능하며, 한 달 전기료가 3,000원을 넘기 어렵습니다. 로컬 AI의 매력은 비용 절감만이 아닙니다. 오프라인 환경, 데이터 프라이버시 보호, 무제한 사용이 핵심 장점입니다.",
     summary_lines: [
@@ -200,8 +200,8 @@ window.ISSUE_THREADS = window.ISSUE_THREADS || [
     source_name: "커뮤니티 제보 기사 텍스트",
     source_url: "",
     published_at: "2026-02-13T23:55:00+09:00",
-    image: "images/generated/post-9001-cover.svg",
-    image_variants: ["images/generated/post-9001-v1.svg", "images/generated/post-9001-v2.svg", "images/generated/post-9001-v3.svg"],
+    image: "images/generated/post-9001-cover.jpg",
+    image_variants: ["images/generated/post-9001-v1.jpg", "images/generated/post-9001-v2.jpg", "images/generated/post-9001-v3.jpg"],
     rewritten_body: "무면허 음주 상태에서 과속·역주행으로 사망 사고를 낸 20대 운전자가 항소심에서 감형되며 논란이 커졌습니다. 재판부는 별도 사건에서 이미 확정된 형과 이번 사건이 경합범 관계에 있어 형평을 다시 따져야 한다는 법리를 적용했다고 설명했습니다. 유족 측의 엄벌 요구와 법리상 감형 판단이 정면으로 충돌하면서, '국민 감정'과 '양형 체계' 사이 간극이 다시 쟁점으로 떠올랐습니다.",
     summary_lines: [
       "항소심 재판부는 1심 징역 8년을 파기하고 징역 6년과 벌금 30만원을 선고했다.",
@@ -269,8 +269,8 @@ window.ISSUE_THREADS = window.ISSUE_THREADS || [
     source_name: "중앙일보",
     source_url: "https://www.joongang.co.kr/article/25404962",
     published_at: "2026-02-13T23:20:00+09:00",
-    image: "images/generated/post-9002-cover.svg",
-    image_variants: ["images/generated/post-9002-v1.svg", "images/generated/post-9002-v2.svg", "images/generated/post-9002-v3.svg"],
+    image: "images/generated/post-9002-cover.jpg",
+    image_variants: ["images/generated/post-9002-v1.jpg", "images/generated/post-9002-v2.jpg", "images/generated/post-9002-v3.jpg"],
     rewritten_body: "최가온의 하프파이프 금메달은 개인 재능만으로 설명하기 어려운 성과라는 평가가 나옵니다. 장기 협회 후원, 부상 치료비 지원, 해외 훈련과 멘탈·학습 관리 같은 다층 지원이 누적되며 성과로 연결됐다는 분석입니다. 동시에 이번 사례는 한국 동계 설상 종목이 아직도 민간 대기업의 지속 투자에 크게 의존하고 있다는 구조적 현실도 함께 드러냈습니다.",
     summary_lines: [
       "최가온이 2026 밀라노·코르티나 동계올림픽 스노보드 여자 하프파이프에서 우승하며 한국 설상 종목의 새 기록을 만들었다.",
@@ -338,8 +338,8 @@ window.ISSUE_THREADS = window.ISSUE_THREADS || [
     source_name: "커뮤니티 제보 + 네이버 스포츠 기사",
     source_url: "https://m.sports.naver.com/kbaxxseball/article/468/0001217528",
     published_at: "2026-02-13",
-    image: "images/generated/post-9003-cover.svg",
-    image_variants: ["images/generated/post-9003-v1.svg", "images/generated/post-9003-v2.svg", "images/generated/post-9003-v3.svg"],
+    image: "images/generated/post-9003-cover.jpg",
+    image_variants: ["images/generated/post-9003-v1.jpg", "images/generated/post-9003-v2.jpg", "images/generated/post-9003-v3.jpg"],
     rewritten_body: "대만 전지훈련 중 롯데 선수들의 외부 동선과 CCTV 장면 확산을 둘러싼 논란이 이어졌지만, 당사자 및 구단 측에서는 성추행 의혹에 대해 사실이 아니라는 취지로 선을 그었습니다. 이후 커뮤니티 관심은 단순 자극 이슈보다 정보가 어떤 순서와 방식으로 퍼졌는지, 그리고 무엇이 확인 사실인지에 집중되는 흐름으로 이동했습니다.",
     summary_lines: [
       "해당 사안은 의혹 제기 이후 구단·당사자 측 해명이 나오며 '사실 아님' 입장이 공개됐다.",
@@ -407,8 +407,8 @@ window.ISSUE_THREADS = window.ISSUE_THREADS || [
     source_name: "해외 테크 리더 발언 종합",
     source_url: "",
     published_at: "2026-02-15T00:41:00+09:00",
-    image: "images/generated/post-9004-cover.svg",
-    image_variants: ["images/generated/post-9004-v1.svg", "images/generated/post-9004-v2.svg", "images/generated/post-9004-v3.svg"],
+    image: "images/generated/post-9004-cover.jpg",
+    image_variants: ["images/generated/post-9004-v1.jpg", "images/generated/post-9004-v2.jpg", "images/generated/post-9004-v3.jpg"],
     rewritten_body: "일부 기술 조직에서는 시니어 엔지니어가 직접 타이핑하는 시간을 줄이고, AI가 만든 초안을 검증하고 구조화하는 방식으로 개발 흐름을 바꾸고 있습니다. 그 결과 생산성의 기준이 '얼마나 빨리 코드를 작성하느냐'에서 '문제를 정확히 정의하고 안전하게 배포하느냐'로 이동하는 분위기입니다. 다만 AI 산출물의 품질 편차가 크기 때문에 리뷰 강도, 테스트 설계, 보안 점검은 이전보다 더 중요해졌습니다.",
     summary_lines: [
       "반복 구현은 AI가 맡고 개발자는 요구사항 해석, 시스템 연결, 품질 검증에 시간을 더 쓰는 팀이 늘고 있다.",
@@ -476,8 +476,8 @@ window.ISSUE_THREADS = window.ISSUE_THREADS || [
     source_name: "해외 개발자 설문 조사",
     source_url: "",
     published_at: "2026-02-15T01:41:00+09:00",
-    image: "images/generated/post-9005-cover.svg",
-    image_variants: ["images/generated/post-9005-v1.svg", "images/generated/post-9005-v2.svg", "images/generated/post-9005-v3.svg"],
+    image: "images/generated/post-9005-cover.jpg",
+    image_variants: ["images/generated/post-9005-v1.jpg", "images/generated/post-9005-v2.jpg", "images/generated/post-9005-v3.jpg"],
     rewritten_body: "최근 개발자 커뮤니티를 대상으로 한 설문에서 흥미로운 결과가 나왔습니다. 대다수의 소프트웨어 엔지니어가 AI가 생성한 코드나 콘텐츠를 완전히 신뢰하지 않는다고 답변했지만, 실제로 그 출력물을 직접 검증하는 개발자는 절반에도 미치지 못하는 것으로 나타났습니다. 이는 AI 도구 사용이 일상화되면서도 검증 문화는 아직 뒤따라가지 못하고 있음을 보여줍니다.",
     summary_lines: [
       "엔지니어 대다수가 AI 출력물을 의심하면서도 시간 부족과 업무 과중으로 실제 검증률은 낮은 상황",
@@ -545,8 +545,8 @@ window.ISSUE_THREADS = window.ISSUE_THREADS || [
     source_name: "해외 테크 미디어 복합 본문",
     source_url: "",
     published_at: "2026-02-15T01:45:00+09:00",
-    image: "images/generated/post-9006-cover.svg",
-    image_variants: ["images/generated/post-9006-v1.svg", "images/generated/post-9006-v2.svg", "images/generated/post-9006-v3.svg"],
+    image: "images/generated/post-9006-cover.jpg",
+    image_variants: ["images/generated/post-9006-v1.jpg", "images/generated/post-9006-v2.jpg", "images/generated/post-9006-v3.jpg"],
     rewritten_body: "글로벌 스트리밍 서비스 기업에서 흥미로운 변화가 일어나고 있습니다. 회사 내 우수한 개발자들이 직접 코드를 작성하지 않고도 효율적으로 작업하고 있다는 소식입니다. AI 보조 도구의 발달로 개발자들이 더 전략적이고 창의적인 업무에 집중할 수 있게 되면서, 개발자의 역할이 '코드 작성자'에서 'AI 협업자'로 변화하고 있습니다.",
     summary_lines: [
       "AI 코딩 어시스턴트의 능력 향상으로 반복적 코딩 작업을 AI에 위임하고 개발자는 설계와 아키텍처에 집중하는 추세",
@@ -615,7 +615,7 @@ window.ISSUE_THREADS = window.ISSUE_THREADS || [
     source_name: "커뮤니티 이슈 요약",
     source_url: "",
     published_at: "2026-02-15",
-    image: "images/issue-fallback.svg",
+    image: "images/issue-fallback.jpg",
     image_variants: [],
     rewritten_body: "AI 도구가 보일러플레이트와 초안 생성을 빠르게 처리하면서 개발 속도는 눈에 띄게 올라갔습니다. 대신 병목은 구현 단계에서 운영 단계로 옮겨가고 있습니다. 팀은 이제 대량으로 만들어진 코드를 검토하고, 아키텍처 일관성과 보안·테스트 기준을 맞추는 데 더 많은 시간을 씁니다. 결과적으로 개발자의 핵심 역량은 타이핑 속도보다 문제 정의, 맥락 이해, 품질 통제 능력으로 재편되는 분위기입니다.",
     summary_lines: [
@@ -684,8 +684,8 @@ window.ISSUE_THREADS = window.ISSUE_THREADS || [
     source_name: "Reddit r/programming 기반 재구성",
     source_url: "",
     published_at: "2026-02-15T03:45:00+09:00",
-    image: "images/generated/post-9005-cover.svg",
-    image_variants: ["images/generated/post-9005-v1.svg", "images/generated/post-9005-v2.svg", "images/generated/post-9005-v3.svg"],
+    image: "images/generated/post-9005-cover.jpg",
+    image_variants: ["images/generated/post-9005-v1.jpg", "images/generated/post-9005-v2.jpg", "images/generated/post-9005-v3.jpg"],
     rewritten_body: "프론트엔드 프레임워크의 평균 수명은 18개월에서 3년. 과거 GWT, Backbone.js, Knockout.js는 이제 레거시가 됐습니다. 반면 프로그래밍 언어 선택은 10년 이상, 데이터베이스는 7~10년 지속됩니다. AI가 41%의 코드를 생성하는 지금, 개발자의 가치는 변화하는 프레임워크가 아닌 변하지 않는 기본기에 있습니다. 알고리즘, 자료구조, 디자인 패턴, 클린 아키텍처 원칙은 5년 뒤에도 여전히 유효할 겁니다.",
     summary_lines: [
       "프론트엔드 프레임워크의 수명은 평균 18개월~3년, 반면 기본기는 10년 이상 지속됨",
@@ -753,8 +753,8 @@ window.ISSUE_THREADS = window.ISSUE_THREADS || [
     source_name: "해외 테크 미디어 복합 본문",
     source_url: "",
     published_at: "2026-02-15T04:09:00+09:00",
-    image: "images/generated/post-9008-cover.svg",
-    image_variants: ["images/generated/post-9008-v1.svg", "images/generated/post-9008-v2.svg", "images/generated/post-9008-v3.svg"],
+    image: "images/generated/post-9008-cover.jpg",
+    image_variants: ["images/generated/post-9008-v1.jpg", "images/generated/post-9008-v2.jpg", "images/generated/post-9008-v3.jpg"],
     rewritten_body: "Git은 2005년 리누스 토발즈가 처음 만들었을 때부터 전 세계 개발자들이 가장 많이 사용하는 버전 관리 시스템으로 자리잡았습니다. 하지만 기술은 멈추지 않고 발전하며, Git도 새로운 도전에 맞서 진화하고 있습니다. 대규모 프로젝트에서의 성능 개선, 분산 개발 환경에서의 협업 효율성 증대, 보안과 데이터 무결성 강화 등 다양한 방면에서 변화가 일어나고 있습니다. 이러한 Git의 변화는 단순히 도구의 업데이트가 아니라 개발 워크플로우 전체에 영향을 주며, 개발자들의 일상적인 작업을 더욱 편리하게 만들어줍니다.",
     summary_lines: [
       "Git의 기본 구조와 작동 원리에 대한 새로운 접근 방식이 연구되고 있음",
@@ -822,8 +822,8 @@ window.ISSUE_THREADS = window.ISSUE_THREADS || [
     source_name: "Reddit r/programming, r/webdev 기반 재구성",
     source_url: "",
     published_at: "2026-02-15T04:40:00+09:00",
-    image: "images/generated/post-9009-cover.svg",
-    image_variants: ["images/generated/post-9009-v1.svg", "images/generated/post-9009-v2.svg", "images/generated/post-9009-v3.svg"],
+    image: "images/generated/post-9009-cover.jpg",
+    image_variants: ["images/generated/post-9009-v1.jpg", "images/generated/post-9009-v2.jpg", "images/generated/post-9009-v3.jpg"],
     rewritten_body: "AI 도구가 개발자의 업무 방식에 미치는 영향이 커지고 있습니다. 최근 설문조사 결과를 볼 때, 대다수 엔지니어(96%에 달함)가 AI가 생성한 결과물을 완전히 신뢰하지 않는 것으로 나타났습니다. 흥미로운 점은 실제로 그 결과를 검증하는 사람은 절반에도 미치지 않는다는 사실입니다. 일부 기업에서는 숙련된 개발자들이 직접 코드를 작성하는 대신 AI 도구를 활용하는 방식으로 업무 방식이 전환되고 있으며, 이는 개발자의 역할이 코드 작성자에서 AI 출력물 검토자와 통합자로 변화하고 있음을 시사합니다. 오픈소스 생태계에서도 AI가 자동으로 이슈를 해결하고 PR을 생성하는 사례가 늘어나고 있지만, 이러한 AI 기여가 거부당했을 때 발생하는 갈등도 새로운 문제로 떠오르고 있습니다.",
     summary_lines: [
       "96%의 엔지니어가 AI 출력물을 완전히 신뢰하지 않지만, 실제 검증하는 사람은 48%에 불과함",
@@ -891,8 +891,8 @@ window.ISSUE_THREADS = window.ISSUE_THREADS || [
     source_name: "Reddit r/programming, r/webdev 기반 오리지널 콘텐츠",
     source_url: "",
     published_at: "2026-02-15T05:15:00+09:00",
-    image: "images/generated/post-9010-cover.svg",
-    image_variants: ["images/generated/post-9010-v1.svg", "images/generated/post-9010-v2.svg", "images/generated/post-9010-v3.svg"],
+    image: "images/generated/post-9010-cover.jpg",
+    image_variants: ["images/generated/post-9010-v1.jpg", "images/generated/post-9010-v2.jpg", "images/generated/post-9010-v3.jpg"],
     rewritten_body: "API 개발이나 웹 애플리케이션을 만들다 본 개발자라면 누구나 한 번쯤 수천 줄의 JSON 데이터를 텍스트 에디터에서 스크롤하며 고통받아본 경험이 있을 것이다. 복잡하게 중첩된 객체와 배열들 사이에서 필요한 값을 찾는 것은 시간 낭비일 뿐만 아니라, 실수로 중요한 데이터를 놓치게 만드는 주된 원인이 되기도 한다. 최근 개발자 커뮤니티에서는 이런 불편함을 해소하기 위해 JSON 데이터를 시각적으로 디버깅하는 다양한 도구와 워크플로우를 공유하는 논의가 활발하다. 트리 뷰, 그래프 시각화, 실시간 검증 도구들이 개발자들의 생산성을 크게 향상시키고 있다.",
     summary_lines: [
       "복잡하게 중첩된 JSON 구조는 트리 뷰와 노드 기반 시각화로 한눈에 파악할 수 있음",
@@ -960,8 +960,8 @@ window.ISSUE_THREADS = window.ISSUE_THREADS || [
     source_name: "TechCrunch 기반 오리지널 콘텐츠",
     source_url: "",
     published_at: "2026-02-15T05:39:00+09:00",
-    image: "images/generated/post-9011-cover.svg",
-    image_variants: ["images/generated/post-9011-v1.svg", "images/generated/post-9011-v2.svg", "images/generated/post-9011-v3.svg"],
+    image: "images/generated/post-9011-cover.jpg",
+    image_variants: ["images/generated/post-9011-v1.jpg", "images/generated/post-9011-v2.jpg", "images/generated/post-9011-v3.jpg"],
     rewritten_body: "최근 Spotify의 공동 CEO가 파격적인 발언을 했다. '우리 최고 개발자들은 12월 이후로 코드 한 줄도 직접 작성하지 않았다.' 이는 AI 코딩 도구가 개발 방식을 근본적으로 변화시키고 있음을 보여주는 상징적 사례다. Spotify는 2025년에만 50개 이상의 새로운 기능을 출시했으며, 'Honk'이라는 AI 시스템을 통해 개발자들이 슬랙에서 폰으로 지시만 하면 Claude가 버그 수정과 기능 추가를 자동으로 수행하고 배포까지 완료한다. 이제 개발자의 역할은 코드 작성자에서 AI 출력물 검토자, 아키텍처 설계자로 전환되고 있다.",
     summary_lines: [
       "Spotify CEO: 최고 개발자들이 12월 이후로 코드 한 줄도 직접 작성하지 않음",
@@ -1031,7 +1031,7 @@ window.ISSUE_THREADS = window.ISSUE_THREADS || [
     source_name: "운영 장애 사례 기반 오리지널 콘텐츠",
     source_url: "",
     published_at: "2026-02-15T06:09:00+09:00",
-    image: "images/issue-fallback.svg",
+    image: "images/issue-fallback.jpg",
     image_variants: [],
     rewritten_body: "고동시성 Java 서비스에서 간헐적인 지연이 반복될 때, 원인이 비즈니스 로직이 아니라 클래스패스 스캐닝 경합인 경우가 적지 않습니다. 특히 DatatypeFactory 같은 ServiceLoader 기반 팩토리를 요청마다 새로 생성하면 클래스 로더 내부 락을 다수 스레드가 동시에 기다리게 됩니다. 해결의 핵심은 생성 비용이 큰 팩토리와 정적 리소스를 요청 경로에서 분리하고, 시작 시점에 한 번 준비해 재사용하는 것입니다. 여기에 스레드 덤프와 JFR 지표를 함께 보며 개선 전후를 검증하면 p95, p99 지연의 흔들림을 안정적으로 줄일 수 있습니다.",
     summary_lines: [
@@ -1102,7 +1102,7 @@ window.ISSUE_THREADS = window.ISSUE_THREADS || [
     source_name: "Reddit r/programming 기반 오리지널 콘텐츠",
     source_url: "",
     published_at: "2026-02-15T06:39:00+09:00",
-    image: "images/issue-fallback.svg",
+    image: "images/issue-fallback.jpg",
     image_variants: [],
     rewritten_body: "AI 코딩 도구가 개발자 업무 방식을 바꾸고 있지만, 많은 개발자들이 AI 사용으로 플로우 상태(Flow State)가 깨진다고 느끼고 있습니다. 문맥 전환 비용, 과도한 의존, 불확실성 스트레스가 주요 원인입니다. 효과적인 활용법은 AI 사용 구간을 명확히 정하고, AI 톤 시간과 딥 워크 시간을 분리하며, AI 출력을 시작점으로만 사용하는 것입니다. 핵심 비즈니스 로직은 직접 작성하며 몰입을 유지하고, 반복 작업만 AI에 위임하는 균형이 필요합니다.",
     summary_lines: [
@@ -1173,7 +1173,7 @@ window.ISSUE_THREADS = window.ISSUE_THREADS || [
     source_name: "개발자 커뮤니티 논의 기반 오리지널 콘텐츠",
     source_url: "",
     published_at: "2026-02-15T07:09:00+09:00",
-    image: "images/issue-fallback.svg",
+    image: "images/issue-fallback.jpg",
     image_variants: [],
     rewritten_body: "AI 코딩 도구가 확산되면서 개발자의 가치는 '타이핑 속도'보다 '품질 판단력'에서 더 크게 갈리기 시작했습니다. 반복 구현은 AI가 빠르게 처리할 수 있지만, 요구사항 해석의 정확도, 보안과 성능 리스크 점검, 기존 아키텍처와의 정합성은 여전히 사람이 책임져야 합니다. 그래서 팀의 실제 병목도 구현 단계보다 리뷰와 검증 단계로 이동하고 있습니다. 핵심은 AI를 배제하는 것이 아니라, 어디까지 자동화하고 어디서 사람의 결정을 강제할지 운영 기준을 명확히 두는 것입니다.",
     summary_lines: [
@@ -1244,7 +1244,7 @@ window.ISSUE_THREADS = window.ISSUE_THREADS || [
     source_name: "개발팀 운영 경험 기반 오리지널 콘텐츠",
     source_url: "",
     published_at: "2026-02-15T08:39:00+09:00",
-    image: "images/issue-fallback.svg",
+    image: "images/issue-fallback.jpg",
     image_variants: [],
     rewritten_body: "Git 충돌을 완전히 없앨 수는 없지만, 브랜치 구조와 머지 기준을 명확히 하면 충돌 비용은 크게 줄일 수 있습니다. 핵심은 배포 가능한 main을 보호하고, 기능 개발은 짧은 수명의 feature 브랜치에서 진행하며, 릴리스와 긴급 수정 경로를 분리하는 것입니다. 여기에 작은 PR, 일관된 커밋 메시지, 자동 테스트 게이트를 함께 적용하면 브랜치 전략이 문서가 아니라 실제 속도로 연결됩니다. 팀 규모와 릴리스 주기에 따라 GitHub Flow, GitFlow 경량형, Trunk 기반 중 하나를 선택하고, 분기마다 운영 지표를 점검해 과한 규칙을 줄이는 방식이 가장 안정적입니다.",
     summary_lines: [
@@ -1315,7 +1315,7 @@ window.ISSUE_THREADS = window.ISSUE_THREADS || [
     source_name: "2026년 2월 기술 트렌드 요약 기반 오리지널 콘텐츠",
     source_url: "",
     published_at: "2026-02-15T09:09:00+09:00",
-    image: "images/issue-fallback.svg",
+    image: "images/issue-fallback.jpg",
     image_variants: [],
     rewritten_body: "일부 선도 조직은 AI를 활용해 구현 속도를 크게 끌어올리고 있지만, 성과가 지속되는 팀은 공통적으로 사람의 책임 구간을 더 명확히 운영합니다. 핵심은 개발자를 '코드 작성자'로만 보지 않고, 문제를 정의하고 시스템 경계를 설계하며 운영 리스크를 검증하는 역할로 재설계하는 것입니다. AI는 초안을 빠르게 만들지만, 비즈니스 맥락 해석과 품질 보증은 자동화하기 어렵기 때문에 오히려 더 엄격한 리뷰 기준이 필요합니다. 결국 경쟁력은 얼마나 많이 생성했는지가 아니라, 얼마나 안정적으로 배포하고 학습 루프를 돌렸는지에서 갈립니다.",
     summary_lines: [
@@ -1386,7 +1386,7 @@ window.ISSUE_THREADS = window.ISSUE_THREADS || [
     source_name: "자동 생성 요약 초안 기반 오리지널 가이드",
     source_url: "",
     published_at: "2026-02-15T09:40:00+09:00",
-    image: "images/issue-fallback.svg",
+    image: "images/issue-fallback.jpg",
     image_variants: [],
     rewritten_body: "웹 개발 학습에서 가장 큰 실패 원인은 의지가 부족해서가 아니라, 학습 순서가 실무 흐름과 맞지 않기 때문입니다. 2026년 기준으로도 핵심은 동일합니다. 먼저 HTML·CSS·JavaScript와 Git을 프로젝트 중심으로 익히고, 이후 프레임워크와 API 설계로 확장한 뒤, 배포와 품질 관리까지 연결해야 취업 가능한 포트폴리오가 됩니다. 특히 AI 도구를 쓰는 시대일수록 구현 속도보다 요구사항 해석, 구조 설계, 검증 능력이 더 큰 차이를 만듭니다.",
     summary_lines: [
@@ -1457,7 +1457,7 @@ window.ISSUE_THREADS = window.ISSUE_THREADS || [
     source_name: "auto_content/hourly_issue_20260215_1009.txt 기반 오리지널 가이드",
     source_url: "",
     published_at: "2026-02-15T10:09:00+09:00",
-    image: "images/issue-fallback.svg",
+    image: "images/issue-fallback.jpg",
     image_variants: [],
     rewritten_body: "클라우드 비용은 서버 한두 대를 줄여서는 크게 내려가지 않습니다. 실제 절감은 Kafka 파티션 설계, AZ/리전 간 트래픽 경로, 데이터 보관 정책, 캐시 계층, 오토스케일링 규칙을 함께 손볼 때 발생합니다. 특히 스타트업은 초기에 단순한 구조를 택하더라도 비용 지표를 월 단위로 점검하면서 메시지 브로커와 네트워크 비용을 분리해 관리해야 예산이 급격히 늘어나는 구간을 피할 수 있습니다.",
     summary_lines: [
@@ -1528,7 +1528,7 @@ window.ISSUE_THREADS = window.ISSUE_THREADS || [
     source_name: "auto_content/hourly_issue_20250215_1039.txt 기반 오리지널 가이드",
     source_url: "",
     published_at: "2026-02-15T10:39:00+09:00",
-    image: "images/issue-fallback.svg",
+    image: "images/issue-fallback.jpg",
     image_variants: [],
     rewritten_body: "트래픽이 높은 Java 서비스에서 평균 지표는 멀쩡한데 특정 구간만 느려지는 경우, 원인은 종종 비즈니스 로직이 아니라 런타임 초기화 경로에 숨어 있습니다. 특히 XML/검증 관련 Factory를 요청마다 생성하면 ServiceLoader 탐색이 반복되면서 ClassLoader 잠금 대기가 급증할 수 있습니다. 해결은 복잡하지 않습니다. 생성 비용이 큰 객체를 핫패스에서 빼고 애플리케이션 시작 시점에 준비하며, 자주 읽는 정적 리소스를 캐시로 전환하고, 스레드 덤프와 p99 지연을 함께 추적하면 재발 가능성을 크게 줄일 수 있습니다.",
     summary_lines: [
@@ -1599,7 +1599,7 @@ window.ISSUE_THREADS = window.ISSUE_THREADS || [
     source_name: "auto_content/hourly_issue_2025-02-15-11-09.txt 기반 오리지널 가이드",
     source_url: "",
     published_at: "2026-02-15T11:09:00+09:00",
-    image: "images/issue-fallback.svg",
+    image: "images/issue-fallback.jpg",
     image_variants: [],
     rewritten_body: "Git 생태계는 오랫동안 안정적으로 유지됐지만, 최근에는 보안·성능·저장 구조 세 축에서 큰 전환이 진행되고 있습니다. SHA-256 도입은 무결성 강화의 핵심이고, Reftable은 대규모 브랜치 환경에서 파일 시스템 병목을 줄이는 대안으로 주목받습니다. 여기에 대용량 객체를 별도 저장소와 연계하는 흐름까지 더해지면서, 팀 단위로는 단순 업그레이드보다 호환성 점검과 운영 규칙 재정의가 더 중요한 과제가 되고 있습니다.",
     summary_lines: [
@@ -1670,7 +1670,7 @@ window.ISSUE_THREADS = window.ISSUE_THREADS || [
     source_name: "auto_content/hourly_issue_2026-02-15_1139.txt 기반 오리지널 가이드",
     source_url: "",
     published_at: "2026-02-15T11:39:00+09:00",
-    image: "images/issue-fallback.svg",
+    image: "images/issue-fallback.jpg",
     image_variants: [],
     rewritten_body: "Git을 오래 써도 팀 생산성이 오르지 않는 이유는 도구가 아니라 운영 기준이 분산돼 있기 때문입니다. 브랜치가 길어지고 PR이 커지면 충돌과 리뷰 지연이 누적되고, 결국 배포 리듬이 끊깁니다. 해결의 핵심은 트렁크 기반 병합 주기, 커밋 메시지 규칙, 자동 검증 게이트, AI 보조 도구의 사용 경계를 하나의 팀 표준으로 묶는 것입니다. 이 기준을 문서화하고 지표로 점검하면 같은 인력으로도 더 안정적인 배포 사이클을 만들 수 있습니다.",
     summary_lines: [
@@ -1741,7 +1741,7 @@ window.ISSUE_THREADS = window.ISSUE_THREADS || [
     source_name: "auto_content/hourly_issue_20260215_1209.txt 기반 오리지널 가이드",
     source_url: "",
     published_at: "2026-02-15T12:09:00+09:00",
-    image: "images/issue-fallback.svg",
+    image: "images/issue-fallback.jpg",
     image_variants: [],
     rewritten_body: "중요한 일을 미루는 행동은 보통 비효율로 분류되지만, 모든 지연이 같은 결과를 만들지는 않습니다. 목표를 포기하지 않은 채 의도적으로 시간을 벌면 뇌는 백그라운드에서 정보를 재조합하고, 처음에는 보이지 않던 대안을 발견하기도 합니다. 핵심은 '회피성 미루기'를 줄이고 '전략적 미루기'를 설계하는 것입니다. 결정이 필요한 문제를 바로 결론 내리지 말고 숙성 시간을 확보한 뒤, 그 사이 작은 탐색 과제를 수행하면 품질과 속도를 함께 챙길 수 있습니다.",
     summary_lines: [
@@ -1812,7 +1812,7 @@ window.ISSUE_THREADS = window.ISSUE_THREADS || [
     source_name: "auto_content/hourly_issue_20260215_1239.txt 기반 오리지널 가이드",
     source_url: "",
     published_at: "2026-02-15T12:39:00+09:00",
-    image: "images/issue-fallback.svg",
+    image: "images/issue-fallback.jpg",
     image_variants: [],
     rewritten_body: "작은 일은 부담이 낮아 보이지만 끝나는 기준이 없으면 가장 먼저 시간을 잡아먹는 영역이 됩니다. 이메일 확인, 간단한 정리, 짧은 학습처럼 출발이 쉬운 작업일수록 '언제 멈출지'를 미리 정해야 하루의 핵심 업무가 보호됩니다. 핵심은 완벽주의가 아니라 라운드 방식입니다. 예를 들어 10분 정리, 5개 답장, 20분 학습처럼 작업 단위를 작게 자르고, 에너지가 남을 때만 다음 라운드를 여는 방식이 꾸준함과 성과를 동시에 만듭니다.",
     summary_lines: [
@@ -1883,7 +1883,7 @@ window.ISSUE_THREADS = window.ISSUE_THREADS || [
     source_name: "auto_content/hourly_issue_20250215_1309.txt 기반 오리지널 가이드",
     source_url: "",
     published_at: "2026-02-15T13:09:00+09:00",
-    image: "images/issue-fallback.svg",
+    image: "images/issue-fallback.jpg",
     image_variants: [],
     rewritten_body: "1인가구 주거 선택의 핵심은 '어떤 집이 좋아 보이느냐'가 아니라 '현재 현금흐름과 향후 3~7년 계획을 감당할 수 있느냐'입니다. 월세는 유연성이 높은 대신 장기 누적 비용이 커지고, 전세는 월 부담이 낮지만 계약·보증 리스크 관리가 필수이며, 매매는 자산 축적 가능성이 있지만 대출과 유지비에 대한 체력 검증이 선행돼야 합니다. 따라서 주거 형태를 고를 때는 감정적 선호보다 보증금 조달 계획, 월 지출 상한선, 긴급자금 보유 수준을 먼저 숫자로 점검하는 접근이 가장 안전합니다.",
     summary_lines: [
@@ -1954,7 +1954,7 @@ window.ISSUE_THREADS = window.ISSUE_THREADS || [
     source_name: "auto_content/issue_20260215_2340.txt 기반 오리지널 가이드",
     source_url: "",
     published_at: "2026-02-15T23:40:00+09:00",
-    image: "images/issue-fallback.svg",
+    image: "images/issue-fallback.jpg",
     image_variants: [],
     rewritten_body: "M5 Mac Studio는 개인용 장비로는 어려웠던 대형 AI 추론을 실무 가능한 수준으로 끌어올렸습니다. 높은 메모리 대역폭과 통합된 애플 실리콘 아키텍처 덕분에 120B급 모델도 4-bit 양자화 기준으로 실용 속도를 확보할 수 있고, 같은 급의 x86 워크스테이션 대비 전력 소모를 크게 낮출 수 있습니다. 여기에 MLX와 Core ML 기반 개발 경험이 맞물리면서, 클라우드 API 비용과 데이터 외부 반출 부담을 줄이려는 팀에게 로컬 AI 운영의 현실적 대안으로 자리 잡고 있습니다.",
     summary_lines: [
@@ -2025,7 +2025,7 @@ window.ISSUE_THREADS = window.ISSUE_THREADS || [
     source_name: "auto_content/hourly_issue_2025-02-15-1340.txt 기반 오리지널 가이드",
     source_url: "",
     published_at: "2025-02-15T13:40:00+09:00",
-    image: "images/issue-fallback.svg",
+    image: "images/issue-fallback.jpg",
     image_variants: [],
     rewritten_body: "번아웃은 의지 부족이 아니라 회복 없는 긴장이 오래 누적될 때 발생합니다. 업무와 휴식의 경계를 분리하고, 수면·운동·소셜 미디어 사용을 조정하면 에너지 누수를 크게 줄일 수 있습니다. 여기에 작은 성취 기록과 주기적 디지털 디톡스를 결합하면 스트레스가 고착되기 전에 회복 주기를 되살릴 수 있습니다. 이미 무기력, 짜증 증가, 수면 붕괴가 반복된다면 혼자 버티기보다 전문가 상담을 빠르게 연결하는 편이 장기 손실을 줄이는 현실적인 선택입니다.",
     summary_lines: [
