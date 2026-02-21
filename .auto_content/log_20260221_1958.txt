@@ -1,0 +1,46 @@
+[20260221_1958] 자동 콘텐츠 생성 시작
+🔍 Reddit RSS 조사 중...
+선택된 RSS: https://www.reddit.com/r/technology/top/.rss?t=day
+선정된 주제: 기술 트렌드 분석
+🔍 디시인사이드 조사 중...
+디시 주제: 추석 MANHWA (추천 2046)
+📝 GitHub Issue 등록 중...
+GitHub CLI 미설치
+✍️ 블로그 글 작성 중...
+새 글 ID: 198
+🖼️ 이미지 다운로드 중...
+이미지 저장: images/post-auto-post-20260221-1958.jpg
+posts.json 업데이트 완료
+🚀 GitHub 배포 중...
+remote: error: GH013: Repository rule violations found for refs/heads/main.        
+remote: 
+remote: - GITHUB PUSH PROTECTION        
+remote:   —————————————————————————————————————————        
+remote:     Resolve the following violations before pushing again        
+remote: 
+remote:     - Push cannot contain secrets        
+remote: 
+remote:             
+remote:      (?) Learn how to resolve a blocked push        
+remote:      https://docs.github.com/code-security/secret-scanning/working-with-secret-scanning-and-push-protection/working-with-push-protection-from-the-command-line#resolving-a-blocked-push        
+remote:             
+remote:             
+remote:       —— GitHub Personal Access Token ——————————————————————        
+remote:        locations:        
+remote:          - commit: 94b7194eac7d2aea747180a1c5efc843f1a14334        
+remote:            path: auto-content-rss.sh:20        
+remote:          - commit: 94b7194eac7d2aea747180a1c5efc843f1a14334        
+remote:            path: auto-generate.sh:14        
+remote:          - commit: 94b7194eac7d2aea747180a1c5efc843f1a14334        
+remote:            path: test-run.sh:20        
+remote:             
+remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.        
+remote:        https://github.com/catcatdo/catcatbuilder/security/secret-scanning/unblock-secret/39ybdZ1AgGKJnWdaRl1ajbeGcMD        
+remote:             
+remote: 
+remote: 
+To https://github.com/catcatdo/catcatbuilder.git
+ ! [remote rejected] main -> main (push declined due to repository rule violations)
+error: failed to push some refs to 'https://github.com/catcatdo/catcatbuilder.git'
+❌ 푸시 실패
+✅ 완료! (20260221_1958)
