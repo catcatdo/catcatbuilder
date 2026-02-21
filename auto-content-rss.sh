@@ -111,38 +111,45 @@ cat > /tmp/new_post_content.json << CONTENTEOF
   }
 CONTENTEOF
 
-# posts.json에 추가 (macOS 호환)
-# 마지막 ]를 찾아서 그 앞에 새 항목 추가
-awk 'NR==FNR{if(/\]$/)last=NR; next} FNR==last-1{print; print ","; getline < "/tmp/new_post_content.json"; while((getline line < "/tmp/new_post_content.json") > 0) print line; next}1' posts.json posts.json > /tmp/posts_new.json 2>/dev/null || {
-    # awk 실패하면 수동으로
-    echo "수동 방식으로 posts.json 업데이트" | tee -a "$LOG_FILE"
-    # Python 사용 시도
-    python3 -c "
-import json
-with open('posts.json', 'r') as f:
-    data = json.load(f)
-new_post = {
-    'id': $NEW_ID,
-    'title': '$REDDIT_TITLE',
-    'category': 'tech',
-    'date': '$DATE',
-    'image': '$IMG_FILE',
-    'excerpt': 'Reddit에서 화제가 된 기술 뉴스를 심층 분석합니다.',
-    'content': '## 오늘의 화제\n\n오늘 Reddit에서 \"$REDDIT_TITLE\"라는 주제가 큰 화제가 되었어. 개발자 커뮤니티에서 많은 관심을 받고 있어서, 나도 한 번 깊이 파헤쳐보기로 했어.\n\n## 왜 중요할까?\n\n이 주제가 중요한 이유는 여러 가지가 있어. 첫째, 기술 트렌드의 변화를 보여주고 있어. 둘째, 실제 개발 현장에서 적용할 수 있는 인사이트를 제공하고 있지.\n\n## 실전 팁\n\n1. 천천히 문제를 분석하기\n2. 커뮤니티 활용하기\n3. 작게 시작하기\n4. 기록 남기기\n\n## 마무리\n\n오늘 살펴 본 주제는 기술의 발전과 함께 우리가 계속해서 학습하고 적응해야 한다는 걸 reminding해주는 것 같아.',
-    'tags': ['Reddit', '기술', '개발', '트렌드'],
-    'slug': '$SLUG'
-}
-data['posts'].append(new_post)
-with open('posts.json', 'w') as f:
-    json.dump(data, f, ensure_ascii=False, indent=2)
-" 2>> "$LOG_FILE" || echo "Python 실패" | tee -a "$LOG_FILE"
-}
+# posts.json에 추가 (Python 사용 - 안전한 방법)
+echo "📝 posts.json 업데이트 중..." | tee -a "$LOG_FILE"
 
-if [ -f /tmp/posts_new.json ]; then
-    cp posts.json posts.json.backup.$(date +%s)
-    mv /tmp/posts_new.json posts.json
-    echo "posts.json 업데이트 완료" | tee -a "$LOG_FILE"
-fi
+python3 << PYTHON_SCRIPT
+import json
+import sys
+
+try:
+    with open('posts.json', 'r') as f:
+        data = json.load(f)
+    
+    # 새 글 생성
+    new_post = {
+        "id": $NEW_ID,
+        "title": "$REDDIT_TITLE",
+        "category": "tech",
+        "date": "$DATE",
+        "image": "$IMG_FILE",
+        "excerpt": "Reddit에서 화제가 된 기술 뉴스를 심층 분석합니다.",
+        "content": "## 오늘의 화제\n\n오늘 Reddit에서 \"$REDDIT_TITLE\"라는 주제가 큰 화제가 되었어. 개발자 커뮤니티에서 많은 관심을 받고 있어서, 나도 한 번 깊이 파헤쳐보기로 했어.\n\n## 왜 중요할까?\n\n이 주제가 중요한 이유는 여러 가지가 있어. 첫째, 기술 트렌드의 변화를 보여주고 있어. 둘째, 실제 개발 현장에서 적용할 수 있는 인사이트를 제공하고 있지.\n\n## 실전 팁\n\n1. 천천히 문제를 분석하기\n2. 커뮤니티 활용하기\n3. 작게 시작하기\n4. 기록 남기기\n\n## 마무리\n\n오늘 살펴 본 주제는 기술의 발전과 함께 우리가 계속해서 학습하고 적응해야 한다는 걸 reminding해주는 것 같아.",
+        "tags": ["Reddit", "기술", "개발", "트렌드"],
+        "slug": "$SLUG",
+        "image_variants": []
+    }
+    
+    # posts 배열 맨 앞에 추가 (최신 글이 먼저 오도록)
+    data['posts'].insert(0, new_post)
+    
+    with open('posts.json', 'w') as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+    
+    print("성공")
+    
+except Exception as e:
+    print(f"에러: {e}", file=sys.stderr)
+    sys.exit(1)
+PYTHON_SCRIPT
+
+echo "✅ posts.json 업데이트 완료" | tee -a "$LOG_FILE"
 
 # ===== 5. GitHub 배포 =====
 echo "🚀 GitHub 배포 중..." | tee -a "$LOG_FILE"
