@@ -16,6 +16,11 @@ cd "$REPO_DIR"
 git config --local user.name "릴리 (자동화)" 2>/dev/null || true
 git config --local user.email "lily@auto.build" 2>/dev/null || true
 
+# GitHub 토큰 로드 (파일에서)
+if [ -f "$REPO_DIR/.env" ]; then
+    source "$REPO_DIR/.env"
+fi
+
 # ===== 1. Reddit RSS에서 인기 글 가져오기 =====
 echo "🔍 Reddit RSS 조사 중..." | tee -a "$LOG_FILE"
 
@@ -55,9 +60,12 @@ echo "디시 주제: $DC_TOPIC" | tee -a "$LOG_FILE"
 # ===== 3. GitHub Issue 등록 =====
 echo "📝 GitHub Issue 등록 중..." | tee -a "$LOG_FILE"
 
-if command -v gh &> /dev/null; then
-    echo "$GITHUB_TOKEN" | gh auth login --with-token 2>/dev/null || true
-    
+# .env 파일에서 토큰 로드
+if [ -f "$REPO_DIR/.env" ]; then
+    source "$REPO_DIR/.env"
+fi
+
+if command -v gh &> /dev/null && [ -n "$GH_TOKEN" ]; then
     gh issue create \
         --repo catcatdo/catcatbuilder \
         --title "[디시] $DC_TOPIC" \
@@ -71,10 +79,12 @@ if command -v gh &> /dev/null; then
 추석 연휴 기간 디시인사이드에서 큰 화제가 된 MANHWA 콘텐츠. 
 유머와 공감대를 자극하는 내용으로 많은 추천을 받음.
 
-**링크:** https://gall.dcinside.com/board/lists/?id=hit" \
-        2>> "$LOG_FILE" || echo "Issue 생성 실패" | tee -a "$LOG_FILE"
+**링크:** https://gall.dcinside.com/board/lists/?id=hit
+
+**수집 시간:** $DATETIME" \
+        2>> "$LOG_FILE" && echo "✅ Issue 생성 완료" | tee -a "$LOG_FILE" || echo "⚠️ Issue 생성 실패 (이미 있거나 오류)" | tee -a "$LOG_FILE"
 else
-    echo "GitHub CLI 미설치" | tee -a "$LOG_FILE"
+    echo "⚠️ GitHub CLI 미설치 또는 토큰 없음" | tee -a "$LOG_FILE"
 fi
 
 # ===== 4. 블로그 글 작성 =====
