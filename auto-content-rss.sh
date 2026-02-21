@@ -16,9 +16,6 @@ cd "$REPO_DIR"
 git config --local user.name "릴리 (자동화)" 2>/dev/null || true
 git config --local user.email "lily@auto.build" 2>/dev/null || true
 
-# GitHub 토큰 (환경변수로 설정 필요)
-# export GITHUB_TOKEN="your_token_here"
-
 # ===== 1. Reddit RSS에서 인기 글 가져오기 =====
 echo "🔍 Reddit RSS 조사 중..." | tee -a "$LOG_FILE"
 
@@ -150,10 +147,7 @@ fi
 # ===== 5. GitHub 배포 =====
 echo "🚀 GitHub 배포 중..." | tee -a "$LOG_FILE"
 
-git remote set-url origin "https://$GITHUB_TOKEN@github.com/catcatdo/catcatbuilder.git" 2>/dev/null || true
-
-git add -A
-git commit -m "자동 생성: $REDDIT_TITLE - $DATETIME" 2>> "$LOG_FILE" || echo "커밋할 변경사항 없음" | tee -a "$LOG_FILE"
+# credential helper가 키체인에서 토큰을 가져옴
 git push origin main 2>> "$LOG_FILE" && echo "✅ 푸시 성공!" | tee -a "$LOG_FILE" || echo "❌ 푸시 실패" | tee -a "$LOG_FILE"
 
 echo "✅ 완료! ($DATETIME)" | tee -a "$LOG_FILE"
