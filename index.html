@@ -41,6 +41,52 @@
       padding: 24px 16px 84px;
     }
 
+    .site-header {
+      margin-bottom: 14px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 10px 14px;
+    }
+
+    .site-nav {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .site-nav a {
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.88rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 5px 11px;
+      background: #fafaf6;
+    }
+
+    .site-nav a:hover {
+      background: var(--accent-soft);
+      border-color: #efbe97;
+      color: #8d3200;
+    }
+
+    .archive-links {
+      margin-top: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+
+    .archive-links a {
+      text-decoration: none;
+      border-bottom: 1px solid #c7c7be;
+    }
+
     .hero {
       border: 1px solid var(--line);
       background: linear-gradient(145deg, #fffefa, #ffffff);
@@ -344,6 +390,24 @@
 </head>
 <body>
   <main class="wrap">
+    <header class="site-header">
+      <nav class="site-nav" aria-label="주요 메뉴">
+        <a href="index.html">홈</a>
+        <a href="issues.html">이슈</a>
+        <a href="blog.html">블로그</a>
+        <a href="developer-tools.html">도구</a>
+      </nav>
+      <div class="archive-links" aria-label="블로그 아카이브 링크">
+        <span>블로그 아카이브:</span>
+        <a href="blog-20260214d.html">blog-20260214d.html</a>
+        <a href="blog-20260214e.html">blog-20260214e.html</a>
+        <a href="blog-20260214f.html">blog-20260214f.html</a>
+        <a href="blog-20260214g.html">blog-20260214g.html</a>
+        <a href="blog-20260214h.html">blog-20260214h.html</a>
+        <a href="blog-gangneung-solo-trip-20260215.html">blog-gangneung-solo-trip-20260215.html</a>
+      </div>
+    </header>
+
     <section class="hero">
       <h1>오늘의 개발자 뉴스</h1>
       <p>해커뉴스 스타일 타임라인으로 핵심 이슈를 빠르게 훑고, Reddit/디시인사이드 핫 토픽까지 한 번에 확인하세요.</p>
