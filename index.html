@@ -1,848 +1,653 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>모두를 위한 생산성 도구 | Productivity Hub</title>
-  <meta
-    name="description"
-    content="개발자 도구와 일상 도구를 한곳에 모은 생산성 허브. BMI 계산기, 환율/단위 변환기, 테크 뉴스, 방문자 카운터, 북마크 기능 제공."
-  />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>오늘의 개발자 뉴스</title>
+  <meta name="description" content="오늘의 개발자 뉴스 - 해커뉴스 스타일 타임라인과 커뮤니티 핫 토픽 큐레이션">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      color-scheme: light;
-      --bg: #eaf6ff;
-      --bg-2: #f4fff6;
+      --bg: #f3f4ef;
       --surface: #ffffff;
-      --surface-soft: #f3fbff;
-      --text: #13303d;
-      --muted: #4b6f7e;
-      --primary: #1f88d9;
-      --secondary: #2dbf8f;
-      --primary-deep: #0f5f9d;
-      --border: #cde6f6;
-      --danger: #c23b4a;
-      --shadow: 0 12px 28px rgba(16, 71, 109, 0.12);
-      --radius-lg: 22px;
-      --radius-md: 14px;
+      --text: #111111;
+      --muted: #5e5e5e;
+      --line: #d8d8cf;
+      --accent: #d35400;
+      --accent-soft: #fff1e5;
+      --chip: #f1f1ec;
+      --shadow: 0 12px 28px rgba(16, 16, 16, 0.06);
+      --max: 1080px;
+      --radius: 14px;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
-      font-family: "SUIT Variable", "Pretendard", "Noto Sans KR", sans-serif;
+      font-family: "Space Grotesk", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
       color: var(--text);
-      background:
-        radial-gradient(circle at 10% -10%, #d6edff 0%, transparent 42%),
-        radial-gradient(circle at 92% 0%, #d8f8e7 0%, transparent 38%),
-        linear-gradient(160deg, var(--bg) 0%, var(--bg-2) 100%);
-      min-height: 100vh;
+      background: radial-gradient(circle at 15% 0%, #f7f7f2 0%, var(--bg) 38%, #eeefe8 100%);
+      line-height: 1.45;
     }
+
+    a { color: inherit; }
 
     .wrap {
-      width: min(1140px, calc(100% - 2rem));
+      max-width: var(--max);
       margin: 0 auto;
-    }
-
-    header {
-      padding: 1.2rem 0 0.6rem;
+      padding: 24px 16px 84px;
     }
 
     .hero {
-      background: linear-gradient(140deg, #f8fdff 0%, #f0fff7 100%);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
+      border: 1px solid var(--line);
+      background: linear-gradient(145deg, #fffefa, #ffffff);
+      border-radius: var(--radius);
+      padding: 22px;
       box-shadow: var(--shadow);
-      padding: 2rem;
-      display: grid;
-      gap: 1rem;
+      margin-bottom: 16px;
     }
 
-    .hero-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 0.8rem;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.5rem 0.9rem;
-      border-radius: 999px;
-      background: #e7f5ff;
-      color: var(--primary-deep);
-      font-weight: 800;
-      letter-spacing: -0.02em;
-    }
-
-    h1 {
+    .hero h1 {
       margin: 0;
-      font-size: clamp(1.75rem, 4vw, 2.95rem);
-      line-height: 1.15;
+      font-size: clamp(1.8rem, 4vw, 2.7rem);
       letter-spacing: -0.03em;
     }
 
     .hero p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .top-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .topic-box {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      padding: 16px;
+    }
+
+    .topic-box h2 {
+      margin: 0 0 12px;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 11px;
+      background: #fcfcfa;
+      text-decoration: none;
+    }
+
+    .card .meta {
+      color: var(--muted);
+      font-size: 0.77rem;
+      margin-bottom: 5px;
+    }
+
+    .card .title {
+      font-size: 0.92rem;
       margin: 0;
-      color: var(--muted);
-      max-width: 68ch;
+      line-height: 1.35;
     }
 
-    .hero-stats {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 0.8rem;
-    }
-
-    .stat {
+    .filters {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
       background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 0.85rem 0.95rem;
+      padding: 14px;
+      margin-bottom: 14px;
+      position: sticky;
+      top: 10px;
+      z-index: 15;
     }
 
-    .stat .label {
-      display: block;
+    .filter-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 9px;
+      font-size: 0.87rem;
       color: var(--muted);
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chip {
+      border: 1px solid var(--line);
+      background: var(--chip);
+      color: #2b2b2b;
+      border-radius: 999px;
+      padding: 6px 12px;
+      font: inherit;
       font-size: 0.82rem;
-      margin-bottom: 0.2rem;
+      cursor: pointer;
     }
 
-    .stat .value {
-      font-weight: 800;
-      font-size: 1.03rem;
-      color: var(--primary-deep);
+    .chip.active {
+      background: var(--accent-soft);
+      border-color: #efbe97;
+      color: #8d3200;
+      font-weight: 600;
     }
 
-    main {
-      padding: 1rem 0 2.5rem;
-      display: grid;
-      gap: 1rem;
-    }
-
-    .panel {
+    .timeline {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
       background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow);
       overflow: hidden;
     }
 
-    .tab-nav {
-      display: flex;
-      gap: 0.6rem;
-      padding: 1rem;
-      border-bottom: 1px solid var(--border);
-      background: #f7fcff;
-      overflow-x: auto;
+    .item {
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: 10px;
+      padding: 13px;
+      border-top: 1px solid #ecece6;
     }
 
-    .tab-btn {
-      border: 1px solid var(--border);
-      background: #fff;
-      color: var(--text);
+    .item:first-child { border-top: 0; }
+
+    .rank {
+      color: #9a9a92;
+      font-size: 0.86rem;
+      text-align: right;
+      padding-top: 2px;
+    }
+
+    .title-row {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+
+    .news-title {
+      font-size: 1rem;
+      text-decoration: none;
+      color: #1f1f1f;
+    }
+
+    .news-title:hover { color: var(--accent); }
+
+    .source {
+      font-size: 0.76rem;
+      color: var(--muted);
+      border: 1px solid var(--line);
+      background: #f8f8f4;
       border-radius: 999px;
-      font-weight: 700;
-      padding: 0.62rem 0.9rem;
-      cursor: pointer;
+      padding: 2px 8px;
       white-space: nowrap;
     }
 
-    .tab-btn[aria-selected="true"] {
-      border-color: transparent;
-      background: linear-gradient(120deg, var(--primary), var(--secondary));
-      color: #fff;
+    .summary {
+      margin: 7px 0 10px;
+      color: #3b3b3b;
+      font-size: 0.9rem;
     }
 
-    .tab-content {
-      display: none;
-      padding: 1rem;
-      animation: fadeIn 0.2s ease;
-    }
-
-    .tab-content.active {
-      display: block;
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(3px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .section-title {
-      margin: 0 0 0.75rem;
-      font-size: 1.15rem;
-      letter-spacing: -0.02em;
-    }
-
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 0.8rem;
-    }
-
-    .tool-card {
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      background: var(--surface-soft);
-      padding: 0.9rem;
-      display: grid;
-      gap: 0.5rem;
-    }
-
-    .tool-card h3 {
-      margin: 0;
-      font-size: 1rem;
-    }
-
-    .tool-card p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.92rem;
-    }
-
-    .actions {
+    .meta-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 0.3rem;
-    }
-
-    .btn {
-      border: 1px solid var(--border);
-      background: #fff;
-      color: var(--text);
-      border-radius: 10px;
-      padding: 0.46rem 0.62rem;
-      font-size: 0.86rem;
-      font-weight: 700;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-flex;
       align-items: center;
-      justify-content: center;
-    }
-
-    .btn.primary {
-      border-color: transparent;
-      background: linear-gradient(120deg, var(--primary), var(--secondary));
-      color: #fff;
-    }
-
-    .tools-emphasis {
-      background: linear-gradient(140deg, #f5fdff 0%, #ecfff5 100%);
-      border: 1px dashed #7ac9e4;
-      border-radius: var(--radius-md);
-      padding: 1rem;
-      margin-top: 0.85rem;
-      display: grid;
-      gap: 1rem;
-    }
-
-    .calc-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 0.8rem;
-    }
-
-    .calc-box {
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 0.85rem;
-      display: grid;
-      gap: 0.55rem;
-    }
-
-    .calc-box h4 {
-      margin: 0;
-      font-size: 0.98rem;
-    }
-
-    label {
-      font-size: 0.83rem;
-      color: var(--muted);
-      font-weight: 700;
-    }
-
-    input,
-    select {
-      width: 100%;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 0.56rem 0.6rem;
-      background: #fff;
-      color: var(--text);
-      font: inherit;
-    }
-
-    .result {
-      min-height: 1.1rem;
-      margin: 0;
-      font-size: 0.9rem;
-      color: var(--primary-deep);
-      font-weight: 700;
-    }
-
-    .muted-note {
-      margin: 0;
+      gap: 8px 10px;
       color: var(--muted);
       font-size: 0.8rem;
     }
 
-    .bookmark-panel {
-      margin-top: 0.85rem;
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      background: #f8ffff;
-      padding: 0.9rem;
-      display: grid;
-      gap: 0.7rem;
+    .tag {
+      border: 1px solid #ebd2bf;
+      background: #fff8f2;
+      color: #8d3200;
+      border-radius: 999px;
+      padding: 2px 8px;
+      font-size: 0.75rem;
     }
 
-    .bookmark-form {
-      display: grid;
-      grid-template-columns: 1.1fr 1.4fr auto;
-      gap: 0.5rem;
-    }
-
-    .bookmark-list {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: grid;
-      gap: 0.45rem;
-    }
-
-    .bookmark-item {
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      background: #fff;
+    .controls {
+      margin-top: 9px;
       display: flex;
-      justify-content: space-between;
-      gap: 0.5rem;
-      align-items: center;
-      padding: 0.5rem 0.6rem;
+      gap: 8px;
+      flex-wrap: wrap;
     }
 
-    .bookmark-item a {
-      color: var(--primary-deep);
-      text-decoration: none;
-      font-size: 0.9rem;
+    .btn {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fafaf7;
+      color: #252525;
+      font: inherit;
+      font-size: 0.8rem;
+      padding: 6px 10px;
+      cursor: pointer;
+    }
+
+    .btn:hover { background: #f3f3ee; }
+
+    .vote-count {
       font-weight: 700;
-      overflow-wrap: anywhere;
+      color: #7f2d00;
     }
 
-    .bookmark-empty {
-      margin: 0;
+    .newsletter {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, #fffefb, #fff);
+      padding: 18px;
+      margin-top: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .newsletter h3 {
+      margin: 0 0 8px;
+      font-size: 1.12rem;
+    }
+
+    .newsletter p {
+      margin: 0 0 12px;
       color: var(--muted);
-      font-size: 0.88rem;
+      font-size: 0.9rem;
     }
 
-    .news-list {
+    .form-row {
       display: grid;
-      gap: 0.65rem;
+      grid-template-columns: 1fr auto;
+      gap: 8px;
     }
 
-    .news-item {
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      background: #f7fcff;
-      padding: 0.85rem;
+    input[type="email"] {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 11px;
+      font: inherit;
+      background: #fff;
     }
 
-    .news-item h3 {
-      margin: 0;
-      font-size: 0.98rem;
+    .submit {
+      border: 1px solid #cb8c63;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 10px;
+      padding: 0 16px;
+      font: inherit;
+      cursor: pointer;
+      min-height: 42px;
     }
 
-    .news-item p {
-      margin: 0.35rem 0 0;
+    .status {
+      min-height: 18px;
+      margin-top: 8px;
       color: var(--muted);
-      font-size: 0.9rem;
+      font-size: 0.82rem;
     }
 
-    .ad-slot {
-      margin-top: 0.9rem;
-      padding: 1rem;
-      border: 2px dashed #93d9c2;
-      border-radius: 12px;
-      background: linear-gradient(120deg, #f2fcff, #f3fff7);
-      color: #2f616f;
-      font-weight: 700;
-      text-align: center;
-    }
-
-    footer {
+    .end-marker,
+    .loading {
       text-align: center;
       color: var(--muted);
-      font-size: 0.84rem;
-      padding: 0 0 2rem;
+      font-size: 0.82rem;
+      padding: 12px;
     }
 
-    @media (max-width: 980px) {
-      .hero-stats,
-      .card-grid,
-      .calc-grid {
+    @media (min-width: 860px) {
+      .top-grid {
         grid-template-columns: 1fr 1fr;
       }
 
-      .bookmark-form {
+      .cards {
         grid-template-columns: 1fr 1fr;
-      }
-
-      .bookmark-form .btn.primary {
-        grid-column: 1 / -1;
       }
     }
 
-    @media (max-width: 700px) {
-      .wrap {
-        width: min(1140px, calc(100% - 1rem));
+    @media (max-width: 600px) {
+      .item {
+        grid-template-columns: 32px 1fr;
       }
 
-      .hero,
-      .tab-content,
-      .tab-nav {
-        padding-left: 0.8rem;
-        padding-right: 0.8rem;
+      .rank {
+        font-size: 0.78rem;
       }
 
-      .hero-stats,
-      .card-grid,
-      .calc-grid,
-      .bookmark-form {
+      .form-row {
         grid-template-columns: 1fr;
-      }
-
-      .bookmark-item {
-        align-items: flex-start;
-        flex-direction: column;
       }
     }
   </style>
 </head>
 <body>
-  <header class="wrap">
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-top">
-        <span class="brand">Productivity Hub</span>
-        <span id="today-label" aria-live="polite"></span>
-      </div>
-      <h1 id="hero-title">모두를 위한 생산성 도구</h1>
-      <p>개발자의 작업 흐름과 일상 속 실용 계산기를 한 페이지에 담았습니다. 탭으로 빠르게 전환하고, 자주 쓰는 도구를 북마크해 매일의 생산성을 높여보세요.</p>
-      <div class="hero-stats">
-        <div class="stat">
-          <span class="label">누적 방문(이 브라우저)</span>
-          <span class="value" id="visit-count">-</span>
-        </div>
-        <div class="stat">
-          <span class="label">저장된 북마크</span>
-          <span class="value" id="bookmark-count">0개</span>
-        </div>
-        <div class="stat">
-          <span class="label">활성 탭</span>
-          <span class="value" id="active-tab-label">개발자 도구</span>
-        </div>
-      </div>
-      <div class="ad-slot">[AdSense 영역] 상단 배너 광고 삽입 위치</div>
-    </section>
-  </header>
-
   <main class="wrap">
-    <section class="panel">
-      <div class="tab-nav" role="tablist" aria-label="생산성 도구 탭 메뉴">
-        <button class="tab-btn" role="tab" id="tab-dev" aria-selected="true" aria-controls="panel-dev" data-target="panel-dev">개발자 도구</button>
-        <button class="tab-btn" role="tab" id="tab-life" aria-selected="false" aria-controls="panel-life" data-target="panel-life">일상 도구</button>
-        <button class="tab-btn" role="tab" id="tab-news" aria-selected="false" aria-controls="panel-news" data-target="panel-news">테크 뉴스</button>
-      </div>
-
-      <section class="tab-content active" role="tabpanel" id="panel-dev" aria-labelledby="tab-dev">
-        <h2 class="section-title">개발자 도구</h2>
-        <div class="card-grid">
-          <article class="tool-card">
-            <h3>JSON Formatter</h3>
-            <p>API 응답을 읽기 쉬운 구조로 포맷하고 빠르게 디버깅합니다.</p>
-            <div class="actions">
-              <a class="btn primary" href="json-formatter.html">열기</a>
-              <button class="btn bookmark-trigger" data-title="JSON Formatter" data-url="json-formatter.html">북마크 추가</button>
-            </div>
-          </article>
-          <article class="tool-card">
-            <h3>Base64 인코더</h3>
-            <p>텍스트를 Base64로 변환하거나 디코딩해 전송 테스트에 활용합니다.</p>
-            <div class="actions">
-              <a class="btn primary" href="base64.html">열기</a>
-              <button class="btn bookmark-trigger" data-title="Base64 인코더" data-url="base64.html">북마크 추가</button>
-            </div>
-          </article>
-          <article class="tool-card">
-            <h3>Timezone 변환기</h3>
-            <p>글로벌 협업을 위한 시간대 계산과 미팅 시간 조율을 지원합니다.</p>
-            <div class="actions">
-              <a class="btn primary" href="timezone.html">열기</a>
-              <button class="btn bookmark-trigger" data-title="Timezone 변환기" data-url="timezone.html">북마크 추가</button>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section class="tab-content" role="tabpanel" id="panel-life" aria-labelledby="tab-life">
-        <h2 class="section-title">일상 도구 (강조)</h2>
-        <div class="tools-emphasis">
-          <div class="calc-grid">
-            <section class="calc-box" aria-labelledby="bmi-title">
-              <h4 id="bmi-title">BMI 계산기</h4>
-              <label for="height-cm">키(cm)</label>
-              <input id="height-cm" type="number" min="50" placeholder="예: 170" />
-              <label for="weight-kg">몸무게(kg)</label>
-              <input id="weight-kg" type="number" min="10" placeholder="예: 63" />
-              <button class="btn primary" id="bmi-run" type="button">계산</button>
-              <p class="result" id="bmi-result" aria-live="polite"></p>
-            </section>
-
-            <section class="calc-box" aria-labelledby="fx-title">
-              <h4 id="fx-title">환율 변환</h4>
-              <label for="fx-amount">금액</label>
-              <input id="fx-amount" type="number" min="0" placeholder="예: 100" />
-              <label for="fx-rate">기준 환율 (1 USD = ? KRW)</label>
-              <input id="fx-rate" type="number" min="0" step="0.01" value="1320" />
-              <button class="btn primary" id="fx-run" type="button">변환</button>
-              <p class="result" id="fx-result" aria-live="polite"></p>
-              <p class="muted-note">실시간 API 대신 직접 환율을 입력하는 방식입니다.</p>
-            </section>
-
-            <section class="calc-box" aria-labelledby="unit-title">
-              <h4 id="unit-title">단위 변환</h4>
-              <label for="unit-type">변환 유형</label>
-              <select id="unit-type">
-                <option value="km-mi">km → mile</option>
-                <option value="mi-km">mile → km</option>
-                <option value="c-f">℃ → ℉</option>
-                <option value="f-c">℉ → ℃</option>
-              </select>
-              <label for="unit-value">값</label>
-              <input id="unit-value" type="number" step="0.01" placeholder="예: 10" />
-              <button class="btn primary" id="unit-run" type="button">변환</button>
-              <p class="result" id="unit-result" aria-live="polite"></p>
-            </section>
-          </div>
-
-          <div class="card-grid">
-            <article class="tool-card">
-              <h3>할 일 체크 메모</h3>
-              <p>오늘 할 일을 간단하게 기록하고 브라우저에 저장해 반복 작업을 줄입니다.</p>
-              <div class="actions">
-                <button class="btn bookmark-trigger" data-title="할 일 체크 메모" data-url="#panel-life">북마크 추가</button>
-              </div>
-            </article>
-            <article class="tool-card">
-              <h3>생활 루틴 타이머</h3>
-              <p>집중/휴식 루틴을 관리해 학습·운동·정리 시간을 규칙적으로 유지합니다.</p>
-              <div class="actions">
-                <button class="btn bookmark-trigger" data-title="생활 루틴 타이머" data-url="#panel-life">북마크 추가</button>
-              </div>
-            </article>
-            <article class="tool-card">
-              <h3>지출 빠른 계산</h3>
-              <p>반복 결제와 소액 소비를 빠르게 합산해 주간 예산을 확인합니다.</p>
-              <div class="actions">
-                <button class="btn bookmark-trigger" data-title="지출 빠른 계산" data-url="#panel-life">북마크 추가</button>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="tab-content" role="tabpanel" id="panel-news" aria-labelledby="tab-news">
-        <h2 class="section-title">테크 뉴스</h2>
-        <div class="news-list">
-          <article class="news-item">
-            <h3>AI & 개발 생산성 동향</h3>
-            <p>AI 코파일럿, 자동화 워크플로우, 로컬 에이전트 도입 사례를 빠르게 훑어보세요.</p>
-            <div class="actions">
-              <a class="btn" href="issues.html">이슈 허브 보기</a>
-              <button class="btn bookmark-trigger" data-title="AI & 개발 생산성 동향" data-url="issues.html">북마크 추가</button>
-            </div>
-          </article>
-          <article class="news-item">
-            <h3>실무 엔지니어링 가이드</h3>
-            <p>배포, 디버깅, 코드 리뷰, 협업 전략 등 실무에 바로 적용 가능한 아티클을 확인하세요.</p>
-            <div class="actions">
-              <a class="btn" href="blog.html">기술 블로그 보기</a>
-              <button class="btn bookmark-trigger" data-title="실무 엔지니어링 가이드" data-url="blog.html">북마크 추가</button>
-            </div>
-          </article>
-          <article class="news-item">
-            <h3>도구 업데이트 모니터링</h3>
-            <p>새로운 툴 출시 및 변경점을 정기적으로 체크해 팀의 개발 효율을 높이세요.</p>
-            <div class="actions">
-              <a class="btn" href="update-log.html">업데이트 로그</a>
-              <button class="btn bookmark-trigger" data-title="도구 업데이트 모니터링" data-url="update-log.html">북마크 추가</button>
-            </div>
-          </article>
-        </div>
-        <div class="ad-slot">[AdSense 영역] 콘텐츠 중간/하단 광고 삽입 위치</div>
-      </section>
+    <section class="hero">
+      <h1>오늘의 개발자 뉴스</h1>
+      <p>해커뉴스 스타일 타임라인으로 핵심 이슈를 빠르게 훑고, Reddit/디시인사이드 핫 토픽까지 한 번에 확인하세요.</p>
     </section>
 
-    <section class="panel">
-      <div class="tab-content active" style="display:block;">
-        <h2 class="section-title">내 북마크</h2>
-        <div class="bookmark-panel">
-          <form class="bookmark-form" id="bookmark-form">
-            <input id="bookmark-name" type="text" placeholder="북마크 이름" maxlength="40" required />
-            <input id="bookmark-url" type="text" placeholder="URL 또는 경로 (예: blog.html)" maxlength="200" required />
-            <button class="btn primary" type="submit">직접 추가</button>
-          </form>
-          <ul class="bookmark-list" id="bookmark-list"></ul>
-          <p class="bookmark-empty" id="bookmark-empty">저장된 북마크가 없습니다.</p>
-        </div>
+    <section class="top-grid" aria-label="핫 토픽">
+      <article class="topic-box">
+        <h2>Reddit 핫 토픽</h2>
+        <div class="cards" id="redditCards"></div>
+      </article>
+      <article class="topic-box">
+        <h2>디시인사이드 핫 토픽</h2>
+        <div class="cards" id="dcCards"></div>
+      </article>
+    </section>
+
+    <section class="filters" aria-label="태그 필터">
+      <div class="filter-head">
+        <span>태그 필터</span>
+        <strong id="resultCount">0개</strong>
       </div>
+      <div class="chips" id="tagFilters"></div>
+    </section>
+
+    <ol class="timeline" id="timeline"></ol>
+    <div class="loading" id="loading">불러오는 중...</div>
+    <div class="end-marker" id="endMarker" hidden>모든 뉴스를 확인했습니다.</div>
+    <div id="sentinel" aria-hidden="true"></div>
+
+    <section class="newsletter" aria-label="주간 뉴스레터 구독">
+      <h3>주간 개발자 뉴스레터</h3>
+      <p>매주 금요일, 한 주의 기술 이슈를 요약해서 보내드립니다.</p>
+      <form id="newsletterForm" novalidate>
+        <div class="form-row">
+          <input id="newsletterEmail" type="email" placeholder="you@example.com" required>
+          <button type="submit" class="submit">구독하기</button>
+        </div>
+        <div class="status" id="newsletterStatus"></div>
+      </form>
     </section>
   </main>
 
-  <footer>
-    © 2026 Productivity Hub for Everyone
-  </footer>
-
   <script>
-    (function () {
-      var now = new Date();
-      var todayLabel = document.getElementById('today-label');
-      todayLabel.textContent = now.toLocaleDateString('ko-KR', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-        weekday: 'short'
-      });
-    })();
+    const PAGE_SIZE = 8;
+    const FALLBACK_TAGS = ["Docker", "GitHub", "AI", "Backend", "Frontend", "DevOps", "Security", "Cloud"];
+    const state = {
+      allPosts: [],
+      filteredPosts: [],
+      hotTopics: { reddit: [], dcinside: [] },
+      visibleCount: 0,
+      activeTag: "ALL",
+      loading: false,
+      votes: JSON.parse(localStorage.getItem("newsVotes") || "{}"),
+      voted: JSON.parse(localStorage.getItem("newsVoted") || "{}")
+    };
 
-    (function () {
-      var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab-btn'));
-      var panels = Array.prototype.slice.call(document.querySelectorAll('.tab-content[role="tabpanel"]'));
-      var activeTabLabel = document.getElementById('active-tab-label');
+    const timelineEl = document.getElementById("timeline");
+    const loadingEl = document.getElementById("loading");
+    const endMarkerEl = document.getElementById("endMarker");
+    const resultCountEl = document.getElementById("resultCount");
+    const tagFiltersEl = document.getElementById("tagFilters");
 
-      tabs.forEach(function (tab) {
-        tab.addEventListener('click', function () {
-          var target = tab.getAttribute('data-target');
-          tabs.forEach(function (item) {
-            var selected = item === tab;
-            item.setAttribute('aria-selected', String(selected));
-          });
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#39;");
+    }
 
-          panels.forEach(function (panel) {
-            panel.classList.toggle('active', panel.id === target);
-          });
+    function formatTimeAgo(iso) {
+      const diffMin = Math.floor((Date.now() - new Date(iso).getTime()) / 60000);
+      if (diffMin < 60) return `${Math.max(diffMin, 1)}분 전`;
+      if (diffMin < 1440) return `${Math.floor(diffMin / 60)}시간 전`;
+      return `${Math.floor(diffMin / 1440)}일 전`;
+    }
 
-          activeTabLabel.textContent = tab.textContent.trim();
+    function mapSourceLabel(source) {
+      const labels = {
+        hn: "Hacker News",
+        reddit: "Reddit",
+        dcinside: "DC Inside",
+        github: "GitHub"
+      };
+      return labels[source] || source;
+    }
+
+    function buildCard(topic) {
+      return `
+        <a class="card" href="${escapeHtml(topic.url)}" target="_blank" rel="noopener noreferrer">
+          <div class="meta">${escapeHtml(topic.community)} · ${escapeHtml(topic.metric)}</div>
+          <p class="title">${escapeHtml(topic.title)}</p>
+        </a>
+      `;
+    }
+
+    function renderHotCards() {
+      const redditRoot = document.getElementById("redditCards");
+      const dcRoot = document.getElementById("dcCards");
+      redditRoot.innerHTML = state.hotTopics.reddit.map(buildCard).join("");
+      dcRoot.innerHTML = state.hotTopics.dcinside.map(buildCard).join("");
+    }
+
+    function renderFilters() {
+      const tags = new Set(FALLBACK_TAGS);
+      state.allPosts.forEach((post) => (post.tags || []).forEach((tag) => tags.add(tag)));
+      const order = ["ALL", ...Array.from(tags)];
+      tagFiltersEl.innerHTML = order
+        .map((tag) => `<button class="chip ${tag === state.activeTag ? "active" : ""}" data-tag="${escapeHtml(tag)}">${escapeHtml(tag)}</button>`)
+        .join("");
+
+      tagFiltersEl.querySelectorAll(".chip").forEach((chip) => {
+        chip.addEventListener("click", () => {
+          state.activeTag = chip.dataset.tag;
+          applyFilter();
         });
       });
-    })();
+    }
 
-    (function () {
-      var key = 'productivity-visit-count';
-      var current = parseInt(localStorage.getItem(key) || '0', 10);
-      var next = Number.isNaN(current) ? 1 : current + 1;
-      localStorage.setItem(key, String(next));
-      document.getElementById('visit-count').textContent = next + '회';
-    })();
+    function applyFilter() {
+      state.filteredPosts = state.activeTag === "ALL"
+        ? [...state.allPosts]
+        : state.allPosts.filter((post) => (post.tags || []).includes(state.activeTag));
 
-    (function () {
-      var bmiRun = document.getElementById('bmi-run');
-      var bmiResult = document.getElementById('bmi-result');
+      state.visibleCount = 0;
+      timelineEl.innerHTML = "";
+      renderFilters();
+      updateResultCount();
+      appendNextPage();
+    }
 
-      bmiRun.addEventListener('click', function () {
-        var heightCm = parseFloat(document.getElementById('height-cm').value);
-        var weightKg = parseFloat(document.getElementById('weight-kg').value);
+    function updateResultCount() {
+      resultCountEl.textContent = `${state.filteredPosts.length}개`;
+    }
 
-        if (!heightCm || !weightKg || heightCm <= 0 || weightKg <= 0) {
-          bmiResult.textContent = '키와 몸무게를 올바르게 입력하세요.';
-          bmiResult.style.color = 'var(--danger)';
-          return;
-        }
+    function getVoteCount(post) {
+      const base = Number(post.votes || 0);
+      const delta = Number(state.votes[post.id] || 0);
+      return base + delta;
+    }
 
-        var meter = heightCm / 100;
-        var bmi = weightKg / (meter * meter);
-        var category = '비만';
+    function renderPost(post, index) {
+      const tag = (post.tags && post.tags[0]) || "General";
+      const voted = Boolean(state.voted[post.id]);
+      return `
+        <li class="item" data-id="${escapeHtml(post.id)}">
+          <div class="rank">${index + 1}.</div>
+          <div>
+            <div class="title-row">
+              <a class="news-title" href="${escapeHtml(post.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(post.title)}</a>
+              <span class="source">${escapeHtml(mapSourceLabel(post.source))}</span>
+            </div>
+            <p class="summary">${escapeHtml(post.summary || "")}</p>
+            <div class="meta-row">
+              <span>${getVoteCount(post)} points</span>
+              <span>${escapeHtml(String(post.comments || 0))} comments</span>
+              <span>${escapeHtml(post.author || "unknown")}</span>
+              <span>${formatTimeAgo(post.publishedAt)}</span>
+              <span class="tag">${escapeHtml(tag)}</span>
+            </div>
+            <div class="controls">
+              <button class="btn vote-btn" data-id="${escapeHtml(post.id)}" ${voted ? "disabled" : ""}>
+                ▲ 투표 <span class="vote-count">${getVoteCount(post)}</span>
+              </button>
+              <button class="btn share-btn" data-title="${escapeHtml(post.title)}" data-url="${escapeHtml(post.url)}">공유</button>
+            </div>
+          </div>
+        </li>
+      `;
+    }
 
-        if (bmi < 18.5) category = '저체중';
-        else if (bmi < 23) category = '정상';
-        else if (bmi < 25) category = '과체중';
+    function appendNextPage() {
+      if (state.loading) return;
+      const start = state.visibleCount;
+      const end = start + PAGE_SIZE;
+      const nextItems = state.filteredPosts.slice(start, end);
 
-        bmiResult.style.color = 'var(--primary-deep)';
-        bmiResult.textContent = 'BMI ' + bmi.toFixed(1) + ' (' + category + ')';
-      });
-    })();
-
-    (function () {
-      var fxRun = document.getElementById('fx-run');
-      var fxResult = document.getElementById('fx-result');
-
-      fxRun.addEventListener('click', function () {
-        var amount = parseFloat(document.getElementById('fx-amount').value);
-        var rate = parseFloat(document.getElementById('fx-rate').value);
-
-        if (Number.isNaN(amount) || Number.isNaN(rate) || amount < 0 || rate <= 0) {
-          fxResult.textContent = '금액과 환율을 정확히 입력하세요.';
-          fxResult.style.color = 'var(--danger)';
-          return;
-        }
-
-        var krw = amount * rate;
-        fxResult.style.color = 'var(--primary-deep)';
-        fxResult.textContent = amount.toLocaleString('ko-KR') + ' USD = ' + Math.round(krw).toLocaleString('ko-KR') + ' KRW';
-      });
-    })();
-
-    (function () {
-      var unitRun = document.getElementById('unit-run');
-      var unitResult = document.getElementById('unit-result');
-
-      unitRun.addEventListener('click', function () {
-        var type = document.getElementById('unit-type').value;
-        var value = parseFloat(document.getElementById('unit-value').value);
-
-        if (Number.isNaN(value)) {
-          unitResult.textContent = '변환할 값을 입력하세요.';
-          unitResult.style.color = 'var(--danger)';
-          return;
-        }
-
-        var converted = 0;
-        var suffix = '';
-
-        if (type === 'km-mi') {
-          converted = value * 0.621371;
-          suffix = ' mile';
-        } else if (type === 'mi-km') {
-          converted = value * 1.60934;
-          suffix = ' km';
-        } else if (type === 'c-f') {
-          converted = value * 1.8 + 32;
-          suffix = ' ℉';
+      if (!nextItems.length) {
+        loadingEl.hidden = true;
+        endMarkerEl.hidden = state.filteredPosts.length === 0 ? false : start !== state.filteredPosts.length;
+        if (state.filteredPosts.length === 0) {
+          endMarkerEl.textContent = "조건에 맞는 뉴스가 없습니다.";
+          endMarkerEl.hidden = false;
         } else {
-          converted = (value - 32) / 1.8;
-          suffix = ' ℃';
+          endMarkerEl.textContent = "모든 뉴스를 확인했습니다.";
+          endMarkerEl.hidden = false;
         }
+        return;
+      }
 
-        unitResult.style.color = 'var(--primary-deep)';
-        unitResult.textContent = converted.toFixed(2) + suffix;
+      loadingEl.hidden = false;
+      endMarkerEl.hidden = true;
+      const chunk = nextItems.map((post, idx) => renderPost(post, start + idx)).join("");
+      timelineEl.insertAdjacentHTML("beforeend", chunk);
+      state.visibleCount = end;
+      wireItemActions();
+
+      if (state.visibleCount >= state.filteredPosts.length) {
+        loadingEl.hidden = true;
+        endMarkerEl.hidden = false;
+      }
+    }
+
+    function wireItemActions() {
+      document.querySelectorAll(".vote-btn").forEach((button) => {
+        if (button.dataset.bound === "1") return;
+        button.dataset.bound = "1";
+
+        button.addEventListener("click", () => {
+          const id = button.dataset.id;
+          if (state.voted[id]) return;
+
+          state.votes[id] = Number(state.votes[id] || 0) + 1;
+          state.voted[id] = true;
+          localStorage.setItem("newsVotes", JSON.stringify(state.votes));
+          localStorage.setItem("newsVoted", JSON.stringify(state.voted));
+
+          const countEl = button.querySelector(".vote-count");
+          const post = state.allPosts.find((item) => item.id === id);
+          if (countEl && post) {
+            countEl.textContent = getVoteCount(post);
+          }
+          button.disabled = true;
+        });
       });
-    })();
 
-    (function () {
-      var storageKey = 'productivity-bookmarks';
-      var listElement = document.getElementById('bookmark-list');
-      var emptyElement = document.getElementById('bookmark-empty');
-      var bookmarkCount = document.getElementById('bookmark-count');
-      var form = document.getElementById('bookmark-form');
-      var nameInput = document.getElementById('bookmark-name');
-      var urlInput = document.getElementById('bookmark-url');
+      document.querySelectorAll(".share-btn").forEach((button) => {
+        if (button.dataset.bound === "1") return;
+        button.dataset.bound = "1";
 
-      function sanitize(text) {
-        return String(text)
-          .replace(/&/g, '&amp;')
-          .replace(/</g, '&lt;')
-          .replace(/>/g, '&gt;')
-          .replace(/"/g, '&quot;')
-          .replace(/'/g, '&#39;');
-      }
+        button.addEventListener("click", async () => {
+          const title = button.dataset.title;
+          const url = button.dataset.url;
 
-      function readBookmarks() {
-        try {
-          var raw = localStorage.getItem(storageKey);
-          var parsed = raw ? JSON.parse(raw) : [];
-          return Array.isArray(parsed) ? parsed : [];
-        } catch (e) {
-          return [];
-        }
-      }
+          try {
+            if (navigator.share) {
+              await navigator.share({ title, url });
+            } else if (navigator.clipboard?.writeText) {
+              await navigator.clipboard.writeText(url);
+              button.textContent = "복사됨";
+              setTimeout(() => { button.textContent = "공유"; }, 1200);
+            } else {
+              window.prompt("URL 복사", url);
+            }
+          } catch (_) {
+            // User canceled sharing.
+          }
+        });
+      });
+    }
 
-      function writeBookmarks(items) {
-        localStorage.setItem(storageKey, JSON.stringify(items));
-      }
+    function setupInfiniteScroll() {
+      const sentinel = document.getElementById("sentinel");
+      const observer = new IntersectionObserver((entries) => {
+        if (entries[0]?.isIntersecting) appendNextPage();
+      }, { rootMargin: "300px 0px" });
+      observer.observe(sentinel);
+    }
 
-      function render() {
-        var items = readBookmarks();
-        bookmarkCount.textContent = items.length + '개';
+    function setupNewsletter() {
+      const form = document.getElementById("newsletterForm");
+      const input = document.getElementById("newsletterEmail");
+      const status = document.getElementById("newsletterStatus");
 
-        if (!items.length) {
-          listElement.innerHTML = '';
-          emptyElement.style.display = 'block';
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const email = input.value.trim();
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          status.textContent = "유효한 이메일 주소를 입력해 주세요.";
           return;
         }
 
-        emptyElement.style.display = 'none';
-        listElement.innerHTML = items
-          .map(function (item, index) {
-            var safeName = sanitize(item.name || '이름 없음');
-            var safeUrl = sanitize(item.url || '#');
-            return [
-              '<li class="bookmark-item">',
-              '<a href="' + safeUrl + '">' + safeName + '</a>',
-              '<button class="btn" type="button" data-remove-index="' + index + '">삭제</button>',
-              '</li>'
-            ].join('');
-          })
-          .join('');
-      }
+        const saved = JSON.parse(localStorage.getItem("newsletterSubscribers") || "[]");
+        if (!saved.includes(email)) {
+          saved.push(email);
+          localStorage.setItem("newsletterSubscribers", JSON.stringify(saved));
+        }
 
-      function addBookmark(name, url) {
-        var trimmedName = (name || '').trim();
-        var trimmedUrl = (url || '').trim();
-        if (!trimmedName || !trimmedUrl) return;
-
-        var items = readBookmarks();
-        var exists = items.some(function (item) {
-          return item.name === trimmedName && item.url === trimmedUrl;
-        });
-        if (exists) return;
-
-        items.unshift({ name: trimmedName, url: trimmedUrl });
-        writeBookmarks(items);
-        render();
-      }
-
-      form.addEventListener('submit', function (event) {
-        event.preventDefault();
-        addBookmark(nameInput.value, urlInput.value);
+        status.textContent = "구독 완료! 이번 주 금요일 오전에 뉴스레터를 발송합니다.";
         form.reset();
       });
+    }
 
-      document.body.addEventListener('click', function (event) {
-        var target = event.target;
-        if (!(target instanceof HTMLElement)) return;
+    async function boot() {
+      try {
+        const response = await fetch("/api/posts.json", { cache: "no-store" });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const data = await response.json();
+        state.allPosts = (data.posts || []).sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
+        state.hotTopics = data.hotTopics || state.hotTopics;
+      } catch (error) {
+        console.error("failed to load posts", error);
+        state.allPosts = [];
+      }
 
-        if (target.matches('.bookmark-trigger')) {
-          addBookmark(target.getAttribute('data-title'), target.getAttribute('data-url'));
-        }
+      renderHotCards();
+      renderFilters();
+      applyFilter();
+      setupInfiniteScroll();
+      setupNewsletter();
+    }
 
-        if (target.matches('[data-remove-index]')) {
-          var index = parseInt(target.getAttribute('data-remove-index') || '-1', 10);
-          if (index < 0) return;
-
-          var items = readBookmarks();
-          items.splice(index, 1);
-          writeBookmarks(items);
-          render();
-        }
-      });
-
-      render();
-    })();
+    boot();
   </script>
 </body>
 </html>

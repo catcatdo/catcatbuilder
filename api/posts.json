@@ -1,0 +1,491 @@
+{
+  "updatedAt": "2026-02-22T12:00:00+09:00",
+  "hotTopics": {
+    "reddit": [
+      {
+        "community": "r/programming",
+        "metric": "1.9k upvotes",
+        "title": "TypeScript 6.0 RFC 초안 공개 후 커뮤니티 반응",
+        "url": "https://www.reddit.com/r/programming/"
+      },
+      {
+        "community": "r/devops",
+        "metric": "1.4k upvotes",
+        "title": "Docker 이미지 용량 절반 줄인 실전 팁 모음",
+        "url": "https://www.reddit.com/r/devops/"
+      },
+      {
+        "community": "r/MachineLearning",
+        "metric": "2.3k upvotes",
+        "title": "소형 LLM 파인튜닝 비용 공개 스레드",
+        "url": "https://www.reddit.com/r/MachineLearning/"
+      },
+      {
+        "community": "r/webdev",
+        "metric": "970 upvotes",
+        "title": "GitHub Actions 캐시 전략 비교 벤치마크",
+        "url": "https://www.reddit.com/r/webdev/"
+      }
+    ],
+    "dcinside": [
+      {
+        "community": "프로그래밍 갤러리",
+        "metric": "조회 2.1만",
+        "title": "신규 백엔드 채용 과제 난이도 토론",
+        "url": "https://gall.dcinside.com/board/lists/?id=programming"
+      },
+      {
+        "community": "클라우드 갤러리",
+        "metric": "조회 1.7만",
+        "title": "Kubernetes 비용 폭증 원인 분석 글 화제",
+        "url": "https://gall.dcinside.com/"
+      },
+      {
+        "community": "AI 갤러리",
+        "metric": "조회 2.4만",
+        "title": "국내 스타트업 LLM 서빙 스택 공유",
+        "url": "https://gall.dcinside.com/"
+      },
+      {
+        "community": "리눅스 갤러리",
+        "metric": "조회 1.1만",
+        "title": "Docker rootless 설정 삽질기 정리",
+        "url": "https://gall.dcinside.com/"
+      }
+    ]
+  },
+  "posts": [
+    {
+      "id": "p-001",
+      "title": "Docker BuildKit 캐시 정책 바꾸면 CI 시간이 40% 줄어든다",
+      "url": "https://news.ycombinator.com/item?id=1",
+      "source": "hn",
+      "summary": "멀티 스테이지 빌드와 원격 캐시를 조합한 실제 CI 최적화 사례.",
+      "author": "dev_jin",
+      "publishedAt": "2026-02-22T11:35:00+09:00",
+      "votes": 182,
+      "comments": 56,
+      "tags": ["Docker", "DevOps"]
+    },
+    {
+      "id": "p-002",
+      "title": "GitHub Actions 매트릭스 전략: 러너 비용과 대기시간의 균형",
+      "url": "https://news.ycombinator.com/item?id=2",
+      "source": "github",
+      "summary": "매트릭스 병렬화 수준을 조정해 비용을 낮춘 팀의 실전 데이터.",
+      "author": "ops_hana",
+      "publishedAt": "2026-02-22T11:10:00+09:00",
+      "votes": 144,
+      "comments": 33,
+      "tags": ["GitHub", "DevOps"]
+    },
+    {
+      "id": "p-003",
+      "title": "MCP 기반 AI 에이전트 디버깅 패턴이 빠르게 표준화되는 중",
+      "url": "https://news.ycombinator.com/item?id=3",
+      "source": "hn",
+      "summary": "도구 호출 추적과 세션 리플레이를 결합한 디버깅 워크플로우.",
+      "author": "agent_park",
+      "publishedAt": "2026-02-22T10:55:00+09:00",
+      "votes": 212,
+      "comments": 88,
+      "tags": ["AI", "Backend"]
+    },
+    {
+      "id": "p-004",
+      "title": "Reddit: Claude Code와 Cursor를 병행할 때 생산성 차이",
+      "url": "https://www.reddit.com/r/programming/",
+      "source": "reddit",
+      "summary": "코드베이스 규모별로 도구 선택 기준이 달라진다는 토론 스레드.",
+      "author": "thread_op",
+      "publishedAt": "2026-02-22T10:28:00+09:00",
+      "votes": 97,
+      "comments": 64,
+      "tags": ["AI", "GitHub"]
+    },
+    {
+      "id": "p-005",
+      "title": "디시 프로그래밍 갤: 신입 채용 과제에 Docker를 요구하는 게 맞나",
+      "url": "https://gall.dcinside.com/board/lists/?id=programming",
+      "source": "dcinside",
+      "summary": "실무 적합성 vs 진입장벽 논쟁이 길게 이어진 토론.",
+      "author": "gall_user",
+      "publishedAt": "2026-02-22T10:00:00+09:00",
+      "votes": 78,
+      "comments": 119,
+      "tags": ["Docker", "Career"]
+    },
+    {
+      "id": "p-006",
+      "title": "Kubernetes 노드 오토스케일 임계치 재설계 사례",
+      "url": "https://news.ycombinator.com/item?id=6",
+      "source": "hn",
+      "summary": "CPU 기반 임계치만으로는 실패하는 워크로드에서 큐 길이를 함께 사용.",
+      "author": "k8s_lee",
+      "publishedAt": "2026-02-22T09:34:00+09:00",
+      "votes": 131,
+      "comments": 25,
+      "tags": ["Cloud", "DevOps"]
+    },
+    {
+      "id": "p-007",
+      "title": "GitHub Copilot Workspace 신규 플로우 실사용 리뷰",
+      "url": "https://news.ycombinator.com/item?id=7",
+      "source": "github",
+      "summary": "스펙 초안 생성에서 PR 제안까지 연결되는 흐름을 장단점으로 분석.",
+      "author": "repofox",
+      "publishedAt": "2026-02-22T09:10:00+09:00",
+      "votes": 116,
+      "comments": 49,
+      "tags": ["GitHub", "AI"]
+    },
+    {
+      "id": "p-008",
+      "title": "AI 추론 비용 급등 구간을 잡는 토큰 예산 전략",
+      "url": "https://news.ycombinator.com/item?id=8",
+      "source": "hn",
+      "summary": "프롬프트 템플릿 재사용과 캐시 레이어만으로 월비용을 22% 절감.",
+      "author": "llm_ops",
+      "publishedAt": "2026-02-22T08:52:00+09:00",
+      "votes": 165,
+      "comments": 52,
+      "tags": ["AI", "Cloud"]
+    },
+    {
+      "id": "p-009",
+      "title": "Reddit: 프론트엔드 팀의 모노레포 전환 회고",
+      "url": "https://www.reddit.com/r/webdev/",
+      "source": "reddit",
+      "summary": "빌드 속도보다 코드 소유권 정책이 더 큰 성공요인이었다는 글.",
+      "author": "mono_team",
+      "publishedAt": "2026-02-22T08:30:00+09:00",
+      "votes": 91,
+      "comments": 41,
+      "tags": ["Frontend", "GitHub"]
+    },
+    {
+      "id": "p-010",
+      "title": "디시 AI 갤: 로컬 LLM 서빙에서 GPU 메모리 단편화 해결법",
+      "url": "https://gall.dcinside.com/",
+      "source": "dcinside",
+      "summary": "배치 크기와 컨텍스트 길이를 동적으로 튜닝한 사용자 사례가 인기.",
+      "author": "ai_local",
+      "publishedAt": "2026-02-22T08:05:00+09:00",
+      "votes": 83,
+      "comments": 70,
+      "tags": ["AI", "Backend"]
+    },
+    {
+      "id": "p-011",
+      "title": "OpenTelemetry 로그 샘플링 정책으로 관측비 절감",
+      "url": "https://news.ycombinator.com/item?id=11",
+      "source": "hn",
+      "summary": "에러 중심 샘플링과 사용자 세션 연결로 디버깅 품질을 유지한 방법.",
+      "author": "otel_min",
+      "publishedAt": "2026-02-22T07:40:00+09:00",
+      "votes": 123,
+      "comments": 30,
+      "tags": ["Backend", "DevOps"]
+    },
+    {
+      "id": "p-012",
+      "title": "GitHub: Dependabot 대규모 프로젝트 운영 전략",
+      "url": "https://news.ycombinator.com/item?id=12",
+      "source": "github",
+      "summary": "자동 PR 폭증을 막기 위한 라벨 정책과 슬랙 알림 필터링 기법.",
+      "author": "sec_bot",
+      "publishedAt": "2026-02-22T07:18:00+09:00",
+      "votes": 102,
+      "comments": 22,
+      "tags": ["GitHub", "Security"]
+    },
+    {
+      "id": "p-013",
+      "title": "Redis 메모리 파편화가 레이턴시를 만들 때 체크할 포인트",
+      "url": "https://news.ycombinator.com/item?id=13",
+      "source": "hn",
+      "summary": "maxmemory 정책과 eviction 지표를 함께 보는 운영 체크리스트.",
+      "author": "cache_lab",
+      "publishedAt": "2026-02-22T06:55:00+09:00",
+      "votes": 119,
+      "comments": 19,
+      "tags": ["Backend", "Cloud"]
+    },
+    {
+      "id": "p-014",
+      "title": "Reddit: Docker Compose에서 프로덕션 전환 시 가장 자주 놓치는 것",
+      "url": "https://www.reddit.com/r/devops/",
+      "source": "reddit",
+      "summary": "헬스체크와 롤링 업데이트 설계를 놓치면 장애 복구가 느려진다는 경험담.",
+      "author": "compose_to_k8s",
+      "publishedAt": "2026-02-22T06:30:00+09:00",
+      "votes": 108,
+      "comments": 38,
+      "tags": ["Docker", "DevOps"]
+    },
+    {
+      "id": "p-015",
+      "title": "디시 클라우드 갤: 서버리스 비용 예측 실패 사례 공유",
+      "url": "https://gall.dcinside.com/",
+      "source": "dcinside",
+      "summary": "트래픽 스파이크 때 동시성 제한을 안 둬서 비용이 폭증한 이야기.",
+      "author": "cost_guard",
+      "publishedAt": "2026-02-22T06:05:00+09:00",
+      "votes": 75,
+      "comments": 61,
+      "tags": ["Cloud", "DevOps"]
+    },
+    {
+      "id": "p-016",
+      "title": "프론트엔드 번들 분할을 과하게 하면 생기는 TTFB 역효과",
+      "url": "https://news.ycombinator.com/item?id=16",
+      "source": "hn",
+      "summary": "네트워크 왕복 횟수 증가로 초기 로딩이 느려지는 케이스 분석.",
+      "author": "web_cho",
+      "publishedAt": "2026-02-22T05:45:00+09:00",
+      "votes": 137,
+      "comments": 48,
+      "tags": ["Frontend", "Performance"]
+    },
+    {
+      "id": "p-017",
+      "title": "GitHub 조직 단위 권한 모델 재설계 가이드",
+      "url": "https://news.ycombinator.com/item?id=17",
+      "source": "github",
+      "summary": "레포 권한 남용을 줄이기 위한 팀 단위 최소 권한 설계.",
+      "author": "octo_admin",
+      "publishedAt": "2026-02-22T05:20:00+09:00",
+      "votes": 88,
+      "comments": 17,
+      "tags": ["GitHub", "Security"]
+    },
+    {
+      "id": "p-018",
+      "title": "RAG 파이프라인에서 재랭킹 모델이 정확도에 미치는 영향",
+      "url": "https://news.ycombinator.com/item?id=18",
+      "source": "hn",
+      "summary": "벡터 검색 이후 lightweight reranker를 적용해 답변 품질 향상.",
+      "author": "ml_nam",
+      "publishedAt": "2026-02-22T04:58:00+09:00",
+      "votes": 173,
+      "comments": 66,
+      "tags": ["AI", "Backend"]
+    },
+    {
+      "id": "p-019",
+      "title": "Reddit: 개인 프로젝트를 OSS로 전환할 때 라이선스 선택",
+      "url": "https://www.reddit.com/r/programming/",
+      "source": "reddit",
+      "summary": "MIT/Apache/GPL 선택 기준을 사례 기반으로 정리한 스레드.",
+      "author": "oss_day",
+      "publishedAt": "2026-02-22T04:40:00+09:00",
+      "votes": 84,
+      "comments": 27,
+      "tags": ["GitHub", "Legal"]
+    },
+    {
+      "id": "p-020",
+      "title": "디시 리눅스 갤: rootless Docker + systemd 세팅 팁",
+      "url": "https://gall.dcinside.com/",
+      "source": "dcinside",
+      "summary": "권한 이슈를 줄이면서 개발 환경 이식성을 높인 설정 글.",
+      "author": "rootless_man",
+      "publishedAt": "2026-02-22T04:12:00+09:00",
+      "votes": 72,
+      "comments": 44,
+      "tags": ["Docker", "Security"]
+    },
+    {
+      "id": "p-021",
+      "title": "PostgreSQL 쿼리 플래너 통계 갱신 주기 최적화",
+      "url": "https://news.ycombinator.com/item?id=21",
+      "source": "hn",
+      "summary": "autovacuum 튜닝과 분석 주기 조절로 p95 레이턴시 개선.",
+      "author": "sql_moon",
+      "publishedAt": "2026-02-22T03:50:00+09:00",
+      "votes": 126,
+      "comments": 32,
+      "tags": ["Backend", "Performance"]
+    },
+    {
+      "id": "p-022",
+      "title": "GitHub Actions 셀프 호스트 러너 보안 체크리스트",
+      "url": "https://news.ycombinator.com/item?id=22",
+      "source": "github",
+      "summary": "네트워크 분리, ephemeral runner, 권한 스코프 제한 항목 정리.",
+      "author": "runner_sec",
+      "publishedAt": "2026-02-22T03:24:00+09:00",
+      "votes": 111,
+      "comments": 28,
+      "tags": ["GitHub", "Security"]
+    },
+    {
+      "id": "p-023",
+      "title": "LLM 응답 일관성을 높이는 프롬프트 테스트 자동화",
+      "url": "https://news.ycombinator.com/item?id=23",
+      "source": "hn",
+      "summary": "회귀 테스트처럼 모델 출력도 스냅샷 검증하는 방법.",
+      "author": "prompt_q",
+      "publishedAt": "2026-02-22T03:02:00+09:00",
+      "votes": 146,
+      "comments": 35,
+      "tags": ["AI", "Testing"]
+    },
+    {
+      "id": "p-024",
+      "title": "Reddit: GraphQL을 REST로 되돌린 팀의 교훈",
+      "url": "https://www.reddit.com/r/programming/",
+      "source": "reddit",
+      "summary": "조직 규모에 따라 GraphQL 운영 복잡도가 달라진다는 사례.",
+      "author": "api_switch",
+      "publishedAt": "2026-02-22T02:39:00+09:00",
+      "votes": 88,
+      "comments": 42,
+      "tags": ["Backend", "Architecture"]
+    },
+    {
+      "id": "p-025",
+      "title": "디시 AI 갤: 임베딩 모델 바꾸자 검색 품질이 급상승",
+      "url": "https://gall.dcinside.com/",
+      "source": "dcinside",
+      "summary": "한국어 데이터셋에서 멀티링구얼 모델 교체 효과 비교표 공유.",
+      "author": "vector_j",
+      "publishedAt": "2026-02-22T02:15:00+09:00",
+      "votes": 79,
+      "comments": 58,
+      "tags": ["AI", "Search"]
+    },
+    {
+      "id": "p-026",
+      "title": "브라우저 캐시 무효화 전략: 파일명 해시 vs query string",
+      "url": "https://news.ycombinator.com/item?id=26",
+      "source": "hn",
+      "summary": "CDN 정책까지 고려하면 파일명 해시가 더 일관적이라는 정리.",
+      "author": "cdn_lab",
+      "publishedAt": "2026-02-22T01:52:00+09:00",
+      "votes": 93,
+      "comments": 20,
+      "tags": ["Frontend", "Cloud"]
+    },
+    {
+      "id": "p-027",
+      "title": "GitHub 프로젝트 보드 자동화 규칙 구성 팁",
+      "url": "https://news.ycombinator.com/item?id=27",
+      "source": "github",
+      "summary": "PR 상태와 라벨을 연동해 수작업 관리 비용을 줄인 예시.",
+      "author": "pm_mina",
+      "publishedAt": "2026-02-22T01:30:00+09:00",
+      "votes": 72,
+      "comments": 14,
+      "tags": ["GitHub", "Productivity"]
+    },
+    {
+      "id": "p-028",
+      "title": "Docker 네트워크 모드별 성능 차이 실제 측정",
+      "url": "https://news.ycombinator.com/item?id=28",
+      "source": "hn",
+      "summary": "bridge/host/overlay 환경에서 RTT와 처리량을 비교한 결과.",
+      "author": "net_kim",
+      "publishedAt": "2026-02-22T01:12:00+09:00",
+      "votes": 109,
+      "comments": 26,
+      "tags": ["Docker", "Performance"]
+    },
+    {
+      "id": "p-029",
+      "title": "Reddit: 오픈소스 첫 기여를 위한 이슈 찾는 법",
+      "url": "https://www.reddit.com/r/webdev/",
+      "source": "reddit",
+      "summary": "good first issue만 고르지 말고 유지보수 빈도도 확인하라는 조언.",
+      "author": "first_pr",
+      "publishedAt": "2026-02-22T00:58:00+09:00",
+      "votes": 66,
+      "comments": 18,
+      "tags": ["GitHub", "Career"]
+    },
+    {
+      "id": "p-030",
+      "title": "디시 클라우드 갤: 로그 저장소 티어링으로 비용 절감",
+      "url": "https://gall.dcinside.com/",
+      "source": "dcinside",
+      "summary": "hot/warm/cold 저장소를 나눠 장기 로그 비용을 줄인 사례.",
+      "author": "log_cost",
+      "publishedAt": "2026-02-22T00:34:00+09:00",
+      "votes": 63,
+      "comments": 39,
+      "tags": ["Cloud", "DevOps"]
+    },
+    {
+      "id": "p-031",
+      "title": "WebAssembly 기반 이미지 처리 파이프라인 도입기",
+      "url": "https://news.ycombinator.com/item?id=31",
+      "source": "hn",
+      "summary": "브라우저 내 처리로 서버 부하를 줄인 프론트엔드 아키텍처 사례.",
+      "author": "wasm_bo",
+      "publishedAt": "2026-02-21T23:58:00+09:00",
+      "votes": 117,
+      "comments": 34,
+      "tags": ["Frontend", "Performance"]
+    },
+    {
+      "id": "p-032",
+      "title": "GitHub Pages에 API JSON 배포할 때 캐시 헤더 주의점",
+      "url": "https://news.ycombinator.com/item?id=32",
+      "source": "github",
+      "summary": "정적 JSON 갱신이 늦게 반영되는 문제를 버전 키로 해결하는 방식.",
+      "author": "pages_neo",
+      "publishedAt": "2026-02-21T23:36:00+09:00",
+      "votes": 81,
+      "comments": 13,
+      "tags": ["GitHub", "Cloud"]
+    },
+    {
+      "id": "p-033",
+      "title": "AI 코드리뷰 자동화에서 false positive 줄이는 법",
+      "url": "https://news.ycombinator.com/item?id=33",
+      "source": "hn",
+      "summary": "리스크 레벨별 정책 분리로 리뷰 신뢰도를 개선한 사례.",
+      "author": "review_ai",
+      "publishedAt": "2026-02-21T23:14:00+09:00",
+      "votes": 149,
+      "comments": 41,
+      "tags": ["AI", "GitHub"]
+    },
+    {
+      "id": "p-034",
+      "title": "Reddit: 대규모 CSS 리팩터링에서 토큰 시스템이 유효했나",
+      "url": "https://www.reddit.com/r/webdev/",
+      "source": "reddit",
+      "summary": "디자인 토큰 도입 이후 충돌이 줄었지만 초기 비용이 컸다는 회고.",
+      "author": "css_ref",
+      "publishedAt": "2026-02-21T22:54:00+09:00",
+      "votes": 70,
+      "comments": 21,
+      "tags": ["Frontend", "Design"]
+    },
+    {
+      "id": "p-035",
+      "title": "디시 프로그래밍 갤: 주니어 백엔드 로드맵 추천 글 정리",
+      "url": "https://gall.dcinside.com/board/lists/?id=programming",
+      "source": "dcinside",
+      "summary": "SQL, Docker, GitHub Actions 순서로 학습하라는 의견이 다수.",
+      "author": "junior_path",
+      "publishedAt": "2026-02-21T22:31:00+09:00",
+      "votes": 68,
+      "comments": 77,
+      "tags": ["Career", "Backend"]
+    },
+    {
+      "id": "p-036",
+      "title": "SRE 온콜 피로도를 줄이는 알림 라우팅 설계",
+      "url": "https://news.ycombinator.com/item?id=36",
+      "source": "hn",
+      "summary": "중복 알림 제거와 에스컬레이션 정책 재설계로 대응 효율 개선.",
+      "author": "sre_hub",
+      "publishedAt": "2026-02-21T22:05:00+09:00",
+      "votes": 138,
+      "comments": 29,
+      "tags": ["DevOps", "Backend"]
+    }
+  ]
+}
