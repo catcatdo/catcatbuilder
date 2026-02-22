@@ -168,6 +168,22 @@
       gap: 12px;
     }
 
+    .status-box {
+      border: 1px dashed #b8d0dc;
+      border-radius: var(--radius);
+      padding: 20px;
+      text-align: center;
+      background: #f8fcff;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .status-box strong {
+      display: block;
+      color: #0e3348;
+      margin-bottom: 6px;
+    }
+
     .post-card {
       border: 1px solid var(--line);
       border-radius: 14px;
@@ -177,6 +193,12 @@
       display: grid;
       grid-template-rows: 180px 1fr;
       min-height: 100%;
+    }
+
+    .card-main-link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
     }
 
     .thumb {
@@ -258,6 +280,147 @@
       color: #1d5672;
       font-size: 0.74rem;
       padding: 3px 8px;
+      cursor: pointer;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 80;
+      display: grid;
+      place-items: center;
+      padding: 16px;
+    }
+
+    .modal[hidden] {
+      display: none;
+    }
+
+    .modal-backdrop {
+      position: absolute;
+      inset: 0;
+      border: 0;
+      background: rgba(6, 21, 32, 0.55);
+      cursor: pointer;
+    }
+
+    .modal-panel {
+      position: relative;
+      width: min(900px, 100%);
+      max-height: calc(100vh - 36px);
+      overflow: auto;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: #fff;
+      box-shadow: 0 30px 50px rgba(0, 0, 0, 0.25);
+    }
+
+    .modal-head {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+    }
+
+    .modal-head h2 {
+      margin: 0;
+      font-size: clamp(1.05rem, 2.6vw, 1.45rem);
+      line-height: 1.35;
+      letter-spacing: -0.01em;
+    }
+
+    .modal-close {
+      border: 1px solid #b8d0dc;
+      background: #f4f9fc;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 0.84rem;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .modal-content {
+      padding: 18px;
+    }
+
+    .detail-thumb {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      margin: 0 0 16px;
+      overflow: hidden;
+      background: linear-gradient(135deg, #e5f4fb, #e8faf5);
+    }
+
+    .detail-thumb img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .detail-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 0.86rem;
+      margin-bottom: 12px;
+    }
+
+    .detail-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .detail-tags span {
+      border-radius: 999px;
+      border: 1px solid #c7deea;
+      background: #f2f9fd;
+      color: #1d5672;
+      font-size: 0.78rem;
+      padding: 4px 9px;
+    }
+
+    .detail-body {
+      color: #1a3040;
+      font-size: 0.95rem;
+      line-height: 1.72;
+    }
+
+    .detail-body h3 {
+      margin: 20px 0 8px;
+      font-size: 1.02rem;
+      color: #10384e;
+    }
+
+    .detail-body p {
+      margin: 0 0 12px;
+    }
+
+    .detail-body ul,
+    .detail-body ol {
+      margin: 0 0 14px 20px;
+      padding: 0;
+    }
+
+    .retry-btn {
+      border: 1px solid #8db9d8;
+      background: #e8f4fc;
+      color: #0b5e9e;
+      border-radius: 999px;
+      padding: 7px 12px;
+      cursor: pointer;
+      font: inherit;
+      font-size: 0.86rem;
     }
 
     .empty {
@@ -316,7 +479,19 @@
       <div class="chips" id="tagChips"></div>
     </section>
 
+    <section id="statusBox" class="status-box" aria-live="polite" hidden></section>
     <section class="posts-grid" id="postsGrid" aria-live="polite"></section>
+
+    <section id="postModal" class="modal" aria-live="polite" hidden>
+      <button class="modal-backdrop" id="modalBackdrop" type="button" aria-label="상세 보기 닫기"></button>
+      <article class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <header class="modal-head">
+          <h2 id="modalTitle">게시글 상세</h2>
+          <button class="modal-close" id="modalClose" type="button">닫기</button>
+        </header>
+        <div class="modal-content" id="modalContent"></div>
+      </article>
+    </section>
   </main>
 
   <script>
@@ -324,12 +499,20 @@
       posts: [],
       filtered: [],
       activeTag: "ALL",
-      tagCounts: new Map()
+      tagCounts: new Map(),
+      postsLoaded: false,
+      loadError: null
     };
 
     const postsGrid = document.getElementById("postsGrid");
     const tagChips = document.getElementById("tagChips");
     const resultCount = document.getElementById("resultCount");
+    const statusBox = document.getElementById("statusBox");
+    const postModal = document.getElementById("postModal");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalContent = document.getElementById("modalContent");
+    const modalBackdrop = document.getElementById("modalBackdrop");
+    const modalClose = document.getElementById("modalClose");
 
     function escapeHtml(value) {
       return String(value || "")
@@ -351,14 +534,6 @@
       }).format(date);
     }
 
-    function resolvePostUrl(post) {
-      const slug = String(post.slug || "").trim();
-      if (!slug) return "#";
-      if (slug.endsWith(".html")) return slug;
-      if (slug.startsWith("post-")) return `${slug}.html`;
-      return `post-${slug}.html`;
-    }
-
     function normalizePosts(payload) {
       const list = Array.isArray(payload && payload.posts) ? payload.posts : [];
       return list
@@ -368,6 +543,28 @@
           const bt = Date.parse(b.date || "") || 0;
           return bt - at;
         });
+    }
+
+    function setStatus(type, message, detail = "") {
+      if (!message) {
+        statusBox.hidden = true;
+        statusBox.innerHTML = "";
+        return;
+      }
+
+      statusBox.hidden = false;
+      const safeMessage = escapeHtml(message);
+      const safeDetail = escapeHtml(detail);
+      const retry = type === "error"
+        ? '<button type="button" class="retry-btn" id="retryLoadBtn">다시 시도</button>'
+        : "";
+      statusBox.innerHTML = `<strong>${safeMessage}</strong>${safeDetail ? `<span>${safeDetail}</span>` : ""}${retry ? `<div style="margin-top:10px;">${retry}</div>` : ""}`;
+      const retryBtn = document.getElementById("retryLoadBtn");
+      if (retryBtn) {
+        retryBtn.addEventListener("click", () => {
+          init();
+        });
+      }
     }
 
     function collectTagCounts(posts) {
@@ -424,20 +621,24 @@
           const safeTitle = escapeHtml(post.title);
           const safeExcerpt = escapeHtml(post.excerpt || "요약이 아직 준비되지 않았습니다.");
           const image = post.image ? escapeHtml(post.image) : "";
-          const postUrl = escapeHtml(resolvePostUrl(post));
+          const postHash = escapeHtml(`#post-${String(post.id || post.slug || "").trim()}`);
 
           return `
             <article class="post-card">
-              <div class="thumb">
-                ${image ? `<img src="${image}" alt="${safeTitle}" loading="lazy">` : ""}
-                <span class="category">${escapeHtml(category)}</span>
-              </div>
-              <div class="post-body">
-                <div class="post-meta">
-                  <span>${formatDate(post.date)}</span>
+              <a class="card-main-link" href="${postHash}">
+                <div class="thumb">
+                  ${image ? `<img src="${image}" alt="${safeTitle}" loading="lazy">` : ""}
+                  <span class="category">${escapeHtml(category)}</span>
                 </div>
-                <h2 class="post-title"><a href="${postUrl}">${safeTitle}</a></h2>
-                <p class="post-excerpt">${safeExcerpt}</p>
+                <div class="post-body">
+                  <div class="post-meta">
+                    <span>${formatDate(post.date)}</span>
+                  </div>
+                  <h2 class="post-title">${safeTitle}</h2>
+                  <p class="post-excerpt">${safeExcerpt}</p>
+                </div>
+              </a>
+              <div class="post-body" style="padding-top:0;">
                 <div class="post-tags">
                   ${tags.map((tag) => `<button class="tag" type="button" data-tag="${escapeHtml(tag)}">#${escapeHtml(tag)}</button>`).join("")}
                 </div>
@@ -456,6 +657,140 @@
       });
     }
 
+    function parsePostIdFromHash(hashValue) {
+      const raw = String(hashValue || "").replace(/^#/, "").trim();
+      if (!raw) return "";
+      if (raw.startsWith("post-")) return raw.slice(5);
+      return raw;
+    }
+
+    function findPostByRouteId(routeId) {
+      const target = String(routeId || "").trim();
+      if (!target) return null;
+      return state.posts.find((post) => {
+        const id = String(post.id || "").trim();
+        const slug = String(post.slug || "").trim();
+        return target === id || target === slug || target === `post-${slug}`;
+      }) || null;
+    }
+
+    function markdownToHtml(text) {
+      const input = String(text || "");
+      const lines = input.split(/\r?\n/);
+      const chunks = [];
+      let listBuffer = null;
+
+      function closeList() {
+        if (!listBuffer) return;
+        const tag = listBuffer.type === "ol" ? "ol" : "ul";
+        chunks.push(`<${tag}>${listBuffer.items.join("")}</${tag}>`);
+        listBuffer = null;
+      }
+
+      lines.forEach((line) => {
+        const value = line.trim();
+        if (!value) {
+          closeList();
+          return;
+        }
+
+        const orderedMatch = value.match(/^\d+\.\s+(.+)/);
+        const unorderedMatch = value.match(/^[-*]\s+(.+)/);
+        if (orderedMatch) {
+          if (!listBuffer || listBuffer.type !== "ol") {
+            closeList();
+            listBuffer = { type: "ol", items: [] };
+          }
+          listBuffer.items.push(`<li>${escapeHtml(orderedMatch[1])}</li>`);
+          return;
+        }
+
+        if (unorderedMatch) {
+          if (!listBuffer || listBuffer.type !== "ul") {
+            closeList();
+            listBuffer = { type: "ul", items: [] };
+          }
+          listBuffer.items.push(`<li>${escapeHtml(unorderedMatch[1])}</li>`);
+          return;
+        }
+
+        closeList();
+
+        const h3 = value.match(/^###\s+(.+)/);
+        if (h3) {
+          chunks.push(`<h3>${escapeHtml(h3[1])}</h3>`);
+          return;
+        }
+
+        const h2 = value.match(/^##\s+(.+)/);
+        if (h2) {
+          chunks.push(`<h3>${escapeHtml(h2[1])}</h3>`);
+          return;
+        }
+
+        const h1 = value.match(/^#\s+(.+)/);
+        if (h1) {
+          chunks.push(`<h3>${escapeHtml(h1[1])}</h3>`);
+          return;
+        }
+
+        chunks.push(`<p>${escapeHtml(value)}</p>`);
+      });
+
+      closeList();
+      return chunks.join("");
+    }
+
+    function closeModal() {
+      postModal.hidden = true;
+      document.body.style.overflow = "";
+    }
+
+    function openModal() {
+      postModal.hidden = false;
+      document.body.style.overflow = "hidden";
+    }
+
+    function renderPostDetailByHash() {
+      const routeId = parsePostIdFromHash(window.location.hash);
+      if (!routeId) {
+        closeModal();
+        return;
+      }
+
+      if (!state.postsLoaded) {
+        modalTitle.textContent = "불러오는 중...";
+        modalContent.innerHTML = '<article class="empty">게시글을 읽는 중입니다.</article>';
+        openModal();
+        return;
+      }
+
+      const post = findPostByRouteId(routeId);
+      if (!post) {
+        modalTitle.textContent = "게시글을 찾을 수 없습니다";
+        modalContent.innerHTML = '<article class="empty">요청하신 글이 존재하지 않거나 삭제되었습니다.</article>';
+        openModal();
+        return;
+      }
+
+      const tags = (Array.isArray(post.tags) ? post.tags : []).slice(0, 10);
+      const image = post.image ? escapeHtml(post.image) : "";
+      modalTitle.textContent = post.title || "게시글 상세";
+      modalContent.innerHTML = `
+        ${image ? `<figure class="detail-thumb"><img src="${image}" alt="${escapeHtml(post.title || "게시글")}" loading="lazy"></figure>` : ""}
+        <div class="detail-meta">
+          <span>${formatDate(post.date)}</span>
+          <span>카테고리: ${escapeHtml(String(post.category || "tech").toUpperCase())}</span>
+          <span>ID: ${escapeHtml(String(post.id || ""))}</span>
+        </div>
+        <div class="detail-tags">
+          ${tags.map((tag) => `<span>#${escapeHtml(tag)}</span>`).join("")}
+        </div>
+        <section class="detail-body">${markdownToHtml(post.content || post.excerpt || "")}</section>
+      `;
+      openModal();
+    }
+
     function applyFilter() {
       if (state.activeTag === "ALL") {
         state.filtered = [...state.posts];
@@ -469,18 +804,49 @@
     }
 
     async function init() {
+      state.postsLoaded = false;
+      state.loadError = null;
+      setStatus("loading", "게시글을 불러오는 중입니다...");
+      postsGrid.innerHTML = '<article class="empty">데이터를 준비하고 있습니다.</article>';
+      resultCount.textContent = "불러오는 중...";
+
       try {
         const response = await fetch("posts.json", { cache: "no-cache" });
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         const payload = await response.json();
         state.posts = normalizePosts(payload);
         state.tagCounts = collectTagCounts(state.posts);
+        state.postsLoaded = true;
+        setStatus("", "");
         applyFilter();
+        renderPostDetailByHash();
       } catch (error) {
+        state.loadError = error;
+        state.postsLoaded = false;
         postsGrid.innerHTML = '<article class="empty">게시글 목록을 불러오지 못했습니다. 잠시 후 다시 시도해주세요.</article>';
         resultCount.textContent = "불러오기 실패";
+        setStatus("error", "목록 로딩 실패", "네트워크 상태를 확인한 뒤 다시 시도해주세요.");
+        renderPostDetailByHash();
       }
     }
+
+    modalBackdrop.addEventListener("click", () => {
+      window.location.hash = "";
+    });
+
+    modalClose.addEventListener("click", () => {
+      window.location.hash = "";
+    });
+
+    window.addEventListener("hashchange", () => {
+      renderPostDetailByHash();
+    });
+
+    window.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && !postModal.hidden) {
+        window.location.hash = "";
+      }
+    });
 
     init();
   </script>
