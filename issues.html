@@ -3,131 +3,142 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>실시간 이슈 보드 | lilhwang.com</title>
-  <meta name="description" content="디시인사이드 HIT 갤러리와 Reddit 기술 커뮤니티의 인기 주제를 실시간 카드 UI로 확인하세요.">
+  <title>인기글 랭킹 | lilhwang.com</title>
+  <meta name="description" content="릴황 블로그의 주간 인기글, 태그별 인기, 댓글 활발 글, 핫 NOW 랭킹을 한눈에 확인하세요.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://lilhwang.com/issues.html">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #eef4f8;
-      --surface: #ffffff;
-      --line: #d6e3ea;
-      --text: #0f1720;
-      --muted: #56707f;
-      --brand: #0f6fbb;
-      --brand-soft: #e4f1fb;
-      --accent: #0f9d81;
-      --accent-soft: #dcf8f1;
-      --chip: #f4f8fb;
-      --max: 1120px;
-      --radius: 16px;
-      --shadow: 0 14px 30px rgba(13, 38, 56, 0.08);
+      --bg: #f4f1ed;
+      --ink: #14110f;
+      --muted: #5c524c;
+      --line: #d6cfc9;
+      --card: #fbf8f4;
+      --accent: #d9703f;
+      --accent-2: #1b6f6a;
+      --accent-3: #b2442d;
+      --shadow: 0 18px 40px rgba(36, 27, 21, 0.12);
+      --radius: 18px;
+      --max: 1160px;
     }
 
     * { box-sizing: border-box; }
 
     body {
       margin: 0;
-      color: var(--text);
-      font-family: "Space Grotesk", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+      color: var(--ink);
+      font-family: "Archivo", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
       background:
-        radial-gradient(circle at 88% 8%, rgba(15, 111, 187, 0.15), transparent 40%),
-        radial-gradient(circle at 8% 94%, rgba(15, 157, 129, 0.12), transparent 38%),
-        var(--bg);
-      line-height: 1.5;
+        radial-gradient(circle at 10% 15%, rgba(217, 112, 63, 0.18), transparent 42%),
+        radial-gradient(circle at 85% 10%, rgba(27, 111, 106, 0.16), transparent 45%),
+        linear-gradient(180deg, #f6f2ec 0%, #efe7df 100%);
+      line-height: 1.55;
     }
 
-    a { color: inherit; }
+    a { color: inherit; text-decoration: none; }
 
     .wrap {
       max-width: var(--max);
       margin: 0 auto;
-      padding: 22px 16px 72px;
+      padding: 24px 18px 80px;
     }
 
     .nav-shell {
       position: sticky;
-      top: 10px;
+      top: 12px;
       z-index: 40;
-      margin-bottom: 14px;
       border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: rgba(255, 255, 255, 0.92);
+      border-radius: 999px;
+      background: rgba(251, 248, 244, 0.92);
       backdrop-filter: blur(10px);
       box-shadow: var(--shadow);
-      padding: 10px;
+      padding: 8px 12px;
+      margin-bottom: 18px;
     }
 
     .nav {
       display: flex;
-      gap: 8px;
       flex-wrap: wrap;
+      gap: 10px;
       align-items: center;
+      justify-content: center;
     }
 
     .nav a {
-      text-decoration: none;
-      border: 1px solid var(--line);
-      background: #f8fbfd;
+      padding: 6px 14px;
       border-radius: 999px;
-      font-size: 0.88rem;
+      font-size: 0.9rem;
       font-weight: 600;
-      padding: 7px 12px;
+      border: 1px solid transparent;
       transition: 0.2s ease;
     }
 
     .nav a:hover {
-      border-color: #9bc4e4;
-      color: #0b5e9e;
-      background: var(--brand-soft);
+      border-color: var(--accent);
+      color: var(--accent);
+      background: #fff6f0;
     }
 
     .nav a.active {
-      border-color: #87b7dd;
-      color: #0b5e9e;
-      background: var(--brand-soft);
+      border-color: var(--accent);
+      color: #fff;
+      background: var(--accent);
     }
 
     .hero {
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: linear-gradient(135deg, #f7fcff 0%, #ffffff 100%);
-      box-shadow: var(--shadow);
+      display: grid;
+      gap: 16px;
       padding: clamp(20px, 3vw, 30px);
-      margin-bottom: 14px;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: var(--card);
+      box-shadow: var(--shadow);
+      margin-bottom: 18px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -30% -50% auto;
+      width: 60%;
+      height: 120%;
+      background: radial-gradient(circle, rgba(217, 112, 63, 0.2), transparent 70%);
+      pointer-events: none;
     }
 
     .hero h1 {
       margin: 0;
-      font-size: clamp(1.7rem, 3.8vw, 2.6rem);
+      font-family: "DM Serif Display", "Times New Roman", serif;
+      font-size: clamp(2rem, 4.3vw, 3.2rem);
       letter-spacing: -0.02em;
     }
 
     .hero p {
-      margin: 10px 0 0;
+      margin: 0;
       color: var(--muted);
-      max-width: 760px;
-      font-size: 0.95rem;
+      max-width: 720px;
+      font-size: 0.98rem;
     }
 
-    .live-strip {
-      margin-top: 14px;
+    .hero-meta {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 10px;
+      font-size: 0.85rem;
+      color: #6d5f57;
       align-items: center;
-      font-size: 0.8rem;
-      color: #21546d;
     }
 
-    .chip {
+    .hero-chip {
       border: 1px solid var(--line);
       border-radius: 999px;
-      background: var(--chip);
-      padding: 5px 10px;
+      padding: 6px 12px;
+      background: #fff;
       display: inline-flex;
       align-items: center;
       gap: 6px;
@@ -137,191 +148,241 @@
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: #0fb494;
-      box-shadow: 0 0 0 rgba(15, 180, 148, 0.7);
+      background: var(--accent-2);
+      box-shadow: 0 0 0 rgba(27, 111, 106, 0.6);
       animation: pulse 1.6s infinite;
     }
 
     @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(15, 180, 148, 0.7); }
-      70% { box-shadow: 0 0 0 8px rgba(15, 180, 148, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(15, 180, 148, 0); }
+      0% { box-shadow: 0 0 0 0 rgba(27, 111, 106, 0.6); }
+      70% { box-shadow: 0 0 0 8px rgba(27, 111, 106, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(27, 111, 106, 0); }
     }
 
-    .board-grid {
+    .grid {
       display: grid;
-      grid-template-columns: 1fr;
-      gap: 12px;
+      gap: 16px;
     }
 
-    .board {
-      border: 1px solid var(--line);
+    .panel {
       border-radius: var(--radius);
-      background: var(--surface);
-      box-shadow: var(--shadow);
-      padding: 14px;
-    }
-
-    .board-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-bottom: 10px;
-    }
-
-    .board-title {
-      margin: 0;
-      font-size: 1.05rem;
-      display: flex;
-      align-items: center;
-      gap: 7px;
-    }
-
-    .dot {
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: var(--brand);
-    }
-
-    .board-meta {
-      color: var(--muted);
-      font-size: 0.78rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      align-items: center;
-    }
-
-    .fetch-log {
-      color: #2d6078;
-      font-size: 0.78rem;
-      background: #f6fbff;
-      border: 1px dashed #b8d0dc;
-      border-radius: 10px;
-      padding: 8px 10px;
-      margin-bottom: 10px;
-      overflow-x: auto;
-      white-space: nowrap;
-    }
-
-    .cards {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 9px;
-    }
-
-    .topic-card {
       border: 1px solid var(--line);
-      border-radius: 12px;
-      padding: 12px;
-      background: #fcfeff;
+      background: var(--card);
+      box-shadow: var(--shadow);
+      padding: 18px;
       display: grid;
-      gap: 9px;
-      transition: transform 0.18s ease, border-color 0.18s ease;
+      gap: 14px;
     }
 
-    .topic-card:hover {
-      transform: translateY(-1px);
-      border-color: #9cc5df;
-    }
-
-    .topic-row {
+    .panel-title {
+      margin: 0;
+      font-size: 1.1rem;
       display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
+      align-items: center;
       gap: 8px;
     }
 
-    .rank {
-      border: 1px solid #b6d2e7;
-      border-radius: 999px;
-      background: #edf7ff;
-      color: #0b5e9e;
+    .panel-title span {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .panel-sub {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    .rank-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .rank-item {
+      display: grid;
+      gap: 8px;
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: #fff;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .rank-item:hover {
+      transform: translateY(-2px);
+      border-color: rgba(217, 112, 63, 0.45);
+    }
+
+    .rank-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .rank-badge {
       font-size: 0.72rem;
       font-weight: 700;
-      padding: 2px 8px;
-      white-space: nowrap;
+      padding: 2px 10px;
+      border-radius: 999px;
+      background: #fff0e7;
+      color: var(--accent-3);
+      border: 1px solid rgba(217, 112, 63, 0.3);
     }
 
-    .topic-title {
+    .rank-title {
       margin: 0;
       font-size: 0.98rem;
       line-height: 1.35;
       letter-spacing: -0.01em;
     }
 
-    .topic-title a {
-      text-decoration: none;
-    }
-
-    .topic-title a:hover {
-      color: var(--brand);
-    }
-
-    .topic-sub {
-      margin: 0;
+    .rank-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 0.8rem;
       color: var(--muted);
-      font-size: 0.82rem;
     }
 
-    .stats {
+    .stat-row {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 6px;
     }
 
     .stat {
-      border: 1px solid #cce2dc;
+      border: 1px dashed rgba(27, 111, 106, 0.4);
       border-radius: 10px;
-      background: #f3fcf9;
-      padding: 7px 8px;
+      padding: 6px 8px;
+      background: #f1fbfa;
     }
 
     .stat dt {
       margin: 0;
-      color: #2d6c5f;
-      font-size: 0.71rem;
+      font-size: 0.7rem;
+      color: #2f6a66;
     }
 
     .stat dd {
-      margin: 1px 0 0;
-      color: #0b5143;
-      font-size: 0.88rem;
+      margin: 2px 0 0;
+      font-size: 0.86rem;
       font-weight: 700;
-      letter-spacing: -0.01em;
+      color: #134946;
+    }
+
+    .tag-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .tag-block {
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      padding: 12px;
+      background: #fff;
+      display: grid;
+      gap: 10px;
+    }
+
+    .tag-title {
+      margin: 0;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--accent-2);
+    }
+
+    .tag-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .tag-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.86rem;
+      padding: 6px 8px;
+      border-radius: 10px;
+      background: #f8f4ef;
+    }
+
+    .comment-list,
+    .hot-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .comment-item,
+    .hot-item {
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      padding: 12px;
+      background: #fff;
+      display: grid;
+      gap: 6px;
+    }
+
+    .comment-meta,
+    .hot-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .hot-rank {
+      font-weight: 700;
+      color: var(--accent-3);
+      font-size: 0.75rem;
+    }
+
+    .hot-score {
+      font-size: 0.8rem;
+      color: #1b6f6a;
+      font-weight: 700;
     }
 
     .loading,
     .error {
-      border: 1px dashed #b8d0dc;
       border-radius: 12px;
-      background: #f8fcff;
+      border: 1px dashed var(--line);
+      background: #fffaf6;
       padding: 16px;
       color: var(--muted);
-      font-size: 0.88rem;
+      font-size: 0.9rem;
     }
 
     .error {
-      border-color: #ddbcbc;
-      background: #fff7f7;
-      color: #9c4444;
+      background: #fff3f1;
+      border-color: #e4b7ad;
+      color: #9a4535;
     }
 
-    @media (min-width: 960px) {
-      .board-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+    .note {
+      margin: 0;
+      font-size: 0.78rem;
+      color: #7a6c64;
+    }
+
+    @media (min-width: 980px) {
+      .grid {
+        grid-template-columns: 1.4fr 1fr;
+        align-items: start;
+      }
+
+      .stack {
+        display: grid;
+        gap: 16px;
       }
     }
 
-    @media (max-width: 560px) {
-      .nav-shell {
-        top: 6px;
-      }
-
-      .stats {
+    @media (max-width: 680px) {
+      .stat-row {
         grid-template-columns: 1fr;
       }
     }
@@ -332,50 +393,74 @@
     <header class="nav-shell">
       <nav class="nav" aria-label="주요 메뉴">
         <a href="index.html">홈</a>
-        <a href="issues.html" class="active" aria-current="page">이슈</a>
+        <a href="issues.html" class="active" aria-current="page">인기글</a>
         <a href="blog.html">블로그</a>
         <a href="developer-tools.html">도구</a>
       </nav>
     </header>
 
     <section class="hero">
-      <h1>실시간 이슈 보드</h1>
-      <p>디시인사이드 HIT 갤러리의 핫한 주제와 Reddit 기술 커뮤니티 인기 글을 카드 형태로 묶어 빠르게 확인할 수 있도록 구성했습니다.</p>
-      <div class="live-strip">
-        <span class="chip"><span class="pulse" aria-hidden="true"></span>실시간 시뮬레이션</span>
-        <span class="chip" id="clockChip">업데이트 준비 중</span>
+      <h1>인기글 랭킹</h1>
+      <p>릴황 블로그의 주간 TOP 10, 태그별 인기, 댓글 활발 콘텐츠, 그리고 지금 급상승 중인 핫 글을 한 장에서 확인합니다.</p>
+      <div class="hero-meta">
+        <span class="hero-chip"><span class="pulse" aria-hidden="true"></span>실시간 점수 갱신</span>
+        <span class="hero-chip" id="updatedChip">업데이트 준비 중</span>
+        <span class="hero-chip">지표: posts.json 기반</span>
       </div>
     </section>
 
-    <section class="board-grid" aria-live="polite">
-      <article class="board" aria-labelledby="dcTitle">
-        <div class="board-head">
-          <h2 class="board-title" id="dcTitle"><span class="dot" aria-hidden="true"></span>디시인사이드 HIT 갤러리</h2>
-          <div class="board-meta" id="dcMeta">소스 연결 중...</div>
+    <section class="grid" aria-live="polite">
+      <article class="panel" aria-labelledby="weeklyTitle">
+        <div>
+          <h2 class="panel-title" id="weeklyTitle"><span aria-hidden="true"></span>주간 인기글 TOP 10</h2>
+          <p class="panel-sub">최근 7일 내 글 중 조회/댓글 가중치 기준</p>
         </div>
-        <div class="fetch-log" id="dcFetchLog">web_fetch("https://gall.dcinside.com/board/lists?id=hit") 대기 중...</div>
-        <div class="cards" id="dcCards">
-          <div class="loading">디시 HIT 인기 주제를 로딩하고 있습니다...</div>
+        <div id="weeklyList" class="rank-list">
+          <div class="loading">주간 랭킹을 불러오는 중입니다...</div>
         </div>
+        <p class="note">조회수는 posts.json에서 파생한 지표입니다.</p>
       </article>
 
-      <article class="board" aria-labelledby="redditTitle">
-        <div class="board-head">
-          <h2 class="board-title" id="redditTitle"><span class="dot" aria-hidden="true"></span>Reddit 기술 인기 글</h2>
-          <div class="board-meta" id="redditMeta">소스 연결 중...</div>
-        </div>
-        <div class="fetch-log" id="redditFetchLog">web_fetch("https://www.reddit.com/r/programming+technology/hot.json") 대기 중...</div>
-        <div class="cards" id="redditCards">
-          <div class="loading">Reddit 기술 글을 로딩하고 있습니다...</div>
-        </div>
-      </article>
+      <div class="stack">
+        <article class="panel" aria-labelledby="tagTitle">
+          <div>
+            <h2 class="panel-title" id="tagTitle"><span aria-hidden="true"></span>카테고리별 인기</h2>
+            <p class="panel-sub">Docker / GitHub / AI 태그 기준</p>
+          </div>
+          <div id="tagList" class="tag-grid">
+            <div class="loading">태그별 인기글을 분석하는 중입니다...</div>
+          </div>
+        </article>
+
+        <article class="panel" aria-labelledby="commentTitle">
+          <div>
+            <h2 class="panel-title" id="commentTitle"><span aria-hidden="true"></span>최근 댓글 활발한 글</h2>
+            <p class="panel-sub">댓글 수 + 최신성 가중</p>
+          </div>
+          <div id="commentList" class="comment-list">
+            <div class="loading">댓글 반응을 불러오는 중입니다...</div>
+          </div>
+        </article>
+
+        <article class="panel" aria-labelledby="hotTitle">
+          <div>
+            <h2 class="panel-title" id="hotTitle"><span aria-hidden="true"></span>핫 NOW 실시간 인기 상승</h2>
+            <p class="panel-sub">가중치에 실시간 상승분을 반영</p>
+          </div>
+          <div id="hotList" class="hot-list">
+            <div class="loading">급상승 랭킹을 계산하는 중입니다...</div>
+          </div>
+        </article>
+      </div>
     </section>
   </main>
 
   <script>
+    const TAG_GROUPS = ["Docker", "GitHub", "AI"];
+
     const state = {
-      dcTopics: [],
-      redditTopics: []
+      posts: [],
+      hotNow: []
     };
 
     function escapeHtml(value) {
@@ -391,6 +476,13 @@
       return new Intl.NumberFormat("ko-KR").format(Number(value) || 0);
     }
 
+    function formatDate(value) {
+      if (!value) return "";
+      const date = new Date(value);
+      if (Number.isNaN(date.getTime())) return value;
+      return new Intl.DateTimeFormat("ko-KR", { dateStyle: "medium" }).format(date);
+    }
+
     function nowStamp() {
       return new Intl.DateTimeFormat("ko-KR", {
         month: "2-digit",
@@ -401,211 +493,254 @@
       }).format(new Date());
     }
 
-    function tickClock() {
-      const chip = document.getElementById("clockChip");
-      chip.textContent = `마지막 갱신: ${nowStamp()}`;
+    function updateClock() {
+      const chip = document.getElementById("updatedChip");
+      if (chip) {
+        chip.textContent = `마지막 갱신: ${nowStamp()}`;
+      }
     }
 
-    async function mockWebFetchDcHit() {
-      const mockData = [
-        {
-          rank: 1,
-          title: "요즘 취업 시장에서 실무 포트폴리오가 중요한 이유",
-          link: "https://gall.dcinside.com/board/view/?id=hit&no=301001",
-          tag: "커리어",
-          age: "7분 전",
-          votes: 1880,
-          views: 48290,
-          comments: 734
-        },
-        {
-          rank: 2,
-          title: "AI 코딩 툴 도입한 팀 생산성 실제 체감 후기",
-          link: "https://gall.dcinside.com/board/view/?id=hit&no=301002",
-          tag: "개발",
-          age: "11분 전",
-          votes: 1512,
-          views: 39040,
-          comments: 502
-        },
-        {
-          rank: 3,
-          title: "원격근무 3년차가 말하는 집중 루틴 세팅 팁",
-          link: "https://gall.dcinside.com/board/view/?id=hit&no=301003",
-          tag: "업무",
-          age: "16분 전",
-          votes: 1194,
-          views: 32330,
-          comments: 441
-        },
-        {
-          rank: 4,
-          title: "개발자 컨퍼런스 핵심 세션 요약 정리",
-          link: "https://gall.dcinside.com/board/view/?id=hit&no=301004",
-          tag: "트렌드",
-          age: "22분 전",
-          votes: 982,
-          views: 27140,
-          comments: 308
-        },
-        {
-          rank: 5,
-          title: "신입이 실무 첫 주에 꼭 챙기면 좋은 체크리스트",
-          link: "https://gall.dcinside.com/board/view/?id=hit&no=301005",
-          tag: "가이드",
-          age: "30분 전",
-          votes: 844,
-          views: 24510,
-          comments: 279
-        }
-      ];
-
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          resolve({
-            source: "https://gall.dcinside.com/board/lists?id=hit",
-            fetchedAt: nowStamp(),
-            items: mockData
-          });
-        }, 620);
-      });
+    function hashString(text) {
+      let hash = 0;
+      for (let i = 0; i < text.length; i += 1) {
+        hash = (hash << 5) - hash + text.charCodeAt(i);
+        hash |= 0;
+      }
+      return Math.abs(hash);
     }
 
-    async function mockWebFetchRedditTech() {
-      const mockData = [
-        {
-          rank: 1,
-          title: "Rust 2.0 RFC Discussion: What Changes for Production Teams?",
-          link: "https://www.reddit.com/r/programming/comments/tech001/",
-          community: "r/programming",
-          age: "9분 전",
-          votes: 3620,
-          views: 91500,
-          comments: 689
-        },
-        {
-          rank: 2,
-          title: "Shipping AI Features Safely: Practical Guardrail Patterns",
-          link: "https://www.reddit.com/r/technology/comments/tech002/",
-          community: "r/technology",
-          age: "13분 전",
-          votes: 2890,
-          views: 78120,
-          comments: 544
-        },
-        {
-          rank: 3,
-          title: "Postgres at Scale: Lessons After 1 Billion Rows",
-          link: "https://www.reddit.com/r/programming/comments/tech003/",
-          community: "r/programming",
-          age: "19분 전",
-          votes: 2445,
-          views: 66440,
-          comments: 421
-        },
-        {
-          rank: 4,
-          title: "Frontend Performance Budget: Real Numbers, Real Tradeoffs",
-          link: "https://www.reddit.com/r/webdev/comments/tech004/",
-          community: "r/webdev",
-          age: "24분 전",
-          votes: 2034,
-          views: 59360,
-          comments: 337
-        },
-        {
-          rank: 5,
-          title: "Why Teams Are Moving from Monolith to Modular Monolith",
-          link: "https://www.reddit.com/r/softwarearchitecture/comments/tech005/",
-          community: "r/softwarearchitecture",
-          age: "33분 전",
-          votes: 1760,
-          views: 52080,
-          comments: 296
-        }
-      ];
-
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          resolve({
-            source: "https://www.reddit.com/r/programming+technology/hot.json",
-            fetchedAt: nowStamp(),
-            items: mockData
-          });
-        }, 760);
-      });
+    function daysAgo(value) {
+      const date = new Date(value);
+      if (Number.isNaN(date.getTime())) return 9999;
+      const diff = Date.now() - date.getTime();
+      return Math.floor(diff / (1000 * 60 * 60 * 24));
     }
 
-    function renderCards(list, containerId, sourceLabel) {
-      const container = document.getElementById(containerId);
+    function deriveViews(post) {
+      const contentLength = (post.content || "").length + (post.excerpt || "").length;
+      const tagCount = Array.isArray(post.tags) ? post.tags.length : 0;
+      const base = contentLength * 0.08 + tagCount * 120 + 320;
+      const noise = hashString(`${post.title || ""}-${post.id || ""}`) % 600;
+      const age = daysAgo(post.date);
+      const recencyFactor = age <= 7 ? 1.25 : age <= 30 ? 1.05 : 0.85;
+      return Math.max(120, Math.round((base + noise) * recencyFactor));
+    }
 
-      if (!Array.isArray(list) || !list.length) {
-        container.innerHTML = `<div class="error">${sourceLabel} 데이터를 표시할 수 없습니다.</div>`;
+    function getCommentsCount(post) {
+      return Array.isArray(post.comments) ? post.comments.length : 0;
+    }
+
+    function normalizePost(post) {
+      const views = typeof post.views === "number" ? post.views : deriveViews(post);
+      const commentsCount = getCommentsCount(post);
+      const age = daysAgo(post.date);
+      return {
+        ...post,
+        views,
+        commentsCount,
+        age
+      };
+    }
+
+    function getPostUrl(post) {
+      return `blog.html?post=${encodeURIComponent(post.id)}`;
+    }
+
+    function scoreWeekly(post) {
+      return post.views + post.commentsCount * 450;
+    }
+
+    function scoreTag(post) {
+      return post.views * 0.9 + post.commentsCount * 420;
+    }
+
+    function scoreCommentActivity(post) {
+      const recencyBoost = Math.max(0, 30 - post.age) * 20;
+      return post.commentsCount * 520 + recencyBoost;
+    }
+
+    function scoreHot(post) {
+      const recencyBoost = Math.max(0, 14 - post.age) * 40;
+      return post.views * 0.6 + post.commentsCount * 600 + recencyBoost;
+    }
+
+    function renderWeekly(posts) {
+      const container = document.getElementById("weeklyList");
+      if (!posts.length) {
+        container.innerHTML = '<div class="error">주간 인기글을 표시할 수 없습니다.</div>';
         return;
       }
 
-      container.innerHTML = list.map((topic) => `
-        <article class="topic-card">
-          <div class="topic-row">
-            <span class="rank">TOP ${escapeHtml(topic.rank)}</span>
-            <span class="topic-sub">${escapeHtml(topic.age)}</span>
+      container.innerHTML = posts.map((post, index) => `
+        <a class="rank-item" href="${escapeHtml(getPostUrl(post))}">
+          <div class="rank-head">
+            <span class="rank-badge">TOP ${index + 1}</span>
+            <span class="rank-meta">${escapeHtml(formatDate(post.date))}</span>
           </div>
-          <h3 class="topic-title"><a href="${escapeHtml(topic.link)}" target="_blank" rel="noopener noreferrer">${escapeHtml(topic.title)}</a></h3>
-          <p class="topic-sub">${escapeHtml(topic.tag || topic.community || "일반")}</p>
-          <dl class="stats">
-            <div class="stat"><dt>추천수</dt><dd>${formatNumber(topic.votes)}</dd></div>
-            <div class="stat"><dt>조회수</dt><dd>${formatNumber(topic.views)}</dd></div>
-            <div class="stat"><dt>댓글수</dt><dd>${formatNumber(topic.comments)}</dd></div>
+          <h3 class="rank-title">${escapeHtml(post.title || "제목 없음")}</h3>
+          <div class="rank-meta">
+            <span>${escapeHtml(post.category || "일반")}</span>
+            <span>댓글 ${formatNumber(post.commentsCount)}</span>
+          </div>
+          <dl class="stat-row">
+            <div class="stat"><dt>조회수</dt><dd>${formatNumber(post.views)}</dd></div>
+            <div class="stat"><dt>댓글수</dt><dd>${formatNumber(post.commentsCount)}</dd></div>
+            <div class="stat"><dt>점수</dt><dd>${formatNumber(scoreWeekly(post))}</dd></div>
           </dl>
-        </article>
+        </a>
       `).join("");
     }
 
-    function simulateRealtimeBump(list) {
-      return list.map((item) => ({
-        ...item,
-        votes: item.votes + Math.floor(Math.random() * 7),
-        views: item.views + Math.floor(Math.random() * 33),
-        comments: item.comments + Math.floor(Math.random() * 3)
-      }));
+    function renderTags(posts) {
+      const container = document.getElementById("tagList");
+      if (!posts.length) {
+        container.innerHTML = '<div class="error">태그 데이터를 표시할 수 없습니다.</div>';
+        return;
+      }
+
+      const html = TAG_GROUPS.map((tag) => {
+        const tagged = posts.filter((post) =>
+          Array.isArray(post.tags) && post.tags.some((t) => String(t).toLowerCase() === tag.toLowerCase())
+        );
+        const top = tagged.sort((a, b) => scoreTag(b) - scoreTag(a)).slice(0, 3);
+
+        const listHtml = top.length
+          ? top.map((post) => `
+              <a class="tag-item" href="${escapeHtml(getPostUrl(post))}">
+                <span>${escapeHtml(post.title || "제목 없음")}</span>
+                <span>${formatNumber(post.views)} · 댓글 ${formatNumber(post.commentsCount)}</span>
+              </a>
+            `).join("")
+          : '<div class="tag-item">해당 태그 콘텐츠 준비 중</div>';
+
+        return `
+          <div class="tag-block">
+            <h3 class="tag-title">#${escapeHtml(tag)}</h3>
+            <div class="tag-list">${listHtml}</div>
+          </div>
+        `;
+      }).join("");
+
+      container.innerHTML = html;
     }
 
-    function startRealtimeLoop() {
-      setInterval(() => {
-        tickClock();
-        state.dcTopics = simulateRealtimeBump(state.dcTopics);
-        state.redditTopics = simulateRealtimeBump(state.redditTopics);
-        renderCards(state.dcTopics, "dcCards", "디시 HIT");
-        renderCards(state.redditTopics, "redditCards", "Reddit");
-      }, 7000);
+    function renderCommentActive(posts) {
+      const container = document.getElementById("commentList");
+      const list = posts
+        .filter((post) => post.commentsCount > 0)
+        .sort((a, b) => scoreCommentActivity(b) - scoreCommentActivity(a))
+        .slice(0, 6);
+
+      if (!list.length) {
+        container.innerHTML = '<div class="error">댓글 활발 글이 아직 없습니다.</div>';
+        return;
+      }
+
+      container.innerHTML = list.map((post) => {
+        const lastComment = Array.isArray(post.comments) && post.comments.length
+          ? post.comments[post.comments.length - 1]
+          : null;
+        const commentText = lastComment ? lastComment.text : "댓글 반응을 확인하세요.";
+        return `
+          <a class="comment-item" href="${escapeHtml(getPostUrl(post))}">
+            <div class="comment-meta">
+              <span>${escapeHtml(post.title || "제목 없음")}</span>
+              <span>${formatNumber(post.commentsCount)} comments</span>
+            </div>
+            <div>${escapeHtml(commentText)}</div>
+            <div class="comment-meta">
+              <span>${escapeHtml(formatDate(post.date))}</span>
+              <span>${escapeHtml(post.category || "일반")}</span>
+            </div>
+          </a>
+        `;
+      }).join("");
+    }
+
+    function renderHotNow(list) {
+      const container = document.getElementById("hotList");
+      if (!list.length) {
+        container.innerHTML = '<div class="error">핫 NOW 데이터를 표시할 수 없습니다.</div>';
+        return;
+      }
+
+      container.innerHTML = list.map((item, index) => `
+        <a class="hot-item" href="${escapeHtml(getPostUrl(item))}">
+          <div class="hot-meta">
+            <span class="hot-rank">HOT ${index + 1}</span>
+            <span class="hot-score">+${formatNumber(item.delta)}</span>
+          </div>
+          <div>${escapeHtml(item.title || "제목 없음")}</div>
+          <div class="hot-meta">
+            <span>조회 ${formatNumber(item.views)} · 댓글 ${formatNumber(item.commentsCount)}</span>
+            <span>${escapeHtml(formatDate(item.date))}</span>
+          </div>
+        </a>
+      `).join("");
+    }
+
+    function buildHotNow(posts) {
+      return posts
+        .map((post) => ({
+          ...post,
+          hotScore: scoreHot(post),
+          delta: 0
+        }))
+        .sort((a, b) => b.hotScore - a.hotScore)
+        .slice(0, 8);
+    }
+
+    function tickHotNow() {
+      state.hotNow = state.hotNow.map((item) => {
+        const bump = Math.max(0, Math.round(Math.random() * 40));
+        return {
+          ...item,
+          hotScore: item.hotScore + bump,
+          delta: bump
+        };
+      }).sort((a, b) => b.hotScore - a.hotScore);
+
+      renderHotNow(state.hotNow.slice(0, 5));
     }
 
     async function init() {
-      tickClock();
-      setInterval(tickClock, 1000);
+      updateClock();
+      setInterval(updateClock, 1000);
 
       try {
-        const [dc, reddit] = await Promise.all([
-          mockWebFetchDcHit(),
-          mockWebFetchRedditTech()
-        ]);
+        const response = await fetch('posts.json?v=' + Date.now(), { cache: 'no-store' });
+        if (!response.ok) {
+          throw new Error("Failed to load posts.json");
+        }
+        const data = await response.json();
+        const rawPosts = Array.isArray(data.posts) ? data.posts : [];
+        const posts = rawPosts
+          .filter((post) => post.category !== 'issue' && post.category !== 'template' && post.category !== 'diary')
+          .map(normalizePost);
 
-        state.dcTopics = dc.items;
-        state.redditTopics = reddit.items;
+        if (!posts.length) {
+          throw new Error("No posts data");
+        }
 
-        document.getElementById("dcMeta").textContent = `HIT 상위 ${dc.items.length}개 · ${dc.fetchedAt}`;
-        document.getElementById("redditMeta").textContent = `기술 글 ${reddit.items.length}개 · ${reddit.fetchedAt}`;
+        state.posts = posts;
 
-        document.getElementById("dcFetchLog").textContent = `web_fetch("${dc.source}") -> 200 OK (${dc.fetchedAt})`;
-        document.getElementById("redditFetchLog").textContent = `web_fetch("${reddit.source}") -> 200 OK (${reddit.fetchedAt})`;
+        const weeklyCandidates = posts.filter((post) => post.age <= 7);
+        const weeklyList = (weeklyCandidates.length ? weeklyCandidates : posts)
+          .sort((a, b) => scoreWeekly(b) - scoreWeekly(a))
+          .slice(0, 10);
 
-        renderCards(state.dcTopics, "dcCards", "디시 HIT");
-        renderCards(state.redditTopics, "redditCards", "Reddit");
+        renderWeekly(weeklyList);
+        renderTags(posts);
+        renderCommentActive(posts);
 
-        startRealtimeLoop();
+        state.hotNow = buildHotNow(posts);
+        renderHotNow(state.hotNow.slice(0, 5));
+        setInterval(tickHotNow, 5000);
       } catch (error) {
-        document.getElementById("dcCards").innerHTML = '<div class="error">디시 데이터를 불러오는 중 오류가 발생했습니다.</div>';
-        document.getElementById("redditCards").innerHTML = '<div class="error">Reddit 데이터를 불러오는 중 오류가 발생했습니다.</div>';
+        document.getElementById("weeklyList").innerHTML = '<div class="error">posts.json을 불러올 수 없습니다.</div>';
+        document.getElementById("tagList").innerHTML = '<div class="error">태그 랭킹을 불러올 수 없습니다.</div>';
+        document.getElementById("commentList").innerHTML = '<div class="error">댓글 랭킹을 불러올 수 없습니다.</div>';
+        document.getElementById("hotList").innerHTML = '<div class="error">핫 NOW 랭킹을 불러올 수 없습니다.</div>';
       }
     }
 

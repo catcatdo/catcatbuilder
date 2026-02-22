@@ -1,0 +1,6 @@
+[20260223_0200] 자동 콘텐츠 생성 시작
+🔍 Reddit RSS 조사 중...
+선택된 RSS: https://www.reddit.com/r/apple/top/.rss?t=day
+⚠️ RSS 다운로드 실패, fallback 제목 사용
+선정된 주제: Blocked
+🔎 posts.json 중복 체크 중...
