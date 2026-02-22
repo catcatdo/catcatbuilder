@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>이슈 허브 | lilhwang.com</title>
-  <meta name="description" content="커뮤니티 이슈를 카드 UI로 탐색하고 상태/라벨로 빠르게 필터링하는 이슈 허브">
+  <title>실시간 이슈 보드 | lilhwang.com</title>
+  <meta name="description" content="디시인사이드 HIT 갤러리와 Reddit 기술 커뮤니티의 인기 주제를 실시간 카드 UI로 확인하세요.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://lilhwang.com/issues.html">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -113,176 +113,206 @@
       font-size: 0.95rem;
     }
 
-    .toolbar {
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: var(--surface);
-      box-shadow: var(--shadow);
-      margin-bottom: 14px;
-      padding: 14px;
-      display: grid;
-      gap: 10px;
-    }
-
-    .toolbar-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-      font-size: 0.86rem;
-      color: var(--muted);
-    }
-
-    .toolbar-row {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-
-    .chips {
+    .live-strip {
+      margin-top: 14px;
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
+      align-items: center;
+      font-size: 0.8rem;
+      color: #21546d;
     }
 
     .chip {
       border: 1px solid var(--line);
       border-radius: 999px;
       background: var(--chip);
-      color: #214252;
-      font: inherit;
-      font-size: 0.82rem;
-      padding: 6px 12px;
-      cursor: pointer;
-      transition: 0.18s ease;
+      padding: 5px 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
 
-    .chip:hover {
-      border-color: #a9ccd5;
-      background: #ebf6f8;
+    .pulse {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #0fb494;
+      box-shadow: 0 0 0 rgba(15, 180, 148, 0.7);
+      animation: pulse 1.6s infinite;
     }
 
-    .chip.active {
-      border-color: #82c8b9;
-      background: var(--accent-soft);
-      color: #0a6f59;
-      font-weight: 600;
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(15, 180, 148, 0.7); }
+      70% { box-shadow: 0 0 0 8px rgba(15, 180, 148, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(15, 180, 148, 0); }
     }
 
-    .label-filter {
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      background: #fff;
-      color: #224455;
-      font: inherit;
-      font-size: 0.84rem;
-      padding: 8px 10px;
-      min-width: 210px;
-    }
-
-    .issues-grid {
+    .board-grid {
       display: grid;
       grid-template-columns: 1fr;
       gap: 12px;
     }
 
-    .issue-card {
+    .board {
       border: 1px solid var(--line);
-      border-radius: 14px;
+      border-radius: var(--radius);
       background: var(--surface);
       box-shadow: var(--shadow);
       padding: 14px;
-      display: grid;
-      gap: 10px;
     }
 
-    .issue-meta {
-      color: var(--muted);
-      font-size: 0.8rem;
+    .board-head {
       display: flex;
-      gap: 8px;
+      justify-content: space-between;
       align-items: center;
+      gap: 8px;
       flex-wrap: wrap;
+      margin-bottom: 10px;
     }
 
-    .status-badge {
-      border-radius: 999px;
-      font-size: 0.73rem;
-      padding: 3px 8px;
-      border: 1px solid #c7deea;
-      background: #f2f9fd;
-      color: #1d5672;
-      font-weight: 600;
-    }
-
-    .status-badge.closed {
-      border-color: #c9d5dd;
-      background: #f1f4f6;
-      color: #4f6572;
-    }
-
-    .issue-title {
+    .board-title {
       margin: 0;
       font-size: 1.05rem;
-      letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--brand);
+    }
+
+    .board-meta {
+      color: var(--muted);
+      font-size: 0.78rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .fetch-log {
+      color: #2d6078;
+      font-size: 0.78rem;
+      background: #f6fbff;
+      border: 1px dashed #b8d0dc;
+      border-radius: 10px;
+      padding: 8px 10px;
+      margin-bottom: 10px;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 9px;
+    }
+
+    .topic-card {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px;
+      background: #fcfeff;
+      display: grid;
+      gap: 9px;
+      transition: transform 0.18s ease, border-color 0.18s ease;
+    }
+
+    .topic-card:hover {
+      transform: translateY(-1px);
+      border-color: #9cc5df;
+    }
+
+    .topic-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .rank {
+      border: 1px solid #b6d2e7;
+      border-radius: 999px;
+      background: #edf7ff;
+      color: #0b5e9e;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      white-space: nowrap;
+    }
+
+    .topic-title {
+      margin: 0;
+      font-size: 0.98rem;
       line-height: 1.35;
+      letter-spacing: -0.01em;
     }
 
-    .issue-title a {
+    .topic-title a {
       text-decoration: none;
-      transition: 0.2s ease;
     }
 
-    .issue-title a:hover {
+    .topic-title a:hover {
       color: var(--brand);
     }
 
-    .issue-excerpt {
+    .topic-sub {
       margin: 0;
-      color: #314956;
-      font-size: 0.9rem;
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
+      color: var(--muted);
+      font-size: 0.82rem;
     }
 
-    .issue-tags {
-      display: flex;
-      flex-wrap: wrap;
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 6px;
     }
 
-    .tag {
-      border-radius: 999px;
-      border: 1px solid #c7deea;
-      background: #f2f9fd;
-      color: #1d5672;
-      font-size: 0.74rem;
-      padding: 3px 8px;
-      text-decoration: none;
-      cursor: pointer;
+    .stat {
+      border: 1px solid #cce2dc;
+      border-radius: 10px;
+      background: #f3fcf9;
+      padding: 7px 8px;
     }
 
-    .empty {
+    .stat dt {
+      margin: 0;
+      color: #2d6c5f;
+      font-size: 0.71rem;
+    }
+
+    .stat dd {
+      margin: 1px 0 0;
+      color: #0b5143;
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .loading,
+    .error {
       border: 1px dashed #b8d0dc;
-      border-radius: var(--radius);
-      padding: 24px;
-      text-align: center;
+      border-radius: 12px;
       background: #f8fcff;
+      padding: 16px;
       color: var(--muted);
+      font-size: 0.88rem;
     }
 
-    @media (min-width: 760px) {
-      .issues-grid {
+    .error {
+      border-color: #ddbcbc;
+      background: #fff7f7;
+      color: #9c4444;
+    }
+
+    @media (min-width: 960px) {
+      .board-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    @media (min-width: 1100px) {
-      .issues-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
       }
     }
 
@@ -291,14 +321,8 @@
         top: 6px;
       }
 
-      .toolbar-head {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .label-filter {
-        min-width: 0;
-        width: 100%;
+      .stats {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -315,38 +339,44 @@
     </header>
 
     <section class="hero">
-      <h1>이슈 허브</h1>
-      <p>핫 이슈를 카드 형태로 확인하고, 상태(열림/닫힘)와 라벨로 원하는 주제만 빠르게 필터링하세요.</p>
-    </section>
-
-    <section class="toolbar" aria-label="이슈 필터">
-      <div class="toolbar-head">
-        <span>상태 및 라벨 필터</span>
-        <strong id="resultCount">0개 이슈</strong>
-      </div>
-      <div class="toolbar-row">
-        <div class="chips" id="statusChips"></div>
-        <select id="labelFilter" class="label-filter" aria-label="라벨 필터"></select>
+      <h1>실시간 이슈 보드</h1>
+      <p>디시인사이드 HIT 갤러리의 핫한 주제와 Reddit 기술 커뮤니티 인기 글을 카드 형태로 묶어 빠르게 확인할 수 있도록 구성했습니다.</p>
+      <div class="live-strip">
+        <span class="chip"><span class="pulse" aria-hidden="true"></span>실시간 시뮬레이션</span>
+        <span class="chip" id="clockChip">업데이트 준비 중</span>
       </div>
     </section>
 
-    <section class="issues-grid" id="issuesGrid" aria-live="polite"></section>
+    <section class="board-grid" aria-live="polite">
+      <article class="board" aria-labelledby="dcTitle">
+        <div class="board-head">
+          <h2 class="board-title" id="dcTitle"><span class="dot" aria-hidden="true"></span>디시인사이드 HIT 갤러리</h2>
+          <div class="board-meta" id="dcMeta">소스 연결 중...</div>
+        </div>
+        <div class="fetch-log" id="dcFetchLog">web_fetch("https://gall.dcinside.com/board/lists?id=hit") 대기 중...</div>
+        <div class="cards" id="dcCards">
+          <div class="loading">디시 HIT 인기 주제를 로딩하고 있습니다...</div>
+        </div>
+      </article>
+
+      <article class="board" aria-labelledby="redditTitle">
+        <div class="board-head">
+          <h2 class="board-title" id="redditTitle"><span class="dot" aria-hidden="true"></span>Reddit 기술 인기 글</h2>
+          <div class="board-meta" id="redditMeta">소스 연결 중...</div>
+        </div>
+        <div class="fetch-log" id="redditFetchLog">web_fetch("https://www.reddit.com/r/programming+technology/hot.json") 대기 중...</div>
+        <div class="cards" id="redditCards">
+          <div class="loading">Reddit 기술 글을 로딩하고 있습니다...</div>
+        </div>
+      </article>
+    </section>
   </main>
 
-  <script src="issues-data.v20260214f.js"></script>
   <script>
     const state = {
-      issues: [],
-      filtered: [],
-      activeStatus: "ALL",
-      activeLabel: "ALL",
-      labelCounts: new Map()
+      dcTopics: [],
+      redditTopics: []
     };
-
-    const issuesGrid = document.getElementById("issuesGrid");
-    const statusChips = document.getElementById("statusChips");
-    const labelFilter = document.getElementById("labelFilter");
-    const resultCount = document.getElementById("resultCount");
 
     function escapeHtml(value) {
       return String(value || "")
@@ -357,183 +387,226 @@
         .replaceAll("'", "&#39;");
     }
 
-    function formatDate(raw) {
-      if (!raw) return "생성일 미상";
-      const date = new Date(raw);
-      if (Number.isNaN(date.getTime())) return raw;
+    function formatNumber(value) {
+      return new Intl.NumberFormat("ko-KR").format(Number(value) || 0);
+    }
+
+    function nowStamp() {
       return new Intl.DateTimeFormat("ko-KR", {
-        year: "numeric",
-        month: "short",
-        day: "numeric"
-      }).format(date);
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit"
+      }).format(new Date());
     }
 
-    function resolveStatus(issue) {
-      const stateRaw = String(
-        issue.status || issue.state || (issue.is_closed ? "closed" : "") || (issue.closed_at ? "closed" : "")
-      )
-        .trim()
-        .toLowerCase();
-
-      if (["closed", "close", "done", "resolved"].includes(stateRaw)) {
-        return "CLOSED";
-      }
-      return "OPEN";
+    function tickClock() {
+      const chip = document.getElementById("clockChip");
+      chip.textContent = `마지막 갱신: ${nowStamp()}`;
     }
 
-    function resolveIssueUrl(issue) {
-      if (typeof issue.url === "string" && issue.url.trim()) return issue.url.trim();
-      if (typeof issue.link === "string" && issue.link.trim()) return issue.link.trim();
-      if (typeof issue.slug === "string" && issue.slug.trim()) {
-        return issue.slug.endsWith(".html") ? issue.slug : `${issue.slug}.html`;
-      }
-      if (typeof issue.id === "string" && issue.id.trim()) {
-        const id = issue.id.trim();
-        return `issues/${id}.html`;
-      }
-      return "#";
-    }
-
-    function resolveExcerpt(issue) {
-      const text = String(issue.rewritten_body || issue.excerpt || "").replace(/\s+/g, " ").trim();
-      if (!text) return "요약이 아직 준비되지 않았습니다.";
-      return text;
-    }
-
-    function normalizeIssues(rawList) {
-      return (Array.isArray(rawList) ? rawList : [])
-        .filter((issue) => issue && (issue.catchy_title || issue.title))
-        .map((issue) => ({
-          ...issue,
-          _status: resolveStatus(issue),
-          _tags: Array.isArray(issue.tags)
-            ? issue.tags.map((tag) => String(tag || "").trim()).filter(Boolean)
-            : []
-        }))
-        .sort((a, b) => {
-          const at = Date.parse(a.published_at || "") || 0;
-          const bt = Date.parse(b.published_at || "") || 0;
-          return bt - at;
-        });
-    }
-
-    function collectLabelCounts(issues) {
-      const counts = new Map();
-      issues.forEach((issue) => {
-        issue._tags.forEach((tag) => {
-          counts.set(tag, (counts.get(tag) || 0) + 1);
-        });
-      });
-      return counts;
-    }
-
-    function renderStatusChips() {
-      const openCount = state.issues.filter((issue) => issue._status === "OPEN").length;
-      const closedCount = state.issues.filter((issue) => issue._status === "CLOSED").length;
-      const chips = [
-        { key: "ALL", label: `전체 (${state.issues.length})` },
-        { key: "OPEN", label: `열림 (${openCount})` },
-        { key: "CLOSED", label: `닫힘 (${closedCount})` }
+    async function mockWebFetchDcHit() {
+      const mockData = [
+        {
+          rank: 1,
+          title: "요즘 취업 시장에서 실무 포트폴리오가 중요한 이유",
+          link: "https://gall.dcinside.com/board/view/?id=hit&no=301001",
+          tag: "커리어",
+          age: "7분 전",
+          votes: 1880,
+          views: 48290,
+          comments: 734
+        },
+        {
+          rank: 2,
+          title: "AI 코딩 툴 도입한 팀 생산성 실제 체감 후기",
+          link: "https://gall.dcinside.com/board/view/?id=hit&no=301002",
+          tag: "개발",
+          age: "11분 전",
+          votes: 1512,
+          views: 39040,
+          comments: 502
+        },
+        {
+          rank: 3,
+          title: "원격근무 3년차가 말하는 집중 루틴 세팅 팁",
+          link: "https://gall.dcinside.com/board/view/?id=hit&no=301003",
+          tag: "업무",
+          age: "16분 전",
+          votes: 1194,
+          views: 32330,
+          comments: 441
+        },
+        {
+          rank: 4,
+          title: "개발자 컨퍼런스 핵심 세션 요약 정리",
+          link: "https://gall.dcinside.com/board/view/?id=hit&no=301004",
+          tag: "트렌드",
+          age: "22분 전",
+          votes: 982,
+          views: 27140,
+          comments: 308
+        },
+        {
+          rank: 5,
+          title: "신입이 실무 첫 주에 꼭 챙기면 좋은 체크리스트",
+          link: "https://gall.dcinside.com/board/view/?id=hit&no=301005",
+          tag: "가이드",
+          age: "30분 전",
+          votes: 844,
+          views: 24510,
+          comments: 279
+        }
       ];
 
-      statusChips.innerHTML = chips
-        .map((chip) => {
-          const active = chip.key === state.activeStatus ? "active" : "";
-          return `<button class="chip ${active}" type="button" data-status="${chip.key}">${chip.label}</button>`;
-        })
-        .join("");
-
-      statusChips.querySelectorAll(".chip").forEach((button) => {
-        button.addEventListener("click", () => {
-          state.activeStatus = button.dataset.status || "ALL";
-          applyFilter();
-        });
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve({
+            source: "https://gall.dcinside.com/board/lists?id=hit",
+            fetchedAt: nowStamp(),
+            items: mockData
+          });
+        }, 620);
       });
     }
 
-    function renderLabelFilter() {
-      const options = Array.from(state.labelCounts.entries())
-        .sort((a, b) => {
-          if (b[1] !== a[1]) return b[1] - a[1];
-          return a[0].localeCompare(b[0], "ko");
-        })
-        .slice(0, 40);
+    async function mockWebFetchRedditTech() {
+      const mockData = [
+        {
+          rank: 1,
+          title: "Rust 2.0 RFC Discussion: What Changes for Production Teams?",
+          link: "https://www.reddit.com/r/programming/comments/tech001/",
+          community: "r/programming",
+          age: "9분 전",
+          votes: 3620,
+          views: 91500,
+          comments: 689
+        },
+        {
+          rank: 2,
+          title: "Shipping AI Features Safely: Practical Guardrail Patterns",
+          link: "https://www.reddit.com/r/technology/comments/tech002/",
+          community: "r/technology",
+          age: "13분 전",
+          votes: 2890,
+          views: 78120,
+          comments: 544
+        },
+        {
+          rank: 3,
+          title: "Postgres at Scale: Lessons After 1 Billion Rows",
+          link: "https://www.reddit.com/r/programming/comments/tech003/",
+          community: "r/programming",
+          age: "19분 전",
+          votes: 2445,
+          views: 66440,
+          comments: 421
+        },
+        {
+          rank: 4,
+          title: "Frontend Performance Budget: Real Numbers, Real Tradeoffs",
+          link: "https://www.reddit.com/r/webdev/comments/tech004/",
+          community: "r/webdev",
+          age: "24분 전",
+          votes: 2034,
+          views: 59360,
+          comments: 337
+        },
+        {
+          rank: 5,
+          title: "Why Teams Are Moving from Monolith to Modular Monolith",
+          link: "https://www.reddit.com/r/softwarearchitecture/comments/tech005/",
+          community: "r/softwarearchitecture",
+          age: "33분 전",
+          votes: 1760,
+          views: 52080,
+          comments: 296
+        }
+      ];
 
-      labelFilter.innerHTML = [
-        `<option value="ALL">라벨 전체 (${state.issues.length})</option>`,
-        ...options.map(([label, count]) => `<option value="${escapeHtml(label)}">${escapeHtml(label)} (${count})</option>`)
-      ].join("");
-
-      labelFilter.value = state.activeLabel;
-      labelFilter.addEventListener("change", () => {
-        state.activeLabel = labelFilter.value || "ALL";
-        applyFilter();
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve({
+            source: "https://www.reddit.com/r/programming+technology/hot.json",
+            fetchedAt: nowStamp(),
+            items: mockData
+          });
+        }, 760);
       });
     }
 
-    function renderIssues() {
-      resultCount.textContent = `${state.filtered.length}개 이슈`;
+    function renderCards(list, containerId, sourceLabel) {
+      const container = document.getElementById(containerId);
 
-      if (!state.filtered.length) {
-        issuesGrid.innerHTML = '<article class="empty">선택한 조건에 맞는 이슈가 없습니다.</article>';
+      if (!Array.isArray(list) || !list.length) {
+        container.innerHTML = `<div class="error">${sourceLabel} 데이터를 표시할 수 없습니다.</div>`;
         return;
       }
 
-      issuesGrid.innerHTML = state.filtered
-        .map((issue) => {
-          const title = issue.catchy_title || issue.title || "제목 없음";
-          const excerpt = resolveExcerpt(issue);
-          const issueUrl = resolveIssueUrl(issue);
-          const commentsCount = Array.isArray(issue.comments) ? issue.comments.length : 0;
-          const statusClass = issue._status === "CLOSED" ? "closed" : "";
-          const statusLabel = issue._status === "CLOSED" ? "닫힘" : "열림";
-          const tags = issue._tags.slice(0, 5);
-          const source = String(issue.source_name || "출처 미상");
-
-          return `
-            <article class="issue-card">
-              <div class="issue-meta">
-                <span class="status-badge ${statusClass}">${statusLabel}</span>
-                <span>생성일: ${escapeHtml(formatDate(issue.published_at))}</span>
-                <span>댓글 ${commentsCount}개</span>
-              </div>
-              <h2 class="issue-title"><a href="${escapeHtml(issueUrl)}">${escapeHtml(title)}</a></h2>
-              <p class="issue-excerpt">${escapeHtml(excerpt)}</p>
-              <div class="issue-meta"><span>출처: ${escapeHtml(source)}</span></div>
-              <div class="issue-tags">
-                ${tags.map((tag) => `<button class="tag" type="button" data-tag="${escapeHtml(tag)}">#${escapeHtml(tag)}</button>`).join("")}
-              </div>
-            </article>
-          `;
-        })
-        .join("");
-
-      issuesGrid.querySelectorAll(".tag").forEach((button) => {
-        button.addEventListener("click", () => {
-          state.activeLabel = button.dataset.tag || "ALL";
-          labelFilter.value = state.activeLabel;
-          applyFilter();
-          window.scrollTo({ top: 0, behavior: "smooth" });
-        });
-      });
+      container.innerHTML = list.map((topic) => `
+        <article class="topic-card">
+          <div class="topic-row">
+            <span class="rank">TOP ${escapeHtml(topic.rank)}</span>
+            <span class="topic-sub">${escapeHtml(topic.age)}</span>
+          </div>
+          <h3 class="topic-title"><a href="${escapeHtml(topic.link)}" target="_blank" rel="noopener noreferrer">${escapeHtml(topic.title)}</a></h3>
+          <p class="topic-sub">${escapeHtml(topic.tag || topic.community || "일반")}</p>
+          <dl class="stats">
+            <div class="stat"><dt>추천수</dt><dd>${formatNumber(topic.votes)}</dd></div>
+            <div class="stat"><dt>조회수</dt><dd>${formatNumber(topic.views)}</dd></div>
+            <div class="stat"><dt>댓글수</dt><dd>${formatNumber(topic.comments)}</dd></div>
+          </dl>
+        </article>
+      `).join("");
     }
 
-    function applyFilter() {
-      state.filtered = state.issues.filter((issue) => {
-        const statusOk = state.activeStatus === "ALL" || issue._status === state.activeStatus;
-        const labelOk = state.activeLabel === "ALL" || issue._tags.includes(state.activeLabel);
-        return statusOk && labelOk;
-      });
-      renderStatusChips();
-      renderIssues();
+    function simulateRealtimeBump(list) {
+      return list.map((item) => ({
+        ...item,
+        votes: item.votes + Math.floor(Math.random() * 7),
+        views: item.views + Math.floor(Math.random() * 33),
+        comments: item.comments + Math.floor(Math.random() * 3)
+      }));
     }
 
-    function init() {
-      state.issues = normalizeIssues(window.ISSUE_THREADS || []);
-      state.labelCounts = collectLabelCounts(state.issues);
-      renderStatusChips();
-      renderLabelFilter();
-      applyFilter();
+    function startRealtimeLoop() {
+      setInterval(() => {
+        tickClock();
+        state.dcTopics = simulateRealtimeBump(state.dcTopics);
+        state.redditTopics = simulateRealtimeBump(state.redditTopics);
+        renderCards(state.dcTopics, "dcCards", "디시 HIT");
+        renderCards(state.redditTopics, "redditCards", "Reddit");
+      }, 7000);
+    }
+
+    async function init() {
+      tickClock();
+      setInterval(tickClock, 1000);
+
+      try {
+        const [dc, reddit] = await Promise.all([
+          mockWebFetchDcHit(),
+          mockWebFetchRedditTech()
+        ]);
+
+        state.dcTopics = dc.items;
+        state.redditTopics = reddit.items;
+
+        document.getElementById("dcMeta").textContent = `HIT 상위 ${dc.items.length}개 · ${dc.fetchedAt}`;
+        document.getElementById("redditMeta").textContent = `기술 글 ${reddit.items.length}개 · ${reddit.fetchedAt}`;
+
+        document.getElementById("dcFetchLog").textContent = `web_fetch("${dc.source}") -> 200 OK (${dc.fetchedAt})`;
+        document.getElementById("redditFetchLog").textContent = `web_fetch("${reddit.source}") -> 200 OK (${reddit.fetchedAt})`;
+
+        renderCards(state.dcTopics, "dcCards", "디시 HIT");
+        renderCards(state.redditTopics, "redditCards", "Reddit");
+
+        startRealtimeLoop();
+      } catch (error) {
+        document.getElementById("dcCards").innerHTML = '<div class="error">디시 데이터를 불러오는 중 오류가 발생했습니다.</div>';
+        document.getElementById("redditCards").innerHTML = '<div class="error">Reddit 데이터를 불러오는 중 오류가 발생했습니다.</div>';
+      }
     }
 
     init();
