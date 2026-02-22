@@ -1,1140 +1,452 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>lilhwang - 심리테스트 모음 & 무료 온라인 도구 | 가이드/정보 허브 제공</title>
-    <meta name="description" content="포켓몬, 원피스, 귀멸의 칼날, 해리포터, 디즈니 캐릭터 심리테스트와 MBTI 동물 유형 테스트! BMI 계산기, 환율 변환 등 무료 온라인 도구와 실전 활용 가이드를 함께 제공합니다.">
-    <meta name="keywords" content="심리테스트, 포켓몬 테스트, 원피스 캐릭터, 귀멸의 칼날, MBTI 동물, 무료 온라인 도구, 개발자 도구, BMI 계산기, 활용 가이드, 정보 허브">
-    <meta name="author" content="lilhwang">
-    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-    <link rel="canonical" href="https://lilhwang.com/">
-
-    <!-- Additional SEO Meta Tags -->
-    <meta name="language" content="Korean">
-    <meta name="revisit-after" content="7 days">
-    <meta name="rating" content="general">
-    <meta name="distribution" content="global">
-    <meta name="target" content="all">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="MobileOptimized" content="320">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="lilhwang - 심리테스트 모음 & 무료 온라인 도구">
-    <meta property="og:description" content="포켓몬, 원피스, 귀멸의 칼날, MBTI 동물 심리테스트와 다양한 무료 온라인 도구를 즐기세요!">
-    <meta property="og:url" content="https://lilhwang.com/">
-    <meta property="og:image" content="https://lilhwang.com/images/og-default.jpg">
-    <meta property="og:site_name" content="릴황">
-    <meta property="og:locale" content="ko_KR">
-
-    <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="lilhwang - 심리테스트 모음 & 무료 온라인 도구">
-    <meta name="twitter:description" content="포켓몬, 원피스, 귀멸의 칼날, MBTI 동물 심리테스트와 다양한 무료 온라인 도구를 즐기세요!">
-    <meta name="twitter:image" content="https://lilhwang.com/images/og-default.jpg">
-
-    <script>
-        // 테마 설정
-        (function () {
-            try {
-                var saved = localStorage.getItem('theme-preference');
-                var theme = saved || 'light';
-                document.documentElement.setAttribute('data-theme', theme);
-            } catch (e) {
-                document.documentElement.setAttribute('data-theme', 'light');
-            }
-        })();
-    </script>
-
-    <link rel="stylesheet" href="styles.css">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9087208932507444"
-     crossorigin="anonymous"></script>
-
-    <!-- Structured Data (Schema.org JSON-LD) -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebApplication",
-        "name": "lilhwang - 심리테스트 모음 & 무료 온라인 도구",
-        "url": "https://lilhwang.com",
-        "description": "포켓몬, 원피스, 귀멸의 칼날, MBTI 동물 심리테스트와 다양한 무료 온라인 도구를 제공합니다",
-        "applicationCategory": "UtilitiesApplication",
-        "operatingSystem": "Any",
-        "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "KRW"
-        },
-        "author": {
-            "@type": "Person",
-            "name": "릴황 (lilhwang)",
-            "url": "https://lilhwang.com/about.html"
-        },
-        "featureList": [
-            "포켓몬 캐릭터 심리테스트",
-            "원피스 캐릭터 심리테스트",
-            "귀멸의 칼날 캐릭터 심리테스트",
-            "해리포터 기숙사 심리테스트",
-            "디즈니 프린세스 심리테스트",
-            "MBTI 동물 심리테스트",
-            "전생 테스트",
-            "연애 스타일 테스트",
-            "음식 성격 테스트",
-            "BMI 계산기",
-            "환율 변환기",
-            "할일 목록",
-            "부가세 계산기",
-            "IP 주소 확인",
-            "핑 테스트",
-            "날씨 위젯",
-            "암호화폐 시세",
-            "주식 스냅샷",
-            "숫자 맞추기 게임",
-            "가위바위보 게임",
-            "색상 팔레트 생성기",
-            "JSON 포맷터",
-            "Base64 인코더/디코더",
-            "해시 생성기",
-            "타임존 변환",
-            "글쓰기 도우미",
-            "이미지 리사이즈/변환",
-            "단축키 치트시트",
-            "60초 코딩 퀴즈",
-            "코드 타이핑 게임",
-            "순서 클릭 퍼즐",
-            "MBTI 동물 심리테스트"
-        ],
-        "screenshot": "https://lilhwang.com",
-        "inLanguage": "ko-KR"
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CatCat Builder - 개발자 포털</title>
+  <meta
+    name="description"
+    content="CatCat Builder 개발자 포털: 기술 블로그, 개발 도구, 커뮤니티 소식과 최신 글을 한곳에서 확인하세요."
+  />
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f3f6ff;
+      --surface: #ffffff;
+      --surface-2: #eef3ff;
+      --text: #151a2c;
+      --muted: #51607d;
+      --brand: #1f6feb;
+      --brand-2: #08a7a4;
+      --border: #d6def2;
+      --shadow: 0 10px 30px rgba(19, 28, 63, 0.08);
+      --hero-grad: radial-gradient(circle at 15% 10%, #dce9ff 0%, transparent 40%),
+        radial-gradient(circle at 90% 20%, #cff5f1 0%, transparent 36%),
+        linear-gradient(135deg, #f7f9ff 0%, #eff5ff 100%);
     }
-    </script>
 
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "lilhwang.com",
-        "url": "https://lilhwang.com",
-        "founder": {
-            "@type": "Person",
-            "name": "릴황 (lilhwang)"
-        },
-        "contactPoint": {
-            "@type": "ContactPoint",
-            "email": "contact@lilhwang.com",
-            "contactType": "customer support",
-            "availableLanguage": ["Korean"]
-        }
+    [data-theme="dark"] {
+      color-scheme: dark;
+      --bg: #0d1323;
+      --surface: #121b31;
+      --surface-2: #19243f;
+      --text: #ebefff;
+      --muted: #a8b5d7;
+      --brand: #5aa6ff;
+      --brand-2: #20c8b9;
+      --border: #2c3b64;
+      --shadow: 0 14px 36px rgba(0, 0, 0, 0.28);
+      --hero-grad: radial-gradient(circle at 8% 12%, rgba(61, 116, 201, 0.28) 0%, transparent 40%),
+        radial-gradient(circle at 85% 18%, rgba(32, 200, 185, 0.2) 0%, transparent 38%),
+        linear-gradient(145deg, #0f1830 0%, #111b33 100%);
     }
-    </script>
 
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "ItemList",
-        "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "BMI 계산기", "description": "키와 몸무게로 BMI 지수와 건강 상태를 확인하는 무료 계산기" },
-            { "@type": "ListItem", "position": 2, "name": "환율 변환기", "description": "실시간 환율로 주요 통화를 변환하는 무료 도구" },
-            { "@type": "ListItem", "position": 3, "name": "할일 목록", "description": "브라우저에 저장되는 간편한 투두리스트" },
-            { "@type": "ListItem", "position": 4, "name": "부가세 계산기", "description": "공급가액과 부가세를 자동으로 계산하는 무료 도구" },
-            { "@type": "ListItem", "position": 5, "name": "IP 주소 확인", "description": "내 외부 IP 주소와 위치 정보를 확인하는 도구" },
-            { "@type": "ListItem", "position": 6, "name": "핑 테스트", "description": "웹사이트 응답 시간을 측정하는 네트워크 진단 도구" },
-            { "@type": "ListItem", "position": 7, "name": "날씨 위젯", "description": "전 세계 도시의 실시간 날씨 정보 조회" },
-            { "@type": "ListItem", "position": 8, "name": "암호화폐 시세", "description": "비트코인, 이더리움 등 주요 암호화폐 실시간 가격" },
-            { "@type": "ListItem", "position": 9, "name": "주식 스냅샷", "description": "미국/한국 핫 종목을 빠르게 확인하는 주식 정보 위젯" },
-            { "@type": "ListItem", "position": 10, "name": "숫자 맞추기 게임", "description": "재미있는 숫자 추리 게임" },
-            { "@type": "ListItem", "position": 11, "name": "가위바위보", "description": "컴퓨터와 대결하는 가위바위보 게임" },
-            { "@type": "ListItem", "position": 12, "name": "색상 팔레트 생성기", "description": "디자인을 위한 랜덤 색상 팔레트 생성 도구" },
-            { "@type": "ListItem", "position": 13, "name": "JSON 포맷터", "description": "JSON 데이터를 보기 좋게 정렬하거나 압축" },
-            { "@type": "ListItem", "position": 14, "name": "Base64 인코더/디코더", "description": "Base64 문자열을 인코딩/디코딩" },
-            { "@type": "ListItem", "position": 15, "name": "해시 생성기", "description": "다양한 알고리즘으로 텍스트 해시 생성" },
-            { "@type": "ListItem", "position": 16, "name": "타임존 변환", "description": "전 세계 시간대별 날짜 및 시간 변환" },
-            { "@type": "ListItem", "position": 17, "name": "글쓰기 도우미", "description": "글쓰기 아이디어 제안 및 요약" },
-            { "@type": "ListItem", "position": 18, "name": "이미지 리사이즈/변환", "description": "이미지 크기 조절 및 포맷 변환" },
-            { "@type": "ListItem", "position": 19, "name": "단축키 치트시트", "description": "자주 사용하는 프로그램 단축키 모음" },
-            { "@type": "ListItem", "position": 20, "name": "60초 코딩 퀴즈", "description": "코딩 실력 향상을 위한 짧은 퀴즈 게임" },
-            { "@type": "ListItem", "position": 21, "name": "코드 타이핑 게임", "description": "코드 입력 속도와 정확성을 높이는 게임" },
-            { "@type": "ListItem", "position": 22, "name": "순서 클릭 퍼즐", "description": "두뇌 회전을 위한 재미있는 퍼즐 게임" }
-        ]
+    * {
+      box-sizing: border-box;
     }
-    </script>
 
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-            {
-                "@type": "Question",
-                "name": "lilhwang.com의 도구는 무료인가요?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "네. 주요 도구와 테스트는 무료로 이용할 수 있습니다."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "도구 활용 가이드는 어디서 볼 수 있나요?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "정보허브(resource-center.html)와 상세 가이드 페이지에서 확인할 수 있습니다."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "사이트 업데이트 내역은 확인할 수 있나요?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "업데이트 로그(update-log.html)에서 최근 콘텐츠/기능 변경 내역을 확인할 수 있습니다."
-                }
-            }
-        ]
+    body {
+      margin: 0;
+      font-family: "Pretendard", "Noto Sans KR", "Apple SD Gothic Neo", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
     }
-    </script>
+
+    .wrap {
+      width: min(1120px, calc(100% - 2rem));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(8px);
+      background: color-mix(in oklab, var(--bg) 86%, transparent);
+      border-bottom: 1px solid color-mix(in oklab, var(--border) 80%, transparent);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.95rem 0;
+      gap: 0.8rem;
+    }
+
+    .brand {
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      text-decoration: none;
+      color: var(--text);
+      font-size: 1.1rem;
+    }
+
+    .theme-btn {
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 0.45rem 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    main {
+      padding: 1.6rem 0 3.2rem;
+      display: grid;
+      gap: 1.6rem;
+    }
+
+    section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero {
+      padding: 2.8rem;
+      background: var(--hero-grad);
+      border: 1px solid var(--border);
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(1.9rem, 4vw, 3.1rem);
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+    }
+
+    .hero p {
+      margin: 1rem 0 0;
+      max-width: 66ch;
+      color: var(--muted);
+      font-size: 1.04rem;
+    }
+
+    .section-head {
+      padding: 1.2rem 1.4rem 0;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: 1.25rem;
+      letter-spacing: -0.02em;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      padding: 1.2rem 1.4rem 1.5rem;
+    }
+
+    .card {
+      border: 1px solid var(--border);
+      background: var(--surface-2);
+      border-radius: 14px;
+      padding: 1rem;
+    }
+
+    .card h3 {
+      margin: 0;
+      font-size: 1.03rem;
+    }
+
+    .card p {
+      margin: 0.45rem 0 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .posts-wrap {
+      padding: 1.1rem 1.4rem 1.5rem;
+      display: grid;
+      gap: 0.9rem;
+    }
+
+    .post-item {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--surface-2);
+      padding: 0.95rem 1rem;
+    }
+
+    .post-meta {
+      margin: 0;
+      font-size: 0.83rem;
+      color: var(--muted);
+    }
+
+    .post-item h3 {
+      margin: 0.35rem 0 0;
+      font-size: 1.03rem;
+      line-height: 1.35;
+    }
+
+    .post-item p {
+      margin: 0.45rem 0 0;
+      color: var(--muted);
+      font-size: 0.93rem;
+    }
+
+    .loading,
+    .error {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+      padding: 0.6rem 0;
+    }
+
+    .error {
+      color: #d1495b;
+    }
+
+    .newsletter {
+      padding: 1.2rem 1.4rem 1.5rem;
+    }
+
+    .newsletter p {
+      margin: 0.45rem 0 1rem;
+      color: var(--muted);
+    }
+
+    form {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0.7rem;
+    }
+
+    input[type="email"] {
+      border: 1px solid var(--border);
+      border-radius: 11px;
+      background: var(--surface-2);
+      color: var(--text);
+      padding: 0.75rem 0.9rem;
+      font-size: 0.95rem;
+      outline: none;
+    }
+
+    input[type="email"]:focus {
+      border-color: var(--brand);
+    }
+
+    button[type="submit"] {
+      border: 0;
+      border-radius: 11px;
+      background: linear-gradient(120deg, var(--brand), var(--brand-2));
+      color: #fff;
+      font-weight: 700;
+      padding: 0.75rem 1rem;
+      cursor: pointer;
+    }
+
+    .subscribe-msg {
+      margin: 0.75rem 0 0;
+      font-size: 0.9rem;
+      color: var(--muted);
+      min-height: 1.2em;
+    }
+
+    footer {
+      color: var(--muted);
+      font-size: 0.86rem;
+      padding: 0.5rem 0 2.5rem;
+      text-align: center;
+    }
+
+    @media (max-width: 860px) {
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 2rem 1.3rem;
+      }
+
+      form {
+        grid-template-columns: 1fr;
+      }
+
+      button[type="submit"] {
+        justify-self: start;
+      }
+    }
+  </style>
 </head>
 <body>
-    <a class="skip-link" href="#main-content">본문으로 바로가기</a>
-    <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <p class="logo"><a href="index.html">lilhwang<span class="logo-dot">.</span>com</a></p>
-            <div class="header-actions">
-                <nav class="nav" aria-label="주요 메뉴">
-                    <a href="tests.html">심리테스트</a>
-                    <a href="index.html" class="active" aria-current="page">도구</a>
-                    <a href="developer-tools.html">개발자</a>
-                    <a href="blog.html">블로그</a>
-                    <a href="issues.html">이슈</a>
-                    <a href="resource-center.html">정보허브</a>
-                    <a href="update-log.html">업데이트</a>
-                    <a href="editorial-policy.html">편집정책</a>
-                    <a href="templates.html">템플릿</a>
-                    <a href="about.html">소개</a>
-                    <a href="contact.html">연락처</a>
-                </nav>
-                <button class="theme-toggle" id="theme-toggle" type="button" aria-label="다크 모드 전환">
-                    <span class="theme-icon" aria-hidden="true">🌙</span>
-                </button>
-            </div>
-        </div>
-    </header>
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="index.html">CatCat Builder</a>
+      <button class="theme-btn" id="theme-toggle" type="button" aria-label="다크모드 전환">다크모드</button>
+    </div>
+  </header>
 
-    <!-- Hero Section -->
-    <section class="hero-new">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h1 class="hero-title">재미있는 심리테스트 & 무료 온라인 도구 모음</h1>
-                    <p>포켓몬, 원피스, 귀멸의 칼날 캐릭터 테스트부터 MBTI 동물 유형까지!<br>다양한 심리테스트와 유용한 온라인 도구를 무료로 즐기세요.</p>
-                </div>
-                <div class="trust-badges">
-                    <span class="badge">100% 무료</span>
-                    <span class="badge">설치 불필요</span>
-                    <span class="badge">9종 심리테스트</span>
-                    <span class="badge">20+ 도구</span>
-                </div>
-                <div class="hero-search">
-                    <label for="tool-search">도구 검색</label>
-                    <div class="hero-search-row">
-                        <input type="text" id="tool-search" placeholder="예: BMI, 환율, 날씨, JSON">
-                        <span id="tool-search-count" class="small-note"></span>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <main class="wrap">
+    <section class="hero" aria-labelledby="hero-title">
+      <h1 id="hero-title">CatCat Builder - 개발자 포털</h1>
+      <p>개발 문서, 실전 도구, 커뮤니티 인사이트를 하나의 허브에서 연결해 더 빠르게 빌드하고 더 안정적으로 배포하세요.</p>
     </section>
 
-    <!-- Main Content Area -->
-    <main class="main-container" id="main-content">
-        <div class="container">
-            <!-- Tab Navigation -->
-            <nav class="tab-navigation" aria-label="홈 콘텐츠 탭">
-                <button class="tab-btn active" data-tab="tests">심리테스트</button>
-                <button class="tab-btn" data-tab="tools">실용 도구</button>
-                <button class="tab-btn" data-tab="widgets">인터랙티브 위젯</button>
-                <button class="tab-btn" data-tab="games">미니 게임</button>
-            </nav>
+    <section aria-labelledby="services-title">
+      <div class="section-head">
+        <h2 id="services-title">서비스</h2>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <h3>기술 블로그</h3>
+          <p>최신 기술 트렌드와 실무 회고를 읽고 아키텍처와 개발 습관을 개선합니다.</p>
+        </article>
+        <article class="card">
+          <h3>개발 도구</h3>
+          <p>일상 개발에 바로 쓰는 유틸리티와 자동화 도구를 한 곳에서 빠르게 실행합니다.</p>
+        </article>
+        <article class="card">
+          <h3>커뮤니티</h3>
+          <p>토론, Q&A, 추천 아티클을 통해 팀 밖의 인사이트와 문제 해결 패턴을 공유합니다.</p>
+        </article>
+      </div>
+    </section>
 
-            <div class="content-wrapper">
-                <!-- Main Tools Grid -->
-                <div class="main-content">
-                    <!-- 심리테스트 Section -->
-                    <div class="tab-content active" id="tests-content">
-                        <h2 class="section-heading">심리테스트 - 나와 닮은 캐릭터를 찾아보세요!</h2>
-                        <p class="section-description">포켓몬, 원피스, 귀멸의 칼날, 해리포터, 디즈니 캐릭터 테스트부터 MBTI 동물 유형, 전생, 연애 스타일까지! 다양한 심리테스트를 무료로 즐기세요.</p>
-                        <div class="tools-grid">
-                            <!-- MBTI Animal Test -->
-                            <div class="tool-card" data-title="MBTI 동물 테스트" data-keywords="MBTI,심리테스트,동물,성격">
-                                <div class="tool-header">
-                                    <span class="tool-icon">🐾</span>
-                                    <h3 class="tool-title">나의 동물 유형 테스트</h3>
-                                    <span class="tool-tag tag-hot">HOT</span>
-                                </div>
-                                <div class="tool-body">
-                                    <p class="game-info">20가지 질문으로 알아보는 MBTI 동물 유형! 48종 동물 중 나와 꼭 닮은 동물은?</p>
-                                    <div class="test-meta">📝 20문항 · ⏱ 약 5분 · 🎯 48가지 결과</div>
-                                    <a class="btn btn-primary" href="mbti.html" style="display:inline-block;text-decoration:none;text-align:center;">테스트 시작하기</a>
-                                </div>
-                            </div>
+    <section aria-labelledby="latest-posts-title">
+      <div class="section-head">
+        <h2 id="latest-posts-title">최신 글 3개</h2>
+      </div>
+      <div class="posts-wrap" id="posts-container">
+        <p class="loading">최신 글을 불러오는 중입니다...</p>
+      </div>
+    </section>
 
-                            <!-- Pokemon Test -->
-                            <div class="tool-card" data-title="포켓몬 테스트" data-keywords="포켓몬,피카츄,심리테스트">
-                                <div class="tool-header">
-                                    <span class="tool-icon">⚡</span>
-                                    <h3 class="tool-title">나는 어떤 포켓몬일까?</h3>
-                                    <span class="tool-tag tag-hot">HOT</span>
-                                </div>
-                                <div class="tool-body">
-                                    <p class="game-info">12가지 질문으로 알아보는 나의 포켓몬! 피카츄, 이브이, 잠만보... 누가 나올까?</p>
-                                    <div class="test-meta">📝 12문항 · ⏱ 약 3분 · 🎯 10가지 결과</div>
-                                    <a class="btn btn-primary" href="test.html?t=pokemon" style="display:inline-block;text-decoration:none;text-align:center;">테스트 시작하기</a>
-                                </div>
-                            </div>
+    <section aria-labelledby="newsletter-title">
+      <div class="newsletter">
+        <h2 id="newsletter-title">뉴스레터 구독</h2>
+        <p>주요 업데이트와 새 글 소식을 메일로 받아보세요.</p>
+        <form id="newsletter-form">
+          <label for="email" class="sr-only" style="position:absolute;left:-9999px;">이메일 주소</label>
+          <input id="email" name="email" type="email" placeholder="you@example.com" required />
+          <button type="submit">구독하기</button>
+        </form>
+        <p id="subscribe-message" class="subscribe-msg" aria-live="polite"></p>
+      </div>
+    </section>
+  </main>
 
-                            <!-- Demon Slayer Test -->
-                            <div class="tool-card" data-title="귀멸의 칼날 테스트" data-keywords="귀멸의칼날,탄지로,심리테스트">
-                                <div class="tool-header">
-                                    <span class="tool-icon">🔥</span>
-                                    <h3 class="tool-title">귀멸의 칼날 캐릭터 테스트</h3>
-                                    <span class="tool-tag tag-hot">HOT</span>
-                                </div>
-                                <div class="tool-body">
-                                    <p class="game-info">12가지 질문으로 알아보는 나의 귀살대 캐릭터! 나는 어떤 호흡을 사용할까?</p>
-                                    <div class="test-meta">📝 12문항 · ⏱ 약 3분 · 🎯 10가지 결과</div>
-                                    <a class="btn btn-primary" href="test.html?t=demon-slayer" style="display:inline-block;text-decoration:none;text-align:center;">테스트 시작하기</a>
-                                </div>
-                            </div>
+  <footer>
+    © 2026 CatCat Builder. All rights reserved.
+  </footer>
 
-                            <!-- One Piece Test -->
-                            <div class="tool-card" data-title="원피스 테스트" data-keywords="원피스,루피,심리테스트">
-                                <div class="tool-header">
-                                    <span class="tool-icon">🏴‍☠️</span>
-                                    <h3 class="tool-title">원피스 캐릭터 테스트</h3>
-                                    <span class="tool-tag tag-hot">HOT</span>
-                                </div>
-                                <div class="tool-body">
-                                    <p class="game-info">12가지 질문으로 알아보는 나의 밀짚모자 해적단 캐릭터!</p>
-                                    <div class="test-meta">📝 12문항 · ⏱ 약 3분 · 🎯 10가지 결과</div>
-                                    <a class="btn btn-primary" href="test.html?t=onepiece" style="display:inline-block;text-decoration:none;text-align:center;">테스트 시작하기</a>
-                                </div>
-                            </div>
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var button = document.getElementById('theme-toggle');
+      var savedTheme = localStorage.getItem('catcat-theme');
+      var initialTheme = savedTheme || 'light';
 
-                            <!-- Harry Potter Test -->
-                            <div class="tool-card" data-title="해리포터 기숙사 테스트" data-keywords="해리포터,호그와트,기숙사,심리테스트">
-                                <div class="tool-header">
-                                    <span class="tool-icon">🧙</span>
-                                    <h3 class="tool-title">해리포터 기숙사 테스트</h3>
-                                    <span class="tool-tag" style="background:#8e44ad;">마법</span>
-                                </div>
-                                <div class="tool-body">
-                                    <p class="game-info">마법의 모자가 알려주는 나의 호그와트 기숙사! 그리핀도르? 슬리데린?</p>
-                                    <div class="test-meta">📝 12문항 · ⏱ 약 3분 · 🎯 4가지 결과</div>
-                                    <a class="btn btn-primary" href="test.html?t=harry-potter" style="display:inline-block;text-decoration:none;text-align:center;">테스트 시작하기</a>
-                                </div>
-                            </div>
+      root.setAttribute('data-theme', initialTheme);
+      button.textContent = initialTheme === 'dark' ? '라이트모드' : '다크모드';
 
-                            <!-- Disney Test -->
-                            <div class="tool-card" data-title="디즈니 프린세스 테스트" data-keywords="디즈니,프린세스,엘사,심리테스트">
-                                <div class="tool-header">
-                                    <span class="tool-icon">👑</span>
-                                    <h3 class="tool-title">디즈니 프린세스 테스트</h3>
-                                    <span class="tool-tag" style="background:#e84393;">프린세스</span>
-                                </div>
-                                <div class="tool-body">
-                                    <p class="game-info">나는 어떤 디즈니 프린세스일까? 엘사, 라푼젤, 뮬란, 모아나 중 누구?</p>
-                                    <div class="test-meta">📝 12문항 · ⏱ 약 3분 · 🎯 10가지 결과</div>
-                                    <a class="btn btn-primary" href="test.html?t=disney" style="display:inline-block;text-decoration:none;text-align:center;">테스트 시작하기</a>
-                                </div>
-                            </div>
+      button.addEventListener('click', function () {
+        var current = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+        var next = current === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('catcat-theme', next);
+        button.textContent = next === 'dark' ? '라이트모드' : '다크모드';
+      });
+    })();
 
-                            <!-- Past Life Test -->
-                            <div class="tool-card" data-title="전생 테스트" data-keywords="전생,과거,심리테스트">
-                                <div class="tool-header">
-                                    <span class="tool-icon">🔮</span>
-                                    <h3 class="tool-title">나의 전생 테스트</h3>
-                                    <span class="tool-tag" style="background:#6c5ce7;">전생</span>
-                                </div>
-                                <div class="tool-body">
-                                    <p class="game-info">전생에 나는 기사? 마법사? 해적? 숨겨진 과거의 나를 찾아보세요!</p>
-                                    <div class="test-meta">📝 10문항 · ⏱ 약 3분 · 🎯 10가지 결과</div>
-                                    <a class="btn btn-primary" href="test.html?t=past-life" style="display:inline-block;text-decoration:none;text-align:center;">테스트 시작하기</a>
-                                </div>
-                            </div>
+    (function () {
+      var container = document.getElementById('posts-container');
 
-                            <!-- Love Style Test -->
-                            <div class="tool-card" data-title="연애 스타일 테스트" data-keywords="연애,사랑,심리테스트">
-                                <div class="tool-header">
-                                    <span class="tool-icon">💕</span>
-                                    <h3 class="tool-title">나의 연애 스타일 테스트</h3>
-                                    <span class="tool-tag" style="background:#fd79a8;">연애</span>
-                                </div>
-                                <div class="tool-body">
-                                    <p class="game-info">열정파? 츤데레? 밀당 고수? 나의 진짜 연애 스타일을 알아보세요!</p>
-                                    <div class="test-meta">📝 12문항 · ⏱ 약 3분 · 🎯 8가지 결과</div>
-                                    <a class="btn btn-primary" href="test.html?t=love-style" style="display:inline-block;text-decoration:none;text-align:center;">테스트 시작하기</a>
-                                </div>
-                            </div>
+      function formatDate(dateString) {
+        var date = new Date(dateString);
+        if (Number.isNaN(date.getTime())) {
+          return dateString || '날짜 미상';
+        }
+        return new Intl.DateTimeFormat('ko-KR', {
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit'
+        }).format(date);
+      }
 
-                            <!-- Food Personality Test -->
-                            <div class="tool-card" data-title="음식 성격 테스트" data-keywords="음식,성격,심리테스트">
-                                <div class="tool-header">
-                                    <span class="tool-icon">🍜</span>
-                                    <h3 class="tool-title">나를 음식으로 표현하면?</h3>
-                                    <span class="tool-tag" style="background:#e17055;">음식</span>
-                                </div>
-                                <div class="tool-body">
-                                    <p class="game-info">떡볶이? 치킨? 스시? 내 성격을 음식으로 알아보세요!</p>
-                                    <div class="test-meta">📝 10문항 · ⏱ 약 3분 · 🎯 8가지 결과</div>
-                                    <a class="btn btn-primary" href="test.html?t=food-personality" style="display:inline-block;text-decoration:none;text-align:center;">테스트 시작하기</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div style="text-align:center;margin:24px 0;">
-                            <a href="tests.html" class="btn btn-secondary" style="display:inline-block;text-decoration:none;">전체 심리테스트 보기 →</a>
-                        </div>
-                    </div>
+      function toList(data) {
+        if (Array.isArray(data)) return data;
+        if (data && Array.isArray(data.posts)) return data.posts;
+        return [];
+      }
 
-                    <!-- Tools Section -->
-                    <div class="tab-content" id="tools-content">
-                        <h2 class="section-heading">실용 도구 - 무료 온라인 계산기 및 생활 도구</h2>
-                        <p class="section-description">BMI 계산기, 환율 변환기, 부가세 계산기, IP 주소 확인, 핑 테스트, 할일 목록 등 일상생활에 필요한 유용한 도구를 무료로 이용하세요.</p>
-                        <div class="tools-grid">
-                            <!-- Resource Center -->
-                            <div class="tool-card" data-title="도구 활용 정보 허브" data-keywords="가이드,정보,자료,튜토리얼,체크리스트,FAQ">
-                                <div class="tool-header">
-                                    <span class="tool-icon">📚</span>
-                                    <h3 class="tool-title">도구 활용 정보 허브</h3>
-                                    <span class="tool-tag tag-hot">NEW</span>
-                                </div>
-                                <div class="tool-body">
-                                    <p class="game-info">도구를 더 잘 쓰기 위한 실전 가이드, 체크리스트, 추천 워크플로우, FAQ를 한 페이지에서 확인하세요.</p>
-                                    <div class="test-meta">🧭 실전 활용법 · ✅ 체크리스트 · ❓ 자주 묻는 질문</div>
-                                    <a class="btn btn-primary" href="resource-center.html" style="display:inline-block;text-decoration:none;text-align:center;">정보 허브 보기</a>
-                                </div>
-                            </div>
+      fetch('posts.json')
+        .then(function (res) {
+          if (!res.ok) {
+            throw new Error('posts.json 로드 실패 (' + res.status + ')');
+          }
+          return res.json();
+        })
+        .then(function (data) {
+          var posts = toList(data)
+            .slice()
+            .sort(function (a, b) {
+              var da = new Date(a.date || 0).getTime() || 0;
+              var db = new Date(b.date || 0).getTime() || 0;
+              if (db !== da) return db - da;
+              return (b.id || 0) - (a.id || 0);
+            })
+            .slice(0, 3);
 
-                            <!-- BMI Calculator -->
-                            <div class="tool-card" data-title="BMI 계산기" data-keywords="bmi,건강,체질량,체중">
-                                <div class="tool-header">
-                                    <span class="tool-icon">⚖️</span>
-                                    <h3 class="tool-title">BMI 계산기</h3>
-                                    <span class="tool-tag">생활</span>
-                                </div>
-                                <div class="tool-body">
-                                    <div class="input-group">
-                                        <label for="height">키 (cm)</label>
-                                        <input type="number" id="height" placeholder="170">
-                                    </div>
-                                    <div class="input-group">
-                                        <label for="weight">몸무게 (kg)</label>
-                                        <input type="number" id="weight" placeholder="65">
-                                    </div>
-                                    <button class="btn btn-primary" id="calc-bmi">계산하기</button>
-                                    <div id="bmi-result" class="result-box"></div>
-                                </div>
-                            </div>
+          if (!posts.length) {
+            container.innerHTML = '<p class="loading">표시할 최신 글이 없습니다.</p>';
+            return;
+          }
 
-                            <!-- Currency Converter -->
-                            <div class="tool-card" data-title="환율 변환기" data-keywords="환율,달러,유로,엔화,파운드">
-                                <div class="tool-header">
-                                    <span class="tool-icon">💱</span>
-                                    <h3 class="tool-title">환율 변환기</h3>
-                                    <span class="tool-tag">금융</span>
-                                </div>
-                                <div class="tool-body">
-                                    <div class="input-group">
-                                        <label for="amount">금액</label>
-                                        <input type="number" id="amount" placeholder="100">
-                                    </div>
-                                    <div class="input-group">
-                                        <label for="from-currency">보낼 통화</label>
-                                        <select id="from-currency">
-                                            <option value="USD">USD - 미국 달러</option>
-                                            <option value="EUR">EUR - 유로</option>
-                                            <option value="JPY">JPY - 일본 엔</option>
-                                            <option value="GBP">GBP - 영국 파운드</option>
-                                            <option value="KRW" selected>KRW - 한국 원</option>
-                                        </select>
-                                    </div>
-                                    <div class="input-group">
-                                        <label for="to-currency">받을 통화</label>
-                                        <select id="to-currency">
-                                            <option value="USD" selected>USD - 미국 달러</option>
-                                            <option value="EUR">EUR - 유로</option>
-                                            <option value="JPY">JPY - 일본 엔</option>
-                                            <option value="GBP">GBP - 영국 파운드</option>
-                                            <option value="KRW">KRW - 한국 원</option>
-                                        </select>
-                                    </div>
-                                    <button class="btn btn-primary" id="convert-currency">변환하기</button>
-                                    <div id="currency-result" class="result-box"></div>
-                                </div>
-                            </div>
+          container.innerHTML = posts
+            .map(function (post) {
+              var title = post.title || '제목 없음';
+              var excerpt = post.excerpt || '요약 정보가 없습니다.';
+              var date = formatDate(post.date);
+              var category = post.category || 'general';
 
-                            <!-- Todo List -->
-                            <div class="tool-card" data-title="할일 목록" data-keywords="todo,할일,일정,체크리스트">
-                                <div class="tool-header">
-                                    <span class="tool-icon">📝</span>
-                                    <h3 class="tool-title">할일 목록</h3>
-                                    <span class="tool-tag">생산성</span>
-                                </div>
-                                <div class="tool-body">
-                                    <div class="input-group">
-                                        <input type="text" id="todo-input" placeholder="새로운 할일 추가...">
-                                        <button class="btn btn-primary" id="add-todo">추가</button>
-                                    </div>
-                                    <ul id="todo-list" class="todo-list"></ul>
-                                </div>
-                            </div>
+              return [
+                '<article class="post-item">',
+                '<p class="post-meta">' + category + ' · ' + date + '</p>',
+                '<h3>' + escapeHtml(title) + '</h3>',
+                '<p>' + escapeHtml(excerpt) + '</p>',
+                '</article>'
+              ].join('');
+            })
+            .join('');
+        })
+        .catch(function (err) {
+          container.innerHTML = '<p class="error">최신 글을 불러오지 못했습니다. ' + escapeHtml(err.message) + '</p>';
+        });
 
-                            <!-- VAT Calculator -->
-                            <div class="tool-card" data-title="부가세 계산기" data-keywords="부가세,vat,세금,공급가액">
-                                <div class="tool-header">
-                                    <span class="tool-icon">🧾</span>
-                                    <h3 class="tool-title">부가세 계산기</h3>
-                                    <span class="tool-tag">금융</span>
-                                </div>
-                                <div class="tool-body">
-                                    <div class="input-group">
-                                        <label>계산 방식</label>
-                                        <select id="vat-mode">
-                                            <option value="add">공급가액 → 부가세 포함</option>
-                                            <option value="subtract">총액 → 공급가액 분리</option>
-                                        </select>
-                                    </div>
-                                    <div class="input-group">
-                                        <label for="vat-amount">금액 (원)</label>
-                                        <input type="number" id="vat-amount" placeholder="100000">
-                                    </div>
-                                    <button class="btn btn-primary" id="calc-vat">계산하기</button>
-                                    <div id="vat-result" class="result-box"></div>
-                                </div>
-                            </div>
+      function escapeHtml(text) {
+        return String(text)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+      }
+    })();
 
-                            <!-- IP Address Checker -->
-                            <div class="tool-card" data-title="내 IP 주소 확인" data-keywords="ip,네트워크,아이피,주소">
-                                <div class="tool-header">
-                                    <span class="tool-icon">🌐</span>
-                                    <h3 class="tool-title">내 IP 주소 확인</h3>
-                                    <span class="tool-tag">네트워크</span>
-                                </div>
-                                <div class="tool-body">
-                                    <button class="btn btn-primary" id="check-ip">IP 조회하기</button>
-                                    <div id="ip-result" class="result-box ip-info"></div>
-                                </div>
-                            </div>
+    (function () {
+      var form = document.getElementById('newsletter-form');
+      var message = document.getElementById('subscribe-message');
 
-                            <!-- Ping Test -->
-                            <div class="tool-card" data-title="핑 테스트" data-keywords="핑,응답속도,네트워크,테스트">
-                                <div class="tool-header">
-                                    <span class="tool-icon">📡</span>
-                                    <h3 class="tool-title">핑 테스트</h3>
-                                    <span class="tool-tag">네트워크</span>
-                                </div>
-                                <div class="tool-body">
-                                    <div class="input-group">
-                                        <label for="ping-url">테스트할 URL (선택)</label>
-                                        <input type="text" id="ping-url" placeholder="https://google.com">
-                                    </div>
-                                    <button class="btn btn-primary" id="start-ping">핑 테스트 시작</button>
-                                    <div id="ping-result" class="result-box ping-results"></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <h3 class="subsection-title">개발자 유틸리티</h3>
-                        <div class="tools-grid">
-                            <!-- JSON Formatter -->
-                            <div class="tool-card" data-title="JSON 포맷터" data-keywords="json,포맷터,정렬,미니파이">
-                                <div class="tool-header">
-                                    <span class="tool-icon">🧩</span>
-                                    <h3 class="tool-title">JSON 포맷터</h3>
-                                    <span class="tool-tag">개발</span>
-                                </div>
-                                <div class="tool-body">
-                                    <textarea id="json-input" class="tool-textarea" rows="6" placeholder="JSON을 붙여넣으세요"></textarea>
-                                    <div class="tool-actions">
-                                        <button class="btn btn-primary" id="json-format">포맷</button>
-                                        <button class="btn btn-secondary" id="json-minify">미니파이</button>
-                                        <button class="btn btn-secondary" id="json-copy">복사</button>
-                                        <a class="btn btn-secondary" href="json-formatter.html">전용 페이지</a>
-                                    </div>
-                                    <pre id="json-output" class="tool-output"></pre>
-                                </div>
-                            </div>
-
-                            <!-- Base64 Encoder/Decoder -->
-                            <div class="tool-card" data-title="Base64 인코더/디코더" data-keywords="base64,인코드,디코드,문자열">
-                                <div class="tool-header">
-                                    <span class="tool-icon">🔐</span>
-                                    <h3 class="tool-title">Base64 인코더/디코더</h3>
-                                    <span class="tool-tag">개발</span>
-                                </div>
-                                <div class="tool-body">
-                                    <textarea id="base64-input" class="tool-textarea" rows="5" placeholder="텍스트 입력"></textarea>
-                                    <div class="tool-actions">
-                                        <button class="btn btn-primary" id="base64-encode">인코드</button>
-                                        <button class="btn btn-secondary" id="base64-decode">디코드</button>
-                                        <button class="btn btn-secondary" id="base64-copy">복사</button>
-                                        <a class="btn btn-secondary" href="base64.html">전용 페이지</a>
-                                    </div>
-                                    <pre id="base64-output" class="tool-output"></pre>
-                                </div>
-                            </div>
-
-                            <!-- Hash Generator -->
-                            <div class="tool-card" data-title="해시 생성기" data-keywords="hash,sha-256,sha-1,암호">
-                                <div class="tool-header">
-                                    <span class="tool-icon">#️⃣</span>
-                                    <h3 class="tool-title">해시 생성기</h3>
-                                    <span class="tool-tag">보안</span>
-                                </div>
-                                <div class="tool-body">
-                                    <div class="input-group">
-                                        <label for="hash-algo">알고리즘</label>
-                                        <select id="hash-algo">
-                                            <option value="SHA-256">SHA-256</option>
-                                            <option value="SHA-1">SHA-1</option>
-                                        </select>
-                                    </div>
-                                    <textarea id="hash-input" class="tool-textarea" rows="4" placeholder="해시할 텍스트 입력"></textarea>
-                                    <div class="tool-actions">
-                                        <button class="btn btn-primary" id="hash-generate">해시 생성</button>
-                                        <a class="btn btn-secondary" href="hash.html">전용 페이지</a>
-                                    </div>
-                                    <pre id="hash-output" class="tool-output"></pre>
-                                </div>
-                            </div>
-
-                            <!-- Timezone Converter -->
-                            <div class="tool-card" data-title="타임존 변환" data-keywords="timezone,utc,시간,변환">
-                                <div class="tool-header">
-                                    <span class="tool-icon">🕒</span>
-                                    <h3 class="tool-title">타임존 변환</h3>
-                                    <span class="tool-tag">개발</span>
-                                </div>
-                                <div class="tool-body">
-                                    <div class="input-group">
-                                        <label for="tz-input">날짜/시간 (로컬 기준)</label>
-                                        <input type="datetime-local" id="tz-input">
-                                    </div>
-                                    <div class="input-group">
-                                        <label for="tz-target">표시 타임존</label>
-                                        <select id="tz-target">
-                                            <option value="Asia/Seoul">Asia/Seoul</option>
-                                            <option value="UTC">UTC</option>
-                                            <option value="America/New_York">America/New_York</option>
-                                            <option value="Europe/London">Europe/London</option>
-                                            <option value="Asia/Tokyo">Asia/Tokyo</option>
-                                            <option value="Australia/Sydney">Australia/Sydney</option>
-                                        </select>
-                                    </div>
-                                    <div class="tool-actions">
-                                        <button class="btn btn-primary" id="tz-convert">변환</button>
-                                        <a class="btn btn-secondary" href="timezone.html">전용 페이지</a>
-                                    </div>
-                                    <div id="tz-result" class="result-box"></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <h3 class="subsection-title">콘텐츠 & 이미지 도구</h3>
-                        <div class="tools-grid">
-                            <!-- Writing Helper -->
-                            <div class="tool-card" data-title="글쓰기 도우미" data-keywords="글쓰기,요약,제목,블로그">
-                                <div class="tool-header">
-                                    <span class="tool-icon">✍️</span>
-                                    <h3 class="tool-title">글쓰기 도우미</h3>
-                                    <span class="tool-tag">콘텐츠</span>
-                                </div>
-                                <div class="tool-body">
-                                    <div class="input-group">
-                                        <label for="title-keywords">키워드 (쉼표로 구분)</label>
-                                        <input type="text" id="title-keywords" placeholder="예: React, 성능, 최적화">
-                                    </div>
-                                    <div class="tool-actions">
-                                        <button class="btn btn-primary" id="generate-titles">제목 아이디어 생성</button>
-                                        <a class="btn btn-secondary" href="writing-helper.html">전용 페이지</a>
-                                    </div>
-                                    <ul id="title-suggestions" class="tool-list"></ul>
-                                    <textarea id="summary-input" class="tool-textarea" rows="5" placeholder="요약할 글을 붙여넣으세요"></textarea>
-                                    <button class="btn btn-secondary" id="generate-summary">3문장 요약</button>
-                                    <pre id="summary-output" class="tool-output"></pre>
-                                </div>
-                            </div>
-
-                            <!-- Image Tool -->
-                            <div class="tool-card" data-title="이미지 리사이즈/변환" data-keywords="이미지,webp,리사이즈,압축">
-                                <div class="tool-header">
-                                    <span class="tool-icon">🖼️</span>
-                                    <h3 class="tool-title">이미지 리사이즈/변환</h3>
-                                    <span class="tool-tag">디자인</span>
-                                </div>
-                                <div class="tool-body">
-                                    <div class="input-group">
-                                        <label for="image-input">이미지 파일</label>
-                                        <input type="file" id="image-input" accept="image/*">
-                                    </div>
-                                    <div class="input-row">
-                                        <div class="input-group">
-                                            <label for="image-width">가로(px)</label>
-                                            <input type="number" id="image-width" placeholder="예: 1200">
-                                        </div>
-                                        <div class="input-group">
-                                            <label for="image-format">포맷</label>
-                                            <select id="image-format">
-                                                <option value="image/jpeg">JPEG</option>
-                                                <option value="image/webp">WebP</option>
-                                                <option value="image/png">PNG</option>
-                                            </select>
-                                        </div>
-                                        <div class="input-group">
-                                            <label for="image-quality">품질(0.5~0.95)</label>
-                                            <input type="number" id="image-quality" step="0.05" min="0.5" max="0.95" value="0.85">
-                                        </div>
-                                    </div>
-                                    <div class="tool-actions">
-                                        <button class="btn btn-primary" id="process-image">변환하기</button>
-                                        <a class="btn btn-secondary" href="image-tool.html">전용 페이지</a>
-                                    </div>
-                                    <div id="image-result" class="result-box image-result"></div>
-                                </div>
-                            </div>
-
-                            <!-- Cheat Sheet -->
-                            <div class="tool-card" data-title="단축키 치트시트" data-keywords="단축키,치트시트,git,vscode">
-                                <div class="tool-header">
-                                    <span class="tool-icon">⌨️</span>
-                                    <h3 class="tool-title">단축키 치트시트</h3>
-                                    <span class="tool-tag">개발</span>
-                                </div>
-                                <div class="tool-body">
-                                    <div class="input-group">
-                                        <label for="cheatsheet-search">검색</label>
-                                        <input type="text" id="cheatsheet-search" placeholder="예: git, vscode, chrome">
-                                    </div>
-                                    <div id="cheatsheet-count" class="tool-meta"></div>
-                                    <ul id="cheatsheet-list" class="tool-list"></ul>
-                                    <a class="btn btn-secondary" href="cheatsheet.html">전용 페이지</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Widgets Section -->
-                    <div class="tab-content" id="widgets-content">
-                        <h2 class="section-heading">인터랙티브 위젯 - 실시간 정보 & 유틸리티</h2>
-                        <p class="section-description">비밀번호 생성, QR코드, D-Day 계산, 단위 변환 등 자주 쓰는 유틸리티와 실시간 정보를 확인하세요.</p>
-                        <div class="tools-grid">
-                            <!-- Password Generator -->
-                            <div class="tool-card" data-title="비밀번호 생성기" data-keywords="비밀번호,password,generator,보안,랜덤">
-                                <div class="tool-header">
-                                    <span class="tool-icon">🔐</span>
-                                    <h3 class="tool-title">비밀번호 생성기</h3>
-                                    <span class="tool-tag">유틸</span>
-                                </div>
-                                <div class="tool-body">
-                                    <div class="input-group">
-                                        <label for="pw-length">길이: <span id="pw-length-val">16</span>자</label>
-                                        <input type="range" id="pw-length" min="8" max="64" value="16">
-                                    </div>
-                                    <div class="checkbox-group">
-                                        <label><input type="checkbox" id="pw-upper" checked> 대문자</label>
-                                        <label><input type="checkbox" id="pw-lower" checked> 소문자</label>
-                                        <label><input type="checkbox" id="pw-numbers" checked> 숫자</label>
-                                        <label><input type="checkbox" id="pw-symbols" checked> 특수문자</label>
-                                    </div>
-                                    <button class="btn btn-primary" id="generate-pw">생성</button>
-                                    <div id="pw-result" class="result-box"></div>
-                                </div>
-                            </div>
-
-                            <!-- QR Code Generator -->
-                            <div class="tool-card" data-title="QR코드 생성기" data-keywords="QR,qrcode,큐알,링크,URL">
-                                <div class="tool-header">
-                                    <span class="tool-icon">📱</span>
-                                    <h3 class="tool-title">QR코드 생성기</h3>
-                                    <span class="tool-tag">유틸</span>
-                                </div>
-                                <div class="tool-body">
-                                    <div class="input-group">
-                                        <label for="qr-text">텍스트 또는 URL</label>
-                                        <input type="text" id="qr-text" placeholder="https://lilhwang.com">
-                                    </div>
-                                    <button class="btn btn-primary" id="generate-qr">QR코드 생성</button>
-                                    <div id="qr-result" class="result-box" style="text-align:center;"></div>
-                                </div>
-                            </div>
-
-                            <!-- D-Day Counter -->
-                            <div class="tool-card" data-title="D-Day 계산기" data-keywords="디데이,날짜,기념일,카운트다운,dday">
-                                <div class="tool-header">
-                                    <span class="tool-icon">📅</span>
-                                    <h3 class="tool-title">D-Day 계산기</h3>
-                                    <span class="tool-tag">유틸</span>
-                                </div>
-                                <div class="tool-body">
-                                    <div class="input-group">
-                                        <label for="dday-date">목표 날짜</label>
-                                        <input type="date" id="dday-date">
-                                    </div>
-                                    <div class="input-group">
-                                        <label for="dday-name">이벤트 이름 (선택)</label>
-                                        <input type="text" id="dday-name" placeholder="예: 시험일">
-                                    </div>
-                                    <button class="btn btn-primary" id="calc-dday">계산</button>
-                                    <div id="dday-result" class="result-box"></div>
-                                </div>
-                            </div>
-
-                            <!-- Unit Converter -->
-                            <div class="tool-card" data-title="단위 변환기" data-keywords="단위,변환,길이,무게,온도,converter">
-                                <div class="tool-header">
-                                    <span class="tool-icon">🔄</span>
-                                    <h3 class="tool-title">단위 변환기</h3>
-                                    <span class="tool-tag">유틸</span>
-                                </div>
-                                <div class="tool-body">
-                                    <div class="input-group">
-                                        <label for="unit-type">변환 유형</label>
-                                        <select id="unit-type">
-                                            <option value="length">길이</option>
-                                            <option value="weight">무게</option>
-                                            <option value="temperature">온도</option>
-                                        </select>
-                                    </div>
-                                    <div class="input-group">
-                                        <label for="unit-from">변환 전</label>
-                                        <div style="display:flex;gap:8px;">
-                                            <input type="number" id="unit-value" placeholder="값 입력" style="flex:1;">
-                                            <select id="unit-from" style="flex:1;"></select>
-                                        </div>
-                                    </div>
-                                    <div class="input-group">
-                                        <label for="unit-to">변환 후</label>
-                                        <select id="unit-to"></select>
-                                    </div>
-                                    <button class="btn btn-primary" id="convert-unit">변환</button>
-                                    <div id="unit-result" class="result-box"></div>
-                                </div>
-                            </div>
-
-                            <!-- Weather Widget -->
-                            <div class="tool-card" data-title="날씨 위젯" data-keywords="날씨,기온,도시,forecast">
-                                <div class="tool-header">
-                                    <span class="tool-icon">⛅</span>
-                                    <h3 class="tool-title">날씨 위젯</h3>
-                                    <span class="tool-tag">위젯</span>
-                                </div>
-                                <div class="tool-body">
-                                    <div class="input-group">
-                                        <label for="city">도시명</label>
-                                        <input type="text" id="city" placeholder="Seoul">
-                                    </div>
-                                    <button class="btn btn-primary" id="get-weather">날씨 조회</button>
-                                    <div id="weather-result" class="result-box"></div>
-                                </div>
-                            </div>
-
-                            <!-- Crypto Prices -->
-                            <div class="tool-card" data-title="암호화폐 시세" data-keywords="crypto,비트코인,이더리움,코인">
-                                <div class="tool-header">
-                                    <span class="tool-icon">₿</span>
-                                    <h3 class="tool-title">암호화폐 시세</h3>
-                                    <span class="tool-tag">위젯</span>
-                                </div>
-                                <div class="tool-body">
-                                    <button class="btn btn-primary" id="get-crypto">시세 조회</button>
-                                    <div id="crypto-result" class="result-box crypto-grid"></div>
-                                </div>
-                            </div>
-
-                            <!-- Stock Snapshot -->
-                            <div class="tool-card" data-title="주식 스냅샷" data-keywords="주식,핫종목,뉴스,미국,한국">
-                                <div class="tool-header">
-                                    <span class="tool-icon">📈</span>
-                                    <h3 class="tool-title">주식 스냅샷</h3>
-                                    <span class="tool-tag">위젯</span>
-                                </div>
-                                <div class="tool-body">
-                                    <div class="stock-widget">
-                                        <div class="stock-group">
-                                            <div class="stock-header">
-                                                <span>미국 핫 5</span>
-                                                <button class="btn btn-secondary btn-small" id="refresh-us-stocks">새로고침</button>
-                                            </div>
-                                            <div id="us-stock-list" class="stock-list"></div>
-                                            <div id="us-market-status" class="stock-meta"></div>
-                                        </div>
-                                        <div class="stock-group">
-                                            <div class="stock-header">
-                                                <span>한국 핫 5</span>
-                                                <button class="btn btn-secondary btn-small" id="refresh-kr-stocks">새로고침</button>
-                                            </div>
-                                            <div id="kr-stock-list" class="stock-list"></div>
-                                            <div id="kr-market-status" class="stock-meta"></div>
-                                        </div>
-                                        <div id="stock-updated" class="stock-meta"></div>
-                                        <div class="small-note">실시간성이 완전하진 않을 수 있으며, 제공 제한이 생길 수 있습니다.</div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Random Quote -->
-                            <div class="tool-card" data-title="오늘의 명언" data-keywords="명언,quote,동기부여,motivation">
-                                <div class="tool-header">
-                                    <span class="tool-icon">💬</span>
-                                    <h3 class="tool-title">오늘의 명언</h3>
-                                    <span class="tool-tag">위젯</span>
-                                </div>
-                                <div class="tool-body">
-                                    <button class="btn btn-primary" id="get-quote">명언 보기</button>
-                                    <div id="quote-result" class="result-box"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Games Section -->
-                    <div class="tab-content" id="games-content">
-                        <h2 class="section-heading">미니 게임 - 무료 온라인 브라우저 게임</h2>
-                        <p class="section-description">숫자 맞추기, 가위바위보, 색상 팔레트 생성기 등 재미있는 미니게임을 즐기세요.</p>
-                        <div class="tools-grid">
-                            <!-- Poop Dodge Game -->
-                            <div class="tool-card" data-title="똥피하기 게임" data-keywords="똥피하기,미니게임,아케이드,피하기,게임">
-                                <div class="tool-header">
-                                    <span class="tool-icon">💩</span>
-                                    <h3 class="tool-title">똥피하기</h3>
-                                    <span class="tool-tag tag-hot">NEW</span>
-                                </div>
-                                <div class="tool-body">
-                                    <p class="game-info">하늘에서 쏟아지는 똥을 피하세요! 레벨이 올라갈수록 빨라집니다. 랭킹에 도전!</p>
-                                    <a class="btn btn-primary" href="poop-dodge.html" style="display:inline-block;text-decoration:none;text-align:center;">게임 시작하기</a>
-                                </div>
-                            </div>
-
-                            <!-- Number Guessing Game -->
-                            <div class="tool-card" data-title="숫자 맞추기 게임" data-keywords="숫자,게임,추리">
-                                <div class="tool-header">
-                                    <span class="tool-icon">🎯</span>
-                                    <h3 class="tool-title">숫자 맞추기 게임</h3>
-                                    <span class="tool-tag">게임</span>
-                                </div>
-                                <div class="tool-body">
-                                    <p class="game-info">1부터 100 사이의 숫자를 맞춰보세요!</p>
-                                    <div class="input-group">
-                                        <input type="number" id="guess-input" placeholder="숫자 입력" min="1" max="100">
-                                        <button class="btn btn-primary" id="guess-btn">확인</button>
-                                    </div>
-                                    <button class="btn btn-secondary" id="restart-guess">새 게임</button>
-                                    <div id="guess-result" class="result-box"></div>
-                                    <div id="guess-attempts" class="game-stats"></div>
-                                </div>
-                            </div>
-
-                            <!-- Rock Paper Scissors -->
-                            <div class="tool-card" data-title="가위바위보" data-keywords="가위바위보,게임,대결">
-                                <div class="tool-header">
-                                    <span class="tool-icon">✊</span>
-                                    <h3 class="tool-title">가위바위보</h3>
-                                    <span class="tool-tag">게임</span>
-                                </div>
-                                <div class="tool-body">
-                                    <div class="rps-buttons">
-                                        <button class="btn btn-game" data-choice="rock">✊ 바위</button>
-                                        <button class="btn btn-game" data-choice="paper">✋ 보</button>
-                                        <button class="btn btn-game" data-choice="scissors">✌️ 가위</button>
-                                    </div>
-                                    <div id="rps-result" class="result-box"></div>
-                                    <div id="rps-score" class="game-stats"></div>
-                                </div>
-                            </div>
-
-                            <!-- Color Palette Generator -->
-                            <div class="tool-card" data-title="색상 팔레트 생성기" data-keywords="색상,팔레트,컬러,디자인">
-                                <div class="tool-header">
-                                    <span class="tool-icon">🎨</span>
-                                    <h3 class="tool-title">색상 팔레트 생성기</h3>
-                                    <span class="tool-tag">디자인</span>
-                                </div>
-                                <div class="tool-body">
-                                    <button class="btn btn-primary" id="generate-palette">새 팔레트 생성</button>
-                                    <div id="color-palette" class="color-palette"></div>
-                                </div>
-                            </div>
-
-                            <!-- Coding Quiz -->
-                            <div class="tool-card" data-title="60초 코딩 퀴즈" data-keywords="퀴즈,코딩,개발,게임">
-                                <div class="tool-header">
-                                    <span class="tool-icon">⏱️</span>
-                                    <h3 class="tool-title">60초 코딩 퀴즈</h3>
-                                    <span class="tool-tag">게임</span>
-                                </div>
-                                <div class="tool-body">
-                                    <div class="game-stats" id="quiz-timer">남은 시간: 60s</div>
-                                    <div id="quiz-question" class="game-info">시작을 눌러 문제를 풀어보세요.</div>
-                                    <div id="quiz-choices" class="quiz-choices"></div>
-                                    <button class="btn btn-primary" id="quiz-start">게임 시작</button>
-                                    <div id="quiz-result" class="result-box"></div>
-                                    <div id="quiz-score" class="game-stats"></div>
-                                    <ul id="quiz-ranking" class="tool-list"></ul>
-                                </div>
-                            </div>
-
-                            <!-- Typing Game -->
-                            <div class="tool-card" data-title="코드 타이핑 게임" data-keywords="타이핑,코드,게임,연습">
-                                <div class="tool-header">
-                                    <span class="tool-icon">⌨️</span>
-                                    <h3 class="tool-title">코드 타이핑 게임</h3>
-                                    <span class="tool-tag">게임</span>
-                                </div>
-                                <div class="tool-body">
-                                    <pre id="typing-target" class="typing-target">시작 버튼을 눌러 코드를 불러오세요.</pre>
-                                    <textarea id="typing-input" class="tool-textarea" rows="4" placeholder="여기에 입력하세요"></textarea>
-                                    <div class="tool-actions">
-                                        <button class="btn btn-primary" id="typing-start">시작</button>
-                                        <button class="btn btn-secondary" id="typing-reset">리셋</button>
-                                    </div>
-                                    <div id="typing-stats" class="game-stats"></div>
-                                    <ul id="typing-ranking" class="tool-list"></ul>
-                                </div>
-                            </div>
-
-                            <!-- Order Puzzle -->
-                            <div class="tool-card" data-title="순서 클릭 퍼즐" data-keywords="퍼즐,순서,게임">
-                                <div class="tool-header">
-                                    <span class="tool-icon">🧠</span>
-                                    <h3 class="tool-title">순서 클릭 퍼즐</h3>
-                                    <span class="tool-tag">게임</span>
-                                </div>
-                                <div class="tool-body">
-                                    <div class="game-info">1부터 9까지 순서대로 클릭하세요.</div>
-                                    <div id="order-grid" class="order-grid"></div>
-                                    <div id="order-status" class="game-stats"></div>
-                                    <button class="btn btn-secondary" id="order-restart">재시작</button>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Sidebar -->
-                <aside class="sidebar">
-                    <!-- Popular Tests Widget -->
-                    <div class="widget">
-                        <h3 class="widget-title">인기 심리테스트</h3>
-                        <ul class="widget-list">
-                            <li><a href="mbti.html">🐾 MBTI 동물 유형 테스트</a></li>
-                            <li><a href="test.html?t=pokemon">⚡ 포켓몬 테스트</a></li>
-                            <li><a href="test.html?t=demon-slayer">🔥 귀멸의 칼날 테스트</a></li>
-                            <li><a href="test.html?t=onepiece">🏴‍☠️ 원피스 테스트</a></li>
-                            <li><a href="tests.html">→ 전체 보기</a></li>
-                        </ul>
-                    </div>
-
-                    <!-- Quick Links Widget -->
-                    <div class="widget">
-                        <h3 class="widget-title">인기 도구</h3>
-                        <ul class="widget-list">
-                            <li><a href="#tools" data-tool="bmi">BMI 계산기</a></li>
-                            <li><a href="#tools" data-tool="currency">환율 변환기</a></li>
-                            <li><a href="#widgets" data-tool="weather">날씨 위젯</a></li>
-                            <li><a href="#games" data-tool="guess">숫자 맞추기</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="widget">
-                        <h3 class="widget-title">기술 블로그</h3>
-                        <p class="widget-text">개발 튜토리얼, 기술 가이드, 실전 팁을 공유합니다.</p>
-                        <a href="blog.html" class="btn btn-secondary">블로그 보기</a>
-                    </div>
-
-                    <div class="widget">
-                        <h3 class="widget-title">정보 허브</h3>
-                        <p class="widget-text">도구를 더 잘 쓰기 위한 단계별 가이드, 체크리스트, FAQ를 제공합니다.</p>
-                        <a href="resource-center.html" class="btn btn-secondary">정보 허브 열기</a>
-                    </div>
-
-                    <div class="widget updates-panel">
-                        <h3 class="widget-title">콘텐츠 업데이트</h3>
-                        <ul class="updates-list" data-updates-feed data-updates-limit="5"></ul>
-                        <a href="update-log.html" class="btn btn-secondary" style="margin-top:12px;">전체 로그 보기</a>
-                    </div>
-
-                    <div class="widget">
-                        <h3 class="widget-title">색인 우선 링크</h3>
-                        <ul class="widget-list">
-                            <li><a href="resource-center.html">정보 허브 메인</a></li>
-                            <li><a href="update-log.html">콘텐츠 업데이트 로그</a></li>
-                            <li><a href="editorial-policy.html">편집정책/콘텐츠 원칙</a></li>
-                            <li><a href="guide-daily-tools.html">일상 도구 가이드</a></li>
-                            <li><a href="guide-dev-workflow.html">개발 워크플로우 가이드</a></li>
-                            <li><a href="guide-adsense-content.html">애드센스 콘텐츠 가이드</a></li>
-                            <li><a href="guide-safety-privacy.html">안전/개인정보 가이드</a></li>
-                            <li><a href="templates.html">템플릿 라이브러리</a></li>
-                            <li><a href="developer-tools.html">개발자 도구 모음</a></li>
-                            <li><a href="tests.html">심리테스트 모음</a></li>
-                            <li><a href="diary.html">릴황다이어리</a></li>
-                            <li><a href="blog.html">기술 블로그</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div class="widget">
-                        <h3 class="widget-title">개발자 유틸리티</h3>
-                        <ul class="widget-list">
-                            <li><a href="json-formatter.html">JSON 포맷터</a></li>
-                            <li><a href="base64.html">Base64 도구</a></li>
-                            <li><a href="hash.html">해시 생성기</a></li>
-                            <li><a href="timezone.html">타임존 변환</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="widget">
-                        <h3 class="widget-title">lilhwang.com</h3>
-                        <p class="widget-text">개발자와 일반 사용자 모두를 위한 무료 온라인 도구 플랫폼입니다. 모든 도구는 설치 없이 브라우저에서 바로 실행됩니다.</p>
-                    </div>
-                </aside>
-            </div>
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2026 lilhwang.com. All rights reserved.</p>
-            <nav class="footer-nav" aria-label="하단 메뉴">
-                <a href="about.html">소개</a>
-                <a href="blog.html">블로그</a>
-                <a href="resource-center.html">정보허브</a>
-                <a href="update-log.html">업데이트</a>
-                <a href="editorial-policy.html">편집정책</a>
-                <a href="contact.html">연락처</a>
-                <a href="privacy.html">개인정보처리방침</a>
-                <a href="terms.html">이용약관</a>
-            </nav>
-
-            <div class="footer-description">
-                <p>lilhwang.com은 일상생활에 유용한 다양한 온라인 도구를 무료로 제공합니다. BMI 계산기로 건강 체크, 실시간 환율 변환기로 외화 계산, 부가세 계산기로 세금 계산, 내 IP 주소 확인, 핑 테스트로 네트워크 진단, 할일 목록으로 업무 관리, 날씨 위젯으로 기상 정보 확인, 암호화폐 시세 조회, 영감을 주는 명언, 재미있는 미니게임까지 - 모든 기능을 한곳에서 이용하세요.</p>
-
-                <p class="footer-links">
-                    <a href="about.html">사이트 소개</a> |
-                    <a href="blog.html">기술 블로그</a> |
-                    <a href="resource-center.html">정보 허브</a> |
-                    <a href="update-log.html">업데이트 로그</a> |
-                    <a href="editorial-policy.html">편집정책</a> |
-                    <a href="contact.html">연락처</a> |
-                    <a href="privacy.html">개인정보처리방침</a> |
-                    <a href="terms.html">이용약관</a>
-                </p>
-            </div>
-        </div>
-    </footer>
-
-    <script src="app.js"></script>
-    <script src="updates.js"></script>
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        var email = form.email.value.trim();
+        if (!email) {
+          message.textContent = '이메일 주소를 입력해 주세요.';
+          return;
+        }
+        message.textContent = '구독 신청이 완료되었습니다: ' + email;
+        form.reset();
+      });
+    })();
+  </script>
 </body>
 </html>
