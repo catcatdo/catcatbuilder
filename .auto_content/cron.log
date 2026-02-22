@@ -521,3 +521,12 @@ TypeError: unsupported operand type(s) for |: 'type' and 'NoneType'
 [20260223_0300] 자동 콘텐츠 생성 시작
 🔍 Reddit RSS 조사 중...
 /Users/lily/.openclaw/workspace/catcatbuilder/auto-content-rss.sh:38: RSS_URLS[$RANDOM % ${#RSS_URLS[@]}]: parameter not set
+[20260223_0400] 자동 콘텐츠 생성 시작
+🔍 Reddit RSS 조사 중...
+선택된 RSS: https://www.reddit.com/r/apple/top/.rss?t=day
+⚠️ RSS 다운로드 실패, fallback 제목 사용
+선정된 주제: Blocked
+🔎 posts.json 중복 체크 중...
+Traceback (most recent call last):
+  File "<stdin>", line 8, in <module>
+TypeError: unsupported operand type(s) for |: 'type' and 'NoneType'
