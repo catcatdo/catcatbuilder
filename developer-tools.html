@@ -1,226 +1,287 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>개발자 도구 모음 | 릴황 유틸리티</title>
-    <meta name="description" content="JSON 포맷터, Base64, 해시, 타임존, 이미지 변환 등 개발자 유틸리티 모음을 한곳에서 이용하세요.">
-    <meta name="keywords" content="개발자 도구, JSON 포맷터, Base64, 해시 생성기, 타임존 변환, 이미지 변환">
-    <meta name="author" content="lilhwang">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://lilhwang.com/developer-tools.html">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="개발자 도구 모음 | 릴황 유틸리티">
-    <meta property="og:description" content="JSON 포맷터, Base64, 해시, 타임존, 이미지 변환 등 개발자 유틸리티 모음을 한곳에서 이용하세요.">
-    <meta property="og:url" content="https://lilhwang.com/developer-tools.html">
-    <meta property="og:image" content="https://lilhwang.com/images/og-default.jpg">
-    <meta property="og:site_name" content="릴황">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="개발자 도구 모음 | 릴황 유틸리티">
-    <meta name="twitter:description" content="JSON 포맷터, Base64, 해시, 타임존, 이미지 변환 등 개발자 유틸리티 모음을 한곳에서 이용하세요.">
-    <meta name="twitter:image" content="https://lilhwang.com/images/og-default.jpg">
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebApplication",
-        "name": "릴황 개발자 도구 모음",
-        "url": "https://lilhwang.com/developer-tools.html",
-        "description": "JSON 포맷터, Base64, 해시 생성기, 타임존 변환, 이미지 변환 등 개발자 유틸리티 모음",
-        "applicationCategory": "UtilitiesApplication",
-        "operatingSystem": "Any"
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>개발자 도구 모음 | lilhwang.com</title>
+  <meta name="description" content="Docker 명령어 생성기, JSON 포맷터, Base64 인코더 등 자주 쓰는 개발자 도구를 카드 형태로 빠르게 실행하세요.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://lilhwang.com/developer-tools.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #eef4f8;
+      --surface: #ffffff;
+      --line: #d6e3ea;
+      --text: #0f1720;
+      --muted: #56707f;
+      --brand: #0f6fbb;
+      --brand-soft: #e4f1fb;
+      --accent: #0f9d81;
+      --accent-soft: #dcf8f1;
+      --max: 1120px;
+      --radius: 16px;
+      --shadow: 0 14px 30px rgba(13, 38, 56, 0.08);
     }
-    </script>
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-            {
-                "@type": "Question",
-                "name": "개발자 도구는 회원가입 없이 쓸 수 있나요?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "네. 주요 기능은 회원가입 없이 바로 실행할 수 있습니다."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "도구 사용 가이드는 어디에 있나요?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "정보허브와 개발자 워크플로우 가이드 페이지에서 단계별 사용법을 확인할 수 있습니다."
-                }
-            }
-        ]
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      font-family: "Space Grotesk", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+      background:
+        radial-gradient(circle at 88% 8%, rgba(15, 111, 187, 0.15), transparent 40%),
+        radial-gradient(circle at 8% 94%, rgba(15, 157, 129, 0.12), transparent 38%),
+        var(--bg);
+      line-height: 1.5;
     }
-    </script>
-    <script>
-        (function () {
-            try {
-                var key = 'theme-preference';
-                var saved = localStorage.getItem(key);
-                var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                var theme = saved || 'light';
-                document.documentElement.setAttribute('data-theme', theme);
-            } catch (error) {
-                document.documentElement.setAttribute('data-theme', 'light');
-            }
-        })();
-    </script>
-    <link rel="stylesheet" href="styles.css">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9087208932507444"
-     crossorigin="anonymous"></script>
+
+    a { color: inherit; }
+
+    .wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 22px 16px 72px;
+    }
+
+    .nav-shell {
+      position: sticky;
+      top: 10px;
+      z-index: 40;
+      margin-bottom: 14px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+      padding: 10px;
+    }
+
+    .nav {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .nav a {
+      text-decoration: none;
+      border: 1px solid var(--line);
+      background: #f8fbfd;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      padding: 7px 12px;
+      transition: 0.2s ease;
+    }
+
+    .nav a:hover {
+      border-color: #9bc4e4;
+      color: #0b5e9e;
+      background: var(--brand-soft);
+    }
+
+    .nav a.active {
+      border-color: #87b7dd;
+      color: #0b5e9e;
+      background: var(--brand-soft);
+    }
+
+    .hero {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, #f7fcff 0%, #ffffff 100%);
+      box-shadow: var(--shadow);
+      padding: clamp(20px, 3vw, 30px);
+      margin-bottom: 14px;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(1.7rem, 3.8vw, 2.6rem);
+      letter-spacing: -0.02em;
+    }
+
+    .hero p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      max-width: 760px;
+      font-size: 0.95rem;
+    }
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .tool-card {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      text-decoration: none;
+      display: grid;
+      gap: 10px;
+      padding: 16px;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .tool-card:hover {
+      transform: translateY(-2px);
+      border-color: #9ec7e5;
+      box-shadow: 0 16px 34px rgba(11, 69, 109, 0.14);
+    }
+
+    .tool-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.15rem;
+      border: 1px solid #cde0ec;
+      background: linear-gradient(140deg, #f2f9ff, #ebfaf6);
+      flex-shrink: 0;
+    }
+
+    .tool-title {
+      margin: 0;
+      font-size: 1.02rem;
+      letter-spacing: -0.01em;
+    }
+
+    .tool-description {
+      margin: 0;
+      color: #314956;
+      font-size: 0.88rem;
+    }
+
+    .tool-foot {
+      margin-top: 2px;
+      color: #0b5e9e;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    @media (min-width: 700px) {
+      .tools-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (min-width: 1060px) {
+      .tools-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 560px) {
+      .nav-shell {
+        top: 6px;
+      }
+    }
+  </style>
 </head>
-<body data-keywords="개발자,유틸리티,도구,JSON,Base64,해시,타임존,이미지" data-category="dev">
-    <header class="header">
-        <div class="container">
-            <h1 class="logo">lilhwang.com</h1>
-            <div class="header-actions">
-                <nav class="nav">
-                    <a href="index.html">홈</a>
-                    <a href="resource-center.html">정보허브</a>
-                    <a href="update-log.html">업데이트</a>
-                    <a href="blog.html">블로그</a>
-                    <a href="issues.html">이슈</a>
-                </nav>
-                <button class="theme-toggle" id="theme-toggle" type="button" aria-label="다크 모드 전환">
-                    <span class="theme-icon" aria-hidden="true">🌙</span>
-                </button>
-            </div>
-        </div>
+<body>
+  <main class="wrap">
+    <header class="nav-shell">
+      <nav class="nav" aria-label="주요 메뉴">
+        <a href="index.html">홈</a>
+        <a href="issues.html">이슈</a>
+        <a href="blog.html">블로그</a>
+        <a href="developer-tools.html" class="active" aria-current="page">도구</a>
+      </nav>
     </header>
 
-    <main class="main-container">
-        <div class="container">
-            <h2 class="section-heading">개발자 도구 모음</h2>
-            <p class="section-description">필요한 유틸리티를 빠르게 찾고 실행하세요.</p>
-            <div class="tools-grid">
-                <div class="tool-card">
-                    <h3 class="tool-title">개발자 유틸리티</h3>
-                    <div class="tool-body">
-                        <ul class="tool-list">
-                            <li><a href="json-formatter.html">JSON 포맷터</a><span class="badge">인기</span></li>
-                            <li><a href="base64.html">Base64 인코더/디코더</a></li>
-                            <li><a href="hash.html">해시 생성기</a></li>
-                            <li><a href="timezone.html">타임존 변환</a></li>
-                            <li><a href="writing-helper.html">글쓰기 도우미</a><span class="badge secondary">업데이트</span></li>
-                            <li><a href="image-tool.html">이미지 리사이즈/변환</a><span class="badge secondary">업데이트</span></li>
-                            <li><a href="cheatsheet.html">단축키 치트시트</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+    <section class="hero">
+      <h1>개발자 도구 모음</h1>
+      <p>자주 쓰는 유틸리티를 카드로 정리했습니다. 필요한 도구를 클릭하면 바로 이동합니다.</p>
+    </section>
 
-            <h3 class="subsection-title">관련 블로그 글</h3>
-            <div class="input-group input-inline">
-                <label for="related-keywords-input">관련 키워드</label>
-                <input type="text" id="related-keywords-input" placeholder="키워드 쉼표 구분">
-                <button class="btn btn-secondary" id="related-keywords-save">저장</button>
-                <button class="btn btn-secondary" id="related-keywords-clear">초기화</button>
-            </div>
-            <div id="related-keywords-status" class="small-note"></div>
-            <div id="related-keywords-suggest" class="keyword-chips"></div>
-            <ul id="related-posts" class="tool-list"></ul>
-
-            <h3 class="subsection-title">FAQ</h3>
-            <div class="faq-list">
-                <div class="faq-item">
-                    <div class="faq-q">이 도구들은 무료인가요?</div>
-                    <div class="faq-a">네, 모든 개발자 유틸리티는 무료로 제공됩니다.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-q">데이터가 서버로 전송되나요?</div>
-                    <div class="faq-a">대부분의 도구는 브라우저에서만 동작합니다. 입력 데이터는 저장되지 않습니다.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-q">추가하고 싶은 도구가 있어요.</div>
-                    <div class="faq-a">연락 주시면 우선순위를 반영해 빠르게 추가하겠습니다.</div>
-                </div>
-            </div>
-
-            <h3 class="subsection-title">탐색 매트릭스</h3>
-            <section class="link-matrix">
-                <div class="matrix-grid">
-                    <a class="matrix-link" href="resource-center.html">정보 허브 메인</a>
-                    <a class="matrix-link" href="guide-dev-workflow.html">개발 워크플로우 가이드</a>
-                    <a class="matrix-link" href="guide-adsense-content.html">콘텐츠 운영 가이드</a>
-                    <a class="matrix-link" href="update-log.html">콘텐츠 업데이트 로그</a>
-                </div>
-            </section>
-
-            <h3 class="subsection-title">최근 업데이트</h3>
-            <section class="updates-panel">
-                <ul class="updates-list" data-updates-feed data-updates-limit="6"></ul>
-            </section>
-
-            <h3 class="subsection-title">도구별 검색 트래픽 키워드</h3>
-            <div class="tools-grid">
-                <div class="tool-card">
-                    <h3 class="tool-title">JSON 포맷터</h3>
-                    <div class="keyword-chips">
-                        <span class="keyword-chip">json formatter</span>
-                        <span class="keyword-chip">json pretty</span>
-                        <span class="keyword-chip">json minify</span>
-                        <span class="keyword-chip">json 정렬</span>
-                    </div>
-                </div>
-                <div class="tool-card">
-                    <h3 class="tool-title">Base64</h3>
-                    <div class="keyword-chips">
-                        <span class="keyword-chip">base64 encode</span>
-                        <span class="keyword-chip">base64 decode</span>
-                        <span class="keyword-chip">base64 변환</span>
-                    </div>
-                </div>
-                <div class="tool-card">
-                    <h3 class="tool-title">해시 생성기</h3>
-                    <div class="keyword-chips">
-                        <span class="keyword-chip">sha-256</span>
-                        <span class="keyword-chip">sha-1</span>
-                        <span class="keyword-chip">hash generator</span>
-                    </div>
-                </div>
-                <div class="tool-card">
-                    <h3 class="tool-title">타임존 변환</h3>
-                    <div class="keyword-chips">
-                        <span class="keyword-chip">timezone converter</span>
-                        <span class="keyword-chip">utc 변환</span>
-                        <span class="keyword-chip">시간대 변환</span>
-                    </div>
-                </div>
-                <div class="tool-card">
-                    <h3 class="tool-title">이미지 변환</h3>
-                    <div class="keyword-chips">
-                        <span class="keyword-chip">webp 변환</span>
-                        <span class="keyword-chip">이미지 리사이즈</span>
-                        <span class="keyword-chip">이미지 압축</span>
-                    </div>
-                </div>
-                <div class="tool-card">
-                    <h3 class="tool-title">단축키 치트시트</h3>
-                    <div class="keyword-chips">
-                        <span class="keyword-chip">git 단축키</span>
-                        <span class="keyword-chip">vscode 단축키</span>
-                        <span class="keyword-chip">개발 단축키</span>
-                    </div>
-                </div>
-            </div>
+    <section class="tools-grid" aria-label="개발자 도구 목록">
+      <a class="tool-card" href="post-docker-guide-20260219.html">
+        <div class="tool-head">
+          <span class="icon" aria-hidden="true">DKR</span>
+          <h2 class="tool-title">Docker 명령어 생성기</h2>
         </div>
-    </main>
+        <p class="tool-description">`run`, `build`, `compose` 명령 구성을 빠르게 확인하고 템플릿으로 시작하세요.</p>
+        <span class="tool-foot">도구 열기 →</span>
+      </a>
 
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2026 lilhwang.com. All rights reserved.</p>
-            <p class="footer-links">
-                <a href="resource-center.html">정보허브</a> |
-                <a href="update-log.html">업데이트</a> |
-                <a href="blog.html">블로그</a> |
-                <a href="privacy.html">개인정보처리방침</a>
-            </p>
+      <a class="tool-card" href="json-formatter.html">
+        <div class="tool-head">
+          <span class="icon" aria-hidden="true">{ }</span>
+          <h2 class="tool-title">JSON 포맷터</h2>
         </div>
-    </footer>
+        <p class="tool-description">복잡한 JSON을 보기 좋게 정렬하고, 유효성 확인과 압축까지 한 번에 처리합니다.</p>
+        <span class="tool-foot">도구 열기 →</span>
+      </a>
 
-    <script src="app.js"></script>
-    <script src="updates.js"></script>
+      <a class="tool-card" href="base64.html">
+        <div class="tool-head">
+          <span class="icon" aria-hidden="true">B64</span>
+          <h2 class="tool-title">Base64 인코더</h2>
+        </div>
+        <p class="tool-description">텍스트와 URL 데이터를 Base64로 인코딩/디코딩해서 API 테스트에 활용할 수 있습니다.</p>
+        <span class="tool-foot">도구 열기 →</span>
+      </a>
+
+      <a class="tool-card" href="hash.html">
+        <div class="tool-head">
+          <span class="icon" aria-hidden="true">#</span>
+          <h2 class="tool-title">해시 생성기</h2>
+        </div>
+        <p class="tool-description">SHA 계열 해시를 빠르게 생성해 무결성 검증, 토큰 테스트, 디버깅에 사용할 수 있습니다.</p>
+        <span class="tool-foot">도구 열기 →</span>
+      </a>
+
+      <a class="tool-card" href="timezone.html">
+        <div class="tool-head">
+          <span class="icon" aria-hidden="true">UTC</span>
+          <h2 class="tool-title">타임존 변환기</h2>
+        </div>
+        <p class="tool-description">국가별 시간대를 즉시 변환해 글로벌 팀 협업 일정과 배포 시간을 맞출 수 있습니다.</p>
+        <span class="tool-foot">도구 열기 →</span>
+      </a>
+
+      <a class="tool-card" href="image-tool.html">
+        <div class="tool-head">
+          <span class="icon" aria-hidden="true">IMG</span>
+          <h2 class="tool-title">이미지 변환</h2>
+        </div>
+        <p class="tool-description">포맷 변환, 리사이즈, 최적화 작업을 빠르게 수행해 웹 퍼포먼스를 개선합니다.</p>
+        <span class="tool-foot">도구 열기 →</span>
+      </a>
+
+      <a class="tool-card" href="cheatsheet.html">
+        <div class="tool-head">
+          <span class="icon" aria-hidden="true">KEY</span>
+          <h2 class="tool-title">단축키 치트시트</h2>
+        </div>
+        <p class="tool-description">자주 사용하는 편집기와 Git 단축키를 상황별로 빠르게 찾아 생산성을 높이세요.</p>
+        <span class="tool-foot">도구 열기 →</span>
+      </a>
+
+      <a class="tool-card" href="writing-helper.html">
+        <div class="tool-head">
+          <span class="icon" aria-hidden="true">TXT</span>
+          <h2 class="tool-title">글쓰기 도우미</h2>
+        </div>
+        <p class="tool-description">개발 문서, 릴리즈 노트, 블로그 초안을 빠르게 다듬어 전달력을 높여줍니다.</p>
+        <span class="tool-foot">도구 열기 →</span>
+      </a>
+    </section>
+  </main>
 </body>
 </html>
