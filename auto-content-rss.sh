@@ -62,6 +62,91 @@ REDDIT_TITLE=$(cat "$RSS_TITLE_TMP_FILE" 2>/dev/null || echo "$FALLBACK_TITLE")
 
 echo "선정된 주제: $REDDIT_TITLE" | tee -a "$LOG_FILE"
 
+# ===== 중복 체크: 최근 24시간 내 동일 제목 =====
+echo "🔎 posts.json 중복 체크 중..." | tee -a "$LOG_FILE"
+
+SKIP_POST=0
+DUPLICATE_CHECK_RESULT=$(REDDIT_TITLE="$REDDIT_TITLE" python3 <<'PYTHON_DUP_CHECK'
+import datetime as dt
+import json
+import os
+import re
+import sys
+
+
+def parse_post_time(post: dict) -> dt.datetime | None:
+    # 자동 생성 slug: auto-post-YYYYMMDD-HHMM
+    slug = str(post.get("slug", "")).strip()
+    m = re.match(r"^auto-post-(\d{8})-(\d{4})$", slug)
+    if m:
+        try:
+            return dt.datetime.strptime(m.group(1) + m.group(2), "%Y%m%d%H%M")
+        except ValueError:
+            pass
+
+    # created_at / datetime 확장 필드가 있으면 우선 사용
+    for key in ("created_at", "datetime", "published_at"):
+        raw = post.get(key)
+        if not raw:
+            continue
+        text = str(raw).strip().replace("Z", "+00:00")
+        try:
+            parsed = dt.datetime.fromisoformat(text)
+            if parsed.tzinfo is not None:
+                parsed = parsed.astimezone().replace(tzinfo=None)
+            return parsed
+        except ValueError:
+            continue
+
+    # 기본 date 필드(YYYY-MM-DD)는 자정으로 간주
+    date_text = str(post.get("date", "")).strip()
+    if date_text:
+        try:
+            return dt.datetime.strptime(date_text, "%Y-%m-%d")
+        except ValueError:
+            return None
+    return None
+
+
+title = os.environ.get("REDDIT_TITLE", "").strip()
+if not title:
+    print("OK|empty-title")
+    sys.exit(0)
+
+with open("posts.json", "r", encoding="utf-8") as f:
+    posts = json.load(f).get("posts", [])
+
+now = dt.datetime.now()
+window = dt.timedelta(hours=24)
+target = title.casefold()
+
+for post in posts:
+    existing_title = str(post.get("title", "")).strip()
+    if existing_title.casefold() != target:
+        continue
+
+    posted_at = parse_post_time(post)
+    if posted_at is None:
+        continue
+
+    age = now - posted_at
+    if dt.timedelta(0) <= age <= window:
+        print(f"SKIP|{existing_title}|{posted_at.isoformat(timespec='minutes')}")
+        sys.exit(0)
+
+print("OK|no-duplicate")
+PYTHON_DUP_CHECK
+)
+
+if [[ "$DUPLICATE_CHECK_RESULT" == SKIP\|* ]]; then
+    SKIP_POST=1
+    EXISTING_TITLE=$(echo "$DUPLICATE_CHECK_RESULT" | cut -d'|' -f2)
+    EXISTING_TIME=$(echo "$DUPLICATE_CHECK_RESULT" | cut -d'|' -f3)
+    echo "⏭️ 최근 24시간 내 동일 제목 발견, 글 생성 스킵: '$EXISTING_TITLE' ($EXISTING_TIME)" | tee -a "$LOG_FILE"
+else
+    echo "✅ 중복 없음, 글 생성을 진행합니다." | tee -a "$LOG_FILE"
+fi
+
 # ===== 2. 디시인사이드 조사 =====
 echo "🔍 디시인사이드 조사 중..." | tee -a "$LOG_FILE"
 DC_TOPIC="추석 MANHWA (추천 2046)"
@@ -99,26 +184,29 @@ fi
 # ===== 4. 블로그 글 작성 =====
 echo "✍️ 블로그 글 작성 중..." | tee -a "$LOG_FILE"
 
-MAX_ID=$(grep -o '"id": [0-9]*' posts.json | grep -o '[0-9]*' | sort -n | tail -1)
-NEW_ID=$((MAX_ID + 1))
-SLUG="auto-post-$(date +%Y%m%d-%H%M)"
+if [ "$SKIP_POST" -eq 1 ]; then
+    echo "⏭️ 블로그 글 생성 단계 스킵 완료" | tee -a "$LOG_FILE"
+else
+    MAX_ID=$(grep -o '"id": [0-9]*' posts.json | grep -o '[0-9]*' | sort -n | tail -1)
+    NEW_ID=$((MAX_ID + 1))
+    SLUG="auto-post-$(date +%Y%m%d-%H%M)"
 
-echo "새 글 ID: $NEW_ID" | tee -a "$LOG_FILE"
+    echo "새 글 ID: $NEW_ID" | tee -a "$LOG_FILE"
 
-# 깨지지 않는 Unsplash 원본 URL 목록
-UNSPLASH_URLS=(
-    "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=80"
-    "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1600&q=80"
-    "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1600&q=80"
-    "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1600&q=80"
-)
+    # 깨지지 않는 Unsplash 원본 URL 목록
+    UNSPLASH_URLS=(
+        "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=80"
+        "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1600&q=80"
+        "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1600&q=80"
+        "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1600&q=80"
+    )
 
-IMAGE_URL=${UNSPLASH_URLS[$RANDOM % ${#UNSPLASH_URLS[@]}]}
-echo "🖼️ 이미지 URL 선택: $IMAGE_URL" | tee -a "$LOG_FILE"
+    IMAGE_URL=${UNSPLASH_URLS[$RANDOM % ${#UNSPLASH_URLS[@]}]}
+    echo "🖼️ 이미지 URL 선택: $IMAGE_URL" | tee -a "$LOG_FILE"
 
-echo "📝 posts.json 업데이트 중..." | tee -a "$LOG_FILE"
+    echo "📝 posts.json 업데이트 중..." | tee -a "$LOG_FILE"
 
-REDDIT_TITLE="$REDDIT_TITLE" DATE="$DATE" IMAGE_URL="$IMAGE_URL" SLUG="$SLUG" NEW_ID="$NEW_ID" python3 <<'PYTHON_SCRIPT'
+    REDDIT_TITLE="$REDDIT_TITLE" DATE="$DATE" IMAGE_URL="$IMAGE_URL" SLUG="$SLUG" NEW_ID="$NEW_ID" python3 <<'PYTHON_SCRIPT'
 import json
 import os
 import sys
@@ -205,7 +293,8 @@ except Exception as e:
     sys.exit(1)
 PYTHON_SCRIPT
 
-echo "✅ posts.json 업데이트 완료" | tee -a "$LOG_FILE"
+    echo "✅ posts.json 업데이트 완료" | tee -a "$LOG_FILE"
+fi
 
 # ===== 5. Git 처리 =====
 echo "🚀 Git 처리 중..." | tee -a "$LOG_FILE"
