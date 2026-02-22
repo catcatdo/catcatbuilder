@@ -1,403 +1,542 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>이슈 허브 | lilhwang.com</title>
-    <meta name="description" content="커뮤니티 이슈를 저작권 안전 방식으로 재구성한 본문과 커뮤 반응 요약을 제공합니다.">
-    <meta name="keywords" content="이슈, 커뮤니티, 요약, 댓글, 커뮤 반응, 트렌드">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://lilhwang.com/issues.html">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>이슈 허브 | lilhwang.com</title>
+  <meta name="description" content="커뮤니티 이슈를 카드 UI로 탐색하고 상태/라벨로 빠르게 필터링하는 이슈 허브">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://lilhwang.com/issues.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #eef4f8;
+      --surface: #ffffff;
+      --line: #d6e3ea;
+      --text: #0f1720;
+      --muted: #56707f;
+      --brand: #0f6fbb;
+      --brand-soft: #e4f1fb;
+      --accent: #0f9d81;
+      --accent-soft: #dcf8f1;
+      --chip: #f4f8fb;
+      --max: 1120px;
+      --radius: 16px;
+      --shadow: 0 14px 30px rgba(13, 38, 56, 0.08);
+    }
 
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="이슈 허브 | lilhwang.com">
-    <meta property="og:description" content="저작권 안전 재작성 본문 + 커뮤 반응 요약">
-    <meta property="og:url" content="https://lilhwang.com/issues.html">
-    <meta property="og:image" content="https://lilhwang.com/images/og-default.jpg">
-    <meta property="og:site_name" content="릴황">
+    * { box-sizing: border-box; }
 
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="이슈 허브 | lilhwang.com">
-    <meta name="twitter:description" content="커뮤니티 이슈를 재구성한 문제해결형 콘텐츠 허브">
-    <meta name="twitter:image" content="https://lilhwang.com/images/og-default.jpg">
-    <link rel="alternate" type="application/rss+xml" title="릴황 이슈 RSS" href="https://lilhwang.com/issues-rss.xml">
+    body {
+      margin: 0;
+      color: var(--text);
+      font-family: "Space Grotesk", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+      background:
+        radial-gradient(circle at 88% 8%, rgba(15, 111, 187, 0.15), transparent 40%),
+        radial-gradient(circle at 8% 94%, rgba(15, 157, 129, 0.12), transparent 38%),
+        var(--bg);
+      line-height: 1.5;
+    }
 
-    <script>
-        (function () {
-            try {
-                document.documentElement.setAttribute('data-theme', localStorage.getItem('theme-preference') || 'light');
-            } catch (e) {
-                document.documentElement.setAttribute('data-theme', 'light');
-            }
-        })();
-    </script>
+    a { color: inherit; }
 
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        .issues-shell {
-            max-width: min(960px, 100%);
-            margin: 0 auto;
-            display: grid;
-            gap: 20px;
-        }
+    .wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 22px 16px 72px;
+    }
 
-        .issues-hero {
-            background: linear-gradient(135deg, var(--bg-surface) 0%, var(--bg-soft) 100%);
-            border: 1px solid var(--border-soft);
-            border-radius: 16px;
-            padding: 24px;
-            box-shadow: var(--shadow-sm);
-        }
+    .nav-shell {
+      position: sticky;
+      top: 10px;
+      z-index: 40;
+      margin-bottom: 14px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+      padding: 10px;
+    }
 
-        .issues-hero h1 {
-            font-size: 2rem;
-            color: var(--text-heading);
-            margin-bottom: 8px;
-            font-family: 'Space Grotesk', 'Noto Sans KR', sans-serif;
-        }
+    .nav {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
 
-        .issues-hero-subtitle {
-            margin: 0 0 14px;
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-        }
+    .nav a {
+      text-decoration: none;
+      border: 1px solid var(--line);
+      background: #f8fbfd;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      padding: 7px 12px;
+      transition: 0.2s ease;
+    }
 
-        .issues-hero-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
+    .nav a:hover {
+      border-color: #9bc4e4;
+      color: #0b5e9e;
+      background: var(--brand-soft);
+    }
 
-        .issues-hero-link {
-            text-decoration: none;
-            color: var(--text-heading);
-            background: var(--bg-surface);
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            padding: 8px 12px;
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
+    .nav a.active {
+      border-color: #87b7dd;
+      color: #0b5e9e;
+      background: var(--brand-soft);
+    }
 
-        .issues-hero-link:hover {
-            border-color: var(--primary);
-            color: var(--primary);
-        }
+    .hero {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, #f7fcff 0%, #ffffff 100%);
+      box-shadow: var(--shadow);
+      padding: clamp(20px, 3vw, 30px);
+      margin-bottom: 14px;
+    }
 
-        .issue-card {
-            background: var(--bg-surface);
-            border: 1px solid var(--border-soft);
-            border-radius: 16px;
-            padding: 20px;
-            box-shadow: var(--shadow-sm);
-            display: grid;
-            gap: 16px;
-        }
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(1.7rem, 3.8vw, 2.6rem);
+      letter-spacing: -0.02em;
+    }
 
-        .issue-meta {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
+    .hero p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      max-width: 760px;
+      font-size: 0.95rem;
+    }
 
-        .issue-title {
-            font-size: 1.3rem;
-            color: var(--text-heading);
-            margin: 0;
-            line-height: 1.4;
-        }
+    .toolbar {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      margin-bottom: 14px;
+      padding: 14px;
+      display: grid;
+      gap: 10px;
+    }
 
-        .issue-summary {
-            color: var(--text-secondary);
-            line-height: 1.7;
-        }
+    .toolbar-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.86rem;
+      color: var(--muted);
+    }
 
-        .issue-block-text {
-            margin: 0;
-        }
+    .toolbar-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
 
-        .curation-block {
-            background: var(--bg-surface-muted);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 12px 14px;
-            display: grid;
-            gap: 8px;
-        }
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
 
-        .summary-list {
-            margin: 0;
-            padding-left: 22px;
-            color: var(--text-secondary);
-            display: grid;
-            gap: 6px;
-        }
+    .chip {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--chip);
+      color: #214252;
+      font: inherit;
+      font-size: 0.82rem;
+      padding: 6px 12px;
+      cursor: pointer;
+      transition: 0.18s ease;
+    }
 
-        .issue-image {
-            margin-top: -4px;
-            max-width: min(100%, 760px);
-            margin-left: auto;
-            margin-right: auto;
-        }
+    .chip:hover {
+      border-color: #a9ccd5;
+      background: #ebf6f8;
+    }
 
-        .issue-image img {
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            max-height: min(46vh, 360px);
-            object-fit: cover;
-            border-radius: 12px;
-            border: 1px solid var(--border-soft);
-            display: block;
-        }
+    .chip.active {
+      border-color: #82c8b9;
+      background: var(--accent-soft);
+      color: #0a6f59;
+      font-weight: 600;
+    }
 
-        .issue-inline-gallery {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 12px;
-        }
+    .label-filter {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fff;
+      color: #224455;
+      font: inherit;
+      font-size: 0.84rem;
+      padding: 8px 10px;
+      min-width: 210px;
+    }
 
-        .issue-inline-image img {
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            object-fit: cover;
-            border-radius: 12px;
-            border: 1px solid var(--border-soft);
-            display: block;
-            background: var(--bg-surface-muted);
-        }
+    .issues-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
 
-        .issue-note {
-            font-size: 0.86rem;
-            background: var(--bg-surface-muted);
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            padding: 10px 12px;
-            color: var(--text-secondary);
-        }
+    .issue-card {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      padding: 14px;
+      display: grid;
+      gap: 10px;
+    }
 
-        .tag-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
+    .issue-meta {
+      color: var(--muted);
+      font-size: 0.8rem;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
 
-        .tag-pill {
-            background: var(--bg-surface-muted);
-            border: 1px solid var(--border-color);
-            border-radius: 999px;
-            padding: 4px 10px;
-            font-size: 0.78rem;
-            color: var(--text-secondary);
-        }
+    .status-badge {
+      border-radius: 999px;
+      font-size: 0.73rem;
+      padding: 3px 8px;
+      border: 1px solid #c7deea;
+      background: #f2f9fd;
+      color: #1d5672;
+      font-weight: 600;
+    }
 
-        .reaction-wrap {
-            background: #e9edf2;
-            border-radius: 16px;
-            padding: 14px;
-            display: grid;
-            gap: 10px;
-            border: 1px solid #d4dbe4;
-        }
+    .status-badge.closed {
+      border-color: #c9d5dd;
+      background: #f1f4f6;
+      color: #4f6572;
+    }
 
-        [data-theme="dark"] .reaction-wrap {
-            background: #1b2430;
-            border-color: #2f3d4e;
-        }
+    .issue-title {
+      margin: 0;
+      font-size: 1.05rem;
+      letter-spacing: -0.01em;
+      line-height: 1.35;
+    }
 
-        .bubble-row {
-            display: flex;
-        }
+    .issue-title a {
+      text-decoration: none;
+      transition: 0.2s ease;
+    }
 
-        .bubble-row.left {
-            justify-content: flex-start;
-        }
+    .issue-title a:hover {
+      color: var(--brand);
+    }
 
-        .bubble-row.right {
-            justify-content: flex-end;
-        }
+    .issue-excerpt {
+      margin: 0;
+      color: #314956;
+      font-size: 0.9rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
 
-        .bubble {
-            max-width: min(78%, 640px);
-            border-radius: 18px;
-            padding: 10px 12px;
-            line-height: 1.5;
-            font-size: 0.94rem;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
-            position: relative;
-            display: grid;
-            gap: 6px;
-        }
+    .issue-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
 
-        .bubble.left {
-            background: #ffffff;
-            color: #1f2d3a;
-            border-top-left-radius: 8px;
-        }
+    .tag {
+      border-radius: 999px;
+      border: 1px solid #c7deea;
+      background: #f2f9fd;
+      color: #1d5672;
+      font-size: 0.74rem;
+      padding: 3px 8px;
+      text-decoration: none;
+      cursor: pointer;
+    }
 
-        [data-theme="dark"] .bubble.left {
-            background: #2a3645;
-            color: #e3ecf4;
-        }
+    .empty {
+      border: 1px dashed #b8d0dc;
+      border-radius: var(--radius);
+      padding: 24px;
+      text-align: center;
+      background: #f8fcff;
+      color: var(--muted);
+    }
 
-        .bubble.right {
-            background: #1677ff;
-            color: #ffffff;
-            border-top-right-radius: 8px;
-        }
+    @media (min-width: 760px) {
+      .issues-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
 
-        .bubble-meta {
-            font-size: 0.72rem;
-            opacity: 0.8;
-        }
+    @media (min-width: 1100px) {
+      .issues-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
 
-        .empty-issues {
-            background: var(--bg-surface);
-            border: 1px dashed var(--border-color);
-            border-radius: 14px;
-            padding: 20px;
-            color: var(--text-muted);
-        }
+    @media (max-width: 560px) {
+      .nav-shell {
+        top: 6px;
+      }
 
-        .issues-pagination {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            margin-top: 10px;
-            margin-bottom: 6px;
-        }
+      .toolbar-head {
+        align-items: flex-start;
+        flex-direction: column;
+      }
 
-        .issues-page-btn {
-            padding: 8px 14px;
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            background: var(--bg-surface);
-            color: var(--text-secondary);
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.2s ease;
-        }
-
-        .issues-page-btn:hover {
-            border-color: var(--primary);
-            color: var(--primary);
-        }
-
-        .issues-page-btn.active {
-            background: var(--primary);
-            border-color: var(--primary);
-            color: #fff;
-        }
-
-        .issues-page-btn:disabled {
-            opacity: 0.45;
-            cursor: not-allowed;
-        }
-
-        .issues-page-gap {
-            color: var(--text-muted);
-            padding: 0 3px;
-        }
-
-        .issue-focus {
-            outline: 2px solid rgba(22, 119, 255, 0.35);
-            outline-offset: 4px;
-            animation: issueFocusPulse 1.4s ease;
-        }
-
-        @keyframes issueFocusPulse {
-            0% { box-shadow: 0 0 0 0 rgba(22, 119, 255, 0.28); }
-            100% { box-shadow: 0 0 0 14px rgba(22, 119, 255, 0); }
-        }
-
-        @media (max-width: 768px) {
-            .issues-hero h1 {
-                font-size: 1.6rem;
-            }
-
-            .issue-card {
-                padding: 16px;
-            }
-
-            .issue-image {
-                max-width: 100%;
-            }
-
-            .issue-image img {
-                max-height: min(34vh, 250px);
-            }
-
-            .issue-inline-gallery {
-                grid-template-columns: 1fr;
-            }
-
-            .bubble {
-                max-width: 88%;
-            }
-
-            .issues-page-btn {
-                min-width: 44px;
-                padding: 8px 10px;
-            }
-        }
-    </style>
+      .label-filter {
+        min-width: 0;
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 <body>
-    <header class="header">
-        <div class="container">
-            <h1 class="logo"><a href="index.html" style="text-decoration:none;color:inherit;">lilhwang<span class="logo-dot">.</span>com</a></h1>
-            <nav class="nav">
-                <a href="tests.html">심리테스트</a>
-                <a href="index.html">도구</a>
-                <a href="developer-tools.html">개발자</a>
-                <a href="blog.html">블로그</a>
-                <a href="issues.html" class="active">이슈</a>
-                <a href="resource-center.html">정보허브</a>
-                <a href="update-log.html">업데이트</a>
-                <a href="templates.html">템플릿</a>
-                <a href="about.html">소개</a>
-            </nav>
-        </div>
+  <main class="wrap">
+    <header class="nav-shell">
+      <nav class="nav" aria-label="주요 메뉴">
+        <a href="index.html">홈</a>
+        <a href="issues.html" class="active" aria-current="page">이슈</a>
+        <a href="blog.html">블로그</a>
+        <a href="developer-tools.html">도구</a>
+      </nav>
     </header>
 
-    <main class="main-container">
-        <div class="container">
-            <div class="issues-shell">
-                <section class="issues-hero">
-                    <h1>이슈 허브</h1>
-                    <p class="issues-hero-subtitle">핫이슈 업데이트를 RSS로 바로 받아볼 수 있습니다.</p>
-                    <div class="issues-hero-links">
-                        <a class="issues-hero-link" href="https://lilhwang.com/issues-rss.xml" target="_blank" rel="noopener">이슈 RSS 구독</a>
-                        <a class="issues-hero-link" href="https://lilhwang.com/rss.xml" target="_blank" rel="noopener">블로그 RSS 보기</a>
-                    </div>
-                </section>
+    <section class="hero">
+      <h1>이슈 허브</h1>
+      <p>핫 이슈를 카드 형태로 확인하고, 상태(열림/닫힘)와 라벨로 원하는 주제만 빠르게 필터링하세요.</p>
+    </section>
 
-                <section id="issues-container" aria-live="polite"></section>
-                <nav id="issues-pagination" class="issues-pagination" aria-label="이슈 페이지"></nav>
-            </div>
-        </div>
-    </main>
+    <section class="toolbar" aria-label="이슈 필터">
+      <div class="toolbar-head">
+        <span>상태 및 라벨 필터</span>
+        <strong id="resultCount">0개 이슈</strong>
+      </div>
+      <div class="toolbar-row">
+        <div class="chips" id="statusChips"></div>
+        <select id="labelFilter" class="label-filter" aria-label="라벨 필터"></select>
+      </div>
+    </section>
 
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2026 lilhwang.com. All rights reserved.</p>
-            <p class="footer-links">
-                <a href="about.html">소개</a> |
-                <a href="issues.html">이슈</a> |
-                <a href="resource-center.html">정보허브</a> |
-                <a href="update-log.html">업데이트</a> |
-                <a href="contact.html">연락처</a> |
-                <a href="privacy.html">개인정보처리방침</a> |
-                <a href="terms.html">이용약관</a>
-            </p>
-        </div>
-    </footer>
+    <section class="issues-grid" id="issuesGrid" aria-live="polite"></section>
+  </main>
 
-    <script src="issues-data.v20260214f.js"></script>
-    <script src="issues.v20260214g.js"></script>
-    <script src="app.v20260214d.js"></script>
+  <script src="issues-data.v20260214f.js"></script>
+  <script>
+    const state = {
+      issues: [],
+      filtered: [],
+      activeStatus: "ALL",
+      activeLabel: "ALL",
+      labelCounts: new Map()
+    };
+
+    const issuesGrid = document.getElementById("issuesGrid");
+    const statusChips = document.getElementById("statusChips");
+    const labelFilter = document.getElementById("labelFilter");
+    const resultCount = document.getElementById("resultCount");
+
+    function escapeHtml(value) {
+      return String(value || "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#39;");
+    }
+
+    function formatDate(raw) {
+      if (!raw) return "생성일 미상";
+      const date = new Date(raw);
+      if (Number.isNaN(date.getTime())) return raw;
+      return new Intl.DateTimeFormat("ko-KR", {
+        year: "numeric",
+        month: "short",
+        day: "numeric"
+      }).format(date);
+    }
+
+    function resolveStatus(issue) {
+      const stateRaw = String(
+        issue.status || issue.state || (issue.is_closed ? "closed" : "") || (issue.closed_at ? "closed" : "")
+      )
+        .trim()
+        .toLowerCase();
+
+      if (["closed", "close", "done", "resolved"].includes(stateRaw)) {
+        return "CLOSED";
+      }
+      return "OPEN";
+    }
+
+    function resolveIssueUrl(issue) {
+      if (typeof issue.url === "string" && issue.url.trim()) return issue.url.trim();
+      if (typeof issue.link === "string" && issue.link.trim()) return issue.link.trim();
+      if (typeof issue.slug === "string" && issue.slug.trim()) {
+        return issue.slug.endsWith(".html") ? issue.slug : `${issue.slug}.html`;
+      }
+      if (typeof issue.id === "string" && issue.id.trim()) {
+        const id = issue.id.trim();
+        return `issues/${id}.html`;
+      }
+      return "#";
+    }
+
+    function resolveExcerpt(issue) {
+      const text = String(issue.rewritten_body || issue.excerpt || "").replace(/\s+/g, " ").trim();
+      if (!text) return "요약이 아직 준비되지 않았습니다.";
+      return text;
+    }
+
+    function normalizeIssues(rawList) {
+      return (Array.isArray(rawList) ? rawList : [])
+        .filter((issue) => issue && (issue.catchy_title || issue.title))
+        .map((issue) => ({
+          ...issue,
+          _status: resolveStatus(issue),
+          _tags: Array.isArray(issue.tags)
+            ? issue.tags.map((tag) => String(tag || "").trim()).filter(Boolean)
+            : []
+        }))
+        .sort((a, b) => {
+          const at = Date.parse(a.published_at || "") || 0;
+          const bt = Date.parse(b.published_at || "") || 0;
+          return bt - at;
+        });
+    }
+
+    function collectLabelCounts(issues) {
+      const counts = new Map();
+      issues.forEach((issue) => {
+        issue._tags.forEach((tag) => {
+          counts.set(tag, (counts.get(tag) || 0) + 1);
+        });
+      });
+      return counts;
+    }
+
+    function renderStatusChips() {
+      const openCount = state.issues.filter((issue) => issue._status === "OPEN").length;
+      const closedCount = state.issues.filter((issue) => issue._status === "CLOSED").length;
+      const chips = [
+        { key: "ALL", label: `전체 (${state.issues.length})` },
+        { key: "OPEN", label: `열림 (${openCount})` },
+        { key: "CLOSED", label: `닫힘 (${closedCount})` }
+      ];
+
+      statusChips.innerHTML = chips
+        .map((chip) => {
+          const active = chip.key === state.activeStatus ? "active" : "";
+          return `<button class="chip ${active}" type="button" data-status="${chip.key}">${chip.label}</button>`;
+        })
+        .join("");
+
+      statusChips.querySelectorAll(".chip").forEach((button) => {
+        button.addEventListener("click", () => {
+          state.activeStatus = button.dataset.status || "ALL";
+          applyFilter();
+        });
+      });
+    }
+
+    function renderLabelFilter() {
+      const options = Array.from(state.labelCounts.entries())
+        .sort((a, b) => {
+          if (b[1] !== a[1]) return b[1] - a[1];
+          return a[0].localeCompare(b[0], "ko");
+        })
+        .slice(0, 40);
+
+      labelFilter.innerHTML = [
+        `<option value="ALL">라벨 전체 (${state.issues.length})</option>`,
+        ...options.map(([label, count]) => `<option value="${escapeHtml(label)}">${escapeHtml(label)} (${count})</option>`)
+      ].join("");
+
+      labelFilter.value = state.activeLabel;
+      labelFilter.addEventListener("change", () => {
+        state.activeLabel = labelFilter.value || "ALL";
+        applyFilter();
+      });
+    }
+
+    function renderIssues() {
+      resultCount.textContent = `${state.filtered.length}개 이슈`;
+
+      if (!state.filtered.length) {
+        issuesGrid.innerHTML = '<article class="empty">선택한 조건에 맞는 이슈가 없습니다.</article>';
+        return;
+      }
+
+      issuesGrid.innerHTML = state.filtered
+        .map((issue) => {
+          const title = issue.catchy_title || issue.title || "제목 없음";
+          const excerpt = resolveExcerpt(issue);
+          const issueUrl = resolveIssueUrl(issue);
+          const commentsCount = Array.isArray(issue.comments) ? issue.comments.length : 0;
+          const statusClass = issue._status === "CLOSED" ? "closed" : "";
+          const statusLabel = issue._status === "CLOSED" ? "닫힘" : "열림";
+          const tags = issue._tags.slice(0, 5);
+          const source = String(issue.source_name || "출처 미상");
+
+          return `
+            <article class="issue-card">
+              <div class="issue-meta">
+                <span class="status-badge ${statusClass}">${statusLabel}</span>
+                <span>생성일: ${escapeHtml(formatDate(issue.published_at))}</span>
+                <span>댓글 ${commentsCount}개</span>
+              </div>
+              <h2 class="issue-title"><a href="${escapeHtml(issueUrl)}">${escapeHtml(title)}</a></h2>
+              <p class="issue-excerpt">${escapeHtml(excerpt)}</p>
+              <div class="issue-meta"><span>출처: ${escapeHtml(source)}</span></div>
+              <div class="issue-tags">
+                ${tags.map((tag) => `<button class="tag" type="button" data-tag="${escapeHtml(tag)}">#${escapeHtml(tag)}</button>`).join("")}
+              </div>
+            </article>
+          `;
+        })
+        .join("");
+
+      issuesGrid.querySelectorAll(".tag").forEach((button) => {
+        button.addEventListener("click", () => {
+          state.activeLabel = button.dataset.tag || "ALL";
+          labelFilter.value = state.activeLabel;
+          applyFilter();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+      });
+    }
+
+    function applyFilter() {
+      state.filtered = state.issues.filter((issue) => {
+        const statusOk = state.activeStatus === "ALL" || issue._status === state.activeStatus;
+        const labelOk = state.activeLabel === "ALL" || issue._tags.includes(state.activeLabel);
+        return statusOk && labelOk;
+      });
+      renderStatusChips();
+      renderIssues();
+    }
+
+    function init() {
+      state.issues = normalizeIssues(window.ISSUE_THREADS || []);
+      state.labelCounts = collectLabelCounts(state.issues);
+      renderStatusChips();
+      renderLabelFilter();
+      applyFilter();
+    }
+
+    init();
+  </script>
 </body>
 </html>
